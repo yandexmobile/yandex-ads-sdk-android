@@ -1,24 +1,9 @@
 # Yandex Advertising Network Mobile
-This package contains Yandex Advertising Network Mobile SDK and source code of samples of SDK usage.
+This package contains Yandex Advertising Network Mobile SDK.
 
 ## License
 EULA could be found at:
 https://legal.yandex.com/partner_ch/
-
-## Quick start in Android Studio
-
-##### 1. Running Android Studio 1.0 or higher
-
-##### 2. Import one of example projects:
-* /Examples/AdMobBannerAdapterExample;
-* /Examples/AdMobInterstitialAdapterExample;
-* /Examples/BannerExample;
-* /Examples/InterstitialExample;
-* /Examples/MoPubBannerAdapterExample;
-* /Examples/MoPubInterstitialAdapterExample;
-* /Examples/NativeExample.
-
-##### 3. Build and run.
 
 ## Integration
 
