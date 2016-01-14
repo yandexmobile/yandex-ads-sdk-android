@@ -1,12 +1,29 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## Version 2.0.0-beta-1
+## Version 2.00
+
+#### Added
+* Added `InterstitialEventListener` interface
+
+#### Updated
+* Improved SDK behavior in low-memory environment
+* Updated javadoc
+
+## Version 2.00-beta-1
 
 #### Added
 * Added flexible banner sizes
+* Added ability to control SDK logs
+* Added ability to get SDK version
 
-## Version 1.9.2
+#### Updated
+* Updated javadoc
+
+#### Breaking changes
+* Changed package directory path and name
+
+## Version 1.92
 
 #### Added
 * Supported AdMob Adapters
@@ -18,25 +35,25 @@ All notable changes to this project will be documented in this file.
 * Fixed HTML escaped symbols in native ads texts
 * Fixed errors
 
-## Version 1.9.1-mopub
+## Version 1.91-mopub
 
 #### Added
 * Supported MoPub Adapters
 
-## Version 1.9.1
+## Version 1.91
 
 #### Added
 * Added handling non-protocol links for images in native advertising
 * Improved impression tracking
 
-## Version 1.9.0
+## Version 1.90
 
 #### Added
 * Added App Install native ad type
 * Added ability to open web links in application or browser
 
 #### Updated
-* Updated AppMetrica to 2.0.0
+* Updated AppMetrica to 2.00
 * Raise minSdkVersion to 10 Android Level.
 * Updated javadoc
 

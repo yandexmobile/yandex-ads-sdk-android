@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ This file is a part of the Yandex Advertising Network
+  ~
+  ~ Version for Android (C) 2016 YANDEX
+  ~
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
+  -->
+
+<com.yandex.mobile.ads.nativeads.NativeAppInstallAdView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/native_appinstall_ad_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:showIn="@layout/activity_yandex_ads_example_native">
+
+    <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:orientation="vertical"
+          android:paddingLeft="@dimen/native_offset_large"
+          android:paddingRight="@dimen/native_offset_large"
+          android:paddingTop="@dimen/native_offset_small"
+          android:paddingBottom="@dimen/native_offset_small"
+          android:minHeight="@dimen/native_ads_min_height"
+          android:background="@color/native_ads_background">
+
+        <TextView
+            android:id="@+id/appinstall_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Native.Bold.Medium"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/native_offset_small"
+            tools:text="@string/title_text"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/appinstall_sponsored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                tools:text="@string/sponsored_text" />
+
+            <TextView
+                android:id="@+id/appinstall_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/native_offset_medium"
+                style="@style/Native.Bold"
+                tools:text="@string/age_text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/native_offset_small"
+            android:layout_marginBottom="@dimen/native_offset_small"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/appinstall_icon"
+                android:layout_width="@dimen/native_appinstall_icon_width"
+                android:layout_height="@dimen/native_appinstall_icon_height"
+                android:layout_margin="@dimen/native_offset_medium"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                tools:src="@mipmap/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/appinstall_body"
+                    tools:visibility="visible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@android:style/TextAppearance.Small"
+                    tools:text="@string/body_text"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/native_offset_small"
+                    android:orientation="horizontal">
+
+                    <com.yandex.nativeads.sample.MyRatingView
+                        android:id="@+id/appinstall_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        style="?android:attr/ratingBarStyleSmall"
+                        tools:text="@integer/appinstall_rating" />
+
+                    <TextView
+                        android:id="@+id/appinstall_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:paddingLeft="@dimen/native_offset_medium"
+                        style="@style/Native.Bold"
+                        tools:text="@string/native_appinstall_price_text"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/appinstall_call_to_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="@dimen/native_offset_medium"
+            style="@style/Native.Bold"
+            tools:text="@string/call_to_action_text"/>
+
+        <TextView
+            android:id="@+id/appinstall_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/warning"
+            style="@android:style/TextAppearance.Small"
+            tools:text="@string/warning_text"/>
+
+    </LinearLayout>
+
+</com.yandex.mobile.ads.nativeads.NativeAppInstallAdView>
