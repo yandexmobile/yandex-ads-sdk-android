@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.02
+
+#### Added
+* Added native assets highlighting
+
+#### Updated
+* Updated minimum compatible AppMetrica version to 2.32
+* Minor improvements and optimizations
+
 ## Version 2.01
 
 #### Updated
