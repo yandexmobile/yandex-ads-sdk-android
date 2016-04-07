@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.10
+
+#### Added
+* Added native ads template view
+
 ## Version 2.02
 
 #### Added

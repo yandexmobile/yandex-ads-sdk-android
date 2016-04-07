@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ This file is a part of the Yandex Advertising Network
+  ~
+  ~ Version for Android (C) 2016 YANDEX
+  ~
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
+  -->
+
+<com.yandex.mobile.ads.nativeads.template.NativeBannerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/native_template"
+    android:layout_marginTop="@dimen/native_offset_small"
+    android:layout_marginBottom="@dimen/native_offset_small"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>

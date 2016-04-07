@@ -18,7 +18,9 @@ EULA is available at [EULA website] [LICENSE]
 * /Examples/InterstitialExample;
 * /Examples/MoPubBannerAdapterExample;
 * /Examples/MoPubInterstitialAdapterExample;
-* /Examples/NativeExample.
+* /Examples/NativeExample;
+* /Examples/NativeTemplatesExample;
+* /Examples/NativeTemplatesRecyclerViewExample.
 
 ##### 3. Build and run.
 
@@ -36,7 +38,7 @@ compile 'com.yandex.android:mobmetricalib:2.32@aar'
 ##### 2. compile YandexMobileAds SDK:
 
 ```sh
-compile 'com.yandex.android:mobileads:2.02@aar'
+compile 'com.yandex.android:mobileads:2.10@aar'
 ```
 
 [DOCUMENTATION]: https://tech.yandex.ru/mobile-ads/

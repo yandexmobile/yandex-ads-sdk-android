@@ -21,8 +21,6 @@ import com.yandex.mobile.ads.InterstitialEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String QUERY = "Minsk";
-
     private AdRequest mAdRequest;
     private InterstitialAd mInterstitialAd;
 
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         */
         mInterstitialAd.setBlockId("R-M-DEMO-320x480");
 
-        mAdRequest = AdRequest.builder().withContextQuery(QUERY).build();
+        mAdRequest = AdRequest.builder().build();
         mInterstitialAd.setInterstitialEventListener(mInterstitialAdEventListener);
     }
 

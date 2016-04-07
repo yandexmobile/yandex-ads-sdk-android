@@ -20,7 +20,6 @@ import com.mopub.mobileads.MoPubInterstitial;
 public class MainActivity extends AppCompatActivity {
 
     private static final String AD_UNIT_ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-    private static final String KEYWORDS = "Minsk";
 
     private MoPubInterstitial mInterstitial;
     private Button mLoadInterstitialAdButton;
@@ -42,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
          * Please, read official documentation how to obtain one: {@link https://app.mopub.com}
          */
         mInterstitial = new MoPubInterstitial(this, AD_UNIT_ID);
-
-        mInterstitial.setKeywords(KEYWORDS);
         mInterstitial.setInterstitialAdListener(mInterstitialAdListener);
     }
 

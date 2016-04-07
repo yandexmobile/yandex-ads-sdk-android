@@ -21,7 +21,6 @@ import com.google.android.gms.ads.InterstitialAd;
 public class MainActivity extends AppCompatActivity {
 
     private static final String AD_UNIT_ID = "ca-app-pub-XXXXXXXXXXXXXXXX/YYYYYYYYYY";
-    private static final String KEYWORDS = "Minsk";
 
     private AdRequest mAdRequest;
     private InterstitialAd mInterstitialAd;
@@ -48,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
         */
         mInterstitialAd.setAdUnitId(AD_UNIT_ID);
 
-        mAdRequest = new AdRequest.Builder()
-                .addKeyword(KEYWORDS)
-                .build();
+        mAdRequest = new AdRequest.Builder().build();
 
         mInterstitialAd.setAdListener(mInterstitialAdListener);
     }

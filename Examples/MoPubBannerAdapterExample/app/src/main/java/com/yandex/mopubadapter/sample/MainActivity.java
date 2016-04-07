@@ -21,7 +21,6 @@ import com.mopub.mobileads.MoPubView;
 public class MainActivity extends AppCompatActivity {
 
     private static final String AD_UNIT_ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-    private static final String KEYWORDS = "Minsk";
 
     private MoPubView mMoPubView;
 
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
          */
         mMoPubView.setAdUnitId(AD_UNIT_ID);
 
-        mMoPubView.setKeywords(KEYWORDS);
         mMoPubView.setBannerAdListener(mBannerAdListener);
         mMoPubView.setAutorefreshEnabled(false);
     }

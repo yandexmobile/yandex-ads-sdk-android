@@ -31,5 +31,5 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.yandex.android:mobmetricalib:2.32@aar'
-    compile 'com.yandex.android:mobileads:2.02@aar'
+    compile 'com.yandex.android:mobileads:2.10@aar'
 }

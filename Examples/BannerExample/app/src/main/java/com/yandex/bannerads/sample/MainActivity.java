@@ -21,8 +21,6 @@ import com.yandex.mobile.ads.AdView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String QUERY = "Minsk";
-
     private AdView mAdView;
     private AdRequest mAdRequest;
 
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mAdView.setBlockId("R-M-DEMO-320x50");
         mAdView.setAdSize(AdSize.BANNER_320x50);
 
-        mAdRequest = AdRequest.builder().withContextQuery(QUERY).build();
+        mAdRequest = AdRequest.builder().build();
         mAdView.setAdEventListener(mBannerAdEventListener);
     }
 

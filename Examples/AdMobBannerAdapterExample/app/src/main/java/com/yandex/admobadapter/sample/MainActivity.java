@@ -24,7 +24,6 @@ import com.google.android.gms.ads.AdRequest;
 public class MainActivity extends AppCompatActivity {
 
     private static final String AD_UNIT_ID = "ca-app-pub-XXXXXXXXXXXXXXXX/YYYYYYYYYY";
-    private static final String KEYWORDS = "Minsk";
 
     private AdView mAdMobView;
     private AdRequest mAdRequest;
@@ -53,9 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mAdMobView.setAdUnitId(AD_UNIT_ID);
         mAdMobView.setAdListener(mBannerAdListener);
 
-        mAdRequest = new AdRequest.Builder()
-                .addKeyword(KEYWORDS)
-                .build();
+        mAdRequest = new AdRequest.Builder().build();
 
         final LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);

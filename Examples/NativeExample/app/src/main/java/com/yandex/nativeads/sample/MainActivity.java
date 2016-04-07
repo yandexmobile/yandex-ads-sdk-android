@@ -31,7 +31,6 @@ import com.yandex.mobile.ads.nativeads.NativeContentAdView;
 public class MainActivity extends AppCompatActivity {
 
     private static final String BLOCK_ID = "R-M-XXXXXX-Y";
-    private static final String QUERY = "Minsk";
     private static final String SAMPLE_TAG = "NativeAdSample";
 
     private NativeContentAdView mContentAdView;
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private void refreshNativeAd() {
         mContentAdView.setVisibility(View.GONE);
         mAppInstallAdView.setVisibility(View.GONE);
-        mNativeAdLoader.loadAd(AdRequest.builder().withContextQuery(QUERY).build());
+        mNativeAdLoader.loadAd(AdRequest.builder().build());
     }
 
     private NativeAdLoader.OnLoadListener mNativeAdLoadListener = new NativeAdLoader.OnLoadListener() {
