@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.11
+
+#### Updated
+* Minor improvements and optimizations
+
+#### Fixed
+* Fixed AdMob Adapters
+
 ## Version 2.10
 
 #### Added

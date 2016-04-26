@@ -28,6 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class YandexInterstitial implements CustomEventInterstitial {
 
@@ -94,11 +95,14 @@ public class YandexInterstitial implements CustomEventInterstitial {
     private com.yandex.mobile.ads.AdRequest configureAdRequest(final MediationAdRequest mediationAdRequest) {
         final com.yandex.mobile.ads.AdRequest.Builder adRequestBuilder = com.yandex.mobile.ads.AdRequest.builder();
         if (mediationAdRequest != null) {
-            final List<String> keywords = new ArrayList<>(mediationAdRequest.getKeywords());
             final Location location = mediationAdRequest.getLocation();
-
-            adRequestBuilder.withContextTags(keywords);
             adRequestBuilder.withLocation(location);
+
+            final Set<String> mediationKeywords = mediationAdRequest.getKeywords();
+            if (mediationKeywords != null) {
+                final List<String> keywords = new ArrayList<>(mediationKeywords);
+                adRequestBuilder.withContextTags(keywords);
+            }
         }
 
         return adRequestBuilder.build();

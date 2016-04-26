@@ -37,15 +37,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initBannerView() {
-
         /*
         * Replace demo R-M-DEMO-320x50 with actual Block ID
         * Following demo Block IDs may be used for testing:
-        * R-M-DEMO-320x50 for AdSize.BANNER_320x50
-        * R-M-DEMO-728x90 for AdSize.BANNER_728x90
-        * R-M-DEMO-320x100-context for AdSize.BANNER_320x100
+        * R-M-DEMO-300x250 for AdSize.BANNER_300x250
         * R-M-DEMO-300x250-context for AdSize.BANNER_300x250
         * R-M-DEMO-300x300-context for AdSize.BANNER_300x300
+        * R-M-DEMO-320x50 for AdSize.BANNER_320x50
+        * R-M-DEMO-320x50-app_install for AdSize.BANNER_320x50
+		* R-M-DEMO-320x100-context for AdSize.BANNER_320x100
+        * R-M-DEMO-728x90 for AdSize.BANNER_728x90
         */
         mAdView.setBlockId("R-M-DEMO-320x50");
         mAdView.setAdSize(AdSize.BANNER_320x50);
