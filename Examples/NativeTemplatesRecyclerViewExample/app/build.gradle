@@ -32,6 +32,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:recyclerview-v7:23.3.0'
 
-    compile 'com.yandex.android:mobmetricalib:2.40'
-    compile 'com.yandex.android:mobileads:2.11'
+    compile 'com.yandex.android:mobmetricalib:2.41'
+    compile 'com.yandex.android:mobileads:2.12'
 }

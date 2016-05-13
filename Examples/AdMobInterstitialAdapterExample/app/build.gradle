@@ -31,8 +31,8 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
 
-    compile 'com.yandex.android:mobmetricalib:2.40'
-    compile 'com.yandex.android:mobileads:2.11'
+    compile 'com.yandex.android:mobmetricalib:2.41'
+    compile 'com.yandex.android:mobileads:2.12'
 
     compile 'com.google.android.gms:play-services-ads:8.4.0'
 }

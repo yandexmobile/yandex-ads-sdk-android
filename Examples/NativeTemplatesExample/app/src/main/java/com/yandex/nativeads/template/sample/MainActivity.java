@@ -27,7 +27,6 @@ import com.yandex.mobile.ads.nativeads.template.NativeBannerView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String BLOCK_ID = "R-M-XXXXXX-Y";
     private static final String SAMPLE_TAG = "NativeTemplatesExample";
 
     private NativeAdLoader mNativeAdLoader;
@@ -47,9 +46,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void createNativeAdLoader() {
         /*
-        * Replace BLOCK_ID with your actual Block ID
+        * Replace demo R-M-DEMO-native-i with actual Block ID
+        * Following demo Block IDs may be used for testing:
+        * app install: R-M-DEMO-native-i
+        * content: R-M-DEMO-native-c
         */
-        mNativeAdLoader = new NativeAdLoader(getApplicationContext(), BLOCK_ID);
+        mNativeAdLoader = new NativeAdLoader(getApplicationContext(), "R-M-DEMO-native-i");
         mNativeAdLoader.setOnLoadListener(mNativeAdLoadListener);
     }
 
