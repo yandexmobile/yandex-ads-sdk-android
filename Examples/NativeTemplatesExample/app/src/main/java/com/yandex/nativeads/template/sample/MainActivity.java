@@ -20,6 +20,7 @@ import com.yandex.mobile.ads.AdRequest;
 import com.yandex.mobile.ads.AdRequestError;
 import com.yandex.mobile.ads.nativeads.NativeAdEventListener;
 import com.yandex.mobile.ads.nativeads.NativeAdLoader;
+import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
 import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
 import com.yandex.mobile.ads.nativeads.NativeContentAd;
 import com.yandex.mobile.ads.nativeads.NativeGenericAd;
@@ -47,11 +48,15 @@ public class MainActivity extends AppCompatActivity {
     private void createNativeAdLoader() {
         /*
         * Replace demo R-M-DEMO-native-i with actual Block ID
+        * Please, note, that configured image sizes don't affect demo ads.
         * Following demo Block IDs may be used for testing:
         * app install: R-M-DEMO-native-i
         * content: R-M-DEMO-native-c
         */
-        mNativeAdLoader = new NativeAdLoader(getApplicationContext(), "R-M-DEMO-native-i");
+        final NativeAdLoaderConfiguration adLoaderConfiguration =
+                new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-i", true)
+                        .setImageSizes(NativeAdLoaderConfiguration.NATIVE_IMAGE_SIZE_MEDIUM).build();
+        mNativeAdLoader = new NativeAdLoader(getApplicationContext(), adLoaderConfiguration);
         mNativeAdLoader.setOnLoadListener(mNativeAdLoadListener);
     }
 

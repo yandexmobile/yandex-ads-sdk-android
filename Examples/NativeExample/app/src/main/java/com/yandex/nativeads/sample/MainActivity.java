@@ -20,9 +20,12 @@ import android.widget.TextView;
 
 import com.yandex.mobile.ads.AdRequest;
 import com.yandex.mobile.ads.AdRequestError;
+import com.yandex.mobile.ads.nativeads.NativeAdAssets;
 import com.yandex.mobile.ads.nativeads.NativeAdEventListener;
 import com.yandex.mobile.ads.nativeads.NativeAdException;
+import com.yandex.mobile.ads.nativeads.NativeAdImage;
 import com.yandex.mobile.ads.nativeads.NativeAdLoader;
+import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
 import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
 import com.yandex.mobile.ads.nativeads.NativeAppInstallAdView;
 import com.yandex.mobile.ads.nativeads.NativeContentAd;
@@ -31,6 +34,8 @@ import com.yandex.mobile.ads.nativeads.NativeContentAdView;
 public class MainActivity extends AppCompatActivity {
 
     private static final String SAMPLE_TAG = "NativeAdSample";
+
+    private static final int LARGE_IMAGE_WIDTH = 450;
 
     private NativeContentAdView mContentAdView;
     private NativeAppInstallAdView mAppInstallAdView;
@@ -54,11 +59,15 @@ public class MainActivity extends AppCompatActivity {
     private void createNativeAd() {
         /*
         * Replace demo R-M-DEMO-native-i with actual Block ID
+        * Please, note, that configured image sizes don't affect demo ads.
         * Following demo Block IDs may be used for testing:
         * app install: R-M-DEMO-native-i
         * content: R-M-DEMO-native-c
         */
-        mNativeAdLoader = new NativeAdLoader(getApplicationContext(), "R-M-DEMO-native-i");
+        final NativeAdLoaderConfiguration adLoaderConfiguration =
+                new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-c", true)
+                        .setImageSizes(NativeAdLoaderConfiguration.NATIVE_IMAGE_SIZE_MEDIUM).build();
+        mNativeAdLoader = new NativeAdLoader(getApplicationContext(), adLoaderConfiguration);
         mNativeAdLoader.setOnLoadListener(mNativeAdLoadListener);
     }
 
@@ -82,9 +91,12 @@ public class MainActivity extends AppCompatActivity {
             mAppInstallAdView.setAgeView((TextView) findViewById(R.id.appinstall_age));
             mAppInstallAdView.setBodyView((TextView) findViewById(R.id.appinstall_body));
             mAppInstallAdView.setCallToActionView((Button) findViewById(R.id.appinstall_call_to_action));
+            mAppInstallAdView.setDomainView((TextView) findViewById(R.id.appinstall_domain));
             mAppInstallAdView.setIconView((ImageView) findViewById(R.id.appinstall_icon));
+            mAppInstallAdView.setImageView((ImageView) findViewById(R.id.appinstall_image));
             mAppInstallAdView.setPriceView((TextView) findViewById(R.id.appinstall_price));
             mAppInstallAdView.setRatingView((MyRatingView) findViewById(R.id.appinstall_rating));
+            mAppInstallAdView.setReviewCountView((TextView) findViewById(R.id.appinstall_review_count));
             mAppInstallAdView.setSponsoredView((TextView) findViewById(R.id.appinstall_sponsored));
             mAppInstallAdView.setTitleView((TextView) findViewById(R.id.appinstall_title));
             mAppInstallAdView.setWarningView((TextView) findViewById(R.id.appinstall_warning));
@@ -106,14 +118,34 @@ public class MainActivity extends AppCompatActivity {
         public void onContentAdLoaded(@NonNull NativeContentAd nativeContentAd) {
             mContentAdView.setAgeView((TextView) findViewById(R.id.content_age));
             mContentAdView.setBodyView((TextView) findViewById(R.id.content_body));
+            mContentAdView.setCallToActionView((Button) findViewById(R.id.content_call_to_action));
             mContentAdView.setDomainView((TextView) findViewById(R.id.content_domain));
             mContentAdView.setIconView((ImageView) findViewById(R.id.content_favicon));
-            mContentAdView.setImageView((ImageView) findViewById(R.id.content_image));
             mContentAdView.setSponsoredView((TextView) findViewById(R.id.content_sponsored));
             mContentAdView.setTitleView((TextView) findViewById(R.id.content_title));
             mContentAdView.setWarningView((TextView) findViewById(R.id.content_warning));
 
+            configureContentAdImages(nativeContentAd);
+
             bindContentNativeAd(nativeContentAd);
+        }
+
+        private void configureContentAdImages(final NativeContentAd nativeContentAd) {
+            final ImageView image = (ImageView) findViewById(R.id.content_image);
+            final ImageView largeImage = (ImageView) findViewById(R.id.content_large_image);
+
+            final NativeAdAssets nativeAdAssets = nativeContentAd.getAdAssets();
+            final NativeAdImage nativeAdImage = nativeAdAssets.getImage();
+            if (nativeAdImage != null) {
+                final int imageWidth = nativeAdImage.getWidth();
+                if (imageWidth >= LARGE_IMAGE_WIDTH) {
+                    mContentAdView.setImageView(largeImage);
+                    image.setVisibility(View.GONE);
+                } else {
+                    mContentAdView.setImageView(image);
+                    largeImage.setVisibility(View.GONE);
+                }
+            }
         }
 
         private void bindContentNativeAd(final NativeContentAd nativeContentAd) {

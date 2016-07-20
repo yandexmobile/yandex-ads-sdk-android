@@ -81,5 +81,6 @@ public class NativeTemplateAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         holder.nativeBannerView.setAd(nativeAd);
         holder.nativeBannerView.setVisibility(View.VISIBLE);
+        nativeAd.loadImages();
     }
 }

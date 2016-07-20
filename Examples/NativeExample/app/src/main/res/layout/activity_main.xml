@@ -21,7 +21,6 @@
         android:id="@+id/native_load_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:text="@string/native_load_button"/>
 
     <include layout="@layout/widget_native_appinstall_ad"

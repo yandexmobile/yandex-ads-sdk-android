@@ -28,4 +28,7 @@
     <dimen name="native_appinstall_icon_height">64dp</dimen>
     <dimen name="native_appinstall_icon_width">64dp</dimen>
 
+    <dimen name="native_domain_text_size">13sp</dimen>
+    <dimen name="native_review_count_text_size">13sp</dimen>
+
 </resources>

@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.20
+
+#### Added
+* Added ability to get native ad asset values
+* Added ability to load native ad images manually
+* Added loaded image sizes configuration for native ads
+
 ## Version 2.13
 
 #### Updated

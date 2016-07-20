@@ -13,8 +13,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/native_content_ad_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:showIn="@layout/activity_yandex_ads_example_native">
+    android:layout_height="wrap_content">
 
     <LinearLayout
           android:layout_width="match_parent"
@@ -75,7 +74,7 @@
                 android:layout_margin="@dimen/native_offset_medium"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
-                tools:src="@drawable/ic_launcher" />
+                tools:src="@mipmap/ic_launcher" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -101,14 +100,14 @@
                         android:id="@+id/content_favicon"
                         android:layout_width="@dimen/native_favicon_width"
                         android:layout_height="@dimen/native_favicon_height"
-                        tools:src="@drawable/ic_launcher" />
+                        android:layout_marginRight="@dimen/native_offset_medium"
+                        tools:src="@mipmap/ic_launcher" />
 
                     <TextView
                         android:id="@+id/content_domain"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingLeft="@dimen/native_offset_medium"
                         android:paddingRight="@dimen/native_offset_medium"
                         android:maxLines="1"
                         android:ellipsize="end"
@@ -118,6 +117,25 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/content_large_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/native_offset_small"
+            android:layout_marginBottom="@dimen/native_offset_small"
+            android:adjustViewBounds="true"
+            tools:visibility="gone"
+            tools:src="@mipmap/ic_launcher" />
+
+        <Button
+            android:id="@+id/content_call_to_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="@dimen/native_offset_medium"
+            style="@style/Native.Bold"
+            tools:text="@string/call_to_action_text"/>
 
         <TextView
             android:id="@+id/content_warning"

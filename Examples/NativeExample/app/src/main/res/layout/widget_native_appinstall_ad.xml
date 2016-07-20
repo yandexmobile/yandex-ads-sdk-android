@@ -13,8 +13,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/native_appinstall_ad_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:showIn="@layout/activity_yandex_ads_example_native">
+    android:layout_height="wrap_content">
 
     <LinearLayout
           android:layout_width="match_parent"
@@ -91,19 +90,45 @@
                     style="@android:style/TextAppearance.Small"
                     tools:text="@string/body_text"/>
 
+                <TextView
+                    android:id="@+id/appinstall_domain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="@dimen/native_domain_text_size"
+                    android:textColor="#7f7f7f"
+                    tools:visibility="visible"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/native_offset_small"
                     android:orientation="horizontal">
 
-                    <com.yandex.nativeads.sample.MyRatingView
-                        android:id="@+id/appinstall_rating"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:numStars="5"
-                        style="?android:attr/ratingBarStyleSmall"
-                        tools:text="@integer/appinstall_rating" />
+                        android:orientation="vertical">
+
+                        <com.yandex.nativeads.sample.MyRatingView
+                            android:id="@+id/appinstall_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:numStars="5"
+                            style="?android:attr/ratingBarStyleSmall"
+                            tools:text="@integer/appinstall_rating" />
+
+                        <TextView
+                            android:id="@+id/appinstall_review_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:textSize="@dimen/native_review_count_text_size"
+                            android:textColor="#7f7f7f"
+                            tools:text="1024"
+                            tools:visibility="visible"/>
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/appinstall_price"
@@ -116,8 +141,18 @@
                         tools:text="@string/native_appinstall_price_text"/>
 
                 </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/appinstall_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/native_offset_small"
+            android:adjustViewBounds="true"
+            tools:visibility="visible"
+            tools:src="@mipmap/ic_launcher" />
 
         <Button
             android:id="@+id/appinstall_call_to_action"
