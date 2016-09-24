@@ -29,10 +29,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:24.1.1'
+    compile 'com.android.support:appcompat-v7:24.2.0'
 
     compile 'com.yandex.android:mobmetricalib:2.42'
-    compile 'com.yandex.android:mobileads:2.30'
+    compile 'com.yandex.android:mobileads:2.31'
 
     compile('com.mopub:mopub-sdk:4.8.0@aar') { transitive = true }
 }
