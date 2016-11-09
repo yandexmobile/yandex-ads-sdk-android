@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.31-adapters
+
+#### Updated
+* Update AdMob and MoPub adapters
+
 ## Version 2.31
 
 #### Updated

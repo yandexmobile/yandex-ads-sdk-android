@@ -120,19 +120,19 @@ public class YandexInterstitial implements CustomEventInterstitial {
     private InterstitialEventListener mInterstitialEventListener = new InterstitialEventListener.SimpleInterstitialEventListener() {
 
         @Override
-        public void onAdClosed() {
-            mInterstitialListener.onAdClosed();
-        }
-
-        @Override
         public void onAdLeftApplication() {
+            mInterstitialListener.onAdClicked();
             mInterstitialListener.onAdLeftApplication();
         }
 
         @Override
         public void onAdOpened() {
-            mInterstitialListener.onAdOpened();
             mInterstitialListener.onAdClicked();
+        }
+
+        @Override
+        public void onInterstitialDismissed() {
+            mInterstitialListener.onAdClosed();
         }
 
         @Override
@@ -163,6 +163,11 @@ public class YandexInterstitial implements CustomEventInterstitial {
         @Override
         public void onInterstitialLoaded() {
             mInterstitialListener.onAdLoaded();
+        }
+
+        @Override
+        public void onInterstitialShown() {
+            mInterstitialListener.onAdOpened();
         }
     };
 

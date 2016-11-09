@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    AdListener mBannerAdListener = new AdListener() {
+    private AdListener mBannerAdListener = new AdListener() {
         @Override
         public void onAdLoaded() {
             mAdMobView.setVisibility(View.VISIBLE);

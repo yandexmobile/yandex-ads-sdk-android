@@ -153,7 +153,7 @@ public class YandexBanner implements CustomEventBanner {
         }
     }
 
-    AdEventListener mAdEventListener = new AdEventListener() {
+    private AdEventListener mAdEventListener = new AdEventListener() {
 
         @Override
         public void onAdClosed() {
@@ -187,7 +187,9 @@ public class YandexBanner implements CustomEventBanner {
 
         @Override
         public void onAdLeftApplication() {
+            mBannerListener.onAdClicked();
             mBannerListener.onAdLeftApplication();
+            mBannerListener.onAdOpened();
         }
 
         @Override
@@ -197,8 +199,8 @@ public class YandexBanner implements CustomEventBanner {
 
         @Override
         public void onAdOpened() {
-            mBannerListener.onAdOpened();
             mBannerListener.onAdClicked();
+            mBannerListener.onAdOpened();
         }
     };
 }

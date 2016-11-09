@@ -34,5 +34,7 @@ dependencies {
     compile 'com.yandex.android:mobmetricalib:2.42'
     compile 'com.yandex.android:mobileads:2.31'
 
-    compile('com.mopub:mopub-sdk:4.8.0@aar') { transitive = true }
+    compile('com.mopub:mopub-sdk:4.10.0@aar') {
+        transitive = true
+    }
 }
