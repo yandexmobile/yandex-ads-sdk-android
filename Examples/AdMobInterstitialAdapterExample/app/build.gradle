@@ -32,7 +32,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
 
     compile 'com.yandex.android:mobmetricalib:2.42'
-    compile 'com.yandex.android:mobileads:2.31'
+    compile 'com.yandex.android:mobileads:2.41'
 
     compile 'com.google.android.gms:play-services-ads:8.4.0'
 }

@@ -33,5 +33,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.0'
 
     compile 'com.yandex.android:mobmetricalib:2.42'
-    compile 'com.yandex.android:mobileads:2.31'
+    compile 'com.yandex.android:mobileads:2.41'
 }
