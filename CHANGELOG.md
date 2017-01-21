@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.50
+
+#### Added
+* Added native image ad type
+
 ## Version 2.41
 
 #### Updated
