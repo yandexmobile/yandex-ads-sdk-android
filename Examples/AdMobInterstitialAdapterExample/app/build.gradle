@@ -11,7 +11,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "com.yandex.admobadapter.sample"
@@ -29,10 +29,10 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:appcompat-v7:25.2.0'
 
     compile 'com.yandex.android:mobmetricalib:2.62'
-    compile 'com.yandex.android:mobileads:2.50'
+    compile 'com.yandex.android:mobileads:2.51'
 
     compile 'com.google.android.gms:play-services-ads:8.4.0'
 }

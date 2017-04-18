@@ -12,6 +12,7 @@ EULA is available at [EULA website] [LICENSE]
 ##### 1. Running Android Studio 1.0 or higher
 
 ##### 2. Import one of example projects:
+* /Examples/AdFoxNativeExample;
 * /Examples/AdMobBannerAdapterExample;
 * /Examples/AdMobInterstitialAdapterExample;
 * /Examples/BannerExample;
@@ -38,7 +39,7 @@ compile 'com.yandex.android:mobmetricalib:2.62'
 ##### 2. compile YandexMobileAds SDK:
 
 ```sh
-compile 'com.yandex.android:mobileads:2.50'
+compile 'com.yandex.android:mobileads:2.51'
 ```
 
 [DOCUMENTATION]: https://tech.yandex.ru/mobile-ads/

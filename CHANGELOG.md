@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.51
+
+#### Updated
+* Improved performance for loading ads
+
 ## Version 2.50
 
 #### Added
