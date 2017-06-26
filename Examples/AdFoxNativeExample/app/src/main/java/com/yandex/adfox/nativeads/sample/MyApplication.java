@@ -7,7 +7,7 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.yandex.mopubadapter.sample;
+package com.yandex.adfox.nativeads.sample;
 
 import com.yandex.metrica.YandexMetrica;
 

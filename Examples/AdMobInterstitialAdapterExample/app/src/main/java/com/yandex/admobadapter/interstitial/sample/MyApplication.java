@@ -7,7 +7,7 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.yandex.admobadapter.sample;
+package com.yandex.admobadapter.interstitial.sample;
 
 import com.yandex.metrica.YandexMetrica;
 

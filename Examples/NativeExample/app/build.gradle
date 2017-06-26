@@ -14,7 +14,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.yandex.android.mobile_nativeads_sample_android"
+        applicationId "com.yandex.nativeads.sample"
         minSdkVersion 10
         targetSdkVersion 25
         versionCode 1
@@ -32,5 +32,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.2.0'
 
     compile 'com.yandex.android:mobmetricalib:2.62'
-    compile 'com.yandex.android:mobileads:2.51'
+    compile 'com.yandex.android:mobileads:2.60'
 }

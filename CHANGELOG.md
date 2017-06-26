@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.60
+
+#### Updated
+* Improved performance for loading ads
+
+#### Fixed
+* Fixed Memory Leak
+
 ## Version 2.51
 
 #### Updated

@@ -7,7 +7,7 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.yandex.admobadapter.sample;
+package com.yandex.admobadapter.banner.sample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

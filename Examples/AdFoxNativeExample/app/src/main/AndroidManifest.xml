@@ -9,7 +9,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.yandex.nativeads.adfox.sample">
+          package="com.yandex.adfox.nativeads.sample">
 
     <application
         android:name=".MyApplication"

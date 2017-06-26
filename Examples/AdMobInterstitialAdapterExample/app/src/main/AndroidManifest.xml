@@ -9,7 +9,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yandex.admobadapter.sample" >
+    package="com.yandex.admobadapter.interstitial.sample" >
 
     <application
         android:name=".MyApplication"

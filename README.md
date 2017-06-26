@@ -39,7 +39,7 @@ compile 'com.yandex.android:mobmetricalib:2.62'
 ##### 2. compile YandexMobileAds SDK:
 
 ```sh
-compile 'com.yandex.android:mobileads:2.51'
+compile 'com.yandex.android:mobileads:2.60'
 ```
 
 [DOCUMENTATION]: https://tech.yandex.ru/mobile-ads/

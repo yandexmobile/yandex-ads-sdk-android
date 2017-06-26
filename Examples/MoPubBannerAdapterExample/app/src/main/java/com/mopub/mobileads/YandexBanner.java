@@ -22,6 +22,7 @@ import com.yandex.mobile.ads.AdRequestError;
 import com.yandex.mobile.ads.AdSize;
 import com.yandex.mobile.ads.AdView;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class YandexBanner extends CustomEventBanner {
@@ -33,6 +34,9 @@ public class YandexBanner extends CustomEventBanner {
     private static final String AD_WIDTH_KEY = "adWidth";
     private static final String AD_HEIGHT_KEY = "adHeight";
     private static final String OPEN_LINKS_IN_APP = "openLinksInApp";
+
+    private static final String MEDIATION_NETWORK_KEY = "mediation_network";
+    private static final String MEDIATION_NETWORK = "mopub";
 
     private AdView mAdView;
 
@@ -64,7 +68,14 @@ public class YandexBanner extends CustomEventBanner {
             parseServerExtras(serverExtras);
 
             final AdSize adSize = calculateAdSize();
-            final AdRequest adRequest = AdRequest.builder().withLocation(mLocation).build();
+
+            final Map<String, String> adRequestParams = new HashMap<>();
+            adRequestParams.put(MEDIATION_NETWORK_KEY, MEDIATION_NETWORK);
+
+            final AdRequest adRequest = AdRequest.builder()
+                    .withLocation(mLocation)
+                    .withParameters(adRequestParams)
+                    .build();
 
             mAdView = new AdView(context);
             mAdView.setAdSize(adSize);

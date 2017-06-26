@@ -14,7 +14,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.yandex.admobadapter.sample"
+        applicationId "com.yandex.admobadapter.banner.sample"
         minSdkVersion 10
         targetSdkVersion 25
         versionCode 1
@@ -32,7 +32,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.2.0'
 
     compile 'com.yandex.android:mobmetricalib:2.62'
-    compile 'com.yandex.android:mobileads:2.51'
+    compile 'com.yandex.android:mobileads:2.60'
 
     compile 'com.google.android.gms:play-services-ads:8.4.0'
 }

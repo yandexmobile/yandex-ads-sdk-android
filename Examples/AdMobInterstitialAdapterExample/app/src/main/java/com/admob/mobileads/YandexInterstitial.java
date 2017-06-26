@@ -30,12 +30,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class YandexInterstitial implements CustomEventInterstitial {
 
     private static final String TAG = "Yandex AdMob Adapter";
 
     private static final String BLOCK_ID = "blockID";
     private static final String OPEN_LINKS_IN_APP = "openLinksInApp";
+
+    private static final String MEDIATION_NETWORK_KEY = "mediation_network";
+    private static final String MEDIATION_NETWORK = "admob";
 
     private String mBlockId;
     private boolean mOpenLinksInApp;
@@ -94,6 +100,9 @@ public class YandexInterstitial implements CustomEventInterstitial {
 
     private com.yandex.mobile.ads.AdRequest configureAdRequest(final MediationAdRequest mediationAdRequest) {
         final com.yandex.mobile.ads.AdRequest.Builder adRequestBuilder = com.yandex.mobile.ads.AdRequest.builder();
+        final Map<String, String> adRequestParams = new HashMap<>();
+        adRequestParams.put(MEDIATION_NETWORK_KEY, MEDIATION_NETWORK);
+        adRequestBuilder.withParameters(adRequestParams);
         if (mediationAdRequest != null) {
             final Location location = mediationAdRequest.getLocation();
             adRequestBuilder.withLocation(location);

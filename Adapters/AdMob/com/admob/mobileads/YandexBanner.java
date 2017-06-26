@@ -31,6 +31,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class YandexBanner implements CustomEventBanner {
 
     private static final String TAG = "Yandex AdMob Adapter";
@@ -39,6 +42,9 @@ public class YandexBanner implements CustomEventBanner {
     private static final String AD_WIDTH_KEY = "adWidth";
     private static final String AD_HEIGHT_KEY = "adHeight";
     private static final String OPEN_LINKS_IN_APP = "openLinksInApp";
+
+    private static final String MEDIATION_NETWORK_KEY = "mediation_network";
+    private static final String MEDIATION_NETWORK = "admob";
 
     private String mServerAdWidth;
     private String mServerAdHeight;
@@ -85,6 +91,9 @@ public class YandexBanner implements CustomEventBanner {
 
     private com.yandex.mobile.ads.AdRequest configureAdRequest(final MediationAdRequest mediationAdRequest) {
         final com.yandex.mobile.ads.AdRequest.Builder adRequestBuilder = com.yandex.mobile.ads.AdRequest.builder();
+        final Map<String, String> adRequestParams = new HashMap<>();
+        adRequestParams.put(MEDIATION_NETWORK_KEY, MEDIATION_NETWORK);
+        adRequestBuilder.withParameters(adRequestParams);
         if (mediationAdRequest != null) {
             final Location location = mediationAdRequest.getLocation();
             adRequestBuilder.withLocation(location);

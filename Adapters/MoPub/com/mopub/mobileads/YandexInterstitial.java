@@ -19,6 +19,7 @@ import com.yandex.mobile.ads.AdRequestError;
 import com.yandex.mobile.ads.InterstitialAd;
 import com.yandex.mobile.ads.InterstitialEventListener;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class YandexInterstitial extends CustomEventInterstitial {
@@ -28,6 +29,9 @@ public class YandexInterstitial extends CustomEventInterstitial {
     private static final String BLOCK_ID = "blockID";
     private static final String LOCATION = "location";
     private static final String OPEN_LINKS_IN_APP = "openLinksInApp";
+
+    private static final String MEDIATION_NETWORK_KEY = "mediation_network";
+    private static final String MEDIATION_NETWORK = "mopub";
 
     private String mBlockId;
     private Location mLocation;
@@ -52,7 +56,13 @@ public class YandexInterstitial extends CustomEventInterstitial {
             parseLocalExtras(localExtras);
             parseServerExtras(serverExtras);
 
-            final AdRequest adRequest = AdRequest.builder().withLocation(mLocation).build();
+            final Map<String, String> adRequestParams = new HashMap<>();
+            adRequestParams.put(MEDIATION_NETWORK_KEY, MEDIATION_NETWORK);
+
+            final AdRequest adRequest = AdRequest.builder()
+                    .withLocation(mLocation)
+                    .withParameters(adRequestParams)
+                    .build();
 
             mInterstitialAd = new InterstitialAd(context);
             mInterstitialAd.setBlockId(mBlockId);

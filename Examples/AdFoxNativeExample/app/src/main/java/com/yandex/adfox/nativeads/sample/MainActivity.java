@@ -7,7 +7,7 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.yandex.nativeads.adfox.sample;
+package com.yandex.adfox.nativeads.sample;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

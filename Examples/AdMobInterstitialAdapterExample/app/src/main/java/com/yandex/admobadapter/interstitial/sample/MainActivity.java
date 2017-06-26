@@ -7,22 +7,24 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.yandex.mopubadapter.sample;
+package com.yandex.admobadapter.interstitial.sample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.mopub.mobileads.DefaultInterstitialAdListener;
-import com.mopub.mobileads.MoPubErrorCode;
-import com.mopub.mobileads.MoPubInterstitial;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String AD_UNIT_ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+    private static final String AD_UNIT_ID = "ca-app-pub-XXXXXXXXXXXXXXXX/YYYYYYYYYY";
 
-    private MoPubInterstitial mInterstitial;
+    private AdRequest mAdRequest;
+    private InterstitialAd mInterstitialAd;
+
     private Button mLoadInterstitialAdButton;
 
     @Override
@@ -37,20 +39,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initInterstitialAd() {
-        /**
-         * Replace AD_UNIT_ID with your unique Ad Unit ID.
-         * Please, read official documentation how to obtain one: {@link https://app.mopub.com}
-         */
-        mInterstitial = new MoPubInterstitial(this, AD_UNIT_ID);
-        mInterstitial.setInterstitialAdListener(mInterstitialAdListener);
-    }
+        mInterstitialAd = new InterstitialAd(this);
 
-    @Override
-    protected void onDestroy() {
-        if (mInterstitial != null) {
-            mInterstitial.destroy();
-        }
-        super.onDestroy();
+        /*
+          Replace AD_UNIT_ID with your unique Ad Unit ID.
+          Please, read official documentation how to obtain one: https://apps.admob.com
+        */
+        mInterstitialAd.setAdUnitId(AD_UNIT_ID);
+
+        mAdRequest = new AdRequest.Builder().build();
+
+        mInterstitialAd.setAdListener(mInterstitialAdListener);
     }
 
     private View.OnClickListener mInterstitialClickListener = new View.OnClickListener() {
@@ -59,22 +58,23 @@ public class MainActivity extends AppCompatActivity {
             mLoadInterstitialAdButton.setEnabled(false);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.start_load_interstitial_button));
 
-            mInterstitial.load();
+            mInterstitialAd.loadAd(mAdRequest);
         }
     };
 
-    private MoPubInterstitial.InterstitialAdListener mInterstitialAdListener = new DefaultInterstitialAdListener() {
-
+    private AdListener mInterstitialAdListener = new AdListener() {
         @Override
-        public void onInterstitialLoaded(final MoPubInterstitial moPubInterstitial) {
-            mInterstitial.show();
+        public void onAdLoaded() {
+            mInterstitialAd.show();
 
             mLoadInterstitialAdButton.setEnabled(true);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.load_interstitial_button));
         }
 
         @Override
-        public void onInterstitialFailed(final MoPubInterstitial moPubInterstitial, final MoPubErrorCode moPubErrorCode) {
+        public void onAdFailedToLoad(final int errorCode) {
+            super.onAdFailedToLoad(errorCode);
+
             mLoadInterstitialAdButton.setEnabled(true);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.load_interstitial_button));
         }
