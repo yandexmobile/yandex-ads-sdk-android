@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.61
+
+#### Added
+* Added HTML banners and interstitials mediation
+
+#### Fixed
+* Fixed banner ad representation in IDE
+
+#### Updated
+* Minor improvements and optimizations
+
 ## Version 2.60
 
 #### Updated

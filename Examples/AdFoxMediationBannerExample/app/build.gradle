@@ -1,0 +1,30 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.yandex.adfox.mediation.banner.sample"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:25.3.1'
+
+    compile 'com.yandex.android:mobileads:2.61'
+    compile 'com.yandex.android:mobmetricalib:2.73'
+
+    compile 'com.yandex.ads.mediation:mobileads-admob:1.0.0'
+    compile 'com.google.android.gms:play-services-ads:11.0.4'
+}

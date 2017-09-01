@@ -12,6 +12,8 @@ EULA is available at [EULA website] [LICENSE]
 ##### 1. Running Android Studio 1.0 or higher
 
 ##### 2. Import one of example projects:
+* /Examples/AdFoxMediationBannerExample;
+* /Examples/AdFoxMediationInterstitialExample;
 * /Examples/AdFoxNativeExample;
 * /Examples/AdMobBannerAdapterExample;
 * /Examples/AdMobInterstitialAdapterExample;
@@ -33,13 +35,13 @@ For the integration of YandexMobileAds SDK need:
 ##### 1. compile AppMetrica SDK (API Level AppMetrica = 43 or higher):
 
 ```sh
-compile 'com.yandex.android:mobmetricalib:2.62'
+compile 'com.yandex.android:mobmetricalib:2.73'
 ```
 
 ##### 2. compile YandexMobileAds SDK:
 
 ```sh
-compile 'com.yandex.android:mobileads:2.60'
+compile 'com.yandex.android:mobileads:2.61'
 ```
 
 [DOCUMENTATION]: https://tech.yandex.ru/mobile-ads/
