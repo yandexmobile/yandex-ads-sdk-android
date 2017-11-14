@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.62
+
+#### Fixed
+* Fixed VAST loading
+
+#### Updated
+* Minor improvements and optimizations
+
 ## Version 2.61
 
 #### Added
