@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.70
+
+#### Added
+* Automatic activation of the AppMetrica SDK.
+* Feedback asset to Native Ads.
+
+#### Updated
+* Minor improvements and optimizations
+
 ## Version 2.62
 
 #### Fixed
