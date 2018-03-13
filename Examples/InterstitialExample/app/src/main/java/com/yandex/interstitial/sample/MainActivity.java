@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         * R-M-DEMO-480x320
         * R-M-DEMO-400x240-context
         * R-M-DEMO-240x400-context
+        * R-M-DEMO-video-interstitial
         */
         mInterstitialAd.setBlockId("R-M-DEMO-320x480");
 
