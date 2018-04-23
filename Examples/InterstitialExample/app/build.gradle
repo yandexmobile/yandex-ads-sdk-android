@@ -1,7 +1,7 @@
 /*
  * This file is a part of the Yandex Advertising Network
  *
- * Version for Android (C) 2017 YANDEX
+ * Version for Android (C) 2018 YANDEX
  *
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
@@ -10,13 +10,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
-
+    compileSdkVersion 27
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.yandex.interstitial.sample"
-        minSdkVersion 10
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -29,8 +28,8 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:appcompat-v7:27.1.1'
 
     compile 'com.yandex.android:mobmetricalib:2.73'
-    compile 'com.yandex.android:mobileads:2.70'
+    compile 'com.yandex.android:mobileads:2.71'
 }

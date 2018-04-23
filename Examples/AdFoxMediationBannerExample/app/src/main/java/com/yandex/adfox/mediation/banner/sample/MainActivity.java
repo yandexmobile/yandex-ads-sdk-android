@@ -1,7 +1,7 @@
 /*
  * This file is a part of the Yandex Advertising Network
  *
- * Version for Android (C) 2017 YANDEX
+ * Version for Android (C) 2018 YANDEX
  *
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
@@ -22,7 +22,6 @@ import com.yandex.mobile.ads.AdRequestError;
 import com.yandex.mobile.ads.AdSize;
 import com.yandex.mobile.ads.AdView;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,13 +53,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private AdRequest createAdRequest() {
-        final Map<String, String> parameters = new HashMap<>();
-        parameters.put("adf_ownerid", "168627");
-        parameters.put("adf_p1", "bxvfs");
-        parameters.put("adf_p2", "fkbd");
-        parameters.put("adf_pt", "b");
-
-        return AdRequest.builder().withParameters(parameters).build();
+        /*
+        * Replace demo MediationConfigurator.ADFOX_DEMO_BANNER with actual AdFox parameters.
+        * Following demo parameters may be used for testing:
+        * Yandex: MediationConfigurator.ADFOX_DEMO_BANNER
+        * AdMob mediation: MediationConfigurator.ADMOB_DEMO_BANNER
+        */
+        final Map<String, String> parameters = MediationConfigurator.ADMOB_DEMO_BANNER;
+        return AdRequest.builder()
+                .withParameters(parameters)
+                .build();
     }
 
     private View.OnClickListener mLoadBannerClickListener = new View.OnClickListener() {
