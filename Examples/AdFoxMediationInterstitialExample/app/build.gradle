@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 27
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.yandex.adfox.mediation.interstitial.sample"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -20,11 +19,11 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:27.1.1'
 
-    compile 'com.yandex.android:mobileads:2.70'
+    compile 'com.yandex.android:mobileads:2.71'
     compile 'com.yandex.android:mobmetricalib:2.73'
 
-    compile 'com.yandex.ads.mediation:mobileads-admob:1.0.0'
-    compile 'com.google.android.gms:play-services-ads:11.0.4'
+    compile 'com.yandex.ads.mediation:mobileads-admob:1.1.0'
+    compile 'com.google.android.gms:play-services-ads:15.0.0'
 }
