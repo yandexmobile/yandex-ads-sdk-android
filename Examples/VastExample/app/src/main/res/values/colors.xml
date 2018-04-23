@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is a part of the Yandex Advertising Network
+  ~
+  ~ Version for Android (C) 2018 YANDEX
+  ~
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
+  -->
+
+<resources>
+    <color name="colorPrimary">#FFCA28</color>
+    <color name="colorPrimaryDark">#FFA000</color>
+    <color name="colorAccent">#ff0000</color>
+</resources>

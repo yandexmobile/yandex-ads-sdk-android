@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.71
+
+#### Added
+* Added native ad mediation.
+
+#### Updated
+* Improvements and optimizations
+
 ## Version 2.70
 
 #### Added
