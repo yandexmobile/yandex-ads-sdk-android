@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.yandex.adfox.mediation.interstitial.sample"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -25,8 +25,12 @@ dependencies {
     compile 'com.yandex.android:mobmetricalib:2.73'
 
     compile 'com.yandex.ads.mediation:mobileads-admob:1.1.0'
+    compile 'com.yandex.ads.mediation:mobileads-facebook:1.0.0'
+    compile 'com.yandex.ads.mediation:mobileads-mopub:1.0.0'
     compile 'com.yandex.ads.mediation:mobileads-mytarget:1.0.0'
 
     compile 'com.google.android.gms:play-services-ads:15.0.0'
+    compile 'com.facebook.android:audience-network-sdk:4.28.0'
+    compile 'com.mopub:mopub-sdk:4.20.0@aar'
     compile 'com.my.target:mytarget-sdk:5.0.2'
 }

@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         * Following demo parameters may be used for testing:
         * Yandex: MediationConfigurator.ADFOX_DEMO_NATIVE
         * AdMob mediation: MediationConfigurator.ADMOB_DEMO_NATIVE
+        * Facebook mediation: MediationConfigurator.FACEBOOK_DEMO_NATIVE
+        * MoPub mediation: MediationConfigurator.MOPUB_DEMO_NATIVE
         * MyTarget mediation: MediationConfigurator.MYTARGET_DEMO_NATIVE
         */
         return AdRequest.builder()
