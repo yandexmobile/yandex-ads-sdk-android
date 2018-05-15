@@ -20,6 +20,7 @@ class MediationConfigurator {
     static final Map<String, String> FACEBOOK_DEMO_INTERSTITIAL = createFacebookParameters();
     static final Map<String, String> MOPUB_DEMO_INTERSTITIAL = createMoPubParameters();
     static final Map<String, String> MYTARGET_DEMO_INTERSTITIAL = createMyTargetParameters();
+    static final Map<String, String> STARTAPP_DEMO_INTERSTITIAL = createStartAppParameters();
 
     @NonNull
     private static Map<String, String> createAdFoxParameters() {
@@ -70,6 +71,17 @@ class MediationConfigurator {
         final Map<String, String> parameters = new HashMap<>();
         parameters.put("adf_ownerid", "270901");
         parameters.put("adf_p1", "caamb");
+        parameters.put("adf_p2", "fhmf");
+        parameters.put("adf_pt", "b");
+
+        return parameters;
+    }
+
+    @NonNull
+    private static Map<String, String> createStartAppParameters() {
+        final Map<String, String> parameters = new HashMap<>();
+        parameters.put("adf_ownerid", "270901");
+        parameters.put("adf_p1", "caamc");
         parameters.put("adf_p2", "fhmf");
         parameters.put("adf_pt", "b");
 

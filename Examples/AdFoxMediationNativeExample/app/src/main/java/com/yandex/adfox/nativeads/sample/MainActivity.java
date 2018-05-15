@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         * Facebook mediation: MediationConfigurator.FACEBOOK_DEMO_NATIVE
         * MoPub mediation: MediationConfigurator.MOPUB_DEMO_NATIVE
         * MyTarget mediation: MediationConfigurator.MYTARGET_DEMO_NATIVE
+        * StartApp mediation: MediationConfigurator.STARTAPP_DEMO_NATIVE
         */
         return AdRequest.builder()
                 .withParameters(MediationConfigurator.ADMOB_DEMO_NATIVE)
