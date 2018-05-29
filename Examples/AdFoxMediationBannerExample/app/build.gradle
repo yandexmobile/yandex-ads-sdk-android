@@ -21,7 +21,7 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:27.1.1'
 
-    compile 'com.yandex.android:mobileads:2.71'
+    compile 'com.yandex.android:mobileads:2.72'
     compile 'com.yandex.android:mobmetricalib:2.73'
 
     compile 'com.yandex.ads.mediation:mobileads-admob:1.1.0'
