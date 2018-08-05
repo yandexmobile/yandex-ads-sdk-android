@@ -9,6 +9,7 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -32,7 +33,9 @@ dependencies {
 
     compile 'com.google.android.gms:play-services-ads:15.0.0'
     compile 'com.facebook.android:audience-network-sdk:4.28.0'
-    compile 'com.mopub:mopub-sdk:4.20.0@aar'
+    compile('com.mopub:mopub-sdk:4.20.0@aar') {
+        transitive = true
+    }
     compile 'com.my.target:mytarget-sdk:5.0.2'
     compile 'com.startapp:inapp-sdk:3.6.8'
 }
