@@ -30,8 +30,8 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:27.1.1'
 
-    compile 'com.yandex.android:mobmetricalib:2.73'
-    compile 'com.yandex.android:mobileads:2.72'
+    compile 'com.yandex.android:mobmetricalib:3.2.2'
+    compile 'com.yandex.android:mobileads:2.73'
 
     compile('com.mopub:mopub-sdk:4.10.0@aar') {
         transitive = true

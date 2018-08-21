@@ -69,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void createNativeAdLoader() {
         /*
-        * Replace demo R-M-187883-1 with actual Block ID
+        * Replace demo R-M-206876-21 with actual Block ID
         * Please, note, that configured image sizes don't affect demo ads.
         * Following demo Block IDs may be used for testing:
-        * image ad: R-M-187883-1
+        * image ad: R-M-206876-21
         */
         final NativeAdLoaderConfiguration adLoaderConfiguration =
-                new NativeAdLoaderConfiguration.Builder("R-M-187883-1", true).build();
+                new NativeAdLoaderConfiguration.Builder("R-M-206876-21", true).build();
         mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
         mNativeAdLoader.setOnLoadListener(mNativeAdLoadListener);
     }

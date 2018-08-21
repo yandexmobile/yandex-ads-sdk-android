@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.73
+
+#### Updated
+* Improvements and optimizations
+
+#### Fixed
+* Fixed NPE in WebView
+
 ## Version 2.72
 
 #### Updated

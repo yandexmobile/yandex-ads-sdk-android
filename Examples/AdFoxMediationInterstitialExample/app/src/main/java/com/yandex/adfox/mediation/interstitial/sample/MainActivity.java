@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         mInterstitialAd = new InterstitialAd(this);
 
         /*
-        * Replace demo R-M-206876-12 with actual Block ID
+        * Replace demo R-M-206876-23 with actual Block ID
         */
-        mInterstitialAd.setBlockId("R-M-206876-12");
+        mInterstitialAd.setBlockId("R-M-206876-23");
 
         mAdRequest = createAdRequest();
         mInterstitialAd.setInterstitialEventListener(mInterstitialAdEventListener);

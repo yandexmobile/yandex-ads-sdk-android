@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initBannerView() {
         /*
-        * Replace demo R-M-206876-13 with actual Block ID
+        * Replace demo R-M-206876-19 with actual Block ID
         */
-        mAdView.setBlockId("R-M-206876-13");
+        mAdView.setBlockId("R-M-206876-19");
         mAdView.setAdSize(AdSize.BANNER_320x50);
 
         mAdRequest = createAdRequest();

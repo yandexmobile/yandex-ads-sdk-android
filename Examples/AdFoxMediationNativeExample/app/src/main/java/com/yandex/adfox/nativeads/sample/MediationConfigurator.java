@@ -26,7 +26,7 @@ class MediationConfigurator {
     private static Map<String, String> createAdFoxParameters() {
         final Map<String, String> parameters = new HashMap<>();
         parameters.put("adf_ownerid", "270901");
-        parameters.put("adf_p1", "cabog");
+        parameters.put("adf_p1", "cawxg");
         parameters.put("adf_p2", "fksh");
         parameters.put("adf_pt", "b");
 
