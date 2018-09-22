@@ -28,7 +28,7 @@ dependencies {
     implementation 'com.yandex.ads.mediation:mobileads-admob:1.1.0'
     implementation 'com.yandex.ads.mediation:mobileads-facebook:1.0.0'
     implementation 'com.yandex.ads.mediation:mobileads-mopub:1.0.0'
-    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.0.0'
+    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.0.1'
     implementation 'com.yandex.ads.mediation:mobileads-startapp:1.0.0'
 
     implementation 'com.google.android.gms:play-services-ads:15.0.0'
