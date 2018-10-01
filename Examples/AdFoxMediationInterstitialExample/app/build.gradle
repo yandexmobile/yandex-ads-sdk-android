@@ -22,7 +22,7 @@ android {
 dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
 
-    implementation 'com.yandex.android:mobileads:2.74'
+    implementation 'com.yandex.android:mobileads:2.75'
     implementation 'com.yandex.android:mobmetricalib:3.2.2'
 
     implementation 'com.yandex.ads.mediation:mobileads-admob:1.1.0'
