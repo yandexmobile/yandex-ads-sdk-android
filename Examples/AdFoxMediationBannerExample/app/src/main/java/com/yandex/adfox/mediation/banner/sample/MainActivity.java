@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         * StartApp mediation: MediationConfigurator.STARTAPP_DEMO_BANNER
         */
         return AdRequest.builder()
-                .withParameters(MediationConfigurator.ADMOB_DEMO_BANNER)
+                .withParameters(MediationConfigurator.MOPUB_DEMO_BANNER)
                 .build();
     }
 

@@ -27,13 +27,13 @@ dependencies {
 
     implementation 'com.yandex.ads.mediation:mobileads-admob:1.1.0'
     implementation 'com.yandex.ads.mediation:mobileads-facebook:1.0.0'
-    implementation 'com.yandex.ads.mediation:mobileads-mopub:1.0.0'
+    implementation 'com.yandex.ads.mediation:mobileads-mopub:1.0.1'
     implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.0.1'
     implementation 'com.yandex.ads.mediation:mobileads-startapp:1.0.0'
 
     implementation 'com.google.android.gms:play-services-ads:15.0.0'
     implementation 'com.facebook.android:audience-network-sdk:4.28.0'
-    implementation('com.mopub:mopub-sdk:4.20.0@aar') {
+    implementation('com.mopub:mopub-sdk:5.3.0@aar') {
         transitive = true
     }
     implementation 'com.my.target:mytarget-sdk:5.0.2'

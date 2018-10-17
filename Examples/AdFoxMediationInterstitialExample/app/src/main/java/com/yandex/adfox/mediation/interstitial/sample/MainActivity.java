@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         * StartApp mediation: MediationConfigurator.STARTAPP_DEMO_INTERSTITIAL
         */
         return AdRequest.builder()
-                .withParameters(MediationConfigurator.ADMOB_DEMO_INTERSTITIAL)
+                .withParameters(MediationConfigurator.MOPUB_DEMO_INTERSTITIAL)
                 .build();
     }
 
