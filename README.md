@@ -18,6 +18,7 @@ EULA is available at [EULA website] [LICENSE]
 * /Examples/AdMobBannerAdapterExample;
 * /Examples/AdMobInterstitialAdapterExample;
 * /Examples/BannerExample;
+* /Examples/GdprExample;
 * /Examples/InterstitialExample;
 * /Examples/MoPubBannerAdapterExample;
 * /Examples/MoPubInterstitialAdapterExample;
@@ -36,13 +37,13 @@ For the integration of YandexMobileAds SDK need:
 ##### 1. compile AppMetrica SDK (API Level AppMetrica = 70 or higher):
 
 ```sh
-compile 'com.yandex.android:mobmetricalib:3.2.2'
+compile 'com.yandex.android:mobmetricalib:3.4.0'
 ```
 
 ##### 2. compile YandexMobileAds SDK:
 
 ```sh
-compile 'com.yandex.android:mobileads:2.75'
+compile 'com.yandex.android:mobileads:2.80'
 ```
 
 [DOCUMENTATION]: https://tech.yandex.ru/mobile-ads/

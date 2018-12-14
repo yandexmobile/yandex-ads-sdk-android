@@ -17,9 +17,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yandex.mobile.ads.AdRequest;
 import com.yandex.mobile.ads.AdRequestError;
+import com.yandex.mobile.ads.nativeads.MediaView;
 import com.yandex.mobile.ads.nativeads.NativeAdAssets;
 import com.yandex.mobile.ads.nativeads.NativeAdEventListener;
 import com.yandex.mobile.ads.nativeads.NativeAdException;
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             mAppInstallAdView.setCallToActionView((Button) findViewById(R.id.appinstall_call_to_action));
             mAppInstallAdView.setDomainView((TextView) findViewById(R.id.appinstall_domain));
             mAppInstallAdView.setIconView((ImageView) findViewById(R.id.appinstall_icon));
-            mAppInstallAdView.setImageView((ImageView) findViewById(R.id.appinstall_image));
+            mAppInstallAdView.setMediaView((MediaView) findViewById(R.id.appinstall_media));
             mAppInstallAdView.setPriceView((TextView) findViewById(R.id.appinstall_price));
             mAppInstallAdView.setRatingView((MyRatingView) findViewById(R.id.appinstall_rating));
             mAppInstallAdView.setReviewCountView((TextView) findViewById(R.id.appinstall_review_count));
@@ -132,18 +134,18 @@ public class MainActivity extends AppCompatActivity {
 
         private void configureContentAdImages(final NativeContentAd nativeContentAd) {
             final ImageView image = (ImageView) findViewById(R.id.content_image);
-            final ImageView largeImage = (ImageView) findViewById(R.id.content_large_image);
+            final MediaView mediaView = (MediaView) findViewById(R.id.content_media);
 
             final NativeAdAssets nativeAdAssets = nativeContentAd.getAdAssets();
             final NativeAdImage nativeAdImage = nativeAdAssets.getImage();
             if (nativeAdImage != null) {
                 final int imageWidth = nativeAdImage.getWidth();
                 if (imageWidth >= LARGE_IMAGE_WIDTH) {
-                    mContentAdView.setImageView(largeImage);
+                    mContentAdView.setMediaView(mediaView);
                     image.setVisibility(View.GONE);
                 } else {
                     mContentAdView.setImageView(image);
-                    largeImage.setVisibility(View.GONE);
+                    mediaView.setVisibility(View.GONE);
                 }
             }
         }
@@ -161,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onAdFailedToLoad(@NonNull AdRequestError error) {
             Log.d(SAMPLE_TAG, error.getDescription());
+            Toast.makeText(MainActivity.this, error.getDescription(), Toast.LENGTH_SHORT).show();
         }
     };
 

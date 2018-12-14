@@ -1,6 +1,22 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.80
+
+#### Added
+* Added support for rewarded ad
+* Added MediaView and video support in native ad
+* Added ability to specify age and gender in AdRequest
+* Added VideoEventListener delegate to notify app when ad video completed
+* Added support for GDPR to obtain and manage consent from users from GDPR region to serve personalized ads
+* Added view visibility error indicator which should help to detect SDK integration problems while testing the application
+
+#### Deprecated
+* Deprecated setImageView method on NativeAppInstallAdView, NativeContentAdView and NativeImageAdView in favor of setMediaView
+
+#### Updated
+* Improvements and optimizations
+
 ## Version 2.75
 
 #### Updated

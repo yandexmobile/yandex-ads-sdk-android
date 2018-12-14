@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">GdprExample</string>
+    <string name="native_load_button">Load</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="accept">Accept</string>
+    <string name="about">About</string>
+    <string name="decline">Decline</string>
+
+    <string name="gdpr_title">This is sample of GDPR dialog</string>
+    <string name="gdpr_message">This application contains Yandex advertising code that collects data in order to show you relevant ads that better match your interests. To learn more about how and why Yandex processes your data, see the Privacy Policy.</string>
+
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="preference_user_consent">User Consent</string>
+    <string name="preference_dialog_shown">Dialog was shown</string>
+
+    <string name="preference_category_dialog">Dialog</string>
+    <string name="preference_category_gdpr" translatable="false">GDPR</string>
+
+    <string name="privacy_policy_url">https://yandex.com/legal/confidential/</string>
+</resources>

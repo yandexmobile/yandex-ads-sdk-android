@@ -1,23 +1,14 @@
-/*
- * This file is a part of the Yandex Advertising Network
- *
- * Version for Android (C) 2018 YANDEX
- *
- * You may not use this file except in compliance with the License.
- * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
- */
-
 apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "com.yandex.admobadapter.banner.sample"
-        minSdkVersion 14
+        applicationId "com.yandex.gdpr.sample"
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -28,10 +19,13 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:support-vector-drawable:27.1.1'
+
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:preference-v14:27.1.1'
 
     implementation 'com.yandex.android:mobmetricalib:3.4.0'
     implementation 'com.yandex.android:mobileads:2.80'
-
-    implementation 'com.google.android.gms:play-services-ads:15.0.0'
 }

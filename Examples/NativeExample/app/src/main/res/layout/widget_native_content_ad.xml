@@ -118,15 +118,14 @@
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/content_large_image"
+        <com.yandex.mobile.ads.nativeads.MediaView
+            android:id="@+id/content_media"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/native_offset_small"
+            android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/native_offset_small"
-            android:adjustViewBounds="true"
-            tools:visibility="gone"
-            tools:src="@mipmap/ic_launcher" />
+            android:layout_marginTop="@dimen/native_offset_small"
+            android:visibility="gone"
+            tools:visibility="visible"/>
 
         <Button
             android:id="@+id/content_call_to_action"
