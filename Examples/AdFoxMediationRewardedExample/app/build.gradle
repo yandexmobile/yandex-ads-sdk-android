@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.yandex.adfox.mediation.rewarded.sample"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+
+    implementation 'com.yandex.android:mobileads:2.80'
+    implementation 'com.yandex.android:mobmetricalib:3.4.0'
+
+    implementation 'com.yandex.ads.mediation:mobileads-admob:1.2.0'
+    implementation 'com.yandex.ads.mediation:mobileads-facebook:1.1.0'
+    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.1.0'
+
+    implementation 'com.google.android.gms:play-services-ads:15.0.0'
+    implementation 'com.facebook.android:audience-network-sdk:4.28.0'
+    implementation 'com.my.target:mytarget-sdk:5.2.0'
+}

@@ -1,0 +1,39 @@
+/*
+ * This file is a part of the Yandex Advertising Network
+ *
+ * Version for Android (C) 2018 YANDEX
+ *
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
+ */
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.yandex.mopubadapter.rewarded.sample"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+
+    implementation 'com.yandex.android:mobmetricalib:3.4.0'
+    implementation 'com.yandex.android:mobileads:2.80'
+
+    implementation('com.mopub:mopub-sdk:5.3.0@aar') {
+        transitive = true
+    }
+}
