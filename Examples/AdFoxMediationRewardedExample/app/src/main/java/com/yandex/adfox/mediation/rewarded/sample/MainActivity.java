@@ -1,7 +1,7 @@
 /*
  * This file is a part of the Yandex Advertising Network
  *
- * Version for Android (C) 2018 YANDEX
+ * Version for Android (C) 2019 YANDEX
  *
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         * Facebook mediation: FACEBOOK_BLOCK_ID
         * MyTarget mediation: MYTARGET_BLOCK_ID
         */
-        rewardedAd.setBlockId(ADMOB_BLOCK_ID);
+        rewardedAd.setBlockId(ADFOX_BLOCK_ID);
         rewardedAd.setRewardedAdEventListener(new RewardedAdListener());
 
         return rewardedAd;

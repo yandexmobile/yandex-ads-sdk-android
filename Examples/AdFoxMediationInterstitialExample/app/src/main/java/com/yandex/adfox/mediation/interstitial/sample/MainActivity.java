@@ -1,12 +1,11 @@
 /*
  * This file is a part of the Yandex Advertising Network
  *
- * Version for Android (C) 2018 YANDEX
+ * Version for Android (C) 2019 YANDEX
  *
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
-
 package com.yandex.adfox.mediation.interstitial.sample;
 
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +23,12 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AdRequest mAdRequest;
+    private static final String ADFOX_BLOCK_ID = "adf-279013/966533";
+    private static final String ADMOB_BLOCK_ID = "adf-279013/971987";
+    private static final String FACEBOOK_BLOCK_ID = "adf-279013/975925";
+    private static final String MOPUB_BLOCK_ID = "adf-279013/975923";
+    private static final String MYTARGET_BLOCK_ID = "adf-279013/975924";
+
     private InterstitialAd mInterstitialAd;
 
     private Button mLoadInterstitialAdButton;
@@ -44,28 +48,16 @@ public class MainActivity extends AppCompatActivity {
         mInterstitialAd = new InterstitialAd(this);
 
         /*
-        * Replace demo R-M-206876-23 with actual Block ID
-        */
-        mInterstitialAd.setBlockId("R-M-206876-23");
-
-        mAdRequest = createAdRequest();
+         * Replace demo BLOCK_ID with actual Block ID
+         * Following demo block ids may be used for testing:
+         * Yandex: ADFOX_BLOCK_ID
+         * AdMob mediation: ADMOB_BLOCK_ID
+         * Facebook mediation: FACEBOOK_BLOCK_ID
+         * MyTarget mediation: MOPUB_BLOCK_ID
+         * MyTarget mediation: MYTARGET_BLOCK_ID
+         */
+        mInterstitialAd.setBlockId(ADMOB_BLOCK_ID);
         mInterstitialAd.setInterstitialEventListener(mInterstitialAdEventListener);
-    }
-
-    private AdRequest createAdRequest() {
-        /*
-        * Replace demo MediationConfigurator.ADMOB_DEMO_INTERSTITIAL with actual AdFox parameters.
-        * Following demo parameters may be used for testing:
-        * Yandex: MediationConfigurator.ADFOX_DEMO_INTERSTITIAL
-        * AdMob mediation: MediationConfigurator.ADMOB_DEMO_INTERSTITIAL
-        * Facebook mediation: MediationConfigurator.FACEBOOK_DEMO_INTERSTITIAL
-        * MoPub mediation: MediationConfigurator.MOPUB_DEMO_INTERSTITIAL
-        * MyTarget mediation: MediationConfigurator.MYTARGET_DEMO_INTERSTITIAL
-        * StartApp mediation: MediationConfigurator.STARTAPP_DEMO_INTERSTITIAL
-        */
-        return AdRequest.builder()
-                .withParameters(MediationConfigurator.MOPUB_DEMO_INTERSTITIAL)
-                .build();
     }
 
     @Override
@@ -81,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             mLoadInterstitialAdButton.setEnabled(false);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.start_load_interstitial_button));
 
-            mInterstitialAd.loadAd(mAdRequest);
+            mInterstitialAd.loadAd(AdRequest.builder().build());
         }
     };
 

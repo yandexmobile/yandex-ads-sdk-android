@@ -1,17 +1,16 @@
 /*
  * This file is a part of the Yandex Advertising Network
  *
- * Version for Android (C) 2018 YANDEX
+ * Version for Android (C) 2019 YANDEX
  *
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
-
 package com.yandex.adfox.mediation.banner.sample;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,12 +21,15 @@ import com.yandex.mobile.ads.AdRequestError;
 import com.yandex.mobile.ads.AdSize;
 import com.yandex.mobile.ads.AdView;
 
-import java.util.Map;
-
 public class MainActivity extends AppCompatActivity {
 
+    private static final String ADFOX_BLOCK_ID = "adf-279013/966631";
+    private static final String ADMOB_BLOCK_ID = "adf-279013/975926";
+    private static final String FACEBOOK_BLOCK_ID = "adf-279013/975929";
+    private static final String MOPUB_BLOCK_ID = "adf-279013/975927";
+    private static final String MYTARGET_BLOCK_ID = "adf-279013/975928";
+
     private AdView mAdView;
-    private AdRequest mAdRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,29 +45,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void initBannerView() {
         /*
-        * Replace demo R-M-206876-19 with actual Block ID
-        */
-        mAdView.setBlockId("R-M-206876-19");
+         * Replace demo BLOCK_ID with actual Block ID
+         * Following demo block ids may be used for testing:
+         * Yandex: ADFOX_BLOCK_ID
+         * AdMob mediation: ADMOB_BLOCK_ID
+         * Facebook mediation: FACEBOOK_BLOCK_ID
+         * MyTarget mediation: MOPUB_BLOCK_ID
+         * MyTarget mediation: MYTARGET_BLOCK_ID
+         */
+        mAdView.setBlockId(ADMOB_BLOCK_ID);
         mAdView.setAdSize(AdSize.BANNER_320x50);
-
-        mAdRequest = createAdRequest();
         mAdView.setAdEventListener(mBannerAdEventListener);
-    }
-
-    private AdRequest createAdRequest() {
-        /*
-        * Replace demo MediationConfigurator.ADMOB_DEMO_BANNER with actual AdFox parameters.
-        * Following demo parameters may be used for testing:
-        * Yandex: MediationConfigurator.ADFOX_DEMO_BANNER
-        * AdMob mediation: MediationConfigurator.ADMOB_DEMO_BANNER
-        * Facebook mediation: MediationConfigurator.FACEBOOK_DEMO_BANNER
-        * MoPub mediation: MediationConfigurator.MOPUB_DEMO_BANNER
-        * MyTarget mediation: MediationConfigurator.MYTARGET_DEMO_BANNER
-        * StartApp mediation: MediationConfigurator.STARTAPP_DEMO_BANNER
-        */
-        return AdRequest.builder()
-                .withParameters(MediationConfigurator.MOPUB_DEMO_BANNER)
-                .build();
     }
 
     private View.OnClickListener mLoadBannerClickListener = new View.OnClickListener() {
@@ -77,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void refreshBannerAd() {
         mAdView.setVisibility(View.INVISIBLE);
-        mAdView.loadAd(mAdRequest);
+        mAdView.loadAd(AdRequest.builder().build());
     }
 
     @Override

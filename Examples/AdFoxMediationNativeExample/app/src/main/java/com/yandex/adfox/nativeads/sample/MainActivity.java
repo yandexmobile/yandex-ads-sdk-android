@@ -1,12 +1,11 @@
 /*
  * This file is a part of the Yandex Advertising Network
  *
- * Version for Android (C) 2018 YANDEX
+ * Version for Android (C) 2019 YANDEX
  *
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
-
 package com.yandex.adfox.nativeads.sample;
 
 import android.os.Bundle;
@@ -34,7 +33,12 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String SAMPLE_TAG = "AdFoxNativeExample";
 
-    private AdRequest mAdRequest;
+    private static final String ADFOX_BLOCK_ID = "adf-279013/966633";
+    private static final String ADMOB_BLOCK_ID = "adf-279013/975930";
+    private static final String FACEBOOK_BLOCK_ID = "adf-279013/975933";
+    private static final String MOPUB_BLOCK_ID = "adf-279013/975931";
+    private static final String MYTARGET_BLOCK_ID = "adf-279013/975932";
+
     private NativeAdLoader mNativeAdLoader;
     private NativeBannerView mNativeBannerView;
 
@@ -43,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAdRequest = createAdRequest();
         mNativeBannerView = (NativeBannerView) findViewById(R.id.native_template);
         createNativeAdLoader();
 
@@ -51,31 +54,18 @@ public class MainActivity extends AppCompatActivity {
         nativeAdLoadButton.setOnClickListener(mNativeAdLoadClickListener);
     }
 
-    private AdRequest createAdRequest() {
-        /*
-        * Replace demo MediationConfigurator.ADMOB_DEMO_NATIVE with actual AdFox parameters.
-        * Following demo parameters may be used for testing:
-        * Yandex: MediationConfigurator.ADFOX_DEMO_NATIVE
-        * AdMob mediation: MediationConfigurator.ADMOB_DEMO_NATIVE
-        * Facebook mediation: MediationConfigurator.FACEBOOK_DEMO_NATIVE
-        * MoPub mediation: MediationConfigurator.MOPUB_DEMO_NATIVE
-        * MyTarget mediation: MediationConfigurator.MYTARGET_DEMO_NATIVE
-        * StartApp mediation: MediationConfigurator.STARTAPP_DEMO_NATIVE
-        */
-        return AdRequest.builder()
-                .withParameters(MediationConfigurator.MOPUB_DEMO_NATIVE)
-                .build();
-    }
-
     private void createNativeAdLoader() {
         /*
-        * Replace demo R-M-206876-21 with actual Block ID
-        * Please, note, that configured image sizes don't affect demo ads.
-        * Following demo Block IDs may be used for testing:
-        * image ad: R-M-206876-21
-        */
+         * Replace demo BLOCK_ID with actual Block ID
+         * Following demo block ids may be used for testing:
+         * Yandex: ADFOX_BLOCK_ID
+         * AdMob mediation: ADMOB_BLOCK_ID
+         * Facebook mediation: FACEBOOK_BLOCK_ID
+         * MyTarget mediation: MOPUB_BLOCK_ID
+         * MyTarget mediation: MYTARGET_BLOCK_ID
+         */
         final NativeAdLoaderConfiguration adLoaderConfiguration =
-                new NativeAdLoaderConfiguration.Builder("R-M-206876-21", true).build();
+                new NativeAdLoaderConfiguration.Builder(ADFOX_BLOCK_ID, true).build();
         mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
         mNativeAdLoader.setOnLoadListener(mNativeAdLoadListener);
     }
@@ -90,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void refreshNativeAd() {
         mNativeBannerView.setVisibility(View.GONE);
-        mNativeAdLoader.loadAd(mAdRequest);
+        mNativeAdLoader.loadAd(AdRequest.builder().build());
     }
 
     private View.OnClickListener mNativeAdLoadClickListener = new View.OnClickListener() {

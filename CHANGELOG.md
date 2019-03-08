@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.81
+
+#### Updated
+* Improvements and optimizations
+
 ## Version 2.80
 
 #### Added
