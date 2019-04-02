@@ -24,6 +24,7 @@ import com.yandex.mobile.ads.nativeads.MediaView;
 import com.yandex.mobile.ads.nativeads.NativeAdException;
 import com.yandex.mobile.ads.nativeads.NativeAdLoader;
 import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
+import com.yandex.mobile.ads.nativeads.NativeAdMedia;
 import com.yandex.mobile.ads.nativeads.NativeAdViewBinder;
 import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
 import com.yandex.mobile.ads.nativeads.NativeContentAd;
@@ -119,11 +120,21 @@ public class MainActivity extends AppCompatActivity {
                     .setWarningView((TextView) findViewById(R.id.warning))
                     .build();
 
+            configureMediaView(nativeAd);
+
             try {
                 nativeAd.bindNativeAd(nativeAdViewBinder);
                 mNativeAdView.setVisibility(View.VISIBLE);
             } catch (NativeAdException exception) {
                 Log.d(SAMPLE_TAG, exception.getMessage());
+            }
+        }
+
+        private void configureMediaView(@NonNull final NativeGenericAd nativeAd) {
+            final NativeAdMedia nativeAdMedia = nativeAd.getAdAssets().getMedia();
+            if (nativeAdMedia != null) {
+                //you can use the aspect ratio if you need it to determine the size of media view.
+                final float aspectRatio = nativeAdMedia.getAspectRatio();
             }
         }
     };
