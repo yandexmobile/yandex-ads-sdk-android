@@ -31,4 +31,10 @@
     <dimen name="native_domain_text_size">13sp</dimen>
     <dimen name="native_review_count_text_size">13sp</dimen>
 
+    <dimen name="native_asset_text_size_small">11sp</dimen>
+    <dimen name="native_asset_text_size_medium">13sp</dimen>
+    <dimen name="native_asset_text_size_large">15sp</dimen>
+
+    <dimen name="call_to_action_asset_min_height">36dp</dimen>
+
 </resources>

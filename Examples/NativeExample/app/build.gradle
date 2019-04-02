@@ -11,7 +11,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "26.0.3"
     defaultConfig {
         applicationId "com.yandex.nativeads.sample"
         minSdkVersion 14
@@ -30,6 +29,6 @@ android {
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
 
-    implementation 'com.yandex.android:mobmetricalib:3.4.0'
-    implementation 'com.yandex.android:mobileads:2.80'
+    implementation 'com.yandex.android:mobmetricalib:3.5.3'
+    implementation 'com.yandex.android:mobileads:2.81'
 }

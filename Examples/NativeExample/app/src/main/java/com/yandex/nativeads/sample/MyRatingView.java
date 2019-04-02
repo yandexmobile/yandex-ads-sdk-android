@@ -10,12 +10,12 @@
 package com.yandex.nativeads.sample;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatRatingBar;
 import android.util.AttributeSet;
-import android.widget.RatingBar;
 
 import com.yandex.mobile.ads.nativeads.Rating;
 
-public class MyRatingView extends RatingBar implements Rating {
+public class MyRatingView extends AppCompatRatingBar implements Rating {
 
     public MyRatingView(final Context context, final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);

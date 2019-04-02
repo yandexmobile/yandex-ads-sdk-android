@@ -23,14 +23,7 @@
         android:layout_height="wrap_content"
         android:text="@string/native_load_button"/>
 
-    <include layout="@layout/widget_native_appinstall_ad"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_alignParentBottom="true"
-             android:visibility="gone"
-             tools:visibility="visible"/>
-
-    <include layout="@layout/widget_native_content_ad"
+    <include layout="@layout/widget_native_ad"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:layout_alignParentBottom="true"

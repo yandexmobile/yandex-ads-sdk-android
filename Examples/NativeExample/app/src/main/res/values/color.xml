@@ -13,4 +13,7 @@
     <color name="native_ads_background">#ffdb8b</color>
     <color name="warning">#ffa500</color>
 
+    <color name="base_asset_text_color">#7f7f7f</color>
+    <color name="warning_background">#f5f5f5</color>
+
 </resources>

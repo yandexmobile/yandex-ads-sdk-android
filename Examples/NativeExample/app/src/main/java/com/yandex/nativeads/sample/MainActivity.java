@@ -6,7 +6,6 @@
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
-
 package com.yandex.nativeads.sample;
 
 import android.os.Bundle;
@@ -22,25 +21,20 @@ import android.widget.Toast;
 import com.yandex.mobile.ads.AdRequest;
 import com.yandex.mobile.ads.AdRequestError;
 import com.yandex.mobile.ads.nativeads.MediaView;
-import com.yandex.mobile.ads.nativeads.NativeAdAssets;
-import com.yandex.mobile.ads.nativeads.NativeAdEventListener;
 import com.yandex.mobile.ads.nativeads.NativeAdException;
-import com.yandex.mobile.ads.nativeads.NativeAdImage;
 import com.yandex.mobile.ads.nativeads.NativeAdLoader;
 import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
+import com.yandex.mobile.ads.nativeads.NativeAdViewBinder;
 import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
-import com.yandex.mobile.ads.nativeads.NativeAppInstallAdView;
 import com.yandex.mobile.ads.nativeads.NativeContentAd;
-import com.yandex.mobile.ads.nativeads.NativeContentAdView;
+import com.yandex.mobile.ads.nativeads.NativeGenericAd;
+import com.yandex.mobile.ads.nativeads.NativeImageAd;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String SAMPLE_TAG = "NativeAdSample";
 
-    private static final int LARGE_IMAGE_WIDTH = 450;
-
-    private NativeContentAdView mContentAdView;
-    private NativeAppInstallAdView mAppInstallAdView;
+    private View mNativeAdView;
 
     private NativeAdLoader mNativeAdLoader;
 
@@ -52,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
         final Button nativeAdLoadButton = (Button) findViewById(R.id.native_load_button);
         nativeAdLoadButton.setOnClickListener(mNativeAdLoadClickListener);
 
-        mContentAdView = (NativeContentAdView) findViewById(R.id.native_content_ad_container);
-        mAppInstallAdView = (NativeAppInstallAdView) findViewById(R.id.native_appinstall_ad_container);
+        mNativeAdView = findViewById(R.id.native_ad_container);
 
         createNativeAd();
     }
@@ -67,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         * content: R-M-DEMO-native-c
         */
         final NativeAdLoaderConfiguration adLoaderConfiguration =
-                new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-c", true)
+                new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-i", true)
                         .setImageSizes(NativeAdLoaderConfiguration.NATIVE_IMAGE_SIZE_MEDIUM).build();
         mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
         mNativeAdLoader.setOnLoadListener(mNativeAdLoadListener);
@@ -81,83 +74,25 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void refreshNativeAd() {
-        mContentAdView.setVisibility(View.GONE);
-        mAppInstallAdView.setVisibility(View.GONE);
+        mNativeAdView.setVisibility(View.GONE);
         mNativeAdLoader.loadAd(AdRequest.builder().build());
     }
 
-    private NativeAdLoader.OnLoadListener mNativeAdLoadListener = new NativeAdLoader.OnLoadListener() {
+    private NativeAdLoader.OnLoadListener mNativeAdLoadListener = new NativeAdLoader.OnImageAdLoadListener() {
 
         @Override
         public void onAppInstallAdLoaded(@NonNull final NativeAppInstallAd nativeAppInstallAd) {
-            mAppInstallAdView.setAgeView((TextView) findViewById(R.id.appinstall_age));
-            mAppInstallAdView.setBodyView((TextView) findViewById(R.id.appinstall_body));
-            mAppInstallAdView.setCallToActionView((Button) findViewById(R.id.appinstall_call_to_action));
-            mAppInstallAdView.setDomainView((TextView) findViewById(R.id.appinstall_domain));
-            mAppInstallAdView.setIconView((ImageView) findViewById(R.id.appinstall_icon));
-            mAppInstallAdView.setMediaView((MediaView) findViewById(R.id.appinstall_media));
-            mAppInstallAdView.setPriceView((TextView) findViewById(R.id.appinstall_price));
-            mAppInstallAdView.setRatingView((MyRatingView) findViewById(R.id.appinstall_rating));
-            mAppInstallAdView.setReviewCountView((TextView) findViewById(R.id.appinstall_review_count));
-            mAppInstallAdView.setSponsoredView((TextView) findViewById(R.id.appinstall_sponsored));
-            mAppInstallAdView.setTitleView((TextView) findViewById(R.id.appinstall_title));
-            mAppInstallAdView.setWarningView((TextView) findViewById(R.id.appinstall_warning));
-
-            bindAppInstallNativeAd(nativeAppInstallAd);
-        }
-
-        private void bindAppInstallNativeAd(final NativeAppInstallAd nativeAppInstallAd) {
-            try {
-                nativeAppInstallAd.setAdEventListener(mNativeAdEventListener);
-                nativeAppInstallAd.bindAppInstallAd(mAppInstallAdView);
-                mAppInstallAdView.setVisibility(View.VISIBLE);
-            } catch (NativeAdException exception) {
-                Log.d(SAMPLE_TAG, exception.getMessage());
-            }
+            bindNativeAd(nativeAppInstallAd);
         }
 
         @Override
         public void onContentAdLoaded(@NonNull NativeContentAd nativeContentAd) {
-            mContentAdView.setAgeView((TextView) findViewById(R.id.content_age));
-            mContentAdView.setBodyView((TextView) findViewById(R.id.content_body));
-            mContentAdView.setCallToActionView((Button) findViewById(R.id.content_call_to_action));
-            mContentAdView.setDomainView((TextView) findViewById(R.id.content_domain));
-            mContentAdView.setIconView((ImageView) findViewById(R.id.content_favicon));
-            mContentAdView.setSponsoredView((TextView) findViewById(R.id.content_sponsored));
-            mContentAdView.setTitleView((TextView) findViewById(R.id.content_title));
-            mContentAdView.setWarningView((TextView) findViewById(R.id.content_warning));
-
-            configureContentAdImages(nativeContentAd);
-
-            bindContentNativeAd(nativeContentAd);
+            bindNativeAd(nativeContentAd);
         }
 
-        private void configureContentAdImages(final NativeContentAd nativeContentAd) {
-            final ImageView image = (ImageView) findViewById(R.id.content_image);
-            final MediaView mediaView = (MediaView) findViewById(R.id.content_media);
-
-            final NativeAdAssets nativeAdAssets = nativeContentAd.getAdAssets();
-            final NativeAdImage nativeAdImage = nativeAdAssets.getImage();
-            if (nativeAdImage != null) {
-                final int imageWidth = nativeAdImage.getWidth();
-                if (imageWidth >= LARGE_IMAGE_WIDTH) {
-                    mContentAdView.setMediaView(mediaView);
-                    image.setVisibility(View.GONE);
-                } else {
-                    mContentAdView.setImageView(image);
-                    mediaView.setVisibility(View.GONE);
-                }
-            }
-        }
-
-        private void bindContentNativeAd(final NativeContentAd nativeContentAd) {
-            try {
-                nativeContentAd.setAdEventListener(mNativeAdEventListener);
-                nativeContentAd.bindContentAd(mContentAdView);
-                mContentAdView.setVisibility(View.VISIBLE);
-            } catch (NativeAdException exception) {
-                Log.d(SAMPLE_TAG, exception.getMessage());
-            }
+        @Override
+        public void onImageAdLoaded(@NonNull final NativeImageAd nativeImageAd) {
+            bindNativeAd(nativeImageAd);
         }
 
         @Override
@@ -165,23 +100,31 @@ public class MainActivity extends AppCompatActivity {
             Log.d(SAMPLE_TAG, error.getDescription());
             Toast.makeText(MainActivity.this, error.getDescription(), Toast.LENGTH_SHORT).show();
         }
-    };
 
-    private NativeAdEventListener mNativeAdEventListener = new NativeAdEventListener() {
+        private void bindNativeAd(@NonNull final NativeGenericAd nativeAd) {
+            final NativeAdViewBinder nativeAdViewBinder = new NativeAdViewBinder.Builder(mNativeAdView)
+                    .setAgeView((TextView) findViewById(R.id.age))
+                    .setBodyView((TextView) findViewById(R.id.body))
+                    .setCallToActionView((Button) findViewById(R.id.call_to_action))
+                    .setDomainView((TextView) findViewById(R.id.domain))
+                    .setFaviconView((ImageView) findViewById(R.id.favicon))
+                    .setFeedbackView((Button) findViewById(R.id.feedback))
+                    .setIconView((ImageView) findViewById(R.id.icon))
+                    .setMediaView((MediaView) findViewById(R.id.media))
+                    .setPriceView((TextView) findViewById(R.id.price))
+                    .setRatingView((MyRatingView) findViewById(R.id.rating))
+                    .setReviewCountView((TextView) findViewById(R.id.review_count))
+                    .setSponsoredView((TextView) findViewById(R.id.sponsored))
+                    .setTitleView((TextView) findViewById(R.id.title))
+                    .setWarningView((TextView) findViewById(R.id.warning))
+                    .build();
 
-        @Override
-        public void onAdClosed() {
-            Log.d(SAMPLE_TAG, "onAdClosed");
-        }
-
-        @Override
-        public void onAdLeftApplication() {
-            Log.d(SAMPLE_TAG, "onAdLeftApplication");
-        }
-
-        @Override
-        public void onAdOpened() {
-            Log.d(SAMPLE_TAG, "onAdOpened");
+            try {
+                nativeAd.bindNativeAd(nativeAdViewBinder);
+                mNativeAdView.setVisibility(View.VISIBLE);
+            } catch (NativeAdException exception) {
+                Log.d(SAMPLE_TAG, exception.getMessage());
+            }
         }
     };
 }
