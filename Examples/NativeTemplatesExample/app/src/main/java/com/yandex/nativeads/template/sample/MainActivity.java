@@ -24,6 +24,7 @@ import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
 import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
 import com.yandex.mobile.ads.nativeads.NativeContentAd;
 import com.yandex.mobile.ads.nativeads.NativeGenericAd;
+import com.yandex.mobile.ads.nativeads.NativeImageAd;
 import com.yandex.mobile.ads.nativeads.template.NativeBannerView;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,12 +61,6 @@ public class MainActivity extends AppCompatActivity {
         mNativeAdLoader.setOnLoadListener(mNativeAdLoadListener);
     }
 
-    private void bindNativeAd(@NonNull final NativeGenericAd nativeAd) {
-        nativeAd.setAdEventListener(mNativeAdEventListener);
-        mNativeBannerView.setAd(nativeAd);
-        mNativeBannerView.setVisibility(View.VISIBLE);
-    }
-
     private void refreshNativeAd() {
         mNativeBannerView.setVisibility(View.GONE);
         mNativeAdLoader.loadAd(AdRequest.builder().build());
@@ -78,7 +73,12 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private NativeAdLoader.OnLoadListener mNativeAdLoadListener = new NativeAdLoader.OnLoadListener() {
+    private NativeAdLoader.OnLoadListener mNativeAdLoadListener = new NativeAdLoader.OnImageAdLoadListener() {
+
+        @Override
+        public void onImageAdLoaded(@NonNull final NativeImageAd nativeImageAd) {
+            bindNativeAd(nativeImageAd);
+        }
 
         @Override
         public void onAppInstallAdLoaded(@NonNull final NativeAppInstallAd nativeAppInstallAd) {
@@ -96,21 +96,8 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private NativeAdEventListener mNativeAdEventListener = new NativeAdEventListener() {
-
-        @Override
-        public void onAdClosed() {
-            Log.d(SAMPLE_TAG, "onAdClosed");
-        }
-
-        @Override
-        public void onAdLeftApplication() {
-            Log.d(SAMPLE_TAG, "onAdLeftApplication");
-        }
-
-        @Override
-        public void onAdOpened() {
-            Log.d(SAMPLE_TAG, "onAdOpened");
-        }
-    };
+    private void bindNativeAd(@NonNull final NativeGenericAd nativeAd) {
+        mNativeBannerView.setAd(nativeAd);
+        mNativeBannerView.setVisibility(View.VISIBLE);
+    }
 }
