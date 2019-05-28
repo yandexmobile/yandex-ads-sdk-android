@@ -1,6 +1,21 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.91
+
+#### Added
+* Added support for MediaView in native ad mediation
+* Improvements and optimizations
+
+## Version 2.90
+
+#### Added
+* Added support for VMAP format
+* Improvements and optimizations
+
+#### Deprecated
+* Deprecated setOnLoadListener(OnLoadListener) method on NativeAdLoader in favor of setNativeAdLoadListener(OnImageAdLoadListener)
+
 ## Version 2.81
 
 #### Updated

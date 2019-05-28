@@ -11,14 +11,21 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "26.0.3"
+    buildToolsVersion "28.0.3"
+
     defaultConfig {
         applicationId "com.yandex.mopubadapter.banner.sample"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,11 +37,11 @@ android {
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
 
-    implementation 'com.yandex.android:mobmetricalib:3.4.0'
-    implementation 'com.yandex.android:mobileads:2.80'
+    implementation 'com.yandex.android:mobmetricalib:3.5.3'
+    implementation 'com.yandex.android:mobileads:2.91'
 
-    implementation('com.mopub:mopub-sdk:4.10.0@aar') {
-        exclude module: 'support-v4'
+    implementation('com.mopub:mopub-sdk-banner:5.7.0@aar') {
+        exclude module: 'moat-mobile-app-kit'
         transitive = true
     }
 }

@@ -1,55 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ This file is a part of the Yandex Advertising Network
-  ~
-  ~ Version for Android (C) 2018 YANDEX
-  ~
-  ~ You may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
-  -->
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/show_blocks_button"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/button_margin"
-        android:enabled="false"
-        android:text="@string/show_all_blocks_button" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <Button
-        android:id="@+id/load_ad_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/show_blocks_button"
-        android:layout_margin="@dimen/button_margin"
-        android:text="@string/load_ad_button" />
-
-    <ProgressBar
-        android:id="@+id/progress_blocks_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/progress_margin"
-        android:visibility="gone"
-        tools:visibility="visible" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/load_ad_button">
-
-        <TextView
-            android:id="@+id/blocks_info"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/vmap"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/text_padding"
+            android:layout_gravity="center"
             android:visibility="gone"
             tools:visibility="visible" />
-    </ScrollView>
 
-</RelativeLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/load_vmap"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="loadVmap"
+        android:text="@string/load_vmap" />
+
+</LinearLayout>

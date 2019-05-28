@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-i", true)
                         .setImageSizes(NativeAdLoaderConfiguration.NATIVE_IMAGE_SIZE_MEDIUM).build();
         mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
-        mNativeAdLoader.setOnLoadListener(mNativeAdLoadListener);
+        mNativeAdLoader.setNativeAdLoadListener(mNativeAdLoadListener);
     }
 
     private View.OnClickListener mNativeAdLoadClickListener = new View.OnClickListener() {
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         mNativeAdLoader.loadAd(AdRequest.builder().build());
     }
 
-    private NativeAdLoader.OnLoadListener mNativeAdLoadListener = new NativeAdLoader.OnImageAdLoadListener() {
+    private NativeAdLoader.OnImageAdLoadListener mNativeAdLoadListener = new NativeAdLoader.OnImageAdLoadListener() {
 
         @Override
         public void onAppInstallAdLoaded(@NonNull final NativeAppInstallAd nativeAppInstallAd) {

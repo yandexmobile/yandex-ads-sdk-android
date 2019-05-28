@@ -25,6 +25,7 @@ import com.yandex.mobile.ads.nativeads.NativeAdLoader;
 import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
 import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
 import com.yandex.mobile.ads.nativeads.NativeContentAd;
+import com.yandex.mobile.ads.nativeads.NativeImageAd;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,14 +72,14 @@ public class NativeTemplateActivity extends AppCompatActivity {
                 new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-c", false)
                         .setImageSizes(NativeAdLoaderConfiguration.NATIVE_IMAGE_SIZE_LARGE).build();
         mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
-        mNativeAdLoader.setOnLoadListener(mNativeAdLoadListener);
+        mNativeAdLoader.setNativeAdLoadListener(mNativeAdLoadListener);
     }
 
     private void loadAd() {
         mNativeAdLoader.loadAd(AdRequest.builder().build());
     }
 
-    private NativeAdLoader.OnLoadListener mNativeAdLoadListener = new NativeAdLoader.OnLoadListener(){
+    private NativeAdLoader.OnImageAdLoadListener mNativeAdLoadListener = new NativeAdLoader.OnImageAdLoadListener(){
         @Override
         public void onAppInstallAdLoaded(@NonNull final NativeAppInstallAd nativeAppInstallAd) {
             fillData(new Pair<Integer, Object>(Holder.BlockContentProvider.NATIVE_BANNER, nativeAppInstallAd));
@@ -87,6 +88,11 @@ public class NativeTemplateActivity extends AppCompatActivity {
         @Override
         public void onContentAdLoaded(@NonNull final NativeContentAd nativeContentAd) {
             fillData(new Pair<Integer, Object>(Holder.BlockContentProvider.NATIVE_BANNER, nativeContentAd));
+        }
+
+        @Override
+        public void onImageAdLoaded(@NonNull NativeImageAd nativeImageAd) {
+            fillData(new Pair<Integer, Object>(Holder.BlockContentProvider.NATIVE_BANNER, nativeImageAd));
         }
 
         @Override

@@ -38,16 +38,16 @@ EULA is available at [EULA website] [LICENSE]
 ### Configuring gradle
 
 For the integration of YandexMobileAds SDK need:
-##### 1. compile AppMetrica SDK (API Level AppMetrica = 70 or higher):
+##### 1. compile AppMetrica SDK:
 
 ```sh
-compile 'com.yandex.android:mobmetricalib:3.4.0'
+compile 'com.yandex.android:mobmetricalib:3.5.3'
 ```
 
 ##### 2. compile YandexMobileAds SDK:
 
 ```sh
-compile 'com.yandex.android:mobileads:2.81'
+compile 'com.yandex.android:mobileads:2.91'
 ```
 
 [DOCUMENTATION]: https://tech.yandex.ru/mobile-ads/
