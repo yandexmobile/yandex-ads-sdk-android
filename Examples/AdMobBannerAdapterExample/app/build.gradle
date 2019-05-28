@@ -11,7 +11,8 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "26.0.3"
+    buildToolsVersion "28.0.3"
+
     defaultConfig {
         applicationId "com.yandex.admobadapter.banner.sample"
         minSdkVersion 14
@@ -19,6 +20,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,8 +32,8 @@ android {
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
 
-    implementation 'com.yandex.android:mobmetricalib:3.4.0'
-    implementation 'com.yandex.android:mobileads:2.80'
+    implementation 'com.yandex.android:mobmetricalib:3.5.3'
+    implementation 'com.yandex.android:mobileads:2.91'
 
     implementation 'com.google.android.gms:play-services-ads:17.1.3'
 }

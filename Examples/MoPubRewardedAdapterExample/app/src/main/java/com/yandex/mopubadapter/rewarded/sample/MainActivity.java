@@ -15,9 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.mopub.common.MoPub;
 import com.mopub.common.MoPubReward;
-import com.mopub.common.SdkConfiguration;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubRewardedVideoListener;
 import com.mopub.mobileads.MoPubRewardedVideos;
@@ -30,29 +28,23 @@ public class MainActivity extends AppCompatActivity {
     private static final String AD_UNIT_ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
     private Button mLoadAdButton;
+    private MoPubInitializer mMoPubInitializer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLoadAdButton = (Button) findViewById(R.id.load_ad_button);
+        mLoadAdButton = findViewById(R.id.load_ad_button);
         mLoadAdButton.setOnClickListener(new MoPubRewardedVideosClickListener());
 
-        initializeRewardedVideo();
+        mMoPubInitializer = new MoPubInitializer();
     }
 
     @Override
     protected void onDestroy() {
         MoPubRewardedVideos.setRewardedVideoListener(null);
         super.onDestroy();
-    }
-
-    private void initializeRewardedVideo() {
-        final SdkConfiguration sdkConfiguration = new SdkConfiguration.Builder(AD_UNIT_ID).build();
-        MoPub.initializeSdk(this, sdkConfiguration, null);
-
-        MoPubRewardedVideos.setRewardedVideoListener(new MoPubRewardedAdEventListener());
     }
 
     private class MoPubRewardedAdEventListener implements MoPubRewardedVideoListener {
@@ -110,7 +102,10 @@ public class MainActivity extends AppCompatActivity {
              Replace AD_UNIT_ID with your unique Ad Unit ID.
              Please, read official documentation how to obtain one: {@link https://app.mopub.com}
              */
-            MoPubRewardedVideos.loadRewardedVideo(AD_UNIT_ID);
+            mMoPubInitializer.initializeSdk(MainActivity.this, AD_UNIT_ID, () -> {
+                MoPubRewardedVideos.setRewardedVideoListener(new MoPubRewardedAdEventListener());
+                MoPubRewardedVideos.loadRewardedVideo(AD_UNIT_ID);
+            });
         }
     };
 }

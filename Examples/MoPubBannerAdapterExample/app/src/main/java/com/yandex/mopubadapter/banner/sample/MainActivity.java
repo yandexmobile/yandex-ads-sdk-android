@@ -9,8 +9,8 @@
 
 package com.yandex.mopubadapter.banner.sample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,21 +23,23 @@ public class MainActivity extends AppCompatActivity {
     private static final String AD_UNIT_ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
     private MoPubView mMoPubView;
+    private MoPubInitializer mMoPubInitializer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button loadBannerButton = (Button) findViewById(R.id.load_banner_button);
+        Button loadBannerButton = findViewById(R.id.load_banner_button);
         loadBannerButton.setOnClickListener(mLoadBannerClickListener);
 
-        mMoPubView = (MoPubView) findViewById(R.id.mopub_view);
+        mMoPubView = findViewById(R.id.mopub_view);
+        mMoPubInitializer = new MoPubInitializer();
         initMoPubView();
     }
 
     private void initMoPubView() {
-        /**
+        /*
          * Replace AD_UNIT_ID with your unique Ad Unit ID.
          * Please, read official documentation how to obtain one: {@link https://app.mopub.com}
          */
@@ -49,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void refreshBannerAd() {
         mMoPubView.setVisibility(View.INVISIBLE);
-        mMoPubView.loadAd();
+        mMoPubInitializer.initializeSdk(this, AD_UNIT_ID, () -> {
+            mMoPubView.loadAd();
+        });
     }
 
     private View.OnClickListener mLoadBannerClickListener = new View.OnClickListener() {

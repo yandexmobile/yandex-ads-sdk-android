@@ -22,22 +22,24 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String AD_UNIT_ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
-    private MoPubInterstitial mInterstitial;
     private Button mLoadInterstitialAdButton;
+    private MoPubInitializer mMoPubInitializer;
+    private MoPubInterstitial mInterstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLoadInterstitialAdButton = (Button) findViewById(R.id.load_interstitial_button);
+        mLoadInterstitialAdButton = findViewById(R.id.load_interstitial_button);
         mLoadInterstitialAdButton.setOnClickListener(mInterstitialClickListener);
 
+        mMoPubInitializer = new MoPubInitializer();
         initInterstitialAd();
     }
 
     private void initInterstitialAd() {
-        /**
+        /*
          * Replace AD_UNIT_ID with your unique Ad Unit ID.
          * Please, read official documentation how to obtain one: {@link https://app.mopub.com}
          */
@@ -59,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
             mLoadInterstitialAdButton.setEnabled(false);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.start_load_interstitial_button));
 
-            mInterstitial.load();
+            mMoPubInitializer.initializeSdk(MainActivity.this, AD_UNIT_ID, () -> {
+                mInterstitial.load();
+            });
         }
     };
 

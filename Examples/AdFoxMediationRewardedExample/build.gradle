@@ -14,9 +14,13 @@ buildscript {
             url 'https://maven.google.com/'
             name 'Google'
         }
+
+        //MoPub
+        maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.4.1'
     }
 }
 
@@ -27,6 +31,9 @@ allprojects {
             url 'https://maven.google.com/'
             name 'Google'
         }
+
+        //MoPub
+        maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
     }
 }
 

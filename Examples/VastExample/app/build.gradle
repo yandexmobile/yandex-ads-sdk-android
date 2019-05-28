@@ -1,37 +1,26 @@
-/*
- * This file is a part of the Yandex Advertising Network
- *
- * Version for Android (C) 2018 YANDEX
- *
- * You may not use this file except in compliance with the License.
- * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
- */
-
 apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "26.0.3"
-
     defaultConfig {
-        applicationId "com.yandex.ads.video.sample"
-        minSdkVersion 14
+        applicationId "com.yandex.ads.videoad.sample"
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
 
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-
-    implementation 'com.yandex.android:mobmetricalib:3.4.0'
-    implementation 'com.yandex.android:mobileads:2.80'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.yandex.android:mobmetricalib:3.5.3'
+    implementation 'com.yandex.android:mobileads:2.91'
 }

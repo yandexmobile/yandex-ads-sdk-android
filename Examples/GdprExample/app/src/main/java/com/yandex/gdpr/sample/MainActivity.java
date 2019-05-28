@@ -23,6 +23,7 @@ import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
 import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
 import com.yandex.mobile.ads.nativeads.NativeContentAd;
 import com.yandex.mobile.ads.nativeads.NativeGenericAd;
+import com.yandex.mobile.ads.nativeads.NativeImageAd;
 import com.yandex.mobile.ads.nativeads.template.NativeBannerView;
 
 public class MainActivity extends AppCompatActivity implements GdprDialogFragment.NoticeDialogListener {
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements GdprDialogFragmen
                 new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-i", true)
                         .setImageSizes(NativeAdLoaderConfiguration.NATIVE_IMAGE_SIZE_MEDIUM).build();
         mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
-        mNativeAdLoader.setOnLoadListener(new NativeAdLoadListener());
+        mNativeAdLoader.setNativeAdLoadListener(new NativeAdLoadListener());
     }
 
     private void bindNativeAd(@NonNull final NativeGenericAd nativeAd) {
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements GdprDialogFragmen
         }
     }
 
-    private class NativeAdLoadListener implements NativeAdLoader.OnLoadListener {
+    private class NativeAdLoadListener implements NativeAdLoader.OnImageAdLoadListener {
 
         @Override
         public void onAppInstallAdLoaded(@NonNull final NativeAppInstallAd nativeAppInstallAd) {
@@ -134,6 +135,11 @@ public class MainActivity extends AppCompatActivity implements GdprDialogFragmen
         @Override
         public void onContentAdLoaded(@NonNull NativeContentAd nativeContentAd) {
             bindNativeAd(nativeContentAd);
+        }
+
+        @Override
+        public void onImageAdLoaded(@NonNull NativeImageAd nativeImageAd) {
+            bindNativeAd(nativeImageAd);
         }
 
         @Override

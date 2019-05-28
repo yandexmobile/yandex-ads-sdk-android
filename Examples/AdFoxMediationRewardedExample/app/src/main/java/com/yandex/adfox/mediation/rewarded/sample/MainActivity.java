@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String ADFOX_BLOCK_ID = "adf-279013/966487";
     private static final String ADMOB_BLOCK_ID = "adf-279013/966325";
     private static final String FACEBOOK_BLOCK_ID = "adf-279013/966329";
+    private static final String MOPUB_BLOCK_ID = "adf-279013/966326";
     private static final String MYTARGET_BLOCK_ID = "adf-279013/966327";
 
     private Button mLoadRewardedAdButton;
@@ -51,9 +52,10 @@ public class MainActivity extends AppCompatActivity {
         * Yandex: ADFOX_BLOCK_ID
         * AdMob mediation: ADMOB_BLOCK_ID
         * Facebook mediation: FACEBOOK_BLOCK_ID
+        * MoPub mediation: MOPUB_BLOCK_ID
         * MyTarget mediation: MYTARGET_BLOCK_ID
         */
-        rewardedAd.setBlockId(ADFOX_BLOCK_ID);
+        rewardedAd.setBlockId(ADMOB_BLOCK_ID);
         rewardedAd.setRewardedAdEventListener(new RewardedAdListener());
 
         return rewardedAd;

@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
          * MyTarget mediation: MYTARGET_BLOCK_ID
          */
         final NativeAdLoaderConfiguration adLoaderConfiguration =
-                new NativeAdLoaderConfiguration.Builder(ADFOX_BLOCK_ID, true).build();
+                new NativeAdLoaderConfiguration.Builder(ADMOB_BLOCK_ID, true).build();
         mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
-        mNativeAdLoader.setOnLoadListener(mNativeAdLoadListener);
+        mNativeAdLoader.setNativeAdLoadListener(mNativeAdLoadListener);
     }
 
     private void bindNativeAd(@NonNull final NativeGenericAd nativeAd) {
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private NativeAdLoader.OnLoadListener mNativeAdLoadListener = new NativeAdLoader.OnImageAdLoadListener() {
+    private NativeAdLoader.OnImageAdLoadListener mNativeAdLoadListener = new NativeAdLoader.OnImageAdLoadListener() {
 
         @Override
         public void onImageAdLoaded(@NonNull final NativeImageAd nativeImageAd) {

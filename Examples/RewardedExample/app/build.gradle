@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+
     defaultConfig {
         applicationId "com.yandex.rewarded.sample"
         minSdkVersion 16
@@ -10,6 +12,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,6 +24,6 @@ android {
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
 
-    implementation 'com.yandex.android:mobileads:2.80'
-    implementation 'com.yandex.android:mobmetricalib:3.4.0'
+    implementation 'com.yandex.android:mobileads:2.91'
+    implementation 'com.yandex.android:mobmetricalib:3.5.3'
 }
