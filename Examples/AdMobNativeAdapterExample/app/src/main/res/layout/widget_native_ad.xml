@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ This file is a part of the Yandex Advertising Network
+  ~
+  ~ Version for Android (C) 2019 YANDEX
+  ~
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
+  -->
+
+<com.google.android.gms.ads.formats.UnifiedNativeAdView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admob_native_ad_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/top_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/native_offset_small"
+            android:layout_marginEnd="@dimen/native_offset_medium"
+            android:layout_marginLeft="@dimen/native_offset_medium"
+            android:layout_marginRight="@dimen/native_offset_medium"
+            android:layout_marginStart="@dimen/native_offset_medium"
+            android:layout_marginTop="@dimen/native_offset_medium"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:textColor="@color/base_asset_text_color"
+                    android:visibility="gone"
+                    tools:text="18+"
+                    tools:visibility="visible"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/sponsored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/base_asset_text_color"
+                    android:textSize="@dimen/native_asset_text_size_small"
+                    android:visibility="gone"
+                    tools:text="@string/sponsored_text"
+                    tools:visibility="visible"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end">
+
+                <Button
+                    android:id="@+id/feedback"
+                    android:layout_width="@dimen/native_favicon_width"
+                    android:layout_height="@dimen/native_favicon_height"
+                    android:background="@drawable/close_button"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/center_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/native_offset_small"
+            android:layout_marginEnd="@dimen/native_offset_medium"
+            android:layout_marginLeft="@dimen/native_offset_medium"
+            android:layout_marginRight="@dimen/native_offset_medium"
+            android:layout_marginStart="@dimen/native_offset_medium"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            tools:visibility="visible">
+
+            <FrameLayout
+                android:id="@+id/image_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/native_offset_medium"
+                android:layout_marginRight="@dimen/native_offset_medium"
+                android:layout_marginTop="@dimen/native_offset_small"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="@dimen/native_image_width"
+                    android:layout_height="@dimen/native_image_height"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="@integer/asset_title_max_lines"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/native_asset_text_size_large"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:text="@string/title_text"
+                    tools:visibility="visible"/>
+
+                <TextView
+                    android:id="@+id/body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="@integer/asset_body_max_lines"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/native_asset_text_size_medium"
+                    android:visibility="gone"
+                    tools:text="@string/body_text"
+                    tools:visibility="visible"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/favicon"
+                        android:layout_width="@dimen/native_favicon_width"
+                        android:layout_height="@dimen/native_favicon_height"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:layout_marginRight="@dimen/native_offset_small"
+                        android:visibility="gone"
+                        tools:visibility="visible"/>
+
+                    <TextView
+                        android:id="@+id/domain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="@integer/asset_domain_max_lines"
+                        android:textColor="@color/base_asset_text_color"
+                        android:textSize="@dimen/native_asset_text_size_medium"
+                        android:visibility="gone"
+                        tools:text="@string/domain_text"
+                        tools:visibility="visible"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/call_to_action_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/review_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            tools:visibility="visible"
+                            tools:text="@string/native_appinstall_price_text"/>
+
+                        <RatingBar
+                            android:id="@+id/rating"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/native_offset_medium"
+                            android:layout_marginRight="@dimen/native_offset_medium"
+                            android:numStars="5"
+                            android:stepSize="0.5"
+                            android:visibility="gone"
+                            tools:visibility="visible"/>
+
+                        <TextView
+                            android:id="@+id/review_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="@integer/asset_review_count_max_lines"
+                            android:textColor="@color/base_asset_text_color"
+                            android:textSize="@dimen/native_asset_text_size_medium"
+                            android:visibility="gone"
+                            tools:visibility="visible"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/call_to_action"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/call_to_action_background"
+                            android:ellipsize="end"
+                            android:maxLines="@integer/asset_call_to_action_max_lines"
+                            android:minHeight="@dimen/call_to_action_asset_min_height"
+                            android:textAllCaps="false"
+                            android:textSize="@dimen/native_asset_text_size_medium"
+                            android:visibility="gone"
+                            tools:visibility="visible"
+                            tools:text="@string/call_to_action_text"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.gms.ads.formats.MediaView
+            android:id="@+id/media"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/native_offset_small"
+            android:layout_marginTop="@dimen/native_offset_small"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/warning_background"
+            android:ellipsize="end"
+            android:paddingLeft="@dimen/native_offset_medium"
+            android:paddingRight="@dimen/native_offset_medium"
+            android:paddingTop="@dimen/native_offset_small"
+            android:textColor="@color/base_asset_text_color"
+            android:textSize="@dimen/native_asset_text_size_medium"
+            android:visibility="gone"
+            tools:text="@string/warning_text"
+            tools:visibility="visible"/>
+
+    </LinearLayout>
+
+</com.google.android.gms.ads.formats.UnifiedNativeAdView>

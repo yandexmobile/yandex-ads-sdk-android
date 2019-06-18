@@ -18,6 +18,7 @@ EULA is available at [EULA website] [LICENSE]
 * /Examples/AdFoxMediationRewardedExample;
 * /Examples/AdMobBannerAdapterExample;
 * /Examples/AdMobInterstitialAdapterExample;
+* /Examples/AdMobNativeAdapterExample;
 * /Examples/AdMobRewardedAdapterExample;
 * /Examples/BannerExample;
 * /Examples/GdprExample;
