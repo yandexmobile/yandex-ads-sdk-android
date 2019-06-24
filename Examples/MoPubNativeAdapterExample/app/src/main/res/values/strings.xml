@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MoPubNativeAdapterExample</string>
+
+    <string name="activity_native_example">Native Example</string>
+    <string name="activity_native_recycler_view_example">Native Recycler View Example</string>
+
+    <string name="load_ad_button">Load Ad</string>
+
+    <string name="title_text">Yandex.Browser for iPhone and Android</string>
+    <string name="body_text">Your bookmarks and favorite sites are available to you on any device with Yandex.Browser. You will never lose them, even if you lose your device or break it.</string>
+    <string name="domain_text">https://browser.yandex.com</string>
+    <string name="sponsored_text">Yandex.Direct</string>
+    <string name="review_count_text">1024</string>
+    <string name="warning_text">We strongly recommend avoiding this type of website and not clicking the Ignore this warning button!</string>
+
+    <string name="call_to_action_text">Install</string>
+    <string name="native_appinstall_price_text">Free</string>
+
+    <string name="start_loading_button">Loading…</string>
+</resources>

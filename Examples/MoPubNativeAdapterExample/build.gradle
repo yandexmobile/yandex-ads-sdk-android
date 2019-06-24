@@ -1,0 +1,22 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.1'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

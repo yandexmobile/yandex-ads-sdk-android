@@ -6,13 +6,13 @@
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
-
 package com.yandex.mopubadapter.banner.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.mopub.mobileads.DefaultBannerAdListener;
 import com.mopub.mobileads.MoPubErrorCode;
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
-            super.onBannerFailed(banner, errorCode);
+            Toast.makeText(MainActivity.this, "onBannerFailed with error " + errorCode, Toast.LENGTH_SHORT).show();
         }
     };
 
