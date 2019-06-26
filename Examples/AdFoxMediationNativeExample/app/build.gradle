@@ -29,14 +29,13 @@ android {
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
 
-    implementation 'com.yandex.android:mobileads:2.91'
-    implementation 'com.yandex.android:mobmetricalib:3.5.3'
+    implementation 'com.yandex.android:mobileads:2.100'
+    implementation 'com.yandex.android:mobmetricalib:3.6.4'
 
     implementation 'com.yandex.ads.mediation:mobileads-admob:1.4.0'
     implementation 'com.yandex.ads.mediation:mobileads-facebook:1.3.0'
     implementation 'com.yandex.ads.mediation:mobileads-mopub:1.2.0'
     implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.2.0'
-    implementation 'com.yandex.ads.mediation:mobileads-startapp:1.2.0'
 
     implementation 'com.google.android.gms:play-services-ads:17.1.3'
     implementation 'com.facebook.android:audience-network-sdk:5.2.1'
@@ -44,5 +43,4 @@ dependencies {
         transitive = true
     }
     implementation 'com.my.target:mytarget-sdk:5.3.4'
-    implementation 'com.startapp:inapp-sdk:3.12.3'
 }

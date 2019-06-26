@@ -10,10 +10,7 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+
         //MoPub
         maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
         google()
@@ -26,10 +23,8 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+        google()
+
         //MoPub
         maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
     }

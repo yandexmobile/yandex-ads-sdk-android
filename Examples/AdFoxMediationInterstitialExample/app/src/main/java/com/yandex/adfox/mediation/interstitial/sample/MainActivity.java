@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String FACEBOOK_BLOCK_ID = "adf-279013/975925";
     private static final String MOPUB_BLOCK_ID = "adf-279013/975923";
     private static final String MYTARGET_BLOCK_ID = "adf-279013/975924";
+    private static final String STARTAPP_BLOCK_ID = "adf-279013/1004808";
+    private static final String UNITYADS_BLOCK_ID = "adf-279013/1004804";
 
     private InterstitialAd mInterstitialAd;
 
@@ -53,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
          * Yandex: ADFOX_BLOCK_ID
          * AdMob mediation: ADMOB_BLOCK_ID
          * Facebook mediation: FACEBOOK_BLOCK_ID
-         * MyTarget mediation: MOPUB_BLOCK_ID
+         * MoPub mediation: MOPUB_BLOCK_ID
          * MyTarget mediation: MYTARGET_BLOCK_ID
+         * StartApp mediation: STARTAPP_BLOCK_ID
+         * UnityAds mediation: UNITYADS_BLOCK_ID
          */
         mInterstitialAd.setBlockId(ADMOB_BLOCK_ID);
         mInterstitialAd.setInterstitialEventListener(mInterstitialAdEventListener);

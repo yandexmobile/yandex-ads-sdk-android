@@ -1,16 +1,28 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.100
+
+#### Added
+* Added support wrappers for VAST ads
+
+#### Updated
+* Improvements and optimizations
+
 ## Version 2.91
 
 #### Added
 * Added support for MediaView in native ad mediation
+
+#### Updated
 * Improvements and optimizations
 
 ## Version 2.90
 
 #### Added
 * Added support for VMAP format
+
+#### Updated
 * Improvements and optimizations
 
 #### Deprecated

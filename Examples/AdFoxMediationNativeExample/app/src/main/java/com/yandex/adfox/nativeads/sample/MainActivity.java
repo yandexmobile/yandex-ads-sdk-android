@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
          * Yandex: ADFOX_BLOCK_ID
          * AdMob mediation: ADMOB_BLOCK_ID
          * Facebook mediation: FACEBOOK_BLOCK_ID
-         * MyTarget mediation: MOPUB_BLOCK_ID
+         * MoPub mediation: MOPUB_BLOCK_ID
          * MyTarget mediation: MYTARGET_BLOCK_ID
          */
         final NativeAdLoaderConfiguration adLoaderConfiguration =

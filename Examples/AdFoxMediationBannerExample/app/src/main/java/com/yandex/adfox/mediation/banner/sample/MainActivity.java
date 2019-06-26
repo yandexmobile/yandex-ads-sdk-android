@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String FACEBOOK_BLOCK_ID = "adf-279013/975929";
     private static final String MOPUB_BLOCK_ID = "adf-279013/975927";
     private static final String MYTARGET_BLOCK_ID = "adf-279013/975928";
+    private static final String STARTAPP_BLOCK_ID = "adf-279013/1004807";
 
     private AdView mAdView;
 
@@ -50,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
          * Yandex: ADFOX_BLOCK_ID
          * AdMob mediation: ADMOB_BLOCK_ID
          * Facebook mediation: FACEBOOK_BLOCK_ID
-         * MyTarget mediation: MOPUB_BLOCK_ID
+         * MoPub mediation: MOPUB_BLOCK_ID
          * MyTarget mediation: MYTARGET_BLOCK_ID
+         * StartApp mediation: STARTAPP_BLOCK_ID
          */
         mAdView.setBlockId(ADMOB_BLOCK_ID);
         mAdView.setAdSize(AdSize.BANNER_320x50);
