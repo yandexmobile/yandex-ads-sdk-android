@@ -1,10 +1,18 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.101
+
+#### Fixed
+* Fixed lint error
+
+#### Updated
+* Improvements and optimizations
+
 ## Version 2.100
 
 #### Added
-* Added support wrappers for VAST ads
+* Added support for wrappers for VAST ads
 
 #### Updated
 * Improvements and optimizations

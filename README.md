@@ -43,13 +43,13 @@ For the integration of YandexMobileAds SDK need:
 ##### 1. compile AppMetrica SDK:
 
 ```sh
-compile 'com.yandex.android:mobmetricalib:3.5.3'
+implementation 'com.yandex.android:mobmetricalib:3.6.4'
 ```
 
 ##### 2. compile YandexMobileAds SDK:
 
 ```sh
-compile 'com.yandex.android:mobileads:2.100'
+implementation 'com.yandex.android:mobileads:2.101'
 ```
 
 [DOCUMENTATION]: https://tech.yandex.ru/mobile-ads/
