@@ -1,6 +1,21 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.110
+
+#### Added
+* Constructor NativeAdViewBinder$Builder(NativeAdView nativeAdView)
+
+#### Fixed
+* Fix views reuse in native ads
+
+#### Updated
+* Improved visibility error indicator
+* Improvements and optimizations
+
+#### Deprecated
+* Deprecated constructor NativeAdViewBinder$Builder(View nativeAdView) in favor of NativeAdViewBinder$Builder(NativeAdView nativeAdView)
+
 ## Version 2.101
 
 #### Fixed
