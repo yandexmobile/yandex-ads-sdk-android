@@ -27,19 +27,19 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
 
     implementation 'com.yandex.android:mobileads:2.111'
     implementation 'com.yandex.android:mobmetricalib:3.8.0'
 
-    implementation 'com.yandex.ads.mediation:mobileads-admob:1.5.0'
+    implementation 'com.yandex.ads.mediation:mobileads-admob:1.6.0'
     implementation 'com.yandex.ads.mediation:mobileads-facebook:1.4.0'
     implementation 'com.yandex.ads.mediation:mobileads-mopub:1.3.0'
     implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.3.0'
     implementation 'com.yandex.ads.mediation:mobileads-startapp:1.3.0'
     implementation 'com.yandex.ads.mediation:mobileads-unityads:1.1.0'
 
-    implementation 'com.google.android.gms:play-services-ads:17.2.0'
+    implementation 'com.google.android.gms:play-services-ads:18.3.0'
     implementation 'com.facebook.android:audience-network-sdk:5.2.1'
     implementation 'com.my.target:mytarget-sdk:5.4.5'
     implementation('com.mopub:mopub-sdk:5.7.0@aar') {
