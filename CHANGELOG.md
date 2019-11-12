@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## Version 2.111
+
+#### Fixed
+* Fixed memory leaks
+
 ## Version 2.110
 
 #### Added
