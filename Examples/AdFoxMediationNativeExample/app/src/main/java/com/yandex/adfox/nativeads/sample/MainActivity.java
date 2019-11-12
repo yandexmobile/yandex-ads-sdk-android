@@ -9,8 +9,8 @@
 package com.yandex.adfox.nativeads.sample;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,8 +26,6 @@ import com.yandex.mobile.ads.nativeads.NativeContentAd;
 import com.yandex.mobile.ads.nativeads.NativeGenericAd;
 import com.yandex.mobile.ads.nativeads.NativeImageAd;
 import com.yandex.mobile.ads.nativeads.template.NativeBannerView;
-
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
