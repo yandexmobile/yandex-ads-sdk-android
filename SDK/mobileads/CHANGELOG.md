@@ -1,10 +1,18 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
-## Version 2.111
+## Version 2.112
+
+#### Added
+* Improvements and optimizations
 
 #### Fixed
-* Fixed memory leaks
+* Fixed displaying integration error indicator for native ads
+
+## Version 2.111
+
+#### Updated
+* Optimized native ads memory usage
 
 ## Version 2.110
 

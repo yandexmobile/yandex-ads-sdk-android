@@ -24,8 +24,10 @@ import com.yandex.mobile.ads.rewarded.RewardedAdEventListener;
 public class MainActivity extends AppCompatActivity {
 
     private static final String ADFOX_BLOCK_ID = "adf-279013/966487";
+    private static final String APPLOVIN_BLOCK_ID = "adf-279013/1052103";
     private static final String ADMOB_BLOCK_ID = "adf-279013/966325";
     private static final String FACEBOOK_BLOCK_ID = "adf-279013/966329";
+    private static final String IRONSOURCE_BLOCK_ID = "adf-279013/1052106";
     private static final String MOPUB_BLOCK_ID = "adf-279013/966326";
     private static final String MYTARGET_BLOCK_ID = "adf-279013/966327";
     private static final String STARTAPP_BLOCK_ID = "adf-279013/1006616";
@@ -53,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
         * Following demo block ids may be used for testing:
         * Yandex: ADFOX_BLOCK_ID
         * AdMob mediation: ADMOB_BLOCK_ID
+        * AppLovin mediation: APPLOVIN_BLOCK_ID
         * Facebook mediation: FACEBOOK_BLOCK_ID
+        * IronSource mediation: IRONSOURCE_BLOCK_ID
         * MoPub mediation: MOPUB_BLOCK_ID
         * MyTarget mediation: MYTARGET_BLOCK_ID
         * StartApp mediation: STARTAPP_BLOCK_ID

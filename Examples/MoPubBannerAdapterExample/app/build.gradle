@@ -38,7 +38,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
 
     implementation 'com.yandex.android:mobmetricalib:3.8.0'
-    implementation 'com.yandex.android:mobileads:2.111'
+    implementation 'com.yandex.android:mobileads:2.112'
     implementation 'com.yandex.ads.adapter:mopub-mobileads:0.1.2'
 
     implementation('com.mopub:mopub-sdk-banner:5.7.0@aar') {

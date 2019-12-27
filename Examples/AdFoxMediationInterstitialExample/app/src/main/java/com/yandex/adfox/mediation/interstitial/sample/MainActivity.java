@@ -19,13 +19,13 @@ import com.yandex.mobile.ads.AdRequestError;
 import com.yandex.mobile.ads.InterstitialAd;
 import com.yandex.mobile.ads.InterstitialEventListener;
 
-import java.util.Map;
-
 public class MainActivity extends AppCompatActivity {
 
     private static final String ADFOX_BLOCK_ID = "adf-279013/966533";
     private static final String ADMOB_BLOCK_ID = "adf-279013/971987";
+    private static final String APPLOVIN_BLOCK_ID = "adf-279013/1052102";
     private static final String FACEBOOK_BLOCK_ID = "adf-279013/975925";
+    private static final String IRONSOURCE_BLOCK_ID = "adf-279013/1052105";
     private static final String MOPUB_BLOCK_ID = "adf-279013/975923";
     private static final String MYTARGET_BLOCK_ID = "adf-279013/975924";
     private static final String STARTAPP_BLOCK_ID = "adf-279013/1004808";
@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
          * Following demo block ids may be used for testing:
          * Yandex: ADFOX_BLOCK_ID
          * AdMob mediation: ADMOB_BLOCK_ID
+         * AppLovin mediation: APPLOVIN_BLOCK_ID
          * Facebook mediation: FACEBOOK_BLOCK_ID
+         * IronSource mediation: IRONSOURCE_BLOCK_ID
          * MoPub mediation: MOPUB_BLOCK_ID
          * MyTarget mediation: MYTARGET_BLOCK_ID
          * StartApp mediation: STARTAPP_BLOCK_ID
