@@ -10,8 +10,9 @@
 package com.yandex.mopubadapter.nativeads.sample;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatRatingBar;
 import android.util.AttributeSet;
+
+import androidx.appcompat.widget.AppCompatRatingBar;
 
 import com.yandex.mobile.ads.nativeads.Rating;
 

@@ -34,5 +34,5 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 
     implementation 'com.yandex.android:mobmetricalib:3.8.0'
-    implementation 'com.yandex.android:mobileads:2.112'
+    implementation 'com.yandex.android:mobileads:2.113'
 }
