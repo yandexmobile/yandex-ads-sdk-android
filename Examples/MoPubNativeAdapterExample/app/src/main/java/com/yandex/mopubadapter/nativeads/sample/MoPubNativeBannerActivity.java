@@ -11,12 +11,13 @@ package com.yandex.mopubadapter.nativeads.sample;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mopub.nativeads.AdapterHelper;
 import com.mopub.nativeads.MoPubNative;

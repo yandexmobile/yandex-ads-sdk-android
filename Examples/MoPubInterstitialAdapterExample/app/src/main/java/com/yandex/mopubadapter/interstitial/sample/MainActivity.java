@@ -8,10 +8,11 @@
  */
 package com.yandex.mopubadapter.interstitial.sample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mopub.mobileads.DefaultInterstitialAdListener;
 import com.mopub.mobileads.MoPubErrorCode;
