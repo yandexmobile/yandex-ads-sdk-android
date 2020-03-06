@@ -5,7 +5,7 @@ android {
     buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.yandex.adfox.mediation.banner.sample"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -28,21 +28,21 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
-    implementation 'com.yandex.android:mobileads:2.113'
-    implementation 'com.yandex.android:mobmetricalib:3.8.0'
+    implementation 'com.yandex.android:mobileads:2.120'
+    implementation 'com.yandex.android:mobmetricalib:3.13.1'
 
     implementation 'com.yandex.ads.mediation:mobileads-admob:1.7.0'
     implementation 'com.yandex.ads.mediation:mobileads-applovin:0.3.0'
-    implementation 'com.yandex.ads.mediation:mobileads-facebook:1.6.0'
-    implementation 'com.yandex.ads.mediation:mobileads-mopub:1.4.0'
-    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.4.0'
+    implementation 'com.yandex.ads.mediation:mobileads-facebook:1.7.0'
+    implementation 'com.yandex.ads.mediation:mobileads-mopub:1.5.0'
+    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.5.0'
     implementation 'com.yandex.ads.mediation:mobileads-startapp:1.4.0'
 
     implementation 'com.applovin:applovin-sdk:9.11.1'
     implementation 'com.google.android.gms:play-services-ads:18.3.0'
-    implementation 'com.facebook.android:audience-network-sdk:5.6.1'
-    implementation 'com.my.target:mytarget-sdk:5.5.6'
-    implementation('com.mopub:mopub-sdk:5.10.0@aar') {
+    implementation 'com.facebook.android:audience-network-sdk:5.7.1'
+    implementation 'com.my.target:mytarget-sdk:5.6.0'
+    implementation('com.mopub:mopub-sdk:5.11.1@aar') {
         transitive = true
     }
     implementation 'com.startapp:inapp-sdk:4.3.2'
