@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 2.130
+
+#### Added
+* Added support for sticky banner
+* Improvements and optimizations
+
 ## Version 2.120
 
 #### Updated
