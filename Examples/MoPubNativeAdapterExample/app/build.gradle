@@ -34,7 +34,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     implementation 'com.yandex.android:mobmetricalib:3.13.1'
-    implementation 'com.yandex.android:mobileads:2.120'
+    implementation 'com.yandex.android:mobileads:2.130'
     implementation 'com.yandex.ads.adapter:mopub-mobileads:0.1.2'
 
     implementation('com.mopub:mopub-sdk-native-static:5.11.1@aar') {
