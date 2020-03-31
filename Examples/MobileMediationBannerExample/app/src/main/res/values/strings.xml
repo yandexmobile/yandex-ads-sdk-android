@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MobileMediationBannerExample</string>
+    <string name="load_banner_button">Load</string>
+</resources>
