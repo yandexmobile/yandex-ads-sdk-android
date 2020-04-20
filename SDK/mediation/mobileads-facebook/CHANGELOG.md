@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to Facebook Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 1.8.0
+
+#### Added
+* Added support for Facebook Audience Network SDK version 5.8.0
+* Updated minimum supported Facebook Audience Network SDK version to 5.8.0
+
 ## Version 1.7.0
 
 #### Added
