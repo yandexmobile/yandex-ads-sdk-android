@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId "com.yandex.admobadapter.interstitial.sample"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -33,8 +33,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
     implementation 'com.yandex.android:mobmetricalib:3.13.1'
-    implementation 'com.yandex.android:mobileads:2.141'
-    implementation 'com.yandex.ads.adapter:admob-mobileads:0.2.0'
+    implementation 'com.yandex.android:mobileads:2.142'
+    implementation 'com.yandex.ads.adapter:admob-mobileads:0.3.0'
 
-    implementation 'com.google.android.gms:play-services-ads:18.3.0'
+    implementation 'com.google.android.gms:play-services-ads:19.0.1'
 }
