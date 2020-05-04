@@ -33,7 +33,7 @@ dependencies {
 
     implementation 'com.yandex.android:mobmetricalib:3.13.1'
     implementation 'com.yandex.android:mobileads:2.142'
-    implementation 'com.yandex.ads.adapter:admob-mobileads:0.3.0'
+    implementation 'com.yandex.ads.adapter:admob-mobileads:0.4.0'
 
-    implementation 'com.google.android.gms:play-services-ads:19.0.1'
+    implementation 'com.google.android.gms:play-services-ads:19.1.0'
 }
