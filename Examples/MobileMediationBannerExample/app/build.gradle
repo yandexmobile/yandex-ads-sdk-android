@@ -31,17 +31,17 @@ dependencies {
     implementation 'com.yandex.android:mobileads:2.142'
     implementation 'com.yandex.android:mobmetricalib:3.13.1'
 
-    implementation 'com.yandex.ads.mediation:mobileads-admob:1.8.0'
+    implementation 'com.yandex.ads.mediation:mobileads-admob:1.9.0'
     implementation 'com.yandex.ads.mediation:mobileads-applovin:0.4.0'
     implementation 'com.yandex.ads.mediation:mobileads-facebook:1.8.0'
     implementation 'com.yandex.ads.mediation:mobileads-mopub:1.6.0'
-    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.5.0'
+    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.6.0'
     implementation 'com.yandex.ads.mediation:mobileads-startapp:1.6.0'
 
     implementation 'com.applovin:applovin-sdk:9.12.0'
-    implementation 'com.google.android.gms:play-services-ads:19.0.1'
+    implementation 'com.google.android.gms:play-services-ads:19.1.0'
     implementation 'com.facebook.android:audience-network-sdk:5.8.0'
-    implementation 'com.my.target:mytarget-sdk:5.6.0'
+    implementation 'com.my.target:mytarget-sdk:5.7.1'
     implementation('com.mopub:mopub-sdk:5.12.0@aar') {
         transitive = true
     }
