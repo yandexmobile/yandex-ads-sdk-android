@@ -11,7 +11,6 @@ package com.yandex.stickybanners.sample;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,50 +28,27 @@ public class MainActivity extends AppCompatActivity {
 
     private AdView mAdView;
 
-    private RelativeLayout mRootLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mAdView = findViewById(R.id.ad_view);
+        initAdView();
+
         final Button loadBannerButton = findViewById(R.id.load_banner_button);
         loadBannerButton.setOnClickListener(new LoadBannerClickListener());
+    }
 
-        mRootLayout = findViewById(R.id.root_layout);
+    private void initAdView() {
+        // You can use width of your adview container instead of AdSize.FULL_WIDTH
+        mAdView.setAdSize(AdSize.stickySize(AdSize.FULL_WIDTH));
 
-        mAdView = findViewById(R.id.banner_view);
-        //Replace demo R-M-DEMO-adaptive-sticky with actual Block ID
+        // Replace demo R-M-DEMO-adaptive-sticky with actual Block ID
         mAdView.setBlockId(DEMO_BLOCK_ID);
-
         mAdView.setAdEventListener(new StickyBannerEventListener());
     }
 
-    @Override
-    public void onWindowFocusChanged(final boolean hasFocus) {
-        final int containerWidth = getContainerWidth();
-        mAdView.setAdSize(AdSize.stickySize(containerWidth));
-        super.onWindowFocusChanged(hasFocus);
-    }
-
-    private int getContainerWidth() {
-        float density = getResources().getDisplayMetrics().density;
-        return (int)( mRootLayout.getWidth() / density);
-    }
-
-    private class StickyBannerEventListener extends AdEventListener.SimpleAdEventListener {
-        @Override
-        public void onAdLoaded() {
-            mAdView.setVisibility(View.VISIBLE);
-            Toast.makeText(MainActivity.this, "Ad loaded", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onAdFailedToLoad(@NonNull final AdRequestError error) {
-            Toast.makeText(MainActivity.this, "Failed to load with reason: " +
-                    error.getDescription(), Toast.LENGTH_SHORT).show();
-        }
-    }
 
     private class LoadBannerClickListener implements View.OnClickListener {
         @Override
@@ -81,9 +57,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         private void refreshBannerAd() {
-            mAdView.setVisibility(View.GONE);
             final AdRequest adRequest = AdRequest.builder().build();
             mAdView.loadAd(adRequest);
+        }
+    }
+
+    private class StickyBannerEventListener extends AdEventListener.SimpleAdEventListener {
+        @Override
+        public void onAdLoaded() {
+            Toast.makeText(MainActivity.this, "Ad loaded", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onAdFailedToLoad(@NonNull final AdRequestError error) {
+            Toast.makeText(MainActivity.this, "Failed to load with reason: " +
+                    error.getDescription(), Toast.LENGTH_SHORT).show();
         }
     }
 }
