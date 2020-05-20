@@ -9,10 +9,8 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
     <Button
@@ -25,12 +23,11 @@
         android:text="@string/load_banner_button"/>
 
     <com.yandex.mobile.ads.AdView
-        android:id="@+id/banner_view"
+        android:id="@+id/ad_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+        android:layout_centerInParent="true"
+        android:text="@string/load_banner_button"/>
 
 </RelativeLayout>
