@@ -27,6 +27,7 @@ EULA is available at [EULA website] [LICENSE]
 * /Examples/MoPubInterstitialAdapterExample;
 * /Examples/MoPubNativeAdapterExample;
 * /Examples/MoPubRewardedAdapterExample;
+* /Examples/NativeAdUnitPagerExample;
 * /Examples/NativeExample;
 * /Examples/NativeTemplatesExample;
 * /Examples/NativeTemplatesRecyclerViewExample;
