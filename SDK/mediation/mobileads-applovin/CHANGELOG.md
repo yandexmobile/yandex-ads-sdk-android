@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to AppLovin Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 0.5.0
+
+#### Added
+* Improvements and optimizations
+
 ## Version 0.4.0
 
 #### Added
