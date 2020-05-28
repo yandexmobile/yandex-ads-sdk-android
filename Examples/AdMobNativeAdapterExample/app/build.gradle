@@ -22,7 +22,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
     implementation 'com.yandex.android:mobmetricalib:3.13.1'
-    implementation 'com.yandex.android:mobileads:2.143'
+    implementation 'com.yandex.android:mobileads:2.150'
     implementation 'com.yandex.ads.adapter:admob-mobileads:0.4.0'
 
     implementation 'com.google.android.gms:play-services-ads:19.1.0'

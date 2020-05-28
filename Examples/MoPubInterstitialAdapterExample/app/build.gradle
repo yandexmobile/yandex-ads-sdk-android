@@ -38,7 +38,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
     implementation 'com.yandex.android:mobmetricalib:3.13.1'
-    implementation 'com.yandex.android:mobileads:2.143'
+    implementation 'com.yandex.android:mobileads:2.150'
     implementation 'com.yandex.ads.adapter:mopub-mobileads:0.1.2'
 
     implementation('com.mopub:mopub-sdk-interstitial:5.11.1@aar') {
