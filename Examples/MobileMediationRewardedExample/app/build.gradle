@@ -38,7 +38,7 @@ dependencies {
     implementation 'com.yandex.ads.mediation:mobileads-ironsource:0.6.0'
     implementation 'com.yandex.ads.mediation:mobileads-mopub:1.7.0'
     implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.7.0'
-    implementation 'com.yandex.ads.mediation:mobileads-startapp:1.7.0'
+    implementation 'com.yandex.ads.mediation:mobileads-startapp:1.8.0'
     implementation 'com.yandex.ads.mediation:mobileads-unityads:1.2.0'
 
     implementation 'com.applovin:applovin-sdk:9.12.0'
