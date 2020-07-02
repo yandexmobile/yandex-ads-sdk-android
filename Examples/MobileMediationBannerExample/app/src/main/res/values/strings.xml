@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">MobileMediationBannerExample</string>
     <string name="load_banner_button">Load</string>
+    <string-array name="mediation_names">
+        <item>AdMob</item>
+        <item>AppLovin</item>
+        <item>Facebook</item>
+        <item>MoPub</item>
+        <item>MyTarget</item>
+        <item>StartApp</item>
+        <item>Yandex</item>
+    </string-array>
 </resources>

@@ -11,6 +11,7 @@ package com.yandex.mediation.rewarded.sample;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,56 +39,91 @@ public class MainActivity extends AppCompatActivity {
 
     private RewardedAd mRewardedAd;
 
+    private Spinner mSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mSpinner = findViewById(R.id.mediation_spinner);
         mLoadRewardedAdButton = (Button) findViewById(R.id.load_button);
         mLoadRewardedAdButton.setOnClickListener(new LoadButtonClickListener());
     }
 
-    @NonNull
-    private RewardedAd createRewardedAd() {
-        final RewardedAd rewardedAd = new RewardedAd(this);
-
-        /*
-        * Replace demo BLOCK_ID with actual Block ID
-        * Following demo block ids may be used for testing:
-        * Yandex: YANDEX_BLOCK_ID
-        * AdMob mediation: ADMOB_BLOCK_ID
-        * AppLovin mediation: APPLOVIN_BLOCK_ID
-        * Facebook mediation: FACEBOOK_BLOCK_ID
-        * IronSource mediation: IRONSOURCE_BLOCK_ID
-        * MoPub mediation: MOPUB_BLOCK_ID
-        * MyTarget mediation: MYTARGET_BLOCK_ID
-        * StartApp mediation: STARTAPP_BLOCK_ID
-        * UnityAds mediation: UNITYADS_BLOCK_ID
-        */
-        rewardedAd.setBlockId(ADMOB_BLOCK_ID);
-        rewardedAd.setRewardedAdEventListener(new RewardedAdListener());
-
-        return rewardedAd;
-    }
-
     @Override
     protected void onDestroy() {
-        if (mRewardedAd != null) {
-            mRewardedAd.setRewardedAdEventListener(null);
-            mRewardedAd.destroy();
-        }
+        destroyRewardedAd();
 
         super.onDestroy();
     }
-    
+
+    private void loadRewardedAd() {
+        destroyRewardedAd();
+        createRewardedAd();
+        mRewardedAd.loadAd(AdRequest.builder().build());
+    }
+
+    private void destroyRewardedAd() {
+        if (mRewardedAd != null) {
+            mRewardedAd.setRewardedAdEventListener(null);
+            mRewardedAd.destroy();
+            mRewardedAd = null;
+        }
+    }
+
+    private void createRewardedAd() {
+        final String blockId = getBlockId();
+        mRewardedAd = new RewardedAd(this);
+        mRewardedAd.setBlockId(blockId);
+        mRewardedAd.setRewardedAdEventListener(new RewardedAdListener());
+    }
+
+    private String getBlockId() {
+        /*
+         * Following demo block ids may be used for testing:
+         * Yandex: YANDEX_BLOCK_ID
+         * AdMob mediation: ADMOB_BLOCK_ID
+         * AppLovin mediation: APPLOVIN_BLOCK_ID
+         * Facebook mediation: FACEBOOK_BLOCK_ID
+         * IronSource mediation: IRONSOURCE_BLOCK_ID
+         * MoPub mediation: MOPUB_BLOCK_ID
+         * MyTarget mediation: MYTARGET_BLOCK_ID
+         * StartApp mediation: STARTAPP_BLOCK_ID
+         * UnityAds mediation: UNITYADS_BLOCK_ID
+         */
+        final String mediation = mSpinner.getSelectedItem().toString();
+        switch (mediation) {
+            case "Yandex":
+                return YANDEX_BLOCK_ID;
+            case "AdMob":
+                return ADMOB_BLOCK_ID;
+            case "AppLovin":
+                return APPLOVIN_BLOCK_ID;
+            case "Facebook":
+                return FACEBOOK_BLOCK_ID;
+            case "IronSource":
+                return IRONSOURCE_BLOCK_ID;
+            case "MoPub":
+                return MOPUB_BLOCK_ID;
+            case "MyTarget":
+                return MYTARGET_BLOCK_ID;
+            case "StartApp":
+                return STARTAPP_BLOCK_ID;
+            case "UnityAds":
+                return UNITYADS_BLOCK_ID;
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
+
     private class LoadButtonClickListener implements View.OnClickListener {
         @Override
         public void onClick(final View v) {
             mLoadRewardedAdButton.setEnabled(false);
             mLoadRewardedAdButton.setText(getResources().getText(R.string.start_load_button));
 
-            mRewardedAd = createRewardedAd();
-            mRewardedAd.loadAd(AdRequest.builder().build());
+            loadRewardedAd();
         }
     }
 
@@ -104,9 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onAdLoaded() {
-            if (mRewardedAd != null) {
-                mRewardedAd.show();
-            }
+            mRewardedAd.show();
 
             mLoadRewardedAdButton.setEnabled(true);
             mLoadRewardedAdButton.setText(getResources().getText(R.string.load_button));

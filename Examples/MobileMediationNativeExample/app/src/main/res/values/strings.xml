@@ -10,4 +10,11 @@
 <resources>
     <string name="app_name">MobileMediationNativeExample</string>
     <string name="native_load_button">Load</string>
+    <string-array name="mediation_names">
+        <item>AdMob</item>
+        <item>Facebook</item>
+        <item>MoPub</item>
+        <item>MyTarget</item>
+        <item>Yandex</item>
+    </string-array>
 </resources>
