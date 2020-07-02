@@ -31,6 +31,7 @@
     <dimen name="image_asset_max_height">140dp</dimen>
     <dimen name="call_to_action_asset_min_height">36dp</dimen>
 
+    <dimen name="native_asset_text_size_sponsored">14sp</dimen>
     <dimen name="native_asset_text_size_small">17sp</dimen>
     <dimen name="native_asset_text_size_medium">20sp</dimen>
     <dimen name="native_asset_text_size_large">25sp</dimen>

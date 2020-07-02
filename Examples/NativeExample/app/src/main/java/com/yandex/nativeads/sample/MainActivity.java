@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         * Following demo Block IDs may be used for testing:
         * app install: R-M-DEMO-native-i
         * content: R-M-DEMO-native-c
+        * image: R-M-DEMO-native-video
         */
         final NativeAdLoaderConfiguration adLoaderConfiguration =
                 new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-i", true)

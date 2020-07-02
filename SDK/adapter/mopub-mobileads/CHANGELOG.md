@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to Yandex Adapter for MoPub Mediation will be documented in this file.
 
+## Version 0.2.0
+
+#### Added
+* Added support for MoPub SDK version 5.13.0
+* Updated minimum supported MoPub SDK version to 5.13.0
+
 ## Version 0.1.2
 
 #### Added

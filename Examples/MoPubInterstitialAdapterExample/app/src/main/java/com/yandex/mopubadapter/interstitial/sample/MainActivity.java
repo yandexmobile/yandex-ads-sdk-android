@@ -14,7 +14,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mopub.mobileads.DefaultInterstitialAdListener;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
 
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private MoPubInterstitial.InterstitialAdListener mInterstitialAdListener = new DefaultInterstitialAdListener() {
+    private MoPubInterstitial.InterstitialAdListener mInterstitialAdListener = new MoPubInterstitial.InterstitialAdListener() {
 
         @Override
         public void onInterstitialLoaded(final MoPubInterstitial moPubInterstitial) {
@@ -81,6 +80,21 @@ public class MainActivity extends AppCompatActivity {
         public void onInterstitialFailed(final MoPubInterstitial moPubInterstitial, final MoPubErrorCode moPubErrorCode) {
             mLoadInterstitialAdButton.setEnabled(true);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.load_interstitial_button));
+        }
+
+        @Override
+        public void onInterstitialShown(final MoPubInterstitial interstitial) {
+            // do nothing
+        }
+
+        @Override
+        public void onInterstitialClicked(final MoPubInterstitial interstitial) {
+            // do nothing
+        }
+
+        @Override
+        public void onInterstitialDismissed(final MoPubInterstitial interstitial) {
+            // do nothing
         }
     };
 }

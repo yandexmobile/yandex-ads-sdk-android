@@ -19,6 +19,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
 
     compileOptions {
@@ -35,13 +36,14 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support:multidex:1.0.3'
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
     implementation 'com.yandex.android:mobmetricalib:3.13.1'
-    implementation 'com.yandex.android:mobileads:2.150'
-    implementation 'com.yandex.ads.adapter:mopub-mobileads:0.1.2'
+    implementation 'com.yandex.android:mobileads:2.160'
+    implementation 'com.yandex.ads.adapter:mopub-mobileads:0.2.0'
 
-    implementation('com.mopub:mopub-sdk-rewardedvideo:5.11.1@aar') {
+    implementation('com.mopub:mopub-sdk:5.13.0@aar') {
         transitive = true
     }
 }

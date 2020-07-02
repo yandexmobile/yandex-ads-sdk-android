@@ -11,6 +11,8 @@ package com.yandex.mediation.banner.sample;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,19 +36,65 @@ public class MainActivity extends AppCompatActivity {
 
     private AdView mAdView;
 
+    private Spinner mSpinner;
+
+    private RelativeLayout mRootLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mSpinner = findViewById(R.id.mediation_spinner);
+        mRootLayout = findViewById(R.id.root_layout);
+
         final Button loadBannerButton = (Button) findViewById(R.id.load_banner_button);
         loadBannerButton.setOnClickListener(mLoadBannerClickListener);
-
-        mAdView = (AdView) findViewById(R.id.banner_view);
-        initBannerView();
     }
 
-    private void initBannerView() {
+    @Override
+    protected void onDestroy() {
+        destroyBannerAdView();
+        super.onDestroy();
+    }
+
+    private void refreshBannerAd() {
+        destroyBannerAdView();
+        createBannerAdView();
+        initBannerAdView();
+        mAdView.setVisibility(View.INVISIBLE);
+        mAdView.loadAd(AdRequest.builder().build());
+    }
+
+    private void destroyBannerAdView() {
+        if (mAdView != null) {
+            mRootLayout.removeView(mAdView);
+            mAdView.setAdEventListener(null);
+            mAdView.destroy();
+            mAdView = null;
+        }
+    }
+
+    private void createBannerAdView() {
+        mAdView = new AdView(this);
+
+        final RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.alignWithParent = true;
+        layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM);
+        layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+
+        mRootLayout.addView(mAdView, layoutParams);
+    }
+
+    private void initBannerAdView() {
+        final String blockId = getBlockId();
+        mAdView.setBlockId(blockId);
+        mAdView.setAdSize(AdSize.BANNER_320x50);
+        mAdView.setAdEventListener(mBannerAdEventListener);
+    }
+
+    private String getBlockId() {
         /*
          * Replace demo BLOCK_ID with actual Block ID
          * Following demo block ids may be used for testing:
@@ -58,9 +106,25 @@ public class MainActivity extends AppCompatActivity {
          * MyTarget mediation: MYTARGET_BLOCK_ID
          * StartApp mediation: STARTAPP_BLOCK_ID
          */
-        mAdView.setBlockId(ADMOB_BLOCK_ID);
-        mAdView.setAdSize(AdSize.BANNER_320x50);
-        mAdView.setAdEventListener(mBannerAdEventListener);
+        final String mediation = mSpinner.getSelectedItem().toString();
+        switch (mediation) {
+            case "Yandex":
+                return YANDEX_BLOCK_ID;
+            case "AdMob":
+                return ADMOB_BLOCK_ID;
+            case "AppLovin":
+                return APPLOVIN_BLOCK_ID;
+            case "Facebook":
+                return FACEBOOK_BLOCK_ID;
+            case "MoPub":
+                return MOPUB_BLOCK_ID;
+            case "MyTarget":
+                return MYTARGET_BLOCK_ID;
+            case "StartApp":
+                return STARTAPP_BLOCK_ID;
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 
     private View.OnClickListener mLoadBannerClickListener = new View.OnClickListener() {
@@ -69,21 +133,6 @@ public class MainActivity extends AppCompatActivity {
             refreshBannerAd();
         }
     };
-
-    private void refreshBannerAd() {
-        mAdView.setVisibility(View.INVISIBLE);
-        mAdView.loadAd(AdRequest.builder().build());
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (mAdView != null) {
-            mAdView.setAdEventListener(null);
-            mAdView.destroy();
-        }
-
-        super.onDestroy();
-    }
 
     private AdEventListener mBannerAdEventListener = new AdEventListener.SimpleAdEventListener() {
         @Override

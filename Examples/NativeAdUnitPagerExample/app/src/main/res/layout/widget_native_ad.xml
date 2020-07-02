@@ -36,6 +36,23 @@
                 tools:visibility="visible" />
 
             <TextView
+                android:id="@+id/sponsored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|start"
+                android:layout_margin="5dp"
+                android:background="@drawable/sponsored_background"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/sponsored_text"
+                android:textSize="@dimen/native_asset_text_size_sponsored"
+                tools:text="@string/sponsored_text"
+                tools:visibility="visible" />
+
+            <TextView
                 android:id="@+id/age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,7 +61,7 @@
                 android:gravity="end"
                 android:maxLines="1"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/native_asset_text_size_large"
+                android:textSize="@dimen/native_asset_text_size_medium"
                 tools:text="18+"
                 tools:visibility="visible" />
 
@@ -55,33 +72,6 @@
                 android:background="@android:color/white"
                 android:orientation="vertical"
                 android:paddingTop="5dp">
-
-                <LinearLayout
-                    android:id="@+id/top_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/native_ad_template_offset"
-                    android:layout_marginLeft="@dimen/native_ad_template_offset"
-                    android:layout_marginEnd="@dimen/native_ad_template_offset"
-                    android:layout_marginRight="@dimen/native_ad_template_offset"
-                    android:layout_marginBottom="@dimen/native_offset_small"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
-
-                    <TextView
-                        android:id="@+id/sponsored"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:textColor="@color/base_asset_text_color"
-                        android:textSize="@dimen/native_asset_text_size_small"
-                        tools:text="@string/sponsored_text"
-                        tools:visibility="visible" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/center_container"

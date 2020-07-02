@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,19 +42,30 @@ public class MainActivity extends AppCompatActivity {
     private NativeAdLoader mNativeAdLoader;
     private NativeBannerView mNativeBannerView;
 
+    private Spinner mSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mNativeBannerView = (NativeBannerView) findViewById(R.id.native_template);
-        createNativeAdLoader();
+
+        mSpinner = findViewById(R.id.mediation_spinner);
 
         final Button nativeAdLoadButton = (Button) findViewById(R.id.native_load_button);
         nativeAdLoadButton.setOnClickListener(mNativeAdLoadClickListener);
     }
 
     private void createNativeAdLoader() {
+        final String blockId = getBlockId();
+        final NativeAdLoaderConfiguration adLoaderConfiguration =
+                new NativeAdLoaderConfiguration.Builder(blockId, true).build();
+        mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
+        mNativeAdLoader.setNativeAdLoadListener(mNativeAdLoadListener);
+    }
+
+    private String getBlockId() {
         /*
          * Replace demo BLOCK_ID with actual Block ID
          * Following demo block ids may be used for testing:
@@ -63,10 +75,21 @@ public class MainActivity extends AppCompatActivity {
          * MoPub mediation: MOPUB_BLOCK_ID
          * MyTarget mediation: MYTARGET_BLOCK_ID
          */
-        final NativeAdLoaderConfiguration adLoaderConfiguration =
-                new NativeAdLoaderConfiguration.Builder(ADMOB_BLOCK_ID, true).build();
-        mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
-        mNativeAdLoader.setNativeAdLoadListener(mNativeAdLoadListener);
+        final String mediation = mSpinner.getSelectedItem().toString();
+        switch (mediation) {
+            case "Yandex":
+                return YANDEX_BLOCK_ID;
+            case "AdMob":
+                return ADMOB_BLOCK_ID;
+            case "Facebook":
+                return FACEBOOK_BLOCK_ID;
+            case "MoPub":
+                return MOPUB_BLOCK_ID;
+            case "MyTarget":
+                return MYTARGET_BLOCK_ID;
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 
     private void bindNativeAd(@NonNull final NativeGenericAd nativeAd) {
@@ -78,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshNativeAd() {
+        createNativeAdLoader();
         mNativeBannerView.setVisibility(View.GONE);
         mNativeAdLoader.loadAd(AdRequest.builder().build());
     }
