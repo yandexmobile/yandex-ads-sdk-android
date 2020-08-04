@@ -29,8 +29,8 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
-    implementation 'com.yandex.android:mobileads:2.160'
-    implementation 'com.yandex.android:mobmetricalib:3.13.1'
+    implementation 'com.yandex.android:mobileads:2.170'
+    implementation 'com.yandex.android:mobmetricalib:3.14.3'
 
     implementation 'com.yandex.ads.mediation:mobileads-admob:1.12.0'
     implementation 'com.yandex.ads.mediation:mobileads-facebook:1.10.0'
