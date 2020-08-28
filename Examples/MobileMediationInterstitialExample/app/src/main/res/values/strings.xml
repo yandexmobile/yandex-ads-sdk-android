@@ -3,4 +3,15 @@
 
     <string name="load_interstitial_button">Load Ad</string>
     <string name="start_load_interstitial_button">Loading…</string>
+    <string-array name="mediation_names">
+        <item>AdMob</item>
+        <item>AppLovin</item>
+        <item>Facebook</item>
+        <item>IronSource</item>
+        <item>MoPub</item>
+        <item>MyTarget</item>
+        <item>StartApp</item>
+        <item>UnityAds</item>
+        <item>Yandex</item>
+    </string-array>
 </resources>

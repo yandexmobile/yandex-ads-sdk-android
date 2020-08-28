@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to Yandex Adapter for AdMob Mediation will be documented in this file.
 
+## Version 0.5.0
+
+#### Added
+* Added support for new Rewarded Custom Events API
+* Added support for AdMob SDK version 19.3.0
+* Updated minimum supported AdMob SDK version 19.3.0
+
 ## Version 0.4.0
 
 #### Added

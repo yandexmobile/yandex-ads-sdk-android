@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to MyTarget Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 1.9.0
+
+#### Added
+* Added ability to pass keywords to ad request
+
 ## Version 1.8.0
 
 #### Added

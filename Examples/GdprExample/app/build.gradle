@@ -30,5 +30,5 @@ dependencies {
     implementation 'com.android.support:preference-v14:27.1.1'
 
     implementation 'com.yandex.android:mobmetricalib:3.14.3'
-    implementation 'com.yandex.android:mobileads:2.170'
+    implementation 'com.yandex.android:mobileads:2.180'
 }

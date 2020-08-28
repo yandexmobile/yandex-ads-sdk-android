@@ -29,7 +29,7 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
-    implementation 'com.yandex.android:mobileads:2.170'
+    implementation 'com.yandex.android:mobileads:2.180'
     implementation 'com.yandex.android:mobmetricalib:3.14.3'
 
     implementation 'com.yandex.ads.mediation:mobileads-admob:1.12.0'
@@ -37,7 +37,7 @@ dependencies {
     implementation 'com.yandex.ads.mediation:mobileads-facebook:1.10.0'
     implementation 'com.yandex.ads.mediation:mobileads-ironsource:0.7.0'
     implementation 'com.yandex.ads.mediation:mobileads-mopub:1.7.0'
-    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.8.0'
+    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.9.0'
     implementation 'com.yandex.ads.mediation:mobileads-startapp:1.8.0'
     implementation 'com.yandex.ads.mediation:mobileads-unityads:1.2.0'
 

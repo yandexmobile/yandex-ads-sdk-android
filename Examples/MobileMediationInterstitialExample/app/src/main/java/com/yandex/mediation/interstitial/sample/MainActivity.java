@@ -11,6 +11,7 @@ package com.yandex.mediation.interstitial.sample;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,22 +37,37 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mLoadInterstitialAdButton;
 
+    private Spinner mSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mSpinner = findViewById(R.id.mediation_spinner);
         mLoadInterstitialAdButton = (Button) findViewById(R.id.load_interstitial_button);
         mLoadInterstitialAdButton.setOnClickListener(mInterstitialClickListener);
-
-        initInterstitialAd();
     }
 
-    private void initInterstitialAd() {
+    private void loadInterstitialAd() {
+        destroyInterstitialAd();
+        final String blockId = getBlockId();
         mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setBlockId(blockId);
+        mInterstitialAd.setInterstitialEventListener(mInterstitialAdEventListener);
+        mInterstitialAd.loadAd(AdRequest.builder().build());
+    }
 
+    private void destroyInterstitialAd() {
+        if (mInterstitialAd != null) {
+            mInterstitialAd.setInterstitialEventListener(null);
+            mInterstitialAd.destroy();
+            mInterstitialAd = null;
+        }
+    }
+
+    private String getBlockId() {
         /*
-         * Replace demo BLOCK_ID with actual Block ID
          * Following demo block ids may be used for testing:
          * Yandex: YANDEX_BLOCK_ID
          * AdMob mediation: ADMOB_BLOCK_ID
@@ -63,14 +79,34 @@ public class MainActivity extends AppCompatActivity {
          * StartApp mediation: STARTAPP_BLOCK_ID
          * UnityAds mediation: UNITYADS_BLOCK_ID
          */
-        mInterstitialAd.setBlockId(ADMOB_BLOCK_ID);
-        mInterstitialAd.setInterstitialEventListener(mInterstitialAdEventListener);
+        final String mediation = mSpinner.getSelectedItem().toString();
+        switch (mediation) {
+            case "Yandex":
+                return YANDEX_BLOCK_ID;
+            case "AdMob":
+                return ADMOB_BLOCK_ID;
+            case "AppLovin":
+                return APPLOVIN_BLOCK_ID;
+            case "Facebook":
+                return FACEBOOK_BLOCK_ID;
+            case "IronSource":
+                return IRONSOURCE_BLOCK_ID;
+            case "MoPub":
+                return MOPUB_BLOCK_ID;
+            case "MyTarget":
+                return MYTARGET_BLOCK_ID;
+            case "StartApp":
+                return STARTAPP_BLOCK_ID;
+            case "UnityAds":
+                return UNITYADS_BLOCK_ID;
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 
     @Override
     protected void onDestroy() {
-        mInterstitialAd.setInterstitialEventListener(null);
-        mInterstitialAd.destroy();
+        destroyInterstitialAd();
         super.onDestroy();
     }
 
@@ -79,8 +115,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             mLoadInterstitialAdButton.setEnabled(false);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.start_load_interstitial_button));
-
-            mInterstitialAd.loadAd(AdRequest.builder().build());
+            loadInterstitialAd();
         }
     };
 
