@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 2.180
+
+#### Added
+* Optimized presenting of fullscreen ads
+* Improvements and optimizations
+
 ## Version 2.170
 
 #### Added
