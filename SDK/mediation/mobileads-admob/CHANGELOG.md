@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to AdMob Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 1.13.0
+
+#### Added
+* Added Google Mobile Ads initialization
+* Added support for new Rewarded Ads API
+
 ## Version 1.12.0
 
 #### Added
