@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to Yandex Adapter for MoPub Mediation will be documented in this file.
 
+## Version 0.3.0
+
+#### Added
+* Added support for Yandex Mobile Ads SDK version 3.0.0
+* Updated minimum supported Yandex Mobile Ads SDK version to 3.0.0
+
 ## Version 0.2.0
 
 #### Added
@@ -10,7 +16,7 @@ All notable changes to Yandex Adapter for MoPub Mediation will be documented in 
 ## Version 0.1.2
 
 #### Added
-* Added support for new NativeAdViewBinder API
+* Added support for NativeAdViewBinder API
 
 #### Fixed
 * Fixed support for MoPub SDK API allowing counted impressions to be displayed in MoPub mediation interface

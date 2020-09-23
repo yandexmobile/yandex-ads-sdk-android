@@ -25,6 +25,7 @@ import com.yandex.mobile.ads.nativeads.NativeAdException;
 import com.yandex.mobile.ads.nativeads.NativeAdLoader;
 import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
 import com.yandex.mobile.ads.nativeads.NativeAdMedia;
+import com.yandex.mobile.ads.nativeads.NativeAdView;
 import com.yandex.mobile.ads.nativeads.NativeAdViewBinder;
 import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
 import com.yandex.mobile.ads.nativeads.NativeContentAd;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String SAMPLE_TAG = "NativeAdSample";
 
-    private View mNativeAdView;
+    private NativeAdView mNativeAdView;
 
     private NativeAdLoader mNativeAdLoader;
 
