@@ -1,6 +1,20 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 3.0.0
+
+#### Added
+* Added onImageAdLoaded callback to NativeAdLoader.OnLoadListener interface
+* Added support for native video playback
+* Added exoplayer dependency
+* Improvements and optimizations
+
+#### Removed
+* Removed jar support
+* Removed deprecated Vast API
+* Removed deprecated constructor in class Tracker
+* Removed ability to use ImageView in native ads. Please, use MediaView instead
+
 ## Version 2.180
 
 #### Added

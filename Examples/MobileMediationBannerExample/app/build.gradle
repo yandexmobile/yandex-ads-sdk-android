@@ -26,23 +26,24 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
-    implementation 'com.yandex.android:mobileads:2.180'
+    implementation 'com.yandex.android:mobileads:3.0.0'
     implementation 'com.yandex.android:mobmetricalib:3.14.3'
 
-    implementation 'com.yandex.ads.mediation:mobileads-admob:1.13.0'
-    implementation 'com.yandex.ads.mediation:mobileads-applovin:0.6.0'
-    implementation 'com.yandex.ads.mediation:mobileads-facebook:1.10.0'
-    implementation 'com.yandex.ads.mediation:mobileads-mopub:1.7.0'
-    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.9.0'
-    implementation 'com.yandex.ads.mediation:mobileads-startapp:1.8.0'
+    implementation 'com.yandex.ads.mediation:mobileads-admob:1.14.0'
+    implementation 'com.yandex.ads.mediation:mobileads-applovin:0.7.0'
+    implementation 'com.yandex.ads.mediation:mobileads-facebook:1.11.0'
+    implementation 'com.yandex.ads.mediation:mobileads-mopub:1.8.0'
+    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.10.0'
+    implementation 'com.yandex.ads.mediation:mobileads-startapp:1.9.0'
 
     implementation 'com.applovin:applovin-sdk:9.13.1'
     implementation 'com.google.android.gms:play-services-ads:19.3.0'
-    implementation 'com.facebook.android:audience-network-sdk:5.10.1'
+    implementation 'com.facebook.android:audience-network-sdk:6.0.0'
     implementation 'com.my.target:mytarget-sdk:5.9.1'
-    implementation('com.mopub:mopub-sdk:5.12.0@aar') {
+    implementation('com.mopub:mopub-sdk:5.13.1@aar') {
         transitive = true
     }
     implementation 'com.startapp:inapp-sdk:4.6.0'

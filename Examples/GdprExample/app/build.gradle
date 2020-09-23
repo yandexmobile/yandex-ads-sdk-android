@@ -11,6 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -19,16 +20,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:support-vector-drawable:27.1.1'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:support-vector-drawable:28.0.0'
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:preference-v14:27.1.1'
+    implementation 'com.android.support:preference-v14:28.0.0'
 
     implementation 'com.yandex.android:mobmetricalib:3.14.3'
-    implementation 'com.yandex.android:mobileads:2.180'
+    implementation 'com.yandex.android:mobileads:3.0.0'
 }

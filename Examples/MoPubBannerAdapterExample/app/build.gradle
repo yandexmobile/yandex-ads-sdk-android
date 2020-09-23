@@ -19,6 +19,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
 
     compileOptions {
@@ -35,13 +36,14 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.1.0'
 
     implementation 'com.yandex.android:mobmetricalib:3.14.3'
-    implementation 'com.yandex.android:mobileads:2.180'
-    implementation 'com.yandex.ads.adapter:mopub-mobileads:0.2.0'
+    implementation 'com.yandex.android:mobileads:3.0.0'
+    implementation 'com.yandex.ads.adapter:mopub-mobileads:0.3.0'
 
-    implementation('com.mopub:mopub-sdk-banner:5.13.0@aar') {
+    implementation('com.mopub:mopub-sdk-banner:5.13.1@aar') {
         exclude module: 'moat-mobile-app-kit'
         transitive = true
     }
