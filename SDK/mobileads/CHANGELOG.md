@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 3.1.0
+
+#### Added
+* Added feedback asset to native ads templates
+* Improvements and optimizations
+
+#### Fixed
+* Fixed displaying of controls during video play in native ads;
+* Fixed displaying of the fullscreen ad cross in MIUI Dark Mode;
+* Fixed measuring of MediaView size in the native ad template;
+
 ## Version 3.0.0
 
 #### Added

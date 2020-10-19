@@ -9,7 +9,8 @@
 package com.yandex.mopubadapter.rewarded.sample;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.mopub.common.MoPub;
 import com.mopub.common.SdkConfiguration;
