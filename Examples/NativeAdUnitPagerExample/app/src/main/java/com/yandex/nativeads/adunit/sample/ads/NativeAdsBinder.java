@@ -8,8 +8,9 @@
  */
 package com.yandex.nativeads.adunit.sample.ads;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.yandex.mobile.ads.nativeads.NativeAdException;
 import com.yandex.mobile.ads.nativeads.NativeAdUnit;
