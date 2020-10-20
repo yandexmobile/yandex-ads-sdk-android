@@ -9,11 +9,11 @@
 package com.yandex.mopubadapter.rewarded.sample;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mopub.common.MoPubReward;
