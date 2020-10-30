@@ -1,11 +1,20 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 3.1.1
+
+#### Added
+* Improvements and optimizations
+
+#### Fixed
+* Fixed error indicator
+* Fixed ads tracking
+
 ## Version 3.1.0
 
 #### Added
-* Added feedback asset to native ads templates
-* Improvements and optimizations
+* Added feedback asset to native ads templates
+* Improvements and optimizations
 
 #### Fixed
 * Fixed displaying of controls during video play in native ads;
