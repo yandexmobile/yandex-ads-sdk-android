@@ -33,10 +33,10 @@ dependencies {
     implementation 'com.yandex.android:mobileads:3.1.1'
     implementation 'com.yandex.android:mobmetricalib:3.14.3'
 
-    implementation 'com.yandex.ads.mediation:mobileads-admob:1.15.0'
-    implementation 'com.yandex.ads.mediation:mobileads-facebook:1.12.0'
+    implementation 'com.yandex.ads.mediation:mobileads-admob:1.16.0'
+    implementation 'com.yandex.ads.mediation:mobileads-facebook:1.13.0'
     implementation 'com.yandex.ads.mediation:mobileads-mopub:1.9.0'
-    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.10.0'
+    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.11.0'
 
     implementation 'com.google.android.gms:play-services-ads:19.4.0'
     implementation 'com.facebook.android:audience-network-sdk:6.1.0'
