@@ -1,20 +1,29 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 3.2.0
+
+#### Added
+* Added support for In-Stream ads
+* Removed dependency from ExoPlayer
+* Improvements and optimization
+
+#### Fixed
+* Fixed crashes on wrapper ads loading in VAST
+* Fixed cancel of video ads loading
+
 ## Version 3.1.1
 
 #### Added
-* Improvements and optimizations
-
-#### Fixed
-* Fixed error indicator
-* Fixed ads tracking
+* Improved error indicator
+* Improved ads tracking
+* Improvements and optimization
 
 ## Version 3.1.0
 
 #### Added
-* Added feedback asset to native ads templates
-* Improvements and optimizations
+* Added feedback asset to native ads templates
+* Improvements and optimizations
 
 #### Fixed
 * Fixed displaying of controls during video play in native ads;
