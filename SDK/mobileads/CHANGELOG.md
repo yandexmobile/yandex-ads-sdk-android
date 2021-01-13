@@ -4,6 +4,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 ## Version 3.2.0
 
 #### Added
+* Added method for Mobile Ads SDK initialization
 * Added support for In-Stream ads
 * Removed dependency from ExoPlayer
 * Improvements and optimization
