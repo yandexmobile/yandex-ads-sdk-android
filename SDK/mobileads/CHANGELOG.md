@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 3.3.0
+
+#### Added
+* Added support for Inrolls
+* Added support for Pauserolls
+* Improvements and optimization
+
+#### Fixed
+* Fixed feedback displaying in NativeBannerView
+
 ## Version 3.2.0
 
 #### Added
