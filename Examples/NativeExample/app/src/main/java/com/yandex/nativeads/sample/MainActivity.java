@@ -9,8 +9,6 @@
 package com.yandex.nativeads.sample;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,19 +16,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.yandex.mobile.ads.AdRequest;
-import com.yandex.mobile.ads.AdRequestError;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.yandex.mobile.ads.common.AdRequestError;
 import com.yandex.mobile.ads.nativeads.MediaView;
+import com.yandex.mobile.ads.nativeads.NativeAd;
 import com.yandex.mobile.ads.nativeads.NativeAdException;
+import com.yandex.mobile.ads.nativeads.NativeAdLoadListener;
 import com.yandex.mobile.ads.nativeads.NativeAdLoader;
-import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
 import com.yandex.mobile.ads.nativeads.NativeAdMedia;
+import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration;
 import com.yandex.mobile.ads.nativeads.NativeAdView;
 import com.yandex.mobile.ads.nativeads.NativeAdViewBinder;
-import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
-import com.yandex.mobile.ads.nativeads.NativeContentAd;
-import com.yandex.mobile.ads.nativeads.NativeGenericAd;
-import com.yandex.mobile.ads.nativeads.NativeImageAd;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,10 +60,7 @@ public class MainActivity extends AppCompatActivity {
         * content: R-M-DEMO-native-c
         * image: R-M-DEMO-native-video
         */
-        final NativeAdLoaderConfiguration adLoaderConfiguration =
-                new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-i", true)
-                        .setImageSizes(NativeAdLoaderConfiguration.NATIVE_IMAGE_SIZE_MEDIUM).build();
-        mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
+        mNativeAdLoader = new NativeAdLoader(this);
         mNativeAdLoader.setNativeAdLoadListener(mNativeAdLoadListener);
     }
 
@@ -78,33 +73,29 @@ public class MainActivity extends AppCompatActivity {
 
     private void refreshNativeAd() {
         mNativeAdView.setVisibility(View.GONE);
-        mNativeAdLoader.loadAd(AdRequest.builder().build());
+
+        final NativeAdRequestConfiguration nativeAdRequestConfiguration =
+                new NativeAdRequestConfiguration.Builder("R-M-DEMO-native-i")
+                        .setShouldLoadImagesAutomatically(true)
+                        .build();
+        mNativeAdLoader.loadAd(nativeAdRequestConfiguration);
     }
 
-    private NativeAdLoader.OnImageAdLoadListener mNativeAdLoadListener = new NativeAdLoader.OnImageAdLoadListener() {
+    private NativeAdLoadListener mNativeAdLoadListener = new NativeAdLoadListener() {
 
         @Override
-        public void onAppInstallAdLoaded(@NonNull final NativeAppInstallAd nativeAppInstallAd) {
-            bindNativeAd(nativeAppInstallAd);
+        public void onAdLoaded(@NonNull final NativeAd nativeAd) {
+            bindNativeAd(nativeAd);
         }
 
         @Override
-        public void onContentAdLoaded(@NonNull NativeContentAd nativeContentAd) {
-            bindNativeAd(nativeContentAd);
+        public void onAdFailedToLoad(@NonNull AdRequestError adRequestError) {
+            Log.d(SAMPLE_TAG, adRequestError.getDescription());
+            Toast.makeText(MainActivity.this, adRequestError.getDescription(), Toast.LENGTH_SHORT).show();
         }
 
-        @Override
-        public void onImageAdLoaded(@NonNull final NativeImageAd nativeImageAd) {
-            bindNativeAd(nativeImageAd);
-        }
 
-        @Override
-        public void onAdFailedToLoad(@NonNull AdRequestError error) {
-            Log.d(SAMPLE_TAG, error.getDescription());
-            Toast.makeText(MainActivity.this, error.getDescription(), Toast.LENGTH_SHORT).show();
-        }
-
-        private void bindNativeAd(@NonNull final NativeGenericAd nativeAd) {
+        private void bindNativeAd(@NonNull final NativeAd nativeAd) {
             final NativeAdViewBinder nativeAdViewBinder = new NativeAdViewBinder.Builder(mNativeAdView)
                     .setAgeView((TextView) findViewById(R.id.age))
                     .setBodyView((TextView) findViewById(R.id.body))
@@ -132,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        private void configureMediaView(@NonNull final NativeGenericAd nativeAd) {
+        private void configureMediaView(@NonNull final NativeAd nativeAd) {
             final NativeAdMedia nativeAdMedia = nativeAd.getAdAssets().getMedia();
             if (nativeAdMedia != null) {
                 //you can use the aspect ratio if you need it to determine the size of media view.

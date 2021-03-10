@@ -17,8 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.yandex.mobile.ads.AdRequest;
-import com.yandex.mobile.ads.AdRequestError;
+import com.yandex.mobile.ads.common.AdRequest;
+import com.yandex.mobile.ads.common.AdRequestError;
 import com.yandex.mobile.ads.rewarded.Reward;
 import com.yandex.mobile.ads.rewarded.RewardedAd;
 import com.yandex.mobile.ads.rewarded.RewardedAdEventListener;
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadRewardedAd() {
         destroyRewardedAd();
         createRewardedAd();
-        mRewardedAd.loadAd(AdRequest.builder().build());
+        mRewardedAd.loadAd(new AdRequest.Builder().build());
     }
 
     private void destroyRewardedAd() {
@@ -127,7 +127,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private class RewardedAdListener extends RewardedAdEventListener.SimpleRewardedAdEventListener {
+    private class RewardedAdListener implements RewardedAdEventListener {
+
+        @Override
+        public void onAdLoaded() {
+            mRewardedAd.show();
+
+            mLoadRewardedAdButton.setEnabled(true);
+            mLoadRewardedAdButton.setText(getResources().getText(R.string.load_button));
+        }
 
         @Override
         public void onAdFailedToLoad(final AdRequestError adRequestError) {
@@ -139,17 +147,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onAdLoaded() {
-            mRewardedAd.show();
-
-            mLoadRewardedAdButton.setEnabled(true);
-            mLoadRewardedAdButton.setText(getResources().getText(R.string.load_button));
-        }
-
-        @Override
         public void onRewarded(@NonNull final Reward reward) {
             final String message = String.format("onRewarded, amount = %s, type = %s", reward.getAmount(), reward.getType());
             Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onAdShown() {
+            Toast.makeText(MainActivity.this, "onAdShown", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onAdDismissed() {
+            Toast.makeText(MainActivity.this, "onAdDismissed", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLeftApplication() {
+            Toast.makeText(MainActivity.this, "onLeftApplication", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onReturnedToApplication() {
+            Toast.makeText(MainActivity.this, "onReturnedToApplication", Toast.LENGTH_SHORT).show();
         }
     }
 }

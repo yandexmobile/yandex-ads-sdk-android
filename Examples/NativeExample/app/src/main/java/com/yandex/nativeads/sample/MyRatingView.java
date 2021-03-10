@@ -10,8 +10,9 @@
 package com.yandex.nativeads.sample;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatRatingBar;
 import android.util.AttributeSet;
+
+import androidx.appcompat.widget.AppCompatRatingBar;
 
 import com.yandex.mobile.ads.nativeads.Rating;
 
@@ -30,7 +31,7 @@ public class MyRatingView extends AppCompatRatingBar implements Rating {
     }
 
     @Override
-    public void setRating(final Float rating) {
+    public void setRating(final float rating) {
         super.setRating(rating);
     }
 

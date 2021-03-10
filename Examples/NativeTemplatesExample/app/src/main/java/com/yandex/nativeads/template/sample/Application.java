@@ -10,10 +10,10 @@ package com.yandex.nativeads.template.sample;
 
 import android.util.Log;
 
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 
-import com.yandex.mobile.ads.InitializationListener;
-import com.yandex.mobile.ads.MobileAds;
+import com.yandex.mobile.ads.common.InitializationListener;
+import com.yandex.mobile.ads.common.MobileAds;
 
 public class Application extends MultiDexApplication {
 

@@ -10,12 +10,13 @@
 package com.yandex.gdpr.sample.settings;
 
 import android.os.Bundle;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.preference.TwoStatePreference;
+
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.TwoStatePreference;
 
 import com.yandex.gdpr.sample.R;
-import com.yandex.mobile.ads.MobileAds;
+import com.yandex.mobile.ads.common.MobileAds;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 

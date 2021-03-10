@@ -22,7 +22,7 @@
         android:layout_centerInParent="true"
         android:text="@string/load_banner_button"/>
 
-    <com.yandex.mobile.ads.AdView
+    <com.yandex.mobile.ads.banner.BannerAdView
         android:id="@+id/ad_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

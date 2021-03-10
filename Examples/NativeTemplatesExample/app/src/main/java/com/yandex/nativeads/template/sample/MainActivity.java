@@ -10,21 +10,18 @@
 package com.yandex.nativeads.template.sample;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.yandex.mobile.ads.AdRequest;
-import com.yandex.mobile.ads.AdRequestError;
-import com.yandex.mobile.ads.nativeads.NativeAdEventListener;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.yandex.mobile.ads.common.AdRequestError;
+import com.yandex.mobile.ads.nativeads.NativeAd;
+import com.yandex.mobile.ads.nativeads.NativeAdLoadListener;
 import com.yandex.mobile.ads.nativeads.NativeAdLoader;
-import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
-import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
-import com.yandex.mobile.ads.nativeads.NativeContentAd;
-import com.yandex.mobile.ads.nativeads.NativeGenericAd;
-import com.yandex.mobile.ads.nativeads.NativeImageAd;
+import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration;
 import com.yandex.mobile.ads.nativeads.template.NativeBannerView;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button nativeAdLoadButton = (Button) findViewById(R.id.native_load_button);
+        final Button nativeAdLoadButton = findViewById(R.id.native_load_button);
         nativeAdLoadButton.setOnClickListener(mNativeAdLoadClickListener);
 
-        mNativeBannerView = (NativeBannerView) findViewById(R.id.native_template);
+        mNativeBannerView = findViewById(R.id.native_template);
         createNativeAdLoader();
     }
 
@@ -54,49 +51,43 @@ public class MainActivity extends AppCompatActivity {
         * app install: R-M-DEMO-native-i
         * content: R-M-DEMO-native-c
         */
-        final NativeAdLoaderConfiguration adLoaderConfiguration =
-                new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-i", true)
-                        .setImageSizes(NativeAdLoaderConfiguration.NATIVE_IMAGE_SIZE_MEDIUM).build();
-        mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
+
+        mNativeAdLoader = new NativeAdLoader(this);
         mNativeAdLoader.setNativeAdLoadListener(mNativeAdLoadListener);
     }
 
     private void refreshNativeAd() {
         mNativeBannerView.setVisibility(View.GONE);
-        mNativeAdLoader.loadAd(AdRequest.builder().build());
+
+        final NativeAdRequestConfiguration nativeAdRequestConfiguration =
+                new NativeAdRequestConfiguration.Builder("R-M-DEMO-native-i")
+                        .setShouldLoadImagesAutomatically(true)
+                        .build();
+        mNativeAdLoader.loadAd(nativeAdRequestConfiguration);
     }
 
-    private View.OnClickListener mNativeAdLoadClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mNativeAdLoadClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             refreshNativeAd();
         }
     };
 
-    private NativeAdLoader.OnImageAdLoadListener mNativeAdLoadListener = new NativeAdLoader.OnImageAdLoadListener() {
+    private final NativeAdLoadListener mNativeAdLoadListener = new NativeAdLoadListener() {
 
         @Override
-        public void onImageAdLoaded(@NonNull final NativeImageAd nativeImageAd) {
-            bindNativeAd(nativeImageAd);
+        public void onAdLoaded(@NonNull final NativeAd nativeAd) {
+            bindNativeAd(nativeAd);
         }
 
         @Override
-        public void onAppInstallAdLoaded(@NonNull final NativeAppInstallAd nativeAppInstallAd) {
-            bindNativeAd(nativeAppInstallAd);
+        public void onAdFailedToLoad(@NonNull final AdRequestError adRequestError) {
+            Log.d(SAMPLE_TAG, adRequestError.getDescription());
         }
 
-        @Override
-        public void onContentAdLoaded(@NonNull NativeContentAd nativeContentAd) {
-            bindNativeAd(nativeContentAd);
-        }
-
-        @Override
-        public void onAdFailedToLoad(@NonNull AdRequestError error) {
-            Log.d(SAMPLE_TAG, error.getDescription());
-        }
     };
 
-    private void bindNativeAd(@NonNull final NativeGenericAd nativeAd) {
+    private void bindNativeAd(@NonNull final NativeAd nativeAd) {
         mNativeBannerView.setAd(nativeAd);
         mNativeBannerView.setVisibility(View.VISIBLE);
     }

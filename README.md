@@ -27,7 +27,7 @@ EULA is available at [EULA website] [LICENSE]
 * /Examples/MoPubInterstitialAdapterExample;
 * /Examples/MoPubNativeAdapterExample;
 * /Examples/MoPubRewardedAdapterExample;
-* /Examples/NativeAdUnitPagerExample;
+* /Examples/NativeSliderAdPagerExample;
 * /Examples/NativeExample;
 * /Examples/NativeTemplatesExample;
 * /Examples/NativeTemplatesRecyclerViewExample;
@@ -44,13 +44,13 @@ For the integration of YandexMobileAds SDK need:
 ##### 1. compile AppMetrica SDK:
 
 ```sh
-implementation 'com.yandex.android:mobmetricalib:3.16.2'
+implementation 'com.yandex.android:mobmetricalib:3.18.0'
 ```
 
 ##### 2. compile YandexMobileAds SDK:
 
 ```sh
-implementation 'com.yandex.android:mobileads:3.3.0'
+implementation 'com.yandex.android:mobileads:4.0.0'
 ```
 
 [DOCUMENTATION]: https://tech.yandex.ru/mobile-ads/

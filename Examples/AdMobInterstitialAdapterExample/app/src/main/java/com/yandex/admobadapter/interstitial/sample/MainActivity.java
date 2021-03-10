@@ -16,6 +16,7 @@ import android.widget.Button;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.LoadAdError;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mInterstitialAd.setAdListener(mInterstitialAdListener);
     }
 
-    private View.OnClickListener mInterstitialClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mInterstitialClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             mLoadInterstitialAdButton.setEnabled(false);
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private AdListener mInterstitialAdListener = new AdListener() {
+    private final AdListener mInterstitialAdListener = new AdListener() {
         @Override
         public void onAdLoaded() {
             mInterstitialAd.show();
@@ -70,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onAdFailedToLoad(final int errorCode) {
-            super.onAdFailedToLoad(errorCode);
+        public void onAdFailedToLoad(final LoadAdError loadAdError) {
+            super.onAdFailedToLoad(loadAdError);
 
             mLoadInterstitialAdButton.setEnabled(true);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.load_interstitial_button));

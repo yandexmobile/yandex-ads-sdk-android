@@ -9,14 +9,15 @@
 
 package com.yandex.nativeads.template.recyclerview.sample;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yandex.mobile.ads.nativeads.NativeGenericAd;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.yandex.mobile.ads.nativeads.NativeAd;
 
 import java.util.List;
 
@@ -35,8 +36,10 @@ public class NativeTemplateAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         notifyDataSetChanged();
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+                                                      int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
         switch(viewType) {
             case Holder.BlockContentProvider.DEFAULT: {
@@ -55,7 +58,8 @@ public class NativeTemplateAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder,
+                                 int position) {
         int viewType = getItemViewType(position);
         switch(viewType) {
             case Holder.BlockContentProvider.NATIVE_BANNER: {
@@ -77,7 +81,7 @@ public class NativeTemplateAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private void bindNativeBanner(final Holder.NativeBannerViewHolder holder, final int position) {
         holder.nativeBannerView.setVisibility(View.GONE);
-        final NativeGenericAd nativeAd = (NativeGenericAd) mData.get(position).second;
+        final NativeAd nativeAd = (NativeAd) mData.get(position).second;
 
         holder.nativeBannerView.setAd(nativeAd);
         holder.nativeBannerView.setVisibility(View.VISIBLE);

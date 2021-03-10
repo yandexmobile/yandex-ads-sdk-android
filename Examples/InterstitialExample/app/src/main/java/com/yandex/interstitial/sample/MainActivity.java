@@ -10,14 +10,18 @@
 package com.yandex.interstitial.sample;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.yandex.mobile.ads.AdRequest;
-import com.yandex.mobile.ads.AdRequestError;
-import com.yandex.mobile.ads.InterstitialAd;
-import com.yandex.mobile.ads.InterstitialEventListener;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.yandex.mobile.ads.common.AdRequest;
+import com.yandex.mobile.ads.common.AdRequestError;
+import com.yandex.mobile.ads.interstitial.InterstitialAd;
+import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         */
         mInterstitialAd.setBlockId("R-M-DEMO-320x480");
 
-        mAdRequest = AdRequest.builder().build();
-        mInterstitialAd.setInterstitialEventListener(mInterstitialAdEventListener);
+        mAdRequest = new AdRequest.Builder().build();
+        mInterstitialAd.setInterstitialAdEventListener(mInterstitialAdEventListener);
     }
 
     @Override
@@ -71,10 +75,11 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private InterstitialEventListener mInterstitialAdEventListener = new InterstitialEventListener.SimpleInterstitialEventListener() {
+    private InterstitialAdEventListener mInterstitialAdEventListener = new InterstitialAdEventListener() {
 
         @Override
-        public void onInterstitialLoaded() {
+        public void onAdLoaded() {
+            Toast.makeText(MainActivity.this, "onAdLoaded", Toast.LENGTH_SHORT).show();
             mInterstitialAd.show();
 
             mLoadInterstitialAdButton.setEnabled(true);
@@ -82,9 +87,30 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onInterstitialFailedToLoad(AdRequestError error) {
+        public void onAdFailedToLoad(@NonNull AdRequestError adRequestError) {
+            Toast.makeText(MainActivity.this, adRequestError.getDescription(), Toast.LENGTH_SHORT).show();
             mLoadInterstitialAdButton.setEnabled(true);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.load_interstitial_button));
+        }
+
+        @Override
+        public void onAdShown() {
+            Toast.makeText(MainActivity.this, "onAdShown", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onAdDismissed() {
+            Toast.makeText(MainActivity.this, "onAdDismissed", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLeftApplication() {
+            Toast.makeText(MainActivity.this, "onLeftApplication", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onReturnedToApplication() {
+            Toast.makeText(MainActivity.this, "onReturnedToApplication", Toast.LENGTH_SHORT).show();
         }
     };
 }

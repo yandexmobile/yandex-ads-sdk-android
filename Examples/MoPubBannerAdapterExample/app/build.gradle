@@ -10,13 +10,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 30
+    buildToolsVersion '30.0.2'
 
     defaultConfig {
         applicationId "com.yandex.mopubadapter.banner.sample"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -37,13 +37,13 @@ android {
 
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 
-    implementation 'com.yandex.android:mobmetricalib:3.16.2'
-    implementation 'com.yandex.android:mobileads:3.3.0'
-    implementation 'com.yandex.ads.adapter:mopub-mobileads:0.3.0'
+    implementation 'com.yandex.android:mobmetricalib:3.18.0'
+    implementation 'com.yandex.android:mobileads:4.0.0'
+    implementation 'com.yandex.ads.adapter:mopub-mobileads:0.4.0'
 
-    implementation('com.mopub:mopub-sdk-banner:5.13.1@aar') {
+    implementation('com.mopub:mopub-sdk-banner:5.16.0@aar') {
         exclude module: 'moat-mobile-app-kit'
         transitive = true
     }

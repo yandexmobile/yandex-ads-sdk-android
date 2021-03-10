@@ -10,22 +10,21 @@
 package com.yandex.nativeads.template.recyclerview.sample;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 
-import com.yandex.mobile.ads.AdRequest;
-import com.yandex.mobile.ads.AdRequestError;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.yandex.mobile.ads.common.AdRequestError;
+import com.yandex.mobile.ads.nativeads.NativeAd;
+import com.yandex.mobile.ads.nativeads.NativeAdLoadListener;
 import com.yandex.mobile.ads.nativeads.NativeAdLoader;
-import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
-import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
-import com.yandex.mobile.ads.nativeads.NativeContentAd;
-import com.yandex.mobile.ads.nativeads.NativeImageAd;
+import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,43 +60,34 @@ public class NativeTemplateActivity extends AppCompatActivity {
     }
 
     private void createNativeAdLoader() {
-        /*
-        * Replace demo R-M-DEMO-native-i with actual Block ID
-        * Please, note, that configured image sizes don't affect demo ads.
-        * Following demo Block IDs may be used for testing:
-        * app install: R-M-DEMO-native-i
-        * content: R-M-DEMO-native-c
-        */
-        final NativeAdLoaderConfiguration adLoaderConfiguration =
-                new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-c", false)
-                        .setImageSizes(NativeAdLoaderConfiguration.NATIVE_IMAGE_SIZE_LARGE).build();
-        mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
+        mNativeAdLoader = new NativeAdLoader(this);
         mNativeAdLoader.setNativeAdLoadListener(mNativeAdLoadListener);
     }
 
     private void loadAd() {
-        mNativeAdLoader.loadAd(AdRequest.builder().build());
+        /*
+         * Replace demo R-M-DEMO-native-i with actual Block ID
+         * Please, note, that configured image sizes don't affect demo ads.
+         * Following demo Block IDs may be used for testing:
+         * app install: R-M-DEMO-native-i
+         * content: R-M-DEMO-native-c
+         */
+        final NativeAdRequestConfiguration nativeAdRequestConfiguration =
+                new NativeAdRequestConfiguration.Builder("R-M-DEMO-native-c")
+                        .setShouldLoadImagesAutomatically(false)
+                        .build();
+        mNativeAdLoader.loadAd(nativeAdRequestConfiguration);
     }
 
-    private NativeAdLoader.OnImageAdLoadListener mNativeAdLoadListener = new NativeAdLoader.OnImageAdLoadListener(){
+    private final NativeAdLoadListener mNativeAdLoadListener = new NativeAdLoadListener(){
         @Override
-        public void onAppInstallAdLoaded(@NonNull final NativeAppInstallAd nativeAppInstallAd) {
-            fillData(new Pair<Integer, Object>(Holder.BlockContentProvider.NATIVE_BANNER, nativeAppInstallAd));
+        public void onAdLoaded(@NonNull final NativeAd nativeAd) {
+            fillData(new Pair<Integer, Object>(Holder.BlockContentProvider.NATIVE_BANNER, nativeAd));
         }
 
         @Override
-        public void onContentAdLoaded(@NonNull final NativeContentAd nativeContentAd) {
-            fillData(new Pair<Integer, Object>(Holder.BlockContentProvider.NATIVE_BANNER, nativeContentAd));
-        }
-
-        @Override
-        public void onImageAdLoaded(@NonNull NativeImageAd nativeImageAd) {
-            fillData(new Pair<Integer, Object>(Holder.BlockContentProvider.NATIVE_BANNER, nativeImageAd));
-        }
-
-        @Override
-        public void onAdFailedToLoad(@NonNull final AdRequestError error) {
-            Log.d(SAMPLE_TAG, error.getDescription());
+        public void onAdFailedToLoad(@NonNull final AdRequestError adRequestError) {
+            Log.d(SAMPLE_TAG, adRequestError.getDescription());
         }
 
         private void fillData(@NonNull final Pair<Integer, Object> nativeAd) {
@@ -111,7 +101,7 @@ public class NativeTemplateActivity extends AppCompatActivity {
         }
     };
 
-    private View.OnClickListener mLoadButtonClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mLoadButtonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(final View v) {
             loadAd();

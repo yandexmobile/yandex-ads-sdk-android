@@ -3,9 +3,6 @@ package com.yandex.gdpr.sample;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,17 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
+
 import com.yandex.gdpr.sample.settings.SettingsActivity;
 import com.yandex.gdpr.sample.settings.SettingsFragment;
-import com.yandex.mobile.ads.AdRequest;
-import com.yandex.mobile.ads.AdRequestError;
-import com.yandex.mobile.ads.MobileAds;
+import com.yandex.mobile.ads.common.AdRequestError;
+import com.yandex.mobile.ads.common.MobileAds;
+import com.yandex.mobile.ads.nativeads.NativeAd;
+import com.yandex.mobile.ads.nativeads.NativeAdLoadListener;
 import com.yandex.mobile.ads.nativeads.NativeAdLoader;
-import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
-import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
-import com.yandex.mobile.ads.nativeads.NativeContentAd;
-import com.yandex.mobile.ads.nativeads.NativeGenericAd;
-import com.yandex.mobile.ads.nativeads.NativeImageAd;
+import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration;
 import com.yandex.mobile.ads.nativeads.template.NativeBannerView;
 
 public class MainActivity extends AppCompatActivity implements GdprDialogFragment.NoticeDialogListener {
@@ -72,28 +70,30 @@ public class MainActivity extends AppCompatActivity implements GdprDialogFragmen
     }
 
     private void createNativeAdLoader() {
-        /*
-        * Replace demo R-M-DEMO-native-i with actual Block ID
-        * Please, note, that configured image sizes don't affect demo ads.
-        * Following demo Block IDs may be used for testing:
-        * app install: R-M-DEMO-native-i
-        * content: R-M-DEMO-native-c
-        */
-        final NativeAdLoaderConfiguration adLoaderConfiguration =
-                new NativeAdLoaderConfiguration.Builder("R-M-DEMO-native-i", true)
-                        .setImageSizes(NativeAdLoaderConfiguration.NATIVE_IMAGE_SIZE_MEDIUM).build();
-        mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
-        mNativeAdLoader.setNativeAdLoadListener(new NativeAdLoadListener());
+        mNativeAdLoader = new NativeAdLoader(this);
+        mNativeAdLoader.setNativeAdLoadListener(new NativeLoadListener());
     }
 
-    private void bindNativeAd(@NonNull final NativeGenericAd nativeAd) {
+    private void bindNativeAd(@NonNull final NativeAd nativeAd) {
         mNativeBannerView.setAd(nativeAd);
         mNativeBannerView.setVisibility(View.VISIBLE);
     }
 
     private void refreshNativeAd() {
         mNativeBannerView.setVisibility(View.GONE);
-        mNativeAdLoader.loadAd(AdRequest.builder().build());
+
+        /*
+         * Replace demo R-M-DEMO-native-i with actual Block ID
+         * Please, note, that configured image sizes don't affect demo ads.
+         * Following demo Block IDs may be used for testing:
+         * app install: R-M-DEMO-native-i
+         * content: R-M-DEMO-native-c
+         */
+        final NativeAdRequestConfiguration nativeAdRequestConfiguration =
+                new NativeAdRequestConfiguration.Builder("R-M-DEMO-native-i")
+                        .setShouldLoadImagesAutomatically(true)
+                        .build();
+        mNativeAdLoader.loadAd(nativeAdRequestConfiguration);
     }
 
     private void setUserConsent() {
@@ -125,27 +125,16 @@ public class MainActivity extends AppCompatActivity implements GdprDialogFragmen
         }
     }
 
-    private class NativeAdLoadListener implements NativeAdLoader.OnImageAdLoadListener {
-
+    private class NativeLoadListener implements NativeAdLoadListener {
         @Override
-        public void onAppInstallAdLoaded(@NonNull final NativeAppInstallAd nativeAppInstallAd) {
-            bindNativeAd(nativeAppInstallAd);
+        public void onAdLoaded(@NonNull final NativeAd nativeAd) {
+            bindNativeAd(nativeAd);
         }
 
         @Override
-        public void onContentAdLoaded(@NonNull NativeContentAd nativeContentAd) {
-            bindNativeAd(nativeContentAd);
-        }
-
-        @Override
-        public void onImageAdLoaded(@NonNull NativeImageAd nativeImageAd) {
-            bindNativeAd(nativeImageAd);
-        }
-
-        @Override
-        public void onAdFailedToLoad(@NonNull AdRequestError error) {
-            Log.d(SAMPLE_TAG, error.getDescription());
-            Toast.makeText(MainActivity.this, error.getDescription(), Toast.LENGTH_SHORT).show();
+        public void onAdFailedToLoad(@NonNull final AdRequestError adRequestError) {
+            Log.d(SAMPLE_TAG, adRequestError.getDescription());
+            Toast.makeText(MainActivity.this, adRequestError.getDescription(), Toast.LENGTH_SHORT).show();
         }
     }
 }

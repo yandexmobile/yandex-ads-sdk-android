@@ -9,12 +9,13 @@
 package com.yandex.videoad.sample;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.yandex.ads.videoad.sample.R;
 import com.yandex.mobile.ads.video.VastRequestConfiguration;
@@ -75,12 +76,12 @@ public class VideoAdLoadingActivity extends AppCompatActivity {
         @Override
         public void onVideoAdLoaded(@NonNull final List<VideoAd> videoAds) {
             mVideoAdAdapter.setData(videoAds);
-            findViewById(R.id.progress_bar).setVisibility(View.GONE);
+            hideProgressBar();
         }
 
         @Override
         public void onVideoAdFailedToLoad(@NonNull final VideoAdError error) {
-            findViewById(R.id.progress_bar).setVisibility(View.GONE);
+            hideProgressBar();
             Toast.makeText(VideoAdLoadingActivity.this, error.getDescription(), Toast.LENGTH_SHORT).show();
         }
 

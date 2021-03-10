@@ -18,11 +18,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.yandex.mobile.ads.AdEventListener;
-import com.yandex.mobile.ads.AdRequest;
-import com.yandex.mobile.ads.AdRequestError;
-import com.yandex.mobile.ads.AdSize;
-import com.yandex.mobile.ads.AdView;
+import com.yandex.mobile.ads.banner.AdSize;
+import com.yandex.mobile.ads.banner.BannerAdEventListener;
+import com.yandex.mobile.ads.banner.BannerAdView;
+import com.yandex.mobile.ads.common.AdRequest;
+import com.yandex.mobile.ads.common.AdRequestError;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String MYTARGET_BLOCK_ID = "adf-279013/975928";
     private static final String STARTAPP_BLOCK_ID = "adf-279013/1004807";
 
-    private AdView mAdView;
+    private BannerAdView mBannerAdView;
 
     private Spinner mSpinner;
 
@@ -62,21 +62,21 @@ public class MainActivity extends AppCompatActivity {
         destroyBannerAdView();
         createBannerAdView();
         initBannerAdView();
-        mAdView.setVisibility(View.INVISIBLE);
-        mAdView.loadAd(AdRequest.builder().build());
+        mBannerAdView.setVisibility(View.INVISIBLE);
+        mBannerAdView.loadAd(new AdRequest.Builder().build());
     }
 
     private void destroyBannerAdView() {
-        if (mAdView != null) {
-            mRootLayout.removeView(mAdView);
-            mAdView.setAdEventListener(null);
-            mAdView.destroy();
-            mAdView = null;
+        if (mBannerAdView != null) {
+            mRootLayout.removeView(mBannerAdView);
+            mBannerAdView.setBannerAdEventListener(null);
+            mBannerAdView.destroy();
+            mBannerAdView = null;
         }
     }
 
     private void createBannerAdView() {
-        mAdView = new AdView(this);
+        mBannerAdView = new BannerAdView(this);
 
         final RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -84,14 +84,14 @@ public class MainActivity extends AppCompatActivity {
         layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM);
         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
 
-        mRootLayout.addView(mAdView, layoutParams);
+        mRootLayout.addView(mBannerAdView, layoutParams);
     }
 
     private void initBannerAdView() {
         final String blockId = getBlockId();
-        mAdView.setBlockId(blockId);
-        mAdView.setAdSize(AdSize.BANNER_320x50);
-        mAdView.setAdEventListener(mBannerAdEventListener);
+        mBannerAdView.setBlockId(blockId);
+        mBannerAdView.setAdSize(AdSize.BANNER_320x50);
+        mBannerAdView.setBannerAdEventListener(mBannerAdEventListener);
     }
 
     private String getBlockId() {
@@ -127,22 +127,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private View.OnClickListener mLoadBannerClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mLoadBannerClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             refreshBannerAd();
         }
     };
 
-    private AdEventListener mBannerAdEventListener = new AdEventListener.SimpleAdEventListener() {
+    private final BannerAdEventListener mBannerAdEventListener = new BannerAdEventListener() {
+
         @Override
         public void onAdLoaded() {
-            mAdView.setVisibility(View.VISIBLE);
+            mBannerAdView.setVisibility(View.VISIBLE);
         }
 
         @Override
         public void onAdFailedToLoad(@NonNull final AdRequestError error) {
             Toast.makeText(MainActivity.this, "onAdFailedToLoad, error = " + error, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLeftApplication() {
+            Toast.makeText(MainActivity.this, "onLeftApplication", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onReturnedToApplication() {
+            Toast.makeText(MainActivity.this, "onReturnedToApplication", Toast.LENGTH_SHORT).show();
         }
     };
 }

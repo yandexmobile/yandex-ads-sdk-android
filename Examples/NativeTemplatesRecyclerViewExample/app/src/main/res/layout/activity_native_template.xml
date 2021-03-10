@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="@string/native_load_button"/>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/native_template_recycler_view"
             android:scrollbars="vertical"
             android:layout_width="match_parent"

@@ -1,7 +1,8 @@
 package com.yandex.gdpr.sample.settings;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.yandex.gdpr.sample.R;
 
