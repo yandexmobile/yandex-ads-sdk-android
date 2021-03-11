@@ -19,6 +19,7 @@ import com.admob.mobileads.nativeads.YandexNativeAdAsset;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAdView;
 
@@ -96,8 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
     private class NativeAdListener extends AdListener {
         @Override
-        public void onAdFailedToLoad(final int errorCode) {
-            Toast.makeText(MainActivity.this, "onAdFailedToLoad, error code = " + errorCode, Toast.LENGTH_SHORT).show();
+        public void onAdFailedToLoad(final LoadAdError loadAdError) {
+            final int errorCode = loadAdError.getCode();
+            final String errorMessage = "onAdFailedToLoad, error code = " + errorCode;
+            Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
         }
     }
 }

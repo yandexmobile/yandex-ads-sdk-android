@@ -1,6 +1,27 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 4.0.0
+
+#### Added
+* Added new API for request ads
+* Added support for a bulk ad request
+* Added support for a social ad in In-Stream ads
+* Added support for an outdated SDK version indicator
+* Improved impression tracking
+* Improved requests retry policy
+* Updated minimum supported AppMetrica SDK version to 3.18.0
+* Other improvements and optimization
+
+#### Fixed
+* Fixed bugs
+
+#### Removed
+* Removed deprecated and legacy API
+
+#### Updated
+* Major API rework
+
 ## Version 3.3.0
 
 #### Added

@@ -14,12 +14,13 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.yandex.mobile.ads.AdRequest;
-import com.yandex.mobile.ads.AdRequestError;
-import com.yandex.mobile.ads.InterstitialAd;
-import com.yandex.mobile.ads.InterstitialEventListener;
+import com.yandex.mobile.ads.common.AdRequest;
+import com.yandex.mobile.ads.common.AdRequestError;
+import com.yandex.mobile.ads.interstitial.InterstitialAd;
+import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
         final String blockId = getBlockId();
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setBlockId(blockId);
-        mInterstitialAd.setInterstitialEventListener(mInterstitialAdEventListener);
-        mInterstitialAd.loadAd(AdRequest.builder().build());
+        mInterstitialAd.setInterstitialAdEventListener(mInterstitialAdEventListener);
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
     private void destroyInterstitialAd() {
         if (mInterstitialAd != null) {
-            mInterstitialAd.setInterstitialEventListener(null);
+            mInterstitialAd.setInterstitialAdEventListener(null);
             mInterstitialAd.destroy();
             mInterstitialAd = null;
         }
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private View.OnClickListener mInterstitialClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mInterstitialClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             mLoadInterstitialAdButton.setEnabled(false);
@@ -119,10 +120,10 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private InterstitialEventListener mInterstitialAdEventListener = new InterstitialEventListener.SimpleInterstitialEventListener() {
+    private final InterstitialAdEventListener mInterstitialAdEventListener = new InterstitialAdEventListener() {
 
         @Override
-        public void onInterstitialLoaded() {
+        public void onAdLoaded() {
             mInterstitialAd.show();
 
             mLoadInterstitialAdButton.setEnabled(true);
@@ -130,11 +131,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onInterstitialFailedToLoad(final AdRequestError error) {
-            Toast.makeText(MainActivity.this, "onAdFailedToLoad, error = " + error, Toast.LENGTH_SHORT).show();
+        public void onAdFailedToLoad(@NonNull final AdRequestError adRequestError) {
+            Toast.makeText(MainActivity.this, "onAdFailedToLoad, error = " + adRequestError, Toast.LENGTH_SHORT).show();
 
             mLoadInterstitialAdButton.setEnabled(true);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.load_interstitial_button));
+        }
+
+        @Override
+        public void onAdShown() {
+            Toast.makeText(MainActivity.this, "onAdShown", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onAdDismissed() {
+            Toast.makeText(MainActivity.this, "onAdDismissed", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLeftApplication() {
+            Toast.makeText(MainActivity.this, "onLeftApplication", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onReturnedToApplication() {
+            Toast.makeText(MainActivity.this, "onReturnedToApplication", Toast.LENGTH_SHORT).show();
         }
     };
 }

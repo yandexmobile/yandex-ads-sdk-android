@@ -9,14 +9,15 @@
 
 package com.yandex.nativeads.template.recyclerview.sample;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.yandex.mobile.ads.nativeads.template.NativeBannerView;
 
 public class Holder {
 
-    public class BlockContentProvider {
+    public static class BlockContentProvider {
         public static final int NONE_TYPE = -1;
         public static final int DEFAULT = 0;
         public static final int NATIVE_BANNER = 1;

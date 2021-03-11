@@ -8,17 +8,19 @@
  */
 package com.yandex.admobadapter.banner.sample;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,22 +66,22 @@ public class MainActivity extends AppCompatActivity {
         mAdMobView.loadAd(mAdRequest);
     }
 
-    private View.OnClickListener mLoadBannerClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mLoadBannerClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             refreshBannerAd();
         }
     };
 
-    private AdListener mBannerAdListener = new AdListener() {
+    private final AdListener mBannerAdListener = new AdListener() {
         @Override
         public void onAdLoaded() {
             mAdMobView.setVisibility(View.VISIBLE);
         }
 
         @Override
-        public void onAdFailedToLoad(final int errorCode) {
-            super.onAdFailedToLoad(errorCode);
+        public void onAdFailedToLoad(final LoadAdError loadAdError) {
+            super.onAdFailedToLoad(loadAdError);
         }
     };
 

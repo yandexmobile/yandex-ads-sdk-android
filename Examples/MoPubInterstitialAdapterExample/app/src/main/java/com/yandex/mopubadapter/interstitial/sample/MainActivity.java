@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private View.OnClickListener mInterstitialClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mInterstitialClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             mLoadInterstitialAdButton.setEnabled(false);
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private MoPubInterstitial.InterstitialAdListener mInterstitialAdListener = new MoPubInterstitial.InterstitialAdListener() {
+    private final MoPubInterstitial.InterstitialAdListener mInterstitialAdListener = new MoPubInterstitial.InterstitialAdListener() {
 
         @Override
         public void onInterstitialLoaded(final MoPubInterstitial moPubInterstitial) {

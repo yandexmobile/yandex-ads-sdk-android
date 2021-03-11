@@ -9,15 +9,16 @@
 
 package com.yandex.nativeads.template.recyclerview.sample;
 
-import android.support.annotation.NonNull;
 import android.util.Pair;
 import android.util.SparseArray;
+
+import androidx.annotation.NonNull;
 
 import java.util.List;
 
 public class NativeBlockContentHelper {
 
-    private SparseArray<Integer> mPositionViewType;
+    private final SparseArray<Integer> mPositionViewType;
 
     public NativeBlockContentHelper() {
         mPositionViewType = new SparseArray<>();

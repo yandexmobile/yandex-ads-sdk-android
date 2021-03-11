@@ -9,14 +9,15 @@
 package com.yandex.rewarded.sample;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.yandex.mobile.ads.AdRequest;
-import com.yandex.mobile.ads.AdRequestError;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.yandex.mobile.ads.common.AdRequest;
+import com.yandex.mobile.ads.common.AdRequestError;
 import com.yandex.mobile.ads.rewarded.Reward;
 import com.yandex.mobile.ads.rewarded.RewardedAd;
 import com.yandex.mobile.ads.rewarded.RewardedAdEventListener;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLoadRewardedAdButton = (Button) findViewById(R.id.load_button);
+        mLoadRewardedAdButton = findViewById(R.id.load_button);
         mLoadRewardedAdButton.setOnClickListener(new LoadButtonClickListener());
     }
 
@@ -68,23 +69,15 @@ public class MainActivity extends AppCompatActivity {
             mLoadRewardedAdButton.setText(getResources().getText(R.string.start_load_button));
 
             mRewardedAd = createRewardedAd();
-            mRewardedAd.loadAd(AdRequest.builder().build());
+            mRewardedAd.loadAd(new AdRequest.Builder().build());
         }
     }
 
-    private class RewardedAdListener extends RewardedAdEventListener.SimpleRewardedAdEventListener {
-
-        @Override
-        public void onAdFailedToLoad(final AdRequestError adRequestError) {
-            final String message = String.format("onAdFailedToLoad, error = %s", adRequestError.getDescription());
-            Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-
-            mLoadRewardedAdButton.setEnabled(true);
-            mLoadRewardedAdButton.setText(getResources().getText(R.string.load_button));
-        }
+    private class RewardedAdListener implements RewardedAdEventListener {
 
         @Override
         public void onAdLoaded() {
+            Toast.makeText(MainActivity.this, "onAdLoaded", Toast.LENGTH_SHORT).show();
             if (mRewardedAd != null) {
                 mRewardedAd.show();
             }
@@ -97,6 +90,35 @@ public class MainActivity extends AppCompatActivity {
         public void onRewarded(@NonNull final Reward reward) {
             final String message = String.format("onRewarded, amount = %s, type = %s", reward.getAmount(), reward.getType());
             Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onAdFailedToLoad(@NonNull final AdRequestError adRequestError) {
+            final String message = String.format("onAdFailedToLoad, error = %s", adRequestError.getDescription());
+            Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+
+            mLoadRewardedAdButton.setEnabled(true);
+            mLoadRewardedAdButton.setText(getResources().getText(R.string.load_button));
+        }
+
+        @Override
+        public void onAdShown() {
+            Toast.makeText(MainActivity.this, "onAdShown", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onAdDismissed() {
+            Toast.makeText(MainActivity.this, "onAdDismissed", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLeftApplication() {
+            Toast.makeText(MainActivity.this, "onLeftApplication", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onReturnedToApplication() {
+            Toast.makeText(MainActivity.this, "onReturnedToApplication", Toast.LENGTH_SHORT).show();
         }
     }
 }

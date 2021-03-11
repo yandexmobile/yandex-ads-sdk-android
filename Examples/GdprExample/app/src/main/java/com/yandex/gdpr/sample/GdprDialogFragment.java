@@ -16,10 +16,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.preference.PreferenceManager;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
+import androidx.preference.PreferenceManager;
 
 import com.yandex.gdpr.sample.settings.SettingsFragment;
 
@@ -32,7 +33,7 @@ public class GdprDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onAttach(final Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
         try {
             mNoticeDialogListener = (NoticeDialogListener) getActivity();

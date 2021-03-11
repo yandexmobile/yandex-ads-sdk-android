@@ -10,18 +10,22 @@
 package com.yandex.bannerads.sample;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.yandex.mobile.ads.AdEventListener;
-import com.yandex.mobile.ads.AdRequest;
-import com.yandex.mobile.ads.AdSize;
-import com.yandex.mobile.ads.AdView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.yandex.mobile.ads.banner.AdSize;
+import com.yandex.mobile.ads.banner.BannerAdEventListener;
+import com.yandex.mobile.ads.banner.BannerAdView;
+import com.yandex.mobile.ads.common.AdRequest;
+import com.yandex.mobile.ads.common.AdRequestError;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AdView mAdView;
+    private BannerAdView mBannerAdView;
     private AdRequest mAdRequest;
 
     @Override
@@ -32,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         final Button loadBannerButton = (Button) findViewById(R.id.load_banner_button);
         loadBannerButton.setOnClickListener(mLoadBannerClickListener);
 
-        mAdView = (AdView) findViewById(R.id.banner_view);
+        mBannerAdView = (BannerAdView) findViewById(R.id.banner_view);
         initBannerView();
     }
 
@@ -48,14 +52,14 @@ public class MainActivity extends AppCompatActivity {
 		* R-M-DEMO-320x100-context for AdSize.BANNER_320x100
         * R-M-DEMO-728x90 for AdSize.BANNER_728x90
         */
-        mAdView.setBlockId("R-M-DEMO-320x50");
-        mAdView.setAdSize(AdSize.BANNER_320x50);
+        mBannerAdView.setBlockId("R-M-DEMO-320x50");
+        mBannerAdView.setAdSize(AdSize.BANNER_320x50);
 
-        mAdRequest = AdRequest.builder().build();
-        mAdView.setAdEventListener(mBannerAdEventListener);
+        mAdRequest = new AdRequest.Builder().build();
+        mBannerAdView.setBannerAdEventListener(mBannerAdEventListener);
     }
 
-    private View.OnClickListener mLoadBannerClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mLoadBannerClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             refreshBannerAd();
@@ -63,14 +67,31 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void refreshBannerAd() {
-        mAdView.setVisibility(View.INVISIBLE);
-        mAdView.loadAd(mAdRequest);
+        mBannerAdView.setVisibility(View.INVISIBLE);
+        mBannerAdView.loadAd(mAdRequest);
     }
 
-    private AdEventListener mBannerAdEventListener = new AdEventListener.SimpleAdEventListener() {
+    private final BannerAdEventListener mBannerAdEventListener = new BannerAdEventListener() {
+
         @Override
         public void onAdLoaded() {
-            mAdView.setVisibility(View.VISIBLE);
+            Toast.makeText(MainActivity.this, "onAdLoaded", Toast.LENGTH_SHORT).show();
+            mBannerAdView.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onAdFailedToLoad(@NonNull AdRequestError adRequestError) {
+            Toast.makeText(MainActivity.this, adRequestError.getDescription(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onLeftApplication() {
+            Toast.makeText(MainActivity.this, "onLeftApplication", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onReturnedToApplication() {
+            Toast.makeText(MainActivity.this, "onReturnedToApplication", Toast.LENGTH_SHORT).show();
         }
     };
 }

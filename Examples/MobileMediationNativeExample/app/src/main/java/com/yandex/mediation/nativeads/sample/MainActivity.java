@@ -18,15 +18,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.yandex.mobile.ads.AdRequest;
-import com.yandex.mobile.ads.AdRequestError;
+import com.yandex.mobile.ads.common.AdRequestError;
+import com.yandex.mobile.ads.nativeads.NativeAd;
 import com.yandex.mobile.ads.nativeads.NativeAdEventListener;
+import com.yandex.mobile.ads.nativeads.NativeAdLoadListener;
 import com.yandex.mobile.ads.nativeads.NativeAdLoader;
-import com.yandex.mobile.ads.nativeads.NativeAdLoaderConfiguration;
-import com.yandex.mobile.ads.nativeads.NativeAppInstallAd;
-import com.yandex.mobile.ads.nativeads.NativeContentAd;
-import com.yandex.mobile.ads.nativeads.NativeGenericAd;
-import com.yandex.mobile.ads.nativeads.NativeImageAd;
+import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration;
 import com.yandex.mobile.ads.nativeads.template.NativeBannerView;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,10 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createNativeAdLoader() {
-        final String blockId = getBlockId();
-        final NativeAdLoaderConfiguration adLoaderConfiguration =
-                new NativeAdLoaderConfiguration.Builder(blockId, true).build();
-        mNativeAdLoader = new NativeAdLoader(this, adLoaderConfiguration);
+        mNativeAdLoader = new NativeAdLoader(this);
         mNativeAdLoader.setNativeAdLoadListener(mNativeAdLoadListener);
     }
 
@@ -92,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void bindNativeAd(@NonNull final NativeGenericAd nativeAd) {
+    private void bindNativeAd(@NonNull final NativeAd nativeAd) {
         Log.d(SAMPLE_TAG, String.format("Info: %s", nativeAd.getInfo()));
 
-        nativeAd.setAdEventListener(mNativeAdEventListener);
+        nativeAd.setNativeAdEventListener(mNativeAdEventListener);
         mNativeBannerView.setAd(nativeAd);
         mNativeBannerView.setVisibility(View.VISIBLE);
     }
@@ -103,54 +97,44 @@ public class MainActivity extends AppCompatActivity {
     private void refreshNativeAd() {
         createNativeAdLoader();
         mNativeBannerView.setVisibility(View.GONE);
-        mNativeAdLoader.loadAd(AdRequest.builder().build());
+
+        final String blockId = getBlockId();
+        final NativeAdRequestConfiguration nativeAdRequestConfiguration =
+                new NativeAdRequestConfiguration.Builder(blockId)
+                        .setShouldLoadImagesAutomatically(true)
+                        .build();
+        mNativeAdLoader.loadAd(nativeAdRequestConfiguration);
     }
 
-    private View.OnClickListener mNativeAdLoadClickListener = new View.OnClickListener() {
+    private final View.OnClickListener mNativeAdLoadClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             refreshNativeAd();
         }
     };
 
-    private NativeAdLoader.OnImageAdLoadListener mNativeAdLoadListener = new NativeAdLoader.OnImageAdLoadListener() {
-
+    private final NativeAdLoadListener mNativeAdLoadListener = new NativeAdLoadListener() {
         @Override
-        public void onImageAdLoaded(@NonNull final NativeImageAd nativeImageAd) {
-            bindNativeAd(nativeImageAd);
+        public void onAdLoaded(@NonNull final NativeAd nativeAd) {
+            bindNativeAd(nativeAd);
         }
 
         @Override
-        public void onAppInstallAdLoaded(@NonNull final NativeAppInstallAd nativeAppInstallAd) {
-            bindNativeAd(nativeAppInstallAd);
-        }
-
-        @Override
-        public void onContentAdLoaded(@NonNull NativeContentAd nativeContentAd) {
-            bindNativeAd(nativeContentAd);
-        }
-
-        @Override
-        public void onAdFailedToLoad(@NonNull AdRequestError error) {
+        public void onAdFailedToLoad(@NonNull final AdRequestError error) {
             Toast.makeText(MainActivity.this, "onAdFailedToLoad, error = " + error, Toast.LENGTH_SHORT).show();
         }
     };
 
-    private NativeAdEventListener mNativeAdEventListener = new NativeAdEventListener() {
+    private final NativeAdEventListener mNativeAdEventListener = new NativeAdEventListener() {
 
         @Override
-        public void onAdClosed() {
-            Log.d(SAMPLE_TAG, "onAdClosed");
+        public void onLeftApplication() {
+            Log.d(SAMPLE_TAG, "onLeftApplication");
         }
 
         @Override
-        public void onAdLeftApplication() {
-            Log.d(SAMPLE_TAG, "onAdLeftApplication");
-        }
-
-        @Override
-        public void onAdOpened() {
-            Log.d(SAMPLE_TAG, "onAdOpened");
+        public void onReturnedToApplication() {
+            Log.d(SAMPLE_TAG, "onReturnedToApplication");
         }
     };
 }

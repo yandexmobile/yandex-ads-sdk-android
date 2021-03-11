@@ -31,7 +31,7 @@ public class MyRatingView extends AppCompatRatingBar implements Rating {
     }
 
     @Override
-    public void setRating(final Float rating) {
+    public void setRating(final float rating) {
         super.setRating(rating);
     }
 

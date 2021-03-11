@@ -1,24 +1,24 @@
-<android.support.v7.preference.PreferenceScreen
+<androidx.preference.PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v7.preference.PreferenceCategory
+    <androidx.preference.PreferenceCategory
         android:title="@string/preference_category_gdpr">
 
-        <android.support.v7.preference.SwitchPreferenceCompat
+        <androidx.preferenc e.SwitchPreferenceCompat
             android:key="preference_user_consent"
             android:defaultValue="true"
             android:title="@string/preference_user_consent" />
 
-    </android.support.v7.preference.PreferenceCategory>
+    </androidx.preference.PreferenceCategory>
 
-    <android.support.v7.preference.PreferenceCategory
+    <androidx.preference.PreferenceCategory
         android:title="@string/preference_category_dialog">
 
-        <android.support.v7.preference.SwitchPreferenceCompat
+        <androidx.preference.SwitchPreferenceCompat
             android:key="show_dialog"
             android:defaultValue="false"
             android:title="@string/preference_dialog_shown" />
 
-    </android.support.v7.preference.PreferenceCategory>
+    </androidx.preference.PreferenceCategory>
 
-</android.support.v7.preference.PreferenceScreen>
+</androidx.preference.PreferenceScreen>
