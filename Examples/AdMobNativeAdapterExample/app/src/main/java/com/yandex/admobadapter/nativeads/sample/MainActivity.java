@@ -9,10 +9,12 @@
 package com.yandex.admobadapter.nativeads.sample;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.admob.mobileads.YandexNative;
 import com.admob.mobileads.nativeads.YandexNativeAdAsset;
@@ -20,15 +22,15 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
-import com.google.android.gms.ads.formats.UnifiedNativeAdView;
+import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.gms.ads.nativead.NativeAdView;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String AD_UNIT_ID = "ca-app-pub-XXXXXXXXXXXXXXXX/YYYYYYYYYY";
 
     private AdMobNativeAdBinder mAdMobNativeAdBinder;
-    private UnifiedNativeAdView mNativeAdView;
+    private NativeAdView mNativeAdView;
     private AdLoader mNativeAdLoader;
     private Bundle mExtras;
 
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
          */
         mNativeAdLoader = new AdLoader.Builder(this, AD_UNIT_ID)
                 .withAdListener(new NativeAdListener())
-                .forUnifiedNativeAd(new UnifiedNativeAdLoadedListener())
+                .forNativeAd(new NativeAdLoadedListener())
                 .build();
 
         mExtras = createCustomEventExtras();
@@ -75,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 .build());
     }
 
-    private void bindNativeAd(final UnifiedNativeAd unifiedNativeAd) {
+    private void bindNativeAd(final NativeAd nativeAd) {
         mAdMobNativeAdBinder.clearNativeAdView(mNativeAdView);
-        mAdMobNativeAdBinder.bindNativeAd(unifiedNativeAd, mNativeAdView);
+        mAdMobNativeAdBinder.bindNativeAd(nativeAd, mNativeAdView);
         mNativeAdView.setVisibility(View.VISIBLE);
     }
 
@@ -86,12 +88,13 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             refreshNativeAd();
         }
-    };
+    }
 
-    private class UnifiedNativeAdLoadedListener implements UnifiedNativeAd.OnUnifiedNativeAdLoadedListener {
+    private class NativeAdLoadedListener implements NativeAd.OnNativeAdLoadedListener {
+
         @Override
-        public void onUnifiedNativeAdLoaded(final UnifiedNativeAd unifiedNativeAd) {
-            bindNativeAd(unifiedNativeAd);
+        public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+            bindNativeAd(nativeAd);
         }
     }
 

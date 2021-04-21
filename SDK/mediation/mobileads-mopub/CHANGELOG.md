@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to MoPub Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 1.11.0
+
+#### Added
+* Added support for Yandex Mobile Ads SDK version 4.1.0
+* Updated minimum supported Yandex Mobile Ads SDK version to 4.1.0
+* Improvements and optimizations
+
 ## Version 1.10.0
 
 #### Added
@@ -26,7 +33,7 @@ All notable changes to MoPub Adapter for Yandex Mobile Ads Mediation will be doc
 ## Version 1.7.0
 
 #### Added
-* Improvements and optimizations
+* Improvements and optimizations
 
 ## Version 1.6.0
 

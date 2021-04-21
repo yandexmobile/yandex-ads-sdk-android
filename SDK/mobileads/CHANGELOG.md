@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 4.1.0
+
+#### Added
+* Other improvements and optimization
+
 ## Version 4.0.0
 
 #### Added
@@ -27,7 +32,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 #### Added
 * Added support for Inrolls
 * Added support for Pauserolls
-* Improvements and optimization
+* Improvements and optimization
 
 #### Fixed
 * Fixed feedback displaying in NativeBannerView
@@ -38,7 +43,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * Added method for Mobile Ads SDK initialization
 * Added support for In-Stream ads
 * Removed dependency from ExoPlayer
-* Improvements and optimization
+* Improvements and optimization
 
 #### Fixed
 * Fixed crashes on wrapper ads loading in VAST
@@ -49,13 +54,13 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 #### Added
 * Improved error indicator
 * Improved ads tracking
-* Improvements and optimization
+* Improvements and optimization
 
 ## Version 3.1.0
 
 #### Added
-* Added feedback asset to native ads templates
-* Improvements and optimizations
+* Added feedback asset to native ads templates
+* Improvements and optimizations
 
 #### Fixed
 * Fixed displaying of controls during video play in native ads;
@@ -68,7 +73,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * Added onImageAdLoaded callback to NativeAdLoader.OnLoadListener interface
 * Added support for native video playback
 * Added exoplayer dependency
-* Improvements and optimizations
+* Improvements and optimizations
 
 #### Removed
 * Removed jar support
@@ -80,49 +85,49 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
 #### Added
 * Optimized presenting of fullscreen ads
-* Improvements and optimizations
+* Improvements and optimizations
 
 ## Version 2.170
 
 #### Added
-* Improvements and optimizations
+* Improvements and optimizations
 
 ## Version 2.160
 
 #### Added
-* Improvements and optimizations
+* Improvements and optimizations
 
 ## Version 2.150
 
 #### Added
-* Improvements and optimizations
+* Improvements and optimizations
 
 ## Version 2.143
 
 #### Added
-* Improvements and optimizations
+* Improvements and optimizations
 
 ## Version 2.142
 
 #### Added
-* Improvements and optimizations
+* Improvements and optimizations
 
 ## Version 2.141
 
 #### Added
-* Improvements and optimizations
+* Improvements and optimizations
 
 ## Version 2.140
 
 #### Added
-* Added support for Native Ad Unit
-* Improvements and optimizations
+* Added support for Native Ad Unit
+* Improvements and optimizations
 
 ## Version 2.130
 
 #### Added
-* Added support for sticky banner
-* Improvements and optimizations
+* Added support for sticky banner
+* Improvements and optimizations
 
 ## Version 2.120
 
@@ -130,7 +135,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * Improved the speed of loading and displaying native ads
 
 #### Added
-* Improvements and optimizations
+* Improvements and optimizations
 
 ## Version 2.113
 
