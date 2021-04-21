@@ -8,22 +8,21 @@
  */
 package com.yandex.admobadapter.interstitial.sample;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.gms.ads.AdListener;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String AD_UNIT_ID = "ca-app-pub-XXXXXXXXXXXXXXXX/YYYYYYYYYY";
-
-    private AdRequest mAdRequest;
-    private InterstitialAd mInterstitialAd;
 
     private Button mLoadInterstitialAdButton;
 
@@ -32,23 +31,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLoadInterstitialAdButton = (Button) findViewById(R.id.load_interstitial_button);
+        mLoadInterstitialAdButton = findViewById(R.id.load_interstitial_button);
         mLoadInterstitialAdButton.setOnClickListener(mInterstitialClickListener);
-
-        initInterstitialAd();
-    }
-
-    private void initInterstitialAd() {
-        mInterstitialAd = new InterstitialAd(this);
-
-        /*
-          Replace AD_UNIT_ID with your unique Ad Unit ID.
-          Please, read official documentation how to obtain one: https://apps.admob.com
-        */
-        mInterstitialAd.setAdUnitId(AD_UNIT_ID);
-
-        mAdRequest = new AdRequest.Builder().build();
-        mInterstitialAd.setAdListener(mInterstitialAdListener);
     }
 
     private final View.OnClickListener mInterstitialClickListener = new View.OnClickListener() {
@@ -57,21 +41,23 @@ public class MainActivity extends AppCompatActivity {
             mLoadInterstitialAdButton.setEnabled(false);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.start_load_interstitial_button));
 
-            mInterstitialAd.loadAd(mAdRequest);
+            final AdRequest adRequest = new AdRequest.Builder().build();
+            InterstitialAd.load(MainActivity.this, AD_UNIT_ID, adRequest, mInterstitialAdListener);
         }
     };
 
-    private final AdListener mInterstitialAdListener = new AdListener() {
+    private final InterstitialAdLoadCallback mInterstitialAdListener = new InterstitialAdLoadCallback() {
+
         @Override
-        public void onAdLoaded() {
-            mInterstitialAd.show();
+        public void onAdLoaded(@NonNull final InterstitialAd interstitialAd) {
+            interstitialAd.show(MainActivity.this);
 
             mLoadInterstitialAdButton.setEnabled(true);
             mLoadInterstitialAdButton.setText(getResources().getText(R.string.load_interstitial_button));
         }
 
         @Override
-        public void onAdFailedToLoad(final LoadAdError loadAdError) {
+        public void onAdFailedToLoad(@NonNull final LoadAdError loadAdError) {
             super.onAdFailedToLoad(loadAdError);
 
             mLoadInterstitialAdButton.setEnabled(true);

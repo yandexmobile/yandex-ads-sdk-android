@@ -13,16 +13,16 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.formats.MediaView;
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
-import com.google.android.gms.ads.formats.UnifiedNativeAdView;
+import com.google.android.gms.ads.nativead.MediaView;
+import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.gms.ads.nativead.NativeAdView;
 
 import static android.view.View.GONE;
 
 class AdMobNativeAdBinder {
 
-    void bindNativeAd(final UnifiedNativeAd nativeAd,
-                      final UnifiedNativeAdView nativeAdView) {
+    void bindNativeAd(final NativeAd nativeAd,
+                      final NativeAdView nativeAdView) {
         final TextView advertiser = nativeAdView.findViewById(R.id.sponsored);
         advertiser.setText(nativeAd.getAdvertiser());
         advertiser.setVisibility(View.VISIBLE);
@@ -73,7 +73,7 @@ class AdMobNativeAdBinder {
         nativeAdView.setNativeAd(nativeAd);
     }
 
-    void clearNativeAdView(final UnifiedNativeAdView nativeAdView) {
+    void clearNativeAdView(final NativeAdView nativeAdView) {
         nativeAdView.findViewById(R.id.age).setVisibility(GONE);
         nativeAdView.findViewById(R.id.sponsored).setVisibility(GONE);
         nativeAdView.findViewById(R.id.body).setVisibility(GONE);

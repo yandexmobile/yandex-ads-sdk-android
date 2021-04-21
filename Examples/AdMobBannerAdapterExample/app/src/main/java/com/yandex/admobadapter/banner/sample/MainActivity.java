@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdListener;
@@ -35,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button loadBannerButton = (Button) findViewById(R.id.load_banner_button);
+        final Button loadBannerButton = findViewById(R.id.load_banner_button);
         loadBannerButton.setOnClickListener(mLoadBannerClickListener);
 
-        mAdViewContainer = (RelativeLayout) findViewById(R.id.container);
+        mAdViewContainer = findViewById(R.id.container);
         initAdMobView();
     }
 
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onAdFailedToLoad(final LoadAdError loadAdError) {
+        public void onAdFailedToLoad(@NonNull final LoadAdError loadAdError) {
             super.onAdFailedToLoad(loadAdError);
         }
     };
