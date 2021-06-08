@@ -1,10 +1,15 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 4.1.1
+
+#### Added
+* Improvements and optimizations
+
 ## Version 4.1.0
 
 #### Added
-* Other improvements and optimization
+* Improvements and optimizations
 
 ## Version 4.0.0
 
@@ -16,7 +21,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * Improved impression tracking
 * Improved requests retry policy
 * Updated minimum supported AppMetrica SDK version to 3.18.0
-* Other improvements and optimization
+* Other improvements and optimizations
 
 #### Fixed
 * Fixed bugs
@@ -32,7 +37,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 #### Added
 * Added support for Inrolls
 * Added support for Pauserolls
-* Improvements and optimization
+* Improvements and optimizations
 
 #### Fixed
 * Fixed feedback displaying in NativeBannerView
@@ -43,7 +48,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * Added method for Mobile Ads SDK initialization
 * Added support for In-Stream ads
 * Removed dependency from ExoPlayer
-* Improvements and optimization
+* Improvements and optimizations
 
 #### Fixed
 * Fixed crashes on wrapper ads loading in VAST
@@ -54,7 +59,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 #### Added
 * Improved error indicator
 * Improved ads tracking
-* Improvements and optimization
+* Improvements and optimizations
 
 ## Version 3.1.0
 
