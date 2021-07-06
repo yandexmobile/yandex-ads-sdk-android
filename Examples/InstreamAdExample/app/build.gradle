@@ -41,5 +41,5 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer:2.11.1'
     implementation 'com.yandex.android:mobmetricalib:3.20.1'
 
-    implementation 'com.yandex.android:mobileads:4.1.1'
+    implementation 'com.yandex.android:mobileads:4.2.0'
 }
