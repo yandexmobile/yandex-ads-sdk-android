@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 4.2.0
+
+### Added
+* Optimized rendering of rewarded ads
+* Improvements and optimizations
+
+#### Fixed
+* Fixed bugs
+
 ## Version 4.1.1
 
 #### Added
