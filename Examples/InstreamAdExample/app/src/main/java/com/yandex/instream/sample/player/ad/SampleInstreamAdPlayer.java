@@ -151,10 +151,6 @@ public class SampleInstreamAdPlayer implements InstreamAdPlayer, SamplePlayer {
 
         private boolean mAdStarted;
 
-        // NOTE: onPlayerStateChanged can be called multiple times with same playbackState, but different
-        // playWhenReady params - so it's workaround to get only playbackState changes
-        private int mPreviousPlaybackState;
-
         @Override
         public void onIsPlayingChanged(final boolean isPlaying) {
             if (isPlaying) {
@@ -183,15 +179,7 @@ public class SampleInstreamAdPlayer implements InstreamAdPlayer, SamplePlayer {
         }
 
         @Override
-        public void onPlayerStateChanged(final boolean playWhenReady,
-                                         final int playbackState) {
-            if (mPreviousPlaybackState != playbackState) {
-                mPreviousPlaybackState = playbackState;
-                onPlaybackStateChanged(playbackState);
-            }
-        }
-
-        private void onPlaybackStateChanged(final int playbackState) {
+        public void onPlaybackStateChanged(final int playbackState) {
             if (playbackState == Player.STATE_READY) {
                 onReadyState();
             } else if (playbackState == Player.STATE_ENDED) {
