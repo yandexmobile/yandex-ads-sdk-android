@@ -19,6 +19,8 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -35,11 +37,12 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.11.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.12.3'
+    
+    implementation 'com.yandex.android:mobileads:4.3.0'
     implementation 'com.yandex.android:mobmetricalib:3.20.1'
-
-    implementation 'com.yandex.android:mobileads:4.2.0'
 }

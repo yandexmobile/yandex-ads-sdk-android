@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String FACEBOOK_BLOCK_ID = "adf-279013/975933";
     private static final String MOPUB_BLOCK_ID = "adf-279013/975931";
     private static final String MYTARGET_BLOCK_ID = "adf-279013/975932";
+    private static final String STARTAPP_BLOCK_ID = "adf-279013/1090341";
 
     private NativeAdLoader mNativeAdLoader;
     private NativeBannerView mNativeBannerView;
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 return MOPUB_BLOCK_ID;
             case "MyTarget":
                 return MYTARGET_BLOCK_ID;
+            case "StartApp":
+                return STARTAPP_BLOCK_ID;
             default:
                 throw new IllegalArgumentException();
         }

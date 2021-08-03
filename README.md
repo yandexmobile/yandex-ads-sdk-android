@@ -50,7 +50,7 @@ implementation 'com.yandex.android:mobmetricalib:3.20.1'
 ##### 2. compile YandexMobileAds SDK:
 
 ```sh
-implementation 'com.yandex.android:mobileads:4.2.0'
+implementation 'com.yandex.android:mobileads:4.3.0'
 ```
 
 [DOCUMENTATION]: https://tech.yandex.ru/mobile-ads/
