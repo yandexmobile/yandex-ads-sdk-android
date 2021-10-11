@@ -1,11 +1,17 @@
 # Change Log
 All notable changes to MyTarget Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 5.12.3.0
+
+#### Added
+* Added support for Yandex Mobile Ads SDK version 4.4.0
+* Updated minimum supported Yandex Mobile Ads SDK version to 4.4.0
+
 ## Version 1.13.0
 
 #### Added
-* Added support for MyTarget sdk version 5.12.3
-* Updated minimum supported MyTarget sdk version to 5.12.3
+* Added support for MyTarget SDK version 5.12.3
+* Updated minimum supported MyTarget SDK version to 5.12.3
 
 ## Version 1.12.0
 
@@ -16,8 +22,8 @@ All notable changes to MyTarget Adapter for Yandex Mobile Ads Mediation will be 
 ## Version 1.11.0
 
 #### Added
-* Added support for MyTarget sdk version 5.11.7
-* Updated minimum supported MyTarget sdk version to 5.11.7
+* Added support for MyTarget SDK version 5.11.7
+* Updated minimum supported MyTarget SDK version to 5.11.7
 
 ## Version 1.10.0
 

@@ -110,6 +110,11 @@ public class ContentVideoPlayer implements VideoPlayer, SamplePlayer {
     }
 
     @Override
+    public float getVolume() {
+        return mExoPlayer.getVolume();
+    }
+
+    @Override
     public void pauseVideo() {
         mExoPlayer.setPlayWhenReady(false);
     }

@@ -26,14 +26,19 @@ import com.yandex.mobile.ads.rewarded.RewardedAdEventListener;
 public class MainActivity extends AppCompatActivity {
 
     private static final String YANDEX_BLOCK_ID = "adf-279013/966487";
-    private static final String APPLOVIN_BLOCK_ID = "adf-279013/1052103";
+    private static final String ADCOLONY_BLOCK_ID = "adf-279013/1197236";
     private static final String ADMOB_BLOCK_ID = "adf-279013/966325";
+    private static final String APPLOVIN_BLOCK_ID = "adf-279013/1052103";
+    private static final String CHARTBOOST_BLOCK_ID = "adf-279013/1198276";
     private static final String FACEBOOK_BLOCK_ID = "adf-279013/966329";
     private static final String IRONSOURCE_BLOCK_ID = "adf-279013/1052106";
     private static final String MOPUB_BLOCK_ID = "adf-279013/966326";
     private static final String MYTARGET_BLOCK_ID = "adf-279013/966327";
+    private static final String PANGLE_BLOCK_ID = "adf-279013/1198326";
     private static final String STARTAPP_BLOCK_ID = "adf-279013/1006616";
+    private static final String TAPJOY_BLOCK_ID = "adf-279013/1198395";
     private static final String UNITYADS_BLOCK_ID = "adf-279013/1004805";
+    private static final String VUNGLE_BLOCK_ID = "adf-279013/1198309";
 
     private Button mLoadRewardedAdButton;
 
@@ -96,10 +101,14 @@ public class MainActivity extends AppCompatActivity {
         switch (mediation) {
             case "Yandex":
                 return YANDEX_BLOCK_ID;
+            case "Adcolony":
+                return ADCOLONY_BLOCK_ID;
             case "AdMob":
                 return ADMOB_BLOCK_ID;
             case "AppLovin":
                 return APPLOVIN_BLOCK_ID;
+            case "Chartboost":
+                return CHARTBOOST_BLOCK_ID;
             case "Facebook":
                 return FACEBOOK_BLOCK_ID;
             case "IronSource":
@@ -108,10 +117,16 @@ public class MainActivity extends AppCompatActivity {
                 return MOPUB_BLOCK_ID;
             case "MyTarget":
                 return MYTARGET_BLOCK_ID;
+            case "Pangle":
+                return PANGLE_BLOCK_ID;
             case "StartApp":
                 return STARTAPP_BLOCK_ID;
+            case "Tapjoy":
+                return TAPJOY_BLOCK_ID;
             case "UnityAds":
                 return UNITYADS_BLOCK_ID;
+            case "Vungle":
+                return VUNGLE_BLOCK_ID;
             default:
                 throw new IllegalArgumentException();
         }

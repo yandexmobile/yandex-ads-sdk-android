@@ -39,9 +39,9 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
 
-    implementation 'com.yandex.android:mobileads:4.3.0'
     implementation 'com.yandex.android:mobmetricalib:3.20.1'
 
+    implementation 'com.yandex.android:mobileads:4.4.0'
     implementation 'com.yandex.ads.adapter:mopub-mobileads:0.5.0'
     implementation('com.mopub:mopub-sdk:5.16.0@aar') {
         exclude module: 'moat-mobile-app-kit'
