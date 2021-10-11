@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 4.4.0
+
+### Added
+* Added support for playing multiple video ads sequentially in InStream
+* Added improvements for fullscreen designs
+* Improvements and optimizations
+
 ## Version 4.3.0
 
 ### Added

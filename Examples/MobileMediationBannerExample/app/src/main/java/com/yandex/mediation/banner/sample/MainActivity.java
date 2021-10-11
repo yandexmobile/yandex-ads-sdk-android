@@ -27,12 +27,15 @@ import com.yandex.mobile.ads.common.AdRequestError;
 public class MainActivity extends AppCompatActivity {
 
     private static final String YANDEX_BLOCK_ID = "adf-279013/966631";
+    private static final String ADCOLONY_BLOCK_ID = "adf-279013/1196978";
     private static final String ADMOB_BLOCK_ID = "adf-279013/975926";
     private static final String APPLOVIN_BLOCK_ID = "adf-279013/1049726";
     private static final String FACEBOOK_BLOCK_ID = "adf-279013/975929";
+    private static final String CHARTBOOST_BLOCK_ID = "adf-279013/1197235";
     private static final String MOPUB_BLOCK_ID = "adf-279013/975927";
     private static final String MYTARGET_BLOCK_ID = "adf-279013/975928";
     private static final String STARTAPP_BLOCK_ID = "adf-279013/1004807";
+    private static final String VUNGLE_BLOCK_ID = "adf-279013/1198306";
 
     private BannerAdView mBannerAdView;
 
@@ -110,10 +113,14 @@ public class MainActivity extends AppCompatActivity {
         switch (mediation) {
             case "Yandex":
                 return YANDEX_BLOCK_ID;
+            case "Adcolony":
+                return ADCOLONY_BLOCK_ID;
             case "AdMob":
                 return ADMOB_BLOCK_ID;
             case "AppLovin":
                 return APPLOVIN_BLOCK_ID;
+            case "Chartboost":
+                return CHARTBOOST_BLOCK_ID;
             case "Facebook":
                 return FACEBOOK_BLOCK_ID;
             case "MoPub":
@@ -122,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
                 return MYTARGET_BLOCK_ID;
             case "StartApp":
                 return STARTAPP_BLOCK_ID;
+            case "Vungle":
+                return VUNGLE_BLOCK_ID;
             default:
                 throw new IllegalArgumentException();
         }

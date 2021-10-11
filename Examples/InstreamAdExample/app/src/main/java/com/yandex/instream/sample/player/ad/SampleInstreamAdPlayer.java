@@ -25,6 +25,7 @@ import com.yandex.instream.sample.player.SamplePlayer;
 import com.yandex.mobile.ads.instream.model.MediaFile;
 import com.yandex.mobile.ads.instream.player.ad.InstreamAdPlayer;
 import com.yandex.mobile.ads.instream.player.ad.InstreamAdPlayerListener;
+import com.yandex.mobile.ads.video.playback.model.VideoAd;
 
 public class SampleInstreamAdPlayer implements InstreamAdPlayer, SamplePlayer {
 
@@ -37,7 +38,7 @@ public class SampleInstreamAdPlayer implements InstreamAdPlayer, SamplePlayer {
     @Nullable
     private InstreamAdPlayerListener mAdPlayerListener;
 
-    private MediaFile mMediaFile;
+    private VideoAd mVideoAd;
 
     public SampleInstreamAdPlayer(@NonNull final PlayerView exoplayerView) {
         mExoPlayerView = exoplayerView;
@@ -66,9 +67,10 @@ public class SampleInstreamAdPlayer implements InstreamAdPlayer, SamplePlayer {
     }
 
     @Override
-    public void prepareAd(@NonNull final MediaFile mediaFile) {
-        mMediaFile = mediaFile;
+    public void prepareAd(@NonNull final VideoAd videoAd) {
+        mVideoAd = videoAd;
 
+        final MediaFile mediaFile = videoAd.getMediaFile();
         final DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(mExoPlayerView.getContext(), "ad player");
         final Uri adMediaUri = Uri.parse(mediaFile.getUrl());
         final MediaSource videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
@@ -101,7 +103,7 @@ public class SampleInstreamAdPlayer implements InstreamAdPlayer, SamplePlayer {
         mAdPlayer.setPlayWhenReady(false);
 
         if (mAdPlayerListener != null) {
-            mAdPlayerListener.onAdStopped(mMediaFile);
+            mAdPlayerListener.onAdStopped(mVideoAd);
         }
     }
 
@@ -163,9 +165,9 @@ public class SampleInstreamAdPlayer implements InstreamAdPlayer, SamplePlayer {
         private void onResumePlayback() {
             if (mAdPlayerListener != null) {
                 if (mAdStarted) {
-                    mAdPlayerListener.onAdResumed(mMediaFile);
+                    mAdPlayerListener.onAdResumed(mVideoAd);
                 } else {
-                    mAdPlayerListener.onAdStarted(mMediaFile);
+                    mAdPlayerListener.onAdStarted(mVideoAd);
                 }
             }
 
@@ -174,7 +176,7 @@ public class SampleInstreamAdPlayer implements InstreamAdPlayer, SamplePlayer {
 
         private void onPausePlayback() {
             if (mAdPlayerListener != null) {
-                mAdPlayerListener.onAdPaused(mMediaFile);
+                mAdPlayerListener.onAdPaused(mVideoAd);
             }
         }
 
@@ -189,14 +191,14 @@ public class SampleInstreamAdPlayer implements InstreamAdPlayer, SamplePlayer {
 
         private void onReadyState() {
             if (mAdPlayerListener != null) {
-                mAdPlayerListener.onAdPrepared(mMediaFile);
+                mAdPlayerListener.onAdPrepared(mVideoAd);
             }
         }
 
         private void onEndedState() {
             mAdStarted = false;
             if (mAdPlayerListener != null) {
-                mAdPlayerListener.onAdCompleted(mMediaFile);
+                mAdPlayerListener.onAdCompleted(mVideoAd);
             }
         }
 
@@ -204,7 +206,7 @@ public class SampleInstreamAdPlayer implements InstreamAdPlayer, SamplePlayer {
         public void onPlayerError(final ExoPlaybackException error) {
             mAdStarted = false;
             if (mAdPlayerListener != null) {
-                mAdPlayerListener.onError(mMediaFile);
+                mAdPlayerListener.onError(mVideoAd);
             }
         }
     }

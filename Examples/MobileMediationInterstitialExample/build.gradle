@@ -28,11 +28,21 @@ allprojects {
         jcenter()
         google()
 
-        //MoPub
+        // MoPub
         maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
 
-        //IronSource
+        // IronSource
         maven { url "https://dl.bintray.com/ironsource-mobile/android-sdk" }
+
+        // Tapjoy
+        maven {
+            url "https://artifactory.yandex.net/tapjoy/"
+        }
+
+        // Pangle
+        maven {
+            url 'http://artifactory.yandex.net/pangle/'
+        }
     }
 }
 

@@ -29,22 +29,35 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
 
-    implementation 'com.yandex.android:mobileads:4.3.0'
+    implementation 'com.yandex.android:mobileads:4.4.0'
     implementation 'com.yandex.android:mobmetricalib:3.20.1'
 
-    implementation 'com.yandex.ads.mediation:mobileads-admob:1.19.0'
-    implementation 'com.yandex.ads.mediation:mobileads-applovin:0.10.0'
-    implementation 'com.yandex.ads.mediation:mobileads-facebook:1.16.0'
-    implementation 'com.yandex.ads.mediation:mobileads-mopub:1.11.0'
-    implementation 'com.yandex.ads.mediation:mobileads-mytarget:1.13.0'
-    implementation 'com.yandex.ads.mediation:mobileads-startapp:1.13.0'
+    implementation 'com.yandex.ads.mediation:mobileads-adcolony:4.6.4.0'
+    implementation 'com.adcolony:sdk:4.6.4'
 
-    implementation 'com.applovin:applovin-sdk:10.3.1'
-    implementation 'com.google.android.gms:play-services-ads:20.2.0'
-    implementation 'com.facebook.android:audience-network-sdk:6.5.1'
-    implementation 'com.my.target:mytarget-sdk:5.12.3'
-    implementation('com.mopub:mopub-sdk:5.16.0@aar') {
+    implementation 'com.yandex.ads.mediation:mobileads-admob:20.3.0.0'
+    implementation 'com.google.android.gms:play-services-ads:20.3.0'
+
+    implementation 'com.yandex.ads.mediation:mobileads-applovin:10.3.3.0'
+    implementation 'com.applovin:applovin-sdk:10.3.3'
+
+    implementation 'com.yandex.ads.mediation:mobileads-chartboost:8.2.1.0'
+    implementation "com.chartboost:chartboost-sdk:8.2.1"
+
+    implementation 'com.yandex.ads.mediation:mobileads-facebook:6.7.0.0'
+    implementation 'com.facebook.android:audience-network-sdk:6.7.0'
+
+    implementation 'com.yandex.ads.mediation:mobileads-mopub:5.18.0.0'
+    implementation('com.mopub:mopub-sdk:5.18.0@aar') {
         transitive = true
     }
-    implementation 'com.startapp:inapp-sdk:4.8.10'
+
+    implementation 'com.yandex.ads.mediation:mobileads-mytarget:5.12.3.0'
+    implementation 'com.my.target:mytarget-sdk:5.12.3'
+
+    implementation 'com.yandex.ads.mediation:mobileads-startapp:4.8.11.0'
+    implementation 'com.startapp:inapp-sdk:4.8.11'
+
+    implementation 'com.yandex.ads.mediation:mobileads-vungle:6.9.1.0'
+    implementation 'com.vungle:publisher-sdk-android:6.9.1'
 }
