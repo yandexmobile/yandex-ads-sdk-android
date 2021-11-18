@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 4.4.1
+
+### Added
+* Added improvements for fullscreen designs
+* Added support for initial ad player volume configuration based on video player volume in InStream
+* Improvements and optimizations
+
 ## Version 4.4.0
 
 ### Added

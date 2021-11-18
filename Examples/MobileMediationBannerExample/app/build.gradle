@@ -29,14 +29,14 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
 
-    implementation 'com.yandex.android:mobileads:4.4.0'
-    implementation 'com.yandex.android:mobmetricalib:3.20.1'
+    implementation 'com.yandex.android:mobileads:4.4.1'
+    implementation 'com.yandex.android:mobmetricalib:4.0.0'
 
     implementation 'com.yandex.ads.mediation:mobileads-adcolony:4.6.4.0'
     implementation 'com.adcolony:sdk:4.6.4'
 
-    implementation 'com.yandex.ads.mediation:mobileads-admob:20.3.0.0'
-    implementation 'com.google.android.gms:play-services-ads:20.3.0'
+    implementation 'com.yandex.ads.mediation:mobileads-admob:20.4.0.0'
+    implementation 'com.google.android.gms:play-services-ads:20.4.0'
 
     implementation 'com.yandex.ads.mediation:mobileads-applovin:10.3.3.0'
     implementation 'com.applovin:applovin-sdk:10.3.3'
