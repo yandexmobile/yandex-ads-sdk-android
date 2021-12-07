@@ -41,7 +41,7 @@ dependencies {
 
     implementation 'com.yandex.android:mobmetricalib:4.0.0'
 
-    implementation 'com.yandex.android:mobileads:4.4.1'
+    implementation 'com.yandex.android:mobileads:4.5.0'
     implementation 'com.yandex.ads.adapter:mopub-mobileads:4.4.0.0'
     implementation('com.mopub:mopub-sdk:5.18.0@aar') {
         exclude module: 'moat-mobile-app-kit'
