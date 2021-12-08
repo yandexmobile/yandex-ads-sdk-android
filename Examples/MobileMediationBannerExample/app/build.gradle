@@ -29,7 +29,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
 
-    implementation 'com.yandex.android:mobileads:4.4.1'
+    implementation 'com.yandex.android:mobileads:4.5.0'
     implementation 'com.yandex.android:mobmetricalib:4.0.0'
 
     implementation 'com.yandex.ads.mediation:mobileads-adcolony:4.6.4.0'

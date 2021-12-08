@@ -32,6 +32,6 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
-    implementation 'com.yandex.android:mobileads:4.4.1'
+    implementation 'com.yandex.android:mobileads:4.5.0'
     implementation 'com.yandex.android:mobmetricalib:4.0.0'
 }
