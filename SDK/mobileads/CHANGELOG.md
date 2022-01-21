@@ -4,7 +4,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 ## Version 4.5.0
 
 ### Added
-* Added com.google.android.gms.AD_ID permission declaration
+* Added com.google.android.gms.permission.AD_ID permission declaration
 
 ## Version 4.4.1
 
