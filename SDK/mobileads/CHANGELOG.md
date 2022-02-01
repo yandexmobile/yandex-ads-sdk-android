@@ -1,10 +1,29 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 5.0.0-alpha.1
+
+### Added
+* Added Kotlin dependency
+* Added AdsLoader API for simplification of InStream integration
+* Added automatic SDK initialization
+* Added precaching for video ads
+* Improved ads loading time
+* Other improvements and optimizations
+
+#### Fixed
+* Fixed bugs
+
+#### Updated
+* Major API rework
+
+#### Removed
+* Removed deprecated and legacy API
+
 ## Version 4.5.0
 
 ### Added
-* Added com.google.android.gms.AD_ID permission declaration
+* Added com.google.android.gms.permission.AD_ID permission declaration
 
 ## Version 4.4.1
 
@@ -12,6 +31,9 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * Added improvements for fullscreen designs
 * Added support for initial ad player volume configuration based on video player volume in InStream
 * Improvements and optimizations
+
+### Updated
+* Updated minimum supported AppMetrica SDK version to 4.0.0
 
 ## Version 4.4.0
 
