@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">RewardedExample</string>
-
-    <string name="load_button">Load Ad</string>
-    <string name="start_load_button">Loading…</string>
-</resources>

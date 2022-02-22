@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is a part of the Yandex Advertising Network
+  ~
+  ~ Version for Android (C) 2021 YANDEX
+  ~
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/icon_native_ad_mopub_image_size"
+        android:layout_height="@dimen/icon_native_ad_mopub_image_size"
+        android:padding="@dimen/native_offset_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/native_offset_medium"
+        android:textColor="@android:color/darker_gray"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/icon"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@id/icon" />
+
+    <TextView
+        android:id="@+id/body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/native_offset_medium"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/icon" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="body,icon,title,privacy_information_icon"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_header" />
+
+    <Button
+        android:id="@+id/call_to_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/native_ad_call_to_action_text"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_footer" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@id/barrier_footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="title,icon,image,body,privacy_information_icon" />
+
+    <ImageView
+        android:id="@+id/privacy_information_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="@dimen/native_offset_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

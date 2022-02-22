@@ -1,0 +1,58 @@
+/*
+ * This file is a part of the Yandex Advertising Network
+ *
+ * Version for Android (C) 2021 YANDEX
+ *
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
+ */
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+
+        // Pangle
+        maven { url 'https://artifactory.yandex.net/pangle/' }
+
+        // IronSource
+        maven { url 'https://android-sdk.is.com/' }
+
+        // Tapjoy
+        maven { url "https://artifactory.yandex.net/tapjoy/" }
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.3"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        // IronSource
+        maven {
+            url 'https://android-sdk.is.com/'
+        }
+
+        // Tapjoy
+        maven {
+            url "https://artifactory.yandex.net/tapjoy/"
+        }
+
+        // Pangle
+        maven {
+            url 'https://artifactory.yandex.net/pangle/'
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

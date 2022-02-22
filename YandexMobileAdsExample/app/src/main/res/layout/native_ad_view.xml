@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is a part of the Yandex Advertising Network
+  ~
+  ~ Version for Android (C) 2021 YANDEX
+  ~
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
+  -->
+
+<com.yandex.mobile.ads.nativeads.NativeAdView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/native_ad_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/native_offset_medium"
+        android:layout_marginTop="@dimen/native_offset_medium"
+        android:layout_marginEnd="@dimen/native_offset_medium"
+        android:layout_marginBottom="@dimen/native_offset_small">
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/components"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="age,feedback,feedback,icon,title" />
+
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/base_asset_text_color"
+            app:layout_constraintBottom_toTopOf="@id/barrier_top"
+            app:layout_constraintEnd_toStartOf="@id/sponsored"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="18+"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/sponsored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/base_asset_text_color"
+            android:textSize="@dimen/native_asset_text_size_small"
+            app:layout_constraintBottom_toTopOf="@id/barrier_top"
+            app:layout_constraintEnd_toStartOf="@id/feedback"
+            app:layout_constraintStart_toEndOf="@id/age"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/native_ad_sponsored_text"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/feedback"
+            android:layout_width="@dimen/native_favicon_width"
+            android:layout_height="@dimen/native_favicon_height"
+            app:layout_constraintBottom_toTopOf="@id/barrier_top"
+            android:background="@drawable/close_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/sponsored"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="age,sponsored,feedback" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/native_image_width"
+            android:layout_height="@dimen/native_image_height"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/native_offset_small"
+            android:layout_marginEnd="@dimen/native_offset_medium"
+            android:layout_marginRight="@dimen/native_offset_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/barrier_body"
+            app:layout_constraintEnd_toStartOf="@id/barrier_icon"
+            app:layout_constraintTop_toBottomOf="@id/barrier_top"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/native_offset_small"
+            android:maxLines="@integer/asset_title_max_lines"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/native_asset_text_size_large"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier_icon"
+            app:layout_constraintTop_toBottomOf="@id/barrier_top"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="@string/native_ad_title_text"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="@integer/asset_body_max_lines"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/native_asset_text_size_medium"
+            app:layout_constraintBottom_toTopOf="@id/barrier_domain"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier_icon"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="@string/native_ad_body_text"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/favicon"
+            android:layout_width="@dimen/native_favicon_width"
+            android:layout_height="@dimen/native_favicon_height"
+            android:layout_marginEnd="@dimen/native_offset_small"
+            android:layout_marginRight="@dimen/native_offset_small"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@id/barrier_domain"
+            app:layout_constraintEnd_toStartOf="@id/domain"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/barrier_icon"
+            app:layout_constraintTop_toBottomOf="@id/body"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_domain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="domain,favicon" />
+
+        <TextView
+            android:id="@+id/domain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="@integer/asset_domain_max_lines"
+            android:textColor="@color/base_asset_text_color"
+            android:textSize="@dimen/native_asset_text_size_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/barrier_body"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/favicon"
+            app:layout_constraintTop_toBottomOf="@id/body"
+            tools:text="@string/native_ad_domain_text"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="title,icon,body,domain,favicon" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/native_offset_medium"
+            app:layout_constraintBottom_toTopOf="@id/rating"
+            app:layout_constraintEnd_toStartOf="@id/barrier_rating"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/barrier_icon"
+            app:layout_constraintTop_toBottomOf="@id/barrier_body"
+            tools:text="@string/native_appinstall_price_text"
+            tools:visibility="visible" />
+
+        <com.yandex.ads.sample.common.RatingView
+            android:id="@+id/rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/native_offset_medium"
+            android:layout_marginRight="@dimen/native_offset_medium"
+            android:layout_marginBottom="@dimen/native_offset_small"
+            android:numStars="5"
+            android:stepSize="0.5"
+            app:layout_constraintBottom_toTopOf="@id/review_count"
+            app:layout_constraintEnd_toStartOf="@id/barrier_rating"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/barrier_icon"
+            app:layout_constraintTop_toBottomOf="@id/price"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/review_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="@integer/asset_review_count_max_lines"
+            android:textColor="@color/base_asset_text_color"
+            android:textSize="@dimen/native_asset_text_size_medium"
+            app:layout_constraintBottom_toTopOf="@id/barrier_footer"
+            app:layout_constraintEnd_toStartOf="@id/barrier_rating"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/barrier_icon"
+            app:layout_constraintTop_toBottomOf="@id/rating"
+            tools:text="review count"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="icon" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="rating,price,review_count" />
+
+        <Button
+            android:id="@+id/call_to_action"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/call_to_action_background"
+            android:maxLines="@integer/asset_call_to_action_max_lines"
+            android:minHeight="@dimen/call_to_action_asset_min_height"
+            android:textAllCaps="false"
+            android:textSize="@dimen/native_asset_text_size_medium"
+            app:layout_constraintBottom_toTopOf="@id/barrier_footer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barrier_rating"
+            app:layout_constraintTop_toBottomOf="@id/barrier_body"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintVertical_bias="1"
+            tools:text="@string/native_ad_call_to_action_text"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_footer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="price,domain,call_to_action,review_count" />
+
+        <com.yandex.mobile.ads.nativeads.MediaView
+            android:id="@+id/media"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/native_offset_small"
+            android:layout_marginBottom="@dimen/native_offset_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrier_footer"
+            app:layout_constraintBottom_toTopOf="@id/warning"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/warning"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/warning_background"
+            android:paddingLeft="@dimen/native_offset_medium"
+            android:paddingTop="@dimen/native_offset_small"
+            android:paddingRight="@dimen/native_offset_medium"
+            android:textColor="@color/base_asset_text_color"
+            android:textSize="@dimen/native_asset_text_size_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/media"
+            android:visibility="gone"
+            tools:text="@string/native_ad_warning_text"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.yandex.mobile.ads.nativeads.NativeAdView>
