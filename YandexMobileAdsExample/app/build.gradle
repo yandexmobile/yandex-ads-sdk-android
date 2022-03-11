@@ -48,7 +48,7 @@ android {
 // https://repo.maven.apache.org/maven2/com/yandex/ads/mediation/mobileads-ironsource/7.1.14.1/
 
 dependencies {
-    implementation 'com.yandex.android:mobileads:5.0.0-alpha.2'
+    implementation 'com.yandex.android:mobileads:5.0.0-beta.1'
     implementation 'com.yandex.android:mobmetricalib:4.1.1'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'

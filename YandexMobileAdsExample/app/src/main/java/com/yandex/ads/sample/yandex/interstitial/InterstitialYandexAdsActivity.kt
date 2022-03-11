@@ -111,6 +111,6 @@ class InterstitialYandexAdsActivity : AppCompatActivity() {
 
     private companion object {
 
-        const val AD_UNIT_ID = "R-M-DEMO-320x480"
+        const val AD_UNIT_ID = "R-M-DEMO-interstitial"
     }
 }

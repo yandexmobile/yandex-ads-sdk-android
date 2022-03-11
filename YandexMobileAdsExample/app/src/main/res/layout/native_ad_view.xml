@@ -57,12 +57,12 @@
             tools:text="@string/native_ad_sponsored_text"
             tools:visibility="visible" />
 
-        <Button
+        <ImageView
             android:id="@+id/feedback"
             android:layout_width="@dimen/native_favicon_width"
             android:layout_height="@dimen/native_favicon_height"
             app:layout_constraintBottom_toTopOf="@id/barrier_top"
-            android:background="@drawable/close_button"
+            android:src="@drawable/close_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/sponsored"
             app:layout_constraintTop_toTopOf="parent"
