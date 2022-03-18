@@ -12,14 +12,14 @@ buildscript {
         google()
         mavenCentral()
 
-        // Pangle
-        maven { url 'https://artifactory.yandex.net/pangle/' }
-
         // IronSource
         maven { url 'https://android-sdk.is.com/' }
 
+        // Pangle
+        maven { url 'https://artifact.bytedance.com/repository/pangle' }
+
         // Tapjoy
-        maven { url "https://artifactory.yandex.net/tapjoy/" }
+        maven { url "https://sdk.tapjoy.com/" }
     }
 
     dependencies {
@@ -37,19 +37,13 @@ allprojects {
         mavenCentral()
 
         // IronSource
-        maven {
-            url 'https://android-sdk.is.com/'
-        }
-
-        // Tapjoy
-        maven {
-            url "https://artifactory.yandex.net/tapjoy/"
-        }
+        maven { url 'https://android-sdk.is.com/' }
 
         // Pangle
-        maven {
-            url 'https://artifactory.yandex.net/pangle/'
-        }
+        maven { url 'https://artifact.bytedance.com/repository/pangle' }
+
+        // Tapjoy
+        maven { url "https://sdk.tapjoy.com/" }
     }
 }
 
