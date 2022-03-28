@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 5.0.0
+
+### Added
+* Added performance improvements in In-Stream
+* Added callback for ad buffering in In-Stream
+* Improvements and optimizations
+
 ## Version 5.0.0-beta.1
 
 ### Added
@@ -19,7 +26,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
 ### Added
 * Added Kotlin dependency
-* Added AdsLoader API for simplification of InStream integration
+* Added AdsLoader API for simplification of In-Stream integration
 * Added automatic SDK initialization
 * Added precaching for video ads
 * Improved ads loading time
@@ -43,7 +50,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
 ### Added
 * Added improvements for fullscreen designs
-* Added support for initial ad player volume configuration based on video player volume in InStream
+* Added support for initial ad player volume configuration based on video player volume in In-Stream
 * Improvements and optimizations
 
 ### Updated
@@ -52,7 +59,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 ## Version 4.4.0
 
 ### Added
-* Added support for playing multiple video ads sequentially in InStream
+* Added support for playing multiple video ads sequentially in In-Stream
 * Added improvements for fullscreen designs
 * Improvements and optimizations
 
