@@ -9,21 +9,25 @@
   ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
   -->
 
-<com.yandex.mobile.ads.instream.player.ad.InstreamAdView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.exoplayer2.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/instream_ad_view"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:id="@+id/video_frame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_constraintDimensionRatio="16:9"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:resize_mode="fit">
 
-    <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-        android:id="@+id/video_frame"
+    <com.yandex.mobile.ads.instream.player.ad.InstreamAdView
+        android:id="@+id/instream_ad_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintDimensionRatio="16:9"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:resize_mode="fit">
+        android:background="@android:color/black">
 
         <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/exo_player_view"
@@ -31,10 +35,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
-</com.yandex.mobile.ads.instream.player.ad.InstreamAdView>
+    </com.yandex.mobile.ads.instream.player.ad.InstreamAdView>
 
+</com.google.android.exoplayer2.ui.AspectRatioFrameLayout>

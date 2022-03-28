@@ -34,9 +34,13 @@ class SampleInstreamAdPlayer(private val exoPlayerView: PlayerView) : InstreamAd
 
     override fun isPlaying() = adPlayer.isPlaying
 
-    override fun onPause() { pause() }
+    override fun onPause() {
+        pause()
+    }
 
-    override fun onResume() { resume() }
+    override fun onResume() {
+        resume()
+    }
 
     override fun prepareAd(videoAd: VideoAd) {
         this.videoAd = videoAd
@@ -57,9 +61,13 @@ class SampleInstreamAdPlayer(private val exoPlayerView: PlayerView) : InstreamAd
         adPlayer.playWhenReady = true
     }
 
-    override fun pauseAd() { pause() }
+    override fun pauseAd() {
+        pause()
+    }
 
-    override fun resumeAd() { resume() }
+    override fun resumeAd() {
+        resume()
+    }
 
     override fun stopAd() {
         adPlayer.playWhenReady = false
@@ -107,7 +115,10 @@ class SampleInstreamAdPlayer(private val exoPlayerView: PlayerView) : InstreamAd
     }
 
     private inner class AdPlayerEventListener : Player.Listener {
+
         private var adStarted = false
+        private var adPrepared = false
+        private var bufferingInProgress = false
 
         override fun onIsPlayingChanged(isPlaying: Boolean) {
             if (isPlaying) {
@@ -131,24 +142,46 @@ class SampleInstreamAdPlayer(private val exoPlayerView: PlayerView) : InstreamAd
         }
 
         override fun onPlaybackStateChanged(playbackState: Int) {
-            when(playbackState) {
-                Player.STATE_READY -> onReadyState()
+            when (playbackState) {
+                Player.STATE_READY -> {
+                    if (bufferingInProgress) {
+                        onAdBufferingFinished()
+                    }
+                    if (adPrepared.not()) {
+                        onAdPrepared()
+                    }
+                }
+                Player.STATE_BUFFERING -> onAdBufferingStarted()
                 Player.STATE_ENDED -> onEndedState()
             }
         }
 
-        private fun onReadyState() {
+        private fun onAdPrepared() {
             adPlayerListener?.onAdPrepared(videoAd)
         }
 
         private fun onEndedState() {
             adStarted = false
-            adPlayerListener?.onAdCompleted(videoAd)
+            adPrepared = false;
+            bufferingInProgress = false
 
+            adPlayerListener?.onAdCompleted(videoAd)
+        }
+
+        private fun onAdBufferingStarted() {
+            bufferingInProgress = true
+            adPlayerListener?.onAdBufferingStarted(videoAd)
+        }
+
+        private fun onAdBufferingFinished() {
+            bufferingInProgress = false
+            adPlayerListener?.onAdBufferingFinished(videoAd)
         }
 
         override fun onPlayerError(error: ExoPlaybackException) {
             adStarted = false
+            adPrepared = false
+            bufferingInProgress = false
 
             val adPlayerError = exoPlayerErrorConverter.convertExoPlayerError(error)
             adPlayerListener?.onError(videoAd, adPlayerError)
@@ -156,7 +189,6 @@ class SampleInstreamAdPlayer(private val exoPlayerView: PlayerView) : InstreamAd
     }
 
     private companion object {
-
-        const val USER_AGENT = "ad player"
+        private const val USER_AGENT = "ad player"
     }
 }
