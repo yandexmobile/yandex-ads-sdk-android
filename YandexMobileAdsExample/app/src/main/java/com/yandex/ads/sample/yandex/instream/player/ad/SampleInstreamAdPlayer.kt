@@ -74,6 +74,11 @@ class SampleInstreamAdPlayer(private val exoPlayerView: PlayerView) : InstreamAd
         adPlayerListener?.onAdStopped(videoAd)
     }
 
+    override fun skipAd() {
+        adPlayerListener?.onAdStopped(videoAd)
+        adPlayerListener?.onAdSkipped(videoAd)
+    }
+
     override fun setVolume(volume: Float) {
         adPlayer.volume = volume
     }

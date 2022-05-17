@@ -45,10 +45,8 @@ android {
     }
 }
 
-// https://repo.maven.apache.org/maven2/com/yandex/ads/mediation/mobileads-ironsource/7.1.14.1/
-
 dependencies {
-    implementation 'com.yandex.android:mobileads:5.0.0'
+    implementation 'com.yandex.android:mobileads:5.1.0'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.activity:activity-ktx:1.4.0'
