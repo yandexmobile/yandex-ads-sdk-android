@@ -1,12 +1,30 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 5.1.0
+
+### Fixed
+* Fixed ANR issue
+
+### Added
+* Location consent flag
+* Added playback events listener in In-Stream
+* Improvements and optimizations
+
+### Breaking changes
+* Added playback events listener in In-Stream
+* Added skip event in In-Stream ad player
+* Added playback error reasons in In-Stream ad player
+
 ## Version 5.0.0
 
 ### Added
 * Added performance improvements in In-Stream
 * Added callback for ad buffering in In-Stream
 * Improvements and optimizations
+
+### Breaking changes
+* Changed BlockID to AdUnitID in public API
 
 ## Version 5.0.0-beta.1
 
@@ -503,6 +521,3 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * Updated AppMetrica to 2.00
 * Raise minSdkVersion to 10 Android Level.
 * Updated javadoc
-
-#### Breaking changes
-* Changed AdUnitID to BlockID in public API
