@@ -112,6 +112,6 @@ class InterstitialIronsourceThirdPartyMediationActivity : AppCompatActivity() {
 
     private companion object {
 
-        const val APP_KEY = "85460dcd"
+        const val APP_KEY = "10f882205"
     }
 }

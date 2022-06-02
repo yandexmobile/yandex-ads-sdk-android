@@ -137,20 +137,19 @@ class RewardedMobileMediationActivity : AppCompatActivity() {
     private companion object {
 
         val mediationNetworks = listOf(
-            MediationNetwork(R.string.yandex_title, "adf-279013/966487"),
-            MediationNetwork(R.string.adcolony_title, "adf-279013/1197236"),
-            MediationNetwork(R.string.admob_title, "adf-279013/966325"),
-            MediationNetwork(R.string.applovin_title, "adf-279013/1052103"),
-            MediationNetwork(R.string.facebook_title, "adf-279013/966329"),
-            MediationNetwork(R.string.chartboost_title, "adf-279013/1198276"),
-            MediationNetwork(R.string.mopub_title, "adf-279013/966326"),
-            MediationNetwork(R.string.my_target_title, "adf-279013/966327"),
-            MediationNetwork(R.string.vungle_title, "adf-279013/1198309"),
-            MediationNetwork(R.string.ironsource_title, "adf-279013/1052106"),
-            MediationNetwork(R.string.pangle_title, "adf-279013/1198326"),
-            MediationNetwork(R.string.startapp_title, "adf-279013/1006616"),
-            MediationNetwork(R.string.tapjoy_title, "adf-279013/1198395"),
-            MediationNetwork(R.string.unity_ads_title, "adf-279013/1004805"),
+            MediationNetwork(R.string.yandex_title, "R-M-338228-6"),
+            MediationNetwork(R.string.adcolony_title, "R-M-344723-12"),
+            MediationNetwork(R.string.admob_title, "R-M-338228-1"),
+            MediationNetwork(R.string.applovin_title, "R-M-338228-34"),
+            MediationNetwork(R.string.facebook_title, "R-M-338228-5"),
+            MediationNetwork(R.string.chartboost_title, "R-M-344723-15"),
+            MediationNetwork(R.string.my_target_title, "R-M-338228-3"),
+            MediationNetwork(R.string.ironsource_title, "R-M-338228-37"),
+            MediationNetwork(R.string.pangle_title, "R-M-344723-23"),
+            MediationNetwork(R.string.startapp_title, "R-M-338228-30"),
+            MediationNetwork(R.string.tapjoy_title, "R-M-344723-24"),
+            MediationNetwork(R.string.unity_ads_title, "R-M-338228-27"),
+            MediationNetwork(R.string.vungle_title, "R-M-344723-21"),
         )
     }
 }

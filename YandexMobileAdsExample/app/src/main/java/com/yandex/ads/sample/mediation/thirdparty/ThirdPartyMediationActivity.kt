@@ -15,7 +15,6 @@ import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.NavigationListLayoutBinding
 import com.yandex.ads.sample.mediation.thirdparty.admob.AdMobThirdPartyMediationActivity
 import com.yandex.ads.sample.mediation.thirdparty.ironsource.IronsourceThirdPartyMediationActivity
-import com.yandex.ads.sample.mediation.thirdparty.mopub.MoPubThirdPartyMediationActivity
 import com.yandex.ads.sample.navigation.NavigationListConfigurator
 import com.yandex.ads.sample.navigation.NavigationListAdapter
 import com.yandex.ads.sample.navigation.NavigationItem
@@ -37,7 +36,6 @@ class ThirdPartyMediationActivity : AppCompatActivity() {
     private fun getNavigationItems(): List<NavigationItem> {
         return listOf(
             NavigationItem(AdMobThirdPartyMediationActivity::class.java, getString(R.string.admob_title)),
-            NavigationItem(MoPubThirdPartyMediationActivity::class.java, getString(R.string.mopub_title)),
             NavigationItem(IronsourceThirdPartyMediationActivity::class.java, getString(R.string.ironsource_title))
         )
     }

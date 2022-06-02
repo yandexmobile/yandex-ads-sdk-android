@@ -75,7 +75,6 @@ class SampleInstreamAdPlayer(private val exoPlayerView: PlayerView) : InstreamAd
     }
 
     override fun skipAd() {
-        adPlayerListener?.onAdStopped(videoAd)
         adPlayerListener?.onAdSkipped(videoAd)
     }
 

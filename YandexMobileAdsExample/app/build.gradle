@@ -46,7 +46,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.yandex.android:mobileads:5.1.0'
+    implementation 'com.yandex.android:mobileads:5.1.1'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.activity:activity-ktx:1.4.0'
@@ -77,16 +77,6 @@ dependencies {
     implementation 'com.yandex.ads.mediation:mobileads-ironsource:7.1.14.1'
     implementation 'com.yandex.ads.adapter:ironsource-mobileads:5.0.0.0'
     implementation 'com.ironsource.sdk:mediationsdk:7.1.14'
-
-    implementation 'com.yandex.ads.mediation:mobileads-mopub:5.18.0.1'
-    implementation 'com.yandex.ads.adapter:mopub-mobileads:5.0.0.0'
-    implementation('com.mopub:mopub-sdk:5.18.0@aar') {
-        transitive = true
-    }
-    implementation('com.mopub:mopub-sdk-banner:5.18.0@aar') {
-        exclude module: 'moat-mobile-app-kit'
-        transitive = true
-    }
 
     implementation 'com.google.android.exoplayer:exoplayer-core:2.14.2'
     implementation 'com.google.android.exoplayer:exoplayer-dash:2.14.2'
