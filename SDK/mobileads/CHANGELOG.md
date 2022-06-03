@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 5.1.1
+
+### Fixed
+* Fixed possible crash with CMP libraries integration
+
 ## Version 5.1.0
 
 ### Fixed

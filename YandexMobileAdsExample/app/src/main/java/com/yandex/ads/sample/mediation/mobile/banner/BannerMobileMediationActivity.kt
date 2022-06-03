@@ -147,16 +147,15 @@ class BannerMobileMediationActivity : AppCompatActivity() {
     private companion object{
 
         val mediationNetworks = listOf(
-            MediationNetwork(R.string.yandex_title, "adf-279013/966631"),
-            MediationNetwork(R.string.adcolony_title, "adf-279013/1196978"),
-            MediationNetwork(R.string.admob_title, "adf-279013/975926"),
-            MediationNetwork(R.string.applovin_title, "adf-279013/1049726"),
-            MediationNetwork(R.string.facebook_title, "adf-279013/975929"),
-            MediationNetwork(R.string.chartboost_title, "adf-279013/1197235"),
-            MediationNetwork(R.string.mopub_title, "adf-279013/975927"),
-            MediationNetwork(R.string.my_target_title, "adf-279013/975928"),
-            MediationNetwork(R.string.startapp_title, "adf-279013/1004807"),
-            MediationNetwork(R.string.vungle_title, "adf-279013/1198306"),
+            MediationNetwork(R.string.yandex_title, "R-M-338228-9"),
+            MediationNetwork(R.string.adcolony_title, "R-M-344723-10"),
+            MediationNetwork(R.string.admob_title, "R-M-338228-18"),
+            MediationNetwork(R.string.applovin_title, "R-M-338228-32"),
+            MediationNetwork(R.string.facebook_title, "R-M-338228-21"),
+            MediationNetwork(R.string.chartboost_title, "R-M-344723-11"),
+            MediationNetwork(R.string.my_target_title, "R-M-338228-20"),
+            MediationNetwork(R.string.startapp_title, "R-M-338228-28"),
+            MediationNetwork(R.string.vungle_title, "R-M-344723-19"),
         )
     }
 }

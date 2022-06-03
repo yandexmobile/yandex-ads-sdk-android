@@ -134,12 +134,11 @@ class NativeMobileMediationActivity : AppCompatActivity() {
     private companion object {
 
         val mediationNetworks = listOf(
-            MediationNetwork(R.string.yandex_title, "adf-279013/966633"),
-            MediationNetwork(R.string.admob_title, "adf-279013/975930"),
-            MediationNetwork(R.string.facebook_title, "adf-279013/975933"),
-            MediationNetwork(R.string.my_target_title, "adf-279013/975932"),
-            MediationNetwork(R.string.startapp_title, "adf-279013/1090341"),
-            MediationNetwork(R.string.mopub_title, "adf-279013/975931"),
+            MediationNetwork(R.string.yandex_title, "R-M-338228-11"),
+            MediationNetwork(R.string.admob_title, "R-M-338228-22"),
+            MediationNetwork(R.string.facebook_title, "R-M-338228-25"),
+            MediationNetwork(R.string.my_target_title, "R-M-338228-24"),
+            MediationNetwork(R.string.startapp_title, "R-M-338228-39"),
         )
     }
 }

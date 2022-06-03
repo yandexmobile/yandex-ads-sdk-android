@@ -22,7 +22,6 @@
     <string name="instream_title">Instream</string>
     <string name="native_title">Native</string>
     <string name="admob_title">AdMob</string>
-    <string name="mopub_title">Mopub</string>
     <string name="gdpr_title">GDPR</string>
     <string name="gdpr_setting_title">GDPR Setting</string>
     <string name="load_button_text">Load</string>
@@ -37,14 +36,14 @@
     <string name="native_ad_call_to_action_text">Install</string>
     <string name="native_appinstall_price_text">Free</string>
     <string name="yandex_title">Yandex</string>
-    <string name="adcolony_title">Adcolony</string>
+    <string name="adcolony_title">AdColony</string>
     <string name="applovin_title">AppLovin</string>
     <string name="facebook_title">Facebook</string>
     <string name="chartboost_title">Chartboost</string>
     <string name="my_target_title">MyTarget</string>
     <string name="startapp_title">StartApp</string>
     <string name="vungle_title">Vungle</string>
-    <string name="ironsource_title">Ironsource</string>
+    <string name="ironsource_title">IronSource</string>
     <string name="pangle_title">Pangle</string>
     <string name="tapjoy_title">Tapjoy</string>
     <string name="unity_ads_title">Unity Ads</string>

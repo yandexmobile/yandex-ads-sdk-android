@@ -159,7 +159,7 @@ class ExoPlayerErrorConverter {
         val cause = exception.cause ?: return InstreamAdPlayerError.Reason.DRM_SESSION_ERROR
         return when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && cause is MediaDrmResetException ||
-                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && cause is ResourceBusyException -> {
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && cause is ResourceBusyException -> {
                 InstreamAdPlayerError.Reason.DRM_MEDIA_RESOURCE_BUSY
             }
             cause is MediaCodec.CryptoException || cause is KeysExpiredException -> {

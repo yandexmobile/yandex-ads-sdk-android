@@ -45,5 +45,4 @@
     <dimen name="offset_medium">8dp</dimen>
     <dimen name="padding_vertical_spinner_item">10dp</dimen>
     <dimen name="spinner_text_size">18sp</dimen>
-    <dimen name="icon_native_ad_mopub_image_size">64dp</dimen>
 </resources>

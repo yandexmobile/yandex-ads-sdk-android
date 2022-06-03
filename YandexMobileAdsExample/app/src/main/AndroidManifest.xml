@@ -174,31 +174,6 @@
             android:label="@string/native_title" />
 
         <activity
-            android:name=".mediation.thirdparty.mopub.MoPubThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/mopub_title" />
-
-        <activity
-            android:name=".mediation.thirdparty.mopub.banner.MoPubBannerThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/banner_title" />
-
-        <activity
-            android:name=".mediation.thirdparty.mopub.interstitial.MoPubInterstitialThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/interstitial_title" />
-
-        <activity
-            android:name=".mediation.thirdparty.mopub.rewarded.MoPubRewardedThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/rewarded_title" />
-
-        <activity
-            android:name=".mediation.thirdparty.mopub.nativeAd.MoPubNativeThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/native_title" />
-
-        <activity
             android:name=".mediation.thirdparty.ironsource.IronsourceThirdPartyMediationActivity"
             android:exported="false"
             android:label="@string/ironsource_title"/>
@@ -212,29 +187,6 @@
             android:name=".mediation.thirdparty.ironsource.rewarded.RewardedIronsourceThirdPartyMediationActivity"
             android:exported="false"
             android:label="@string/rewarded_title"/>
-
-        <!-- MoPub's consent dialog -->
-        <activity
-            android:name="com.mopub.common.privacy.ConsentDialogActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
-        <!-- All ad formats -->
-        <activity
-            android:name="com.mopub.common.MoPubBrowser"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
-        <!-- Interstitials -->
-        <activity
-            android:name="com.mopub.mobileads.MoPubActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="com.mopub.mobileads.MraidActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
-        <!-- Rewarded Video and Rewarded Playables -->
-        <activity
-            android:name="com.mopub.mobileads.MraidVideoPlayerActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <!-- GDPR -->
         <activity
