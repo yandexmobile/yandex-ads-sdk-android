@@ -40,7 +40,7 @@ class BannerYandexAdsActivity : AppCompatActivity() {
 
             // Replace demo Ad Unit ID with actual Ad Unit ID
             setAdUnitId(AD_UNIT_ID)
-            setAdSize(AdSize.BANNER_320x50)
+            setAdSize(AdSize.flexibleSize(320, 50))
             setBannerAdEventListener(bannerAdEventListener)
         }
     }
