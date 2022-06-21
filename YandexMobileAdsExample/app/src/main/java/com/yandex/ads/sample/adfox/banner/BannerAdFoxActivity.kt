@@ -38,7 +38,7 @@ class BannerAdFoxActivity : AppCompatActivity() {
     private fun configureBannerView() {
         binding.bannerAdView.apply {
             setAdUnitId(AD_UNIT_ID)
-            setAdSize(AdSize.BANNER_300x300)
+            setAdSize(AdSize.flexibleSize(300, 300))
             setBannerAdEventListener(bannerAdEventListener)
         }
     }
