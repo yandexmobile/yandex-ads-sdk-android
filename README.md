@@ -23,5 +23,7 @@ EULA is available at [EULA website] [LICENSE]
 implementation 'com.yandex.android:mobileads:5.1.1'
 ```
 
+##### Note, for correct work of SDK you need Android Gradle Plugin version 7+.
+
 [DOCUMENTATION]: https://tech.yandex.com/mobile-ads/
 [LICENSE]: https://legal.yandex.com/partner_ch/
