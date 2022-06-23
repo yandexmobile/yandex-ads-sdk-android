@@ -82,7 +82,7 @@ class BannerMobileMediationActivity : AppCompatActivity() {
 
         bannerAdView?.apply {
             setAdUnitId(adUnitId)
-            setAdSize(AdSize.BANNER_320x50)
+            setAdSize(AdSize.flexibleSize(320, 50))
             setBannerAdEventListener(bannerAdEventListener)
         }
     }
