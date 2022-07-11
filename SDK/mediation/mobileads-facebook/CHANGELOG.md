@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to Facebook Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 6.11.0.0
+
+#### Added
+* Added support for Facebook SDK version 6.11.0
+* Updated minimum supported Facebook SDK version to 6.11.0
+* Added support for Yandex Mobile Ads SDK version 5.2.0
+* Updated minimum supported Yandex Mobile Ads SDK version to 5.2.0
+
 ## Version 6.8.0.0
 
 #### Added

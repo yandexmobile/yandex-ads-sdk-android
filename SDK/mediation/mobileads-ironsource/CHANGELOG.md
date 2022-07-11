@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to IronSource Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 7.2.2.1.0
+
+#### Added
+* Added support for IronSource SDK version 7.2.2.1
+* Updated minimum supported IronSource SDK version to 7.2.2.1
+* Added support for Yandex Mobile Ads SDK version 5.2.0
+* Updated minimum supported Yandex Mobile Ads SDK version to 5.2.0
+
 ## Version 7.1.14.1
 
 #### Added
