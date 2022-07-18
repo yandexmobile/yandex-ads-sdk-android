@@ -81,19 +81,19 @@
             android:label="@string/instream_title" />
 
         <activity
-            android:name=".yandex.instream.inroll.InrollYandexAdsActivity"
-            android:exported="false"
-            android:label="@string/instream_ad_inroll_title" />
-
-        <activity
             android:name=".yandex.instream.simple.SimpleInstreamYandexAdsActivity"
             android:exported="false"
             android:label="@string/instream_ad_simple_instream_title" />
 
         <activity
-            android:name=".yandex.instream.advanced.AdvancedInstreamYandexAdsActivity"
+            android:name=".yandex.instream.advanced.InstreamBinderYandexAdsActivity"
             android:exported="false"
-            android:label="@string/instream_ad_advanced_instream_title" />
+            android:label="@string/instream_ad_advanced_instream_binder_title" />
+
+        <activity
+            android:name=".yandex.instream.advanced.InstreamInrollYandexAdsActivity"
+            android:exported="false"
+            android:label="@string/instream_ad_advanced_instream_inroll_title" />
 
         <!-- Mobile mediation -->
         <activity

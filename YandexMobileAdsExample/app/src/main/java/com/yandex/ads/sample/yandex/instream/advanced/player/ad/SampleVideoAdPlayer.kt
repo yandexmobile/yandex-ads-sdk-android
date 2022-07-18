@@ -7,118 +7,93 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.yandex.ads.sample.yandex.instream.player.ad
+package com.yandex.ads.sample.yandex.instream.advanced.player.ad
 
 import com.google.android.exoplayer2.ExoPlaybackException
-import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.yandex.ads.sample.yandex.instream.player.SamplePlayer
-import com.yandex.mobile.ads.instream.player.ad.InstreamAdPlayer
+import com.yandex.ads.sample.yandex.instream.advanced.player.creator.MediaSourceCreator
 import com.yandex.mobile.ads.instream.player.ad.InstreamAdPlayerListener
 import com.yandex.mobile.ads.video.playback.model.VideoAd
 
-class SampleInstreamAdPlayer(private val exoPlayerView: PlayerView) : InstreamAdPlayer, SamplePlayer {
+class SampleVideoAdPlayer(
+    private val videoAd: VideoAd,
+    private val exoPlayerView: PlayerView,
+) {
 
-    private val adPlayer = SimpleExoPlayer.Builder(exoPlayerView.context).build()
+    private val context = exoPlayerView.context
     private val exoPlayerErrorConverter = ExoPlayerErrorConverter()
+    private val mediaSourceCreator = MediaSourceCreator(context)
+
+    private val adPlayer = SimpleExoPlayer.Builder(context).build().apply {
+        addListener(ExoPlayerEventsListener())
+    }
+
     private var adPlayerListener: InstreamAdPlayerListener? = null
-    private lateinit var videoAd: VideoAd
 
-    init {
-        adPlayer.addListener(AdPlayerEventListener())
-    }
+    val adDuration: Long
+        get() = adPlayer.duration
 
-    override fun isPlaying() = adPlayer.isPlaying
+    val adPosition: Long
+        get() = adPlayer.currentPosition
 
-    override fun onPause() {
-        pause()
-    }
+    val isPlayingAd: Boolean
+        get() = adPlayer.isPlaying
 
-    override fun onResume() {
-        resume()
-    }
-
-    override fun prepareAd(videoAd: VideoAd) {
-        this.videoAd = videoAd
-        val mediaFile = videoAd.mediaFile
-        val dataSourceFactory = DefaultDataSourceFactory(exoPlayerView.context, USER_AGENT)
-        val adMediaItem = MediaItem.fromUri(mediaFile.url)
-        val videoSource = ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(adMediaItem)
+    fun prepareAd() {
+        val streamUrl = videoAd.mediaFile.url
+        val mediaSource = mediaSourceCreator.createMediaSource(streamUrl)
         adPlayer.apply {
             playWhenReady = false
-            setMediaSource(videoSource, true)
+            setMediaSource(mediaSource)
             prepare()
         }
     }
 
-    override fun playAd() {
+    fun playAd() {
         exoPlayerView.player = adPlayer
-        exoPlayerView.useController = false
+        resumeAd()
+    }
+
+    fun pauseAd() {
+        adPlayer.playWhenReady = false
+    }
+
+    fun resumeAd() {
         adPlayer.playWhenReady = true
     }
 
-    override fun pauseAd() {
-        pause()
-    }
-
-    override fun resumeAd() {
-        resume()
-    }
-
-    override fun stopAd() {
-        adPlayer.playWhenReady = false
+    fun stopAd() {
+        pauseAd()
         adPlayerListener?.onAdStopped(videoAd)
     }
 
-    override fun skipAd() {
+    fun skipAd() {
+        pauseAd()
         adPlayerListener?.onAdSkipped(videoAd)
     }
 
-    override fun setVolume(volume: Float) {
+    fun setVolume(volume: Float) {
         adPlayer.volume = volume
     }
 
-    override fun release() {
+    fun getVolume() = adPlayer.volume
+
+
+    fun releaseAd() {
         adPlayer.release()
     }
 
-    override fun setInstreamAdPlayerListener(instreamAdPlayerListener: InstreamAdPlayerListener?) {
+    fun setInstreamAdPlayerListener(instreamAdPlayerListener: InstreamAdPlayerListener?) {
         adPlayerListener = instreamAdPlayerListener
-    }
-
-    override fun getAdDuration(): Long {
-        return adPlayer.duration
-    }
-
-    override fun getAdPosition(): Long {
-        return adPlayer.currentPosition
-    }
-
-    override fun isPlayingAd(): Boolean {
-        return adPlayer.isPlaying
-    }
-
-    private fun pause() {
-        if (adPlayer.isPlaying) {
-            adPlayer.playWhenReady = false
-        }
-    }
-
-    private fun resume() {
-        if (!adPlayer.isPlaying) {
-            adPlayer.playWhenReady = true
-        }
     }
 
     fun onDestroy() {
         adPlayer.release()
     }
 
-    private inner class AdPlayerEventListener : Player.Listener {
+    private inner class ExoPlayerEventsListener : Player.Listener {
 
         private var adStarted = false
         private var adPrepared = false
@@ -148,11 +123,11 @@ class SampleInstreamAdPlayer(private val exoPlayerView: PlayerView) : InstreamAd
         override fun onPlaybackStateChanged(playbackState: Int) {
             when (playbackState) {
                 Player.STATE_READY -> {
-                    if (bufferingInProgress) {
-                        onAdBufferingFinished()
-                    }
                     if (adPrepared.not()) {
                         onAdPrepared()
+                    }
+                    if (bufferingInProgress) {
+                        onAdBufferingFinished()
                     }
                 }
                 Player.STATE_BUFFERING -> onAdBufferingStarted()
@@ -165,10 +140,7 @@ class SampleInstreamAdPlayer(private val exoPlayerView: PlayerView) : InstreamAd
         }
 
         private fun onEndedState() {
-            adStarted = false
-            adPrepared = false;
-            bufferingInProgress = false
-
+            resetState()
             adPlayerListener?.onAdCompleted(videoAd)
         }
 
@@ -183,16 +155,15 @@ class SampleInstreamAdPlayer(private val exoPlayerView: PlayerView) : InstreamAd
         }
 
         override fun onPlayerError(error: ExoPlaybackException) {
-            adStarted = false
-            adPrepared = false
-            bufferingInProgress = false
-
+            resetState()
             val adPlayerError = exoPlayerErrorConverter.convertExoPlayerError(error)
             adPlayerListener?.onError(videoAd, adPlayerError)
         }
-    }
 
-    private companion object {
-        private const val USER_AGENT = "ad player"
+        fun resetState() {
+            adStarted = false
+            adPrepared = false
+            bufferingInProgress = false
+        }
     }
 }

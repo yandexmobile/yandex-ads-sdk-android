@@ -7,7 +7,7 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.yandex.ads.sample.yandex.instream.inroll
+package com.yandex.ads.sample.yandex.instream.advanced
 
 import android.os.Bundle
 import android.view.View
@@ -15,9 +15,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityInrollYandexAdsBinding
 import com.yandex.ads.sample.utils.Logger
-import com.yandex.ads.sample.yandex.instream.player.SamplePlayer
-import com.yandex.ads.sample.yandex.instream.player.ad.SampleInstreamAdPlayer
-import com.yandex.ads.sample.yandex.instream.player.content.ContentVideoPlayer
+import com.yandex.ads.sample.yandex.instream.advanced.player.SamplePlayer
+import com.yandex.ads.sample.yandex.instream.advanced.player.ad.SampleInstreamAdPlayer
+import com.yandex.ads.sample.yandex.instream.advanced.player.content.ContentVideoPlayer
 import com.yandex.mobile.ads.instream.InstreamAd
 import com.yandex.mobile.ads.instream.InstreamAdBreakEventListener
 import com.yandex.mobile.ads.instream.InstreamAdBreakQueue
@@ -28,7 +28,7 @@ import com.yandex.mobile.ads.instream.inroll.Inroll
 import com.yandex.mobile.ads.instream.inroll.InrollQueueProvider
 import com.yandex.mobile.ads.instream.player.content.VideoPlayerListener
 
-class InrollYandexAdsActivity : AppCompatActivity() {
+class InstreamInrollYandexAdsActivity : AppCompatActivity() {
 
     private var contentVideoPlayer: ContentVideoPlayer? = null
     private var instreamAdPlayer: SampleInstreamAdPlayer? = null
@@ -113,7 +113,7 @@ class InrollYandexAdsActivity : AppCompatActivity() {
         super.onPause()
         if (instreamAdPlayer?.isPlaying() == true || contentVideoPlayer?.isPlaying() == true) {
             activePlayer = if (contentVideoPlayer?.isPlaying() == true) contentVideoPlayer else instreamAdPlayer
-            activePlayer?.onPause()
+            activePlayer?.pause()
         } else {
             activePlayer = null
         }
@@ -121,7 +121,7 @@ class InrollYandexAdsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        activePlayer?.onResume()
+        activePlayer?.resume()
     }
 
     override fun onDestroy() {
@@ -130,8 +130,8 @@ class InrollYandexAdsActivity : AppCompatActivity() {
             invalidate()
             setListener(null)
         }
-        instreamAdPlayer?.onDestroy()
-        contentVideoPlayer?.onDestroy()
+        instreamAdPlayer?.release()
+        contentVideoPlayer?.release()
         instreamAdPlayer = null
         contentVideoPlayer = null
         activePlayer = null
@@ -166,7 +166,7 @@ class InrollYandexAdsActivity : AppCompatActivity() {
 
         override fun onInstreamAdLoaded(instreamAd: InstreamAd) {
             Logger.debug("onInstreamAdLoaded")
-            val inrollQueueProvider = InrollQueueProvider(this@InrollYandexAdsActivity, instreamAd)
+            val inrollQueueProvider = InrollQueueProvider(this@InstreamInrollYandexAdsActivity, instreamAd)
             instreamAdBreakQueue = inrollQueueProvider.queue
             binding.playInrollButton.isEnabled = true
         }
@@ -213,6 +213,6 @@ class InrollYandexAdsActivity : AppCompatActivity() {
 
     private companion object {
 
-        const val PAGE_ID = "427408"
+        const val PAGE_ID = "R-M-DEMO-instream-vmap"
     }
 }

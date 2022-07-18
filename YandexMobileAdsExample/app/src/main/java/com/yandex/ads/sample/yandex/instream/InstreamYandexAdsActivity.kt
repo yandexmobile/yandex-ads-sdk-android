@@ -16,9 +16,9 @@ import com.yandex.ads.sample.databinding.NavigationListLayoutBinding
 import com.yandex.ads.sample.navigation.NavigationItem
 import com.yandex.ads.sample.navigation.NavigationListAdapter
 import com.yandex.ads.sample.navigation.NavigationListConfigurator
-import com.yandex.ads.sample.yandex.instream.inroll.InrollYandexAdsActivity
+import com.yandex.ads.sample.yandex.instream.advanced.InstreamBinderYandexAdsActivity
+import com.yandex.ads.sample.yandex.instream.advanced.InstreamInrollYandexAdsActivity
 import com.yandex.ads.sample.yandex.instream.simple.SimpleInstreamYandexAdsActivity
-import com.yandex.ads.sample.yandex.instream.advanced.AdvancedInstreamYandexAdsActivity
 
 class InstreamYandexAdsActivity : AppCompatActivity() {
 
@@ -36,9 +36,18 @@ class InstreamYandexAdsActivity : AppCompatActivity() {
 
     private fun getNavigationItems(): List<NavigationItem> {
         return listOf(
-            NavigationItem(AdvancedInstreamYandexAdsActivity::class.java, getString(R.string.instream_ad_advanced_instream_title)),
-            NavigationItem(SimpleInstreamYandexAdsActivity::class.java, getString(R.string.instream_ad_simple_instream_title)),
-            NavigationItem(InrollYandexAdsActivity::class.java, getString(R.string.instream_ad_inroll_title)),
+            NavigationItem(
+                SimpleInstreamYandexAdsActivity::class.java,
+                getString(R.string.instream_ad_simple_instream_title)
+            ),
+            NavigationItem(
+                InstreamBinderYandexAdsActivity::class.java,
+                getString(R.string.instream_ad_advanced_instream_binder_title)
+            ),
+            NavigationItem(
+                InstreamInrollYandexAdsActivity::class.java,
+                getString(R.string.instream_ad_advanced_instream_inroll_title)
+            ),
         )
     }
 }

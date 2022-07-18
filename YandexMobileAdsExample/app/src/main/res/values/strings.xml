@@ -59,8 +59,9 @@
     <string name="gdpr_dialog_title">This is sample of GDPR dialog</string>
     <string name="gdpr_dialog_message">This application contains Yandex advertising code that collects data in order to show you relevant ads that better match your interests. To learn more about how and why Yandex processes your data, see the Privacy Policy.</string>
     <string name="instream_ad_inroll_title">Inroll</string>
-    <string name="instream_ad_simple_instream_title">Simple Instream</string>
-    <string name="instream_ad_advanced_instream_title">Advanced Instream</string>
+    <string name="instream_ad_simple_instream_title">Simple: Pre / Mid / Post-Roll</string>
+    <string name="instream_ad_advanced_instream_binder_title">Advanced: Pre / Mid / Post-Roll</string>
+    <string name="instream_ad_advanced_instream_inroll_title">Advanced: In-Roll</string>
     <string name="play_inroll_button_text">Play</string>
     <string name="pause_inroll_button_text">Pause</string>
     <string name="resume_inroll_button_text">Resume</string>

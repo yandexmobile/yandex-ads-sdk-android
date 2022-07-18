@@ -7,13 +7,13 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.yandex.ads.sample.yandex.instream.player
+package com.yandex.ads.sample.yandex.instream.advanced.player
 
 interface SamplePlayer {
 
     fun isPlaying(): Boolean
 
-    fun onResume()
+    fun resume()
 
-    fun onPause()
+    fun pause()
 }

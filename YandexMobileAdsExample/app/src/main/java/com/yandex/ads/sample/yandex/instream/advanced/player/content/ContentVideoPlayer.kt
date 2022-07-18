@@ -7,19 +7,14 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.yandex.ads.sample.yandex.instream.player.content
+package com.yandex.ads.sample.yandex.instream.advanced.player.content
 
-import android.content.Context
 import com.google.android.exoplayer2.ExoPlaybackException
-import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.util.Util
-import com.yandex.ads.sample.yandex.instream.player.SamplePlayer
+import com.yandex.ads.sample.yandex.instream.advanced.player.SamplePlayer
+import com.yandex.ads.sample.yandex.instream.advanced.player.creator.MediaSourceCreator
 import com.yandex.mobile.ads.instream.player.content.VideoPlayer
 import com.yandex.mobile.ads.instream.player.content.VideoPlayerListener
 
@@ -28,7 +23,10 @@ class ContentVideoPlayer(
     private val exoPlayerView: PlayerView
 ) : VideoPlayer, SamplePlayer {
 
-    private val exoPlayer = SimpleExoPlayer.Builder(exoPlayerView.context).build()
+    private val context = exoPlayerView.context
+    private val exoPlayer = SimpleExoPlayer.Builder(context).build()
+    private val mediaSourceCreator = MediaSourceCreator(context)
+
     private var videoPlayerListener: VideoPlayerListener? = null
 
     init {
@@ -37,30 +35,22 @@ class ContentVideoPlayer(
 
     override fun isPlaying() = exoPlayer.isPlaying
 
-    override fun onResume() {
+    override fun resume() {
         exoPlayer.playWhenReady = true
     }
 
-    override fun onPause() {
+    override fun pause() {
         exoPlayer.playWhenReady = false
     }
 
     override fun prepareVideo() {
-        val videoSource = getMediaSource(exoPlayerView.context, videoUrl)
+        val mediaSource = mediaSourceCreator.createMediaSource(videoUrl)
         exoPlayer.apply {
             playWhenReady = false
-            addListener(ExoPlayerEventListener())
-            setMediaSource(videoSource, true)
+            addListener(ConentPlayerPrepareListener())
+            setMediaSource(mediaSource)
             prepare()
         }
-    }
-
-    private fun getMediaSource(context: Context, url: String): MediaSource {
-        val userAgent = Util.getUserAgent(context, "Content video player")
-        val dataSourceFactory = DefaultDataSourceFactory(context, userAgent)
-        val mediaItem = MediaItem.fromUri(url)
-
-        return ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(mediaItem)
     }
 
     override fun getVideoPosition() = exoPlayer.currentPosition
@@ -70,20 +60,21 @@ class ContentVideoPlayer(
     override fun getVolume() = exoPlayer.volume
 
     override fun pauseVideo() {
-        exoPlayer.playWhenReady = false
+        exoPlayerView.useController = false
+        pause()
     }
 
     override fun resumeVideo() {
         exoPlayerView.player = exoPlayer
         exoPlayerView.useController = true
-        exoPlayer.playWhenReady = true
+        resume()
     }
 
     override fun setVideoPlayerListener(playerListener: VideoPlayerListener?) {
         videoPlayerListener = playerListener
     }
 
-    fun onDestroy() {
+    fun release() {
         exoPlayer.release()
     }
 
@@ -97,10 +88,15 @@ class ContentVideoPlayer(
             }
         }
 
-        override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+        override fun onPlaybackStateChanged(playbackState: Int) {
             if (playbackState == Player.STATE_ENDED) {
-                videoPlayerListener?.onVideoCompleted()
+                onVideoCompleted()
             }
+        }
+
+        private fun onVideoCompleted() {
+            exoPlayerView.useController = false
+            videoPlayerListener?.onVideoCompleted()
         }
 
         override fun onPlayerError(error: ExoPlaybackException) {
@@ -108,9 +104,9 @@ class ContentVideoPlayer(
         }
     }
 
-    private inner class ExoPlayerEventListener : Player.Listener {
+    private inner class ConentPlayerPrepareListener : Player.Listener {
 
-        override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+        override fun onPlaybackStateChanged(playbackState: Int) {
             if (playbackState == Player.STATE_READY) {
                 videoPlayerListener?.onVideoPrepared()
                 exoPlayer.removeListener(this)

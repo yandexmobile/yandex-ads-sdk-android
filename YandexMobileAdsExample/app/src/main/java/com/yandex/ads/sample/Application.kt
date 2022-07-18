@@ -12,14 +12,20 @@ package com.yandex.ads.sample
 import androidx.multidex.MultiDexApplication
 import com.yandex.ads.sample.utils.Logger
 import com.yandex.mobile.ads.common.MobileAds
+import com.yandex.mobile.ads.instream.MobileInstreamAds
 
-class Application: MultiDexApplication() {
+class Application : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
         Logger.initialize(this)
+        MobileInstreamAds.setAdGroupPreloading(INSTREAM_AD_GROUP_PRELOADING_ENABLED)
         MobileAds.initialize(this) {
             Logger.debug("SDK initialized")
         }
+    }
+
+    private companion object {
+        private const val INSTREAM_AD_GROUP_PRELOADING_ENABLED = true
     }
 }
