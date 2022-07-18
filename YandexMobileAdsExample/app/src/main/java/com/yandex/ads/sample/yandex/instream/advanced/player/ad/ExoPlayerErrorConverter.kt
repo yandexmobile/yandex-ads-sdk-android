@@ -6,7 +6,7 @@
  * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
-package com.yandex.ads.sample.yandex.instream.player.ad
+package com.yandex.ads.sample.yandex.instream.advanced.player.ad
 
 import android.media.MediaCodec
 import android.media.MediaDrmResetException

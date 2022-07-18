@@ -5,7 +5,7 @@ This package contains Yandex Advertising Network Mobile SDK and source code of s
 Documentation could be found at the [official website] [DOCUMENTATION]
 
 ## License
-EULA is available at [EULA website] [LICENSE] 
+EULA is available at [EULA website] [LICENSE]
 
 ## Quick start in Android Studio
 
@@ -23,7 +23,7 @@ EULA is available at [EULA website] [LICENSE]
 implementation 'com.yandex.android:mobileads:5.2.0'
 ```
 
-##### Note, for correct work of SDK you need Android Gradle Plugin version 7+.
+##### Note, for correct work of SDK you need Android Gradle Plugin version 7.1.3.
 
 [DOCUMENTATION]: https://tech.yandex.com/mobile-ads/
 [LICENSE]: https://legal.yandex.com/partner_ch/

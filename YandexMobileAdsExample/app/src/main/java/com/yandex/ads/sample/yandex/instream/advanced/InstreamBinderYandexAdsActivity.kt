@@ -14,9 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityAdvancedInstreamYandexAdsBinding
 import com.yandex.ads.sample.utils.Logger
-import com.yandex.ads.sample.yandex.instream.player.SamplePlayer
-import com.yandex.ads.sample.yandex.instream.player.ad.SampleInstreamAdPlayer
-import com.yandex.ads.sample.yandex.instream.player.content.ContentVideoPlayer
+import com.yandex.ads.sample.yandex.instream.advanced.player.SamplePlayer
+import com.yandex.ads.sample.yandex.instream.advanced.player.ad.SampleInstreamAdPlayer
+import com.yandex.ads.sample.yandex.instream.advanced.player.content.ContentVideoPlayer
 import com.yandex.mobile.ads.instream.InstreamAd
 import com.yandex.mobile.ads.instream.InstreamAdBinder
 import com.yandex.mobile.ads.instream.InstreamAdListener
@@ -24,7 +24,7 @@ import com.yandex.mobile.ads.instream.InstreamAdLoadListener
 import com.yandex.mobile.ads.instream.InstreamAdLoader
 import com.yandex.mobile.ads.instream.InstreamAdRequestConfiguration
 
-class AdvancedInstreamYandexAdsActivity : AppCompatActivity() {
+class InstreamBinderYandexAdsActivity : AppCompatActivity() {
 
     private var instreamAdLoader: InstreamAdLoader? = null
     private var instreamAdBinder: InstreamAdBinder? = null
@@ -40,7 +40,8 @@ class AdvancedInstreamYandexAdsActivity : AppCompatActivity() {
         binding = ActivityAdvancedInstreamYandexAdsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        contentVideoPlayer = ContentVideoPlayer(getString(R.string.content_url_for_instream_ad), binding.exoPlayerView)
+        val contentStreamUrl = getString(R.string.content_url_for_instream_ad)
+        contentVideoPlayer = ContentVideoPlayer(contentStreamUrl, binding.exoPlayerView)
         instreamAdPlayer = SampleInstreamAdPlayer(binding.exoPlayerView)
 
         loadInstreamAd()
@@ -50,7 +51,7 @@ class AdvancedInstreamYandexAdsActivity : AppCompatActivity() {
         super.onPause()
         if (instreamAdPlayer?.isPlaying() == true || contentVideoPlayer?.isPlaying() == true) {
             activePlayer = if (contentVideoPlayer?.isPlaying() == true) contentVideoPlayer else instreamAdPlayer
-            activePlayer?.onPause()
+            activePlayer?.pause()
         } else {
             activePlayer = null
         }
@@ -58,14 +59,16 @@ class AdvancedInstreamYandexAdsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        activePlayer?.onResume()
+        activePlayer?.resume()
     }
 
     override fun onDestroy() {
         instreamAdBinder?.unbind()
+        instreamAdBinder?.invalidateAdPlayer()
+        instreamAdBinder?.invalidateVideoPlayer()
 
-        contentVideoPlayer?.onDestroy()
-        instreamAdPlayer?.onDestroy()
+        contentVideoPlayer?.release()
+        instreamAdPlayer?.release()
         activePlayer = null
         contentVideoPlayer = null
         instreamAdPlayer = null
@@ -82,8 +85,7 @@ class AdvancedInstreamYandexAdsActivity : AppCompatActivity() {
     }
 
     private fun showInstreamAd(instreamAd: InstreamAd) {
-        instreamAdBinder =
-            InstreamAdBinder(this, instreamAd, checkNotNull(instreamAdPlayer), checkNotNull(contentVideoPlayer))
+        instreamAdBinder = InstreamAdBinder(this, instreamAd, checkNotNull(instreamAdPlayer), checkNotNull(contentVideoPlayer))
         instreamAdBinder?.apply {
             setInstreamAdListener(InstreamAdPlaybackListener())
             bind(binding.instreamAdView)
