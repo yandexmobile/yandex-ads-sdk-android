@@ -46,7 +46,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.yandex.android:mobileads:5.2.0'
+    implementation 'com.yandex.android:mobileads:5.2.1'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.activity:activity-ktx:1.4.0'
