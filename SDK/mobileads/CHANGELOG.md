@@ -1,11 +1,15 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 5.2.1
+
+### Added
+* Improvements and optimizations
+
 ## Version 5.2.0
 
 ### Added
 * Improvements and optimizations
-* Updated Android Gradle plugin version to 7.1.3
 
 ## Version 5.1.1
 
