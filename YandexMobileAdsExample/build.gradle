@@ -11,15 +11,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-
-        // IronSource
-        maven { url 'https://android-sdk.is.com/' }
-
-        // Pangle
-        maven { url 'https://artifact.bytedance.com/repository/pangle' }
-
-        // Tapjoy
-        maven { url "https://sdk.tapjoy.com/" }
     }
 
     dependencies {
@@ -44,6 +35,9 @@ allprojects {
 
         // Tapjoy
         maven { url "https://sdk.tapjoy.com/" }
+
+        // Mintegral
+        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"}
     }
 }
 

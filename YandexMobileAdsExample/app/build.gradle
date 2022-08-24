@@ -27,7 +27,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -46,7 +46,16 @@ android {
 }
 
 dependencies {
-    implementation 'com.yandex.android:mobileads:5.2.1'
+    // Yandex Mobile Ads SDK with mediation adapters
+    implementation 'com.yandex.android:mobileads-mediation:5.2.1.0'
+
+    // AdMob third party mediation
+    implementation 'com.yandex.ads.adapter:admob-mobileads:5.2.0.0'
+    implementation 'com.google.android.gms:play-services-ads:20.5.0'
+
+    // IronSource third party mediation
+    implementation 'com.yandex.ads.adapter:ironsource-mobileads:5.2.0.0'
+    implementation 'com.ironsource.sdk:mediationsdk:7.2.2.1'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.activity:activity-ktx:1.4.0'
@@ -57,47 +66,4 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation 'com.google.android.material:material:1.4.0'
-
-    implementation 'com.yandex.ads.mediation:mobileads-adcolony:4.8.0.0'
-    implementation 'com.adcolony:sdk:4.8.0'
-
-    implementation 'com.yandex.ads.mediation:mobileads-admob:20.5.0.1'
-    implementation 'com.google.android.gms:play-services-ads:20.5.0'
-    implementation 'com.yandex.ads.adapter:admob-mobileads:5.2.0.0'
-
-    implementation 'com.yandex.ads.mediation:mobileads-applovin:11.0.0.1'
-    implementation 'com.applovin:applovin-sdk:11.0.0'
-
-    implementation 'com.yandex.ads.mediation:mobileads-chartboost:8.3.1.1'
-    implementation "com.chartboost:chartboost-sdk:8.3.1"
-
-    implementation 'com.yandex.ads.mediation:mobileads-facebook:6.11.0.0'
-    implementation 'com.facebook.android:audience-network-sdk:6.11.0'
-
-    implementation 'com.yandex.ads.mediation:mobileads-ironsource:7.2.2.1.0'
-    implementation 'com.yandex.ads.adapter:ironsource-mobileads:5.2.0.0'
-    implementation 'com.ironsource.sdk:mediationsdk:7.2.2.1'
-
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.14.2'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.14.2'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.14.2'
-    implementation 'com.google.android.exoplayer:exoplayer-hls:2.14.2'
-
-    implementation 'com.yandex.ads.mediation:mobileads-mytarget:5.15.0.1'
-    implementation 'com.my.target:mytarget-sdk:5.15.0'
-
-    implementation 'com.yandex.ads.mediation:mobileads-pangle:4.3.0.4.0'
-    implementation 'com.pangle.global:ads-sdk:4.3.0.4'
-
-    implementation 'com.yandex.ads.mediation:mobileads-startapp:4.10.0.0'
-    implementation 'com.startapp:inapp-sdk:4.10.0'
-
-    implementation 'com.yandex.ads.mediation:mobileads-tapjoy:12.10.0.0'
-    implementation 'com.tapjoy:tapjoy-android-sdk:12.10.0'
-
-    implementation 'com.yandex.ads.mediation:mobileads-unityads:4.2.1.0'
-    implementation 'com.unity3d.ads:unity-ads:4.2.1'
-
-    implementation 'com.yandex.ads.mediation:mobileads-vungle:6.11.0.0'
-    implementation 'com.vungle:publisher-sdk-android:6.11.0'
 }
