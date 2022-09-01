@@ -23,6 +23,42 @@ EULA is available at [EULA website] [LICENSE]
 implementation 'com.yandex.android:mobileads:5.2.1'
 ```
 
+##### Or you can use our library with all available mediations:
+
+##### your app module ``build.gradle ``
+
+```sh
+
+dependencies {
+  ...
+  implementation 'com.yandex.android:mobileads:5.2.1.0'
+}
+```
+
+##### your project ``build.gradle ``
+
+```sh
+allprojects {
+    repositories {
+      
+        ...
+
+        // IronSource
+        maven { url 'https://android-sdk.is.com/' }
+
+        // Pangle
+        maven { url 'https://artifact.bytedance.com/repository/pangle' }
+
+        // Tapjoy
+        maven { url "https://sdk.tapjoy.com/" }
+
+        // Mintegral
+        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"}
+    }
+}
+```
+
+
 ##### Note, for correct work of SDK you need Android Gradle Plugin version 7.1.3.
 
 [DOCUMENTATION]: https://tech.yandex.com/mobile-ads/
