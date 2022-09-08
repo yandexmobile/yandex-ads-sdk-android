@@ -1,11 +1,18 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
-## Version 5.2.1
+## Version 5.3.0
 
 ### Added
+* Added SDK integration log
+* Added getter for banner size
 * Improvements and optimizations
 
+## Version 5.2.1
+ 
+### Added
+* Improvements and optimizations
+ 
 ## Version 5.2.0
 
 ### Added

@@ -17,6 +17,7 @@ import com.yandex.ads.sample.databinding.ActivityCustomNativeYandexAdsBinding
 import com.yandex.ads.sample.databinding.NativeAdViewBinding
 import com.yandex.ads.sample.utils.Logger
 import com.yandex.mobile.ads.common.AdRequestError
+import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.nativeads.*
 
 
@@ -107,6 +108,7 @@ class CustomNativeYandexAdsActivity : AppCompatActivity() {
 
             try {
                 nativeAd.bindNativeAd(nativeAdViewBinder)
+                nativeAd.setNativeAdEventListener(NativeAdYandexAdsEventListener())
                 nativeAdView.isVisible = true
             } catch (exception: NativeAdException) {
                 Logger.error(exception.message.orEmpty())
@@ -120,9 +122,27 @@ class CustomNativeYandexAdsActivity : AppCompatActivity() {
         }
     }
 
+    private inner class NativeAdYandexAdsEventListener: NativeAdEventListener {
+
+        override fun onAdClicked() {
+            Logger.debug("onAdClicked")
+        }
+
+        override fun onLeftApplication() {
+            Logger.debug("onLeftApplication")
+        }
+
+        override fun onReturnedToApplication() {
+            Logger.debug("onReturnedToApplication")
+        }
+
+        override fun onImpression(p0: ImpressionData?) {
+            Logger.debug("onImpression")
+        }
+    }
+
     private companion object {
 
         const val AD_UNIT_ID = "R-M-DEMO-native-i"
     }
 }
-
