@@ -9,7 +9,7 @@
 
 package com.yandex.ads.sample.yandex.instream.advanced.player.content
 
-import com.google.android.exoplayer2.ExoPlaybackException
+import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerView
@@ -47,7 +47,7 @@ class ContentVideoPlayer(
         val mediaSource = mediaSourceCreator.createMediaSource(videoUrl)
         exoPlayer.apply {
             playWhenReady = false
-            addListener(ConentPlayerPrepareListener())
+            addListener(ContentPlayerPrepareListener())
             setMediaSource(mediaSource)
             prepare()
         }
@@ -99,12 +99,12 @@ class ContentVideoPlayer(
             videoPlayerListener?.onVideoCompleted()
         }
 
-        override fun onPlayerError(error: ExoPlaybackException) {
+        override fun onPlayerError(error: PlaybackException) {
             videoPlayerListener?.onVideoError()
         }
     }
 
-    private inner class ConentPlayerPrepareListener : Player.Listener {
+    private inner class ContentPlayerPrepareListener : Player.Listener {
 
         override fun onPlaybackStateChanged(playbackState: Int) {
             if (playbackState == Player.STATE_READY) {

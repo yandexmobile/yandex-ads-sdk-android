@@ -47,7 +47,10 @@ class SimpleInstreamYandexAdsActivity : AppCompatActivity() {
         return YandexAdsLoader(this, configuration)
     }
 
-    private fun createContentPlayerWithAds(playerView: PlayerView, yandexAdsLoader: YandexAdsLoader): Player {
+    private fun createContentPlayerWithAds(
+        playerView: PlayerView,
+        yandexAdsLoader: YandexAdsLoader
+    ): Player {
         val userAgent = Util.getUserAgent(this, getString(R.string.app_name))
         val dataSourceFactory = DefaultDataSourceFactory(this, userAgent)
         val mediaSourceFactory = DefaultMediaSourceFactory(dataSourceFactory)
@@ -64,9 +67,7 @@ class SimpleInstreamYandexAdsActivity : AppCompatActivity() {
 
     private fun startVideoPlayback(player: Player) {
         val contentVideoUrl = getString(R.string.content_url_for_instream_ad)
-        val mediaItem = MediaItem.Builder()
-            .setUri(contentVideoUrl)
-            .setAdTagUri(YandexAdsLoader.AD_TAG_URI).build()
+        val mediaItem = MediaItem.fromUri(contentVideoUrl)
 
         player.apply {
             setMediaItem(mediaItem)

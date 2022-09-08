@@ -9,7 +9,7 @@
 
 package com.yandex.ads.sample.yandex.instream.advanced.player.ad
 
-import com.google.android.exoplayer2.ExoPlaybackException
+import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerView
@@ -154,7 +154,7 @@ class SampleVideoAdPlayer(
             adPlayerListener?.onAdBufferingFinished(videoAd)
         }
 
-        override fun onPlayerError(error: ExoPlaybackException) {
+        override fun onPlayerError(error: PlaybackException) {
             resetState()
             val adPlayerError = exoPlayerErrorConverter.convertExoPlayerError(error)
             adPlayerListener?.onError(videoAd, adPlayerError)

@@ -10,14 +10,15 @@
 package com.yandex.ads.sample.yandex.nativeAd
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.yandex.ads.sample.databinding.ActivityTemplateNativeYandexAdsBinding
 import com.yandex.ads.sample.utils.Logger
 import com.yandex.mobile.ads.common.AdRequestError
+import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.nativeads.NativeAd
+import com.yandex.mobile.ads.nativeads.NativeAdEventListener
 import com.yandex.mobile.ads.nativeads.NativeAdLoadListener
 import com.yandex.mobile.ads.nativeads.NativeAdLoader
 import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration
@@ -85,8 +86,28 @@ class TemplateNativeYandexAdsActivity : AppCompatActivity() {
 
     private fun bindNativeAd(nativeAd: NativeAd) {
         binding.nativeAdView.apply {
+            nativeAd.setNativeAdEventListener(NativeAdYandexAdsEventListener())
             setAd(nativeAd)
             isVisible = true
+        }
+    }
+
+    private inner class NativeAdYandexAdsEventListener : NativeAdEventListener {
+
+        override fun onAdClicked() {
+            Logger.debug("onAdClicked")
+        }
+
+        override fun onLeftApplication() {
+            Logger.debug("onLeftApplication")
+        }
+
+        override fun onReturnedToApplication() {
+            Logger.debug("onReturnedToApplication")
+        }
+
+        override fun onImpression(p0: ImpressionData?) {
+            Logger.debug("onImpression")
         }
     }
 
