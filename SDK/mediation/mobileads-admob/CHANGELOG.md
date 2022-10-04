@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to AdMob Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 21.2.0.0
+
+#### Added
+* Added support for Yandex Mobile Ads SDK version 5.3.1
+* Updated minimum supported Yandex Mobile Ads SDK version to 5.3.1
+* Added support for AdMob SDK version 21.2.0
+* Updated minimum supported AdMob SDK version to 21.2.0
+
 ## Version 21.1.0.0
 
 #### Added
