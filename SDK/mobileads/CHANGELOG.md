@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 5.3.2
+
+### Fixed
+* Fixed ANR in SDK 5.3.1 during ad loading
+
+## Version 5.3.1
+
+### Added
+* Improvements and optimizations
+
 ## Version 5.3.0
 
 ### Added
@@ -9,10 +19,10 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * Improvements and optimizations
 
 ## Version 5.2.1
- 
+
 ### Added
 * Improvements and optimizations
- 
+
 ## Version 5.2.0
 
 ### Added
