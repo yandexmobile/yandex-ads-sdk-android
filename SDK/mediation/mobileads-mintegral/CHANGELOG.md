@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to Yandex Adapter for Mintegral Mediation will be documented in this file.
 
+## Version 15.8.01.3
+
+#### Added
+* Removed usage of android.permission.REQUEST_INSTALL_PAKACKAGES permission
+
 ## Version 15.8.01.2
 
 #### Added

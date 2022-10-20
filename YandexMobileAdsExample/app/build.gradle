@@ -47,7 +47,7 @@ android {
 
 dependencies {
     // Yandex Mobile Ads SDK with mediation adapters
-    implementation 'com.yandex.android:mobileads-mediation:5.3.2.0'
+    implementation 'com.yandex.android:mobileads-mediation:5.3.2.1'
 
     // AdMob third party mediation
     implementation 'com.yandex.ads.adapter:admob-mobileads:5.3.2.0'

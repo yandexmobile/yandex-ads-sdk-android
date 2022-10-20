@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to Yandex Full Mediation will be documented in this file.
 
+## Version 5.3.2.1
+
+#### Added
+
+* Added support for Mintegral Adapter version 15.8.01.3
+* Updated minimum supported Mintegral Adapter version to 15.8.01.3
+* 
 ## Version 5.3.2.0
 
 ### Added

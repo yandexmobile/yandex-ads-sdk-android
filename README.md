@@ -31,7 +31,7 @@ implementation 'com.yandex.android:mobileads:5.3.2'
 
 dependencies {
   ...
-  implementation 'com.yandex.android:mobileads-mediation:5.3.2.0'
+  implementation 'com.yandex.android:mobileads-mediation:5.3.2.1'
 }
 ```
 
