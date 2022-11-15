@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to Yandex Adapter for Mintegral Mediation will be documented in this file.
 
+## Version 15.8.01.4
+
+#### Added
+* Added support for Yandex Mobile Ads SDK version 5.4.0
+* Updated minimum supported Yandex Mobile Ads SDK version to 5.4.0
+
+## Version 15.8.01.3
+
+## Added
+* Removed usage of android.permission.REQUEST_INSTALL_PAKACKAGES permission
+
 ## Version 15.8.01.2
 
 #### Added

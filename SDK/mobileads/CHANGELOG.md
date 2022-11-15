@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 5.4.0
+
+### Added
+* Added support of COPPA
+* Added opportunity to set preferred theme
+
 ## Version 5.3.2
 
 ### Fixed

@@ -13,12 +13,13 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 32
+    buildToolsVersion "32.0.0"
 
     defaultConfig {
         applicationId "com.yandex.ads.mobile"
         minSdk 21
-        targetSdk 31
+        targetSdk 32
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -47,14 +48,14 @@ android {
 
 dependencies {
     // Yandex Mobile Ads SDK with mediation adapters
-    implementation 'com.yandex.android:mobileads-mediation:5.3.2.0'
+    implementation 'com.yandex.android:mobileads-mediation:5.4.0.0'
 
     // AdMob third party mediation
-    implementation 'com.yandex.ads.adapter:admob-mobileads:5.3.2.0'
-    implementation 'com.google.android.gms:play-services-ads:21.2.0'
+    implementation 'com.yandex.ads.adapter:admob-mobileads:5.4.0.0'
+    implementation 'com.google.android.gms:play-services-ads:21.3.0'
 
     // IronSource third party mediation
-    implementation 'com.yandex.ads.adapter:ironsource-mobileads:5.3.2.0'
+    implementation 'com.yandex.ads.adapter:ironsource-mobileads:5.4.0.0'
     implementation 'com.ironsource.sdk:mediationsdk:7.2.4'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
