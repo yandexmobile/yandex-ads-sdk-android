@@ -1,12 +1,13 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">127.0.0.1</domain>
+        <domain includeSubdomains="true">10.0.2.2</domain>
     </domain-config>
 
-    <debug-overrides>
+    <base-config usesCleartextTraffic="true">
         <trust-anchors>
             <certificates src="system" />
             <certificates src="user" />
         </trust-anchors>
-    </debug-overrides>
+    </base-config>
 </network-security-config>

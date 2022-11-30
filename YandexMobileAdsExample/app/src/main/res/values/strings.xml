@@ -3,30 +3,53 @@
 <!--
   ~ This file is a part of the Yandex Advertising Network
   ~
-  ~ Version for Android (C) 2021 YANDEX
+  ~ Version for Android (C) 2022 YANDEX
   ~
   ~ You may not use this file except in compliance with the License.
   ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
   -->
 
 <resources>
-    <string name="app_name">AdsSample</string>
-    <string name="yandex_ads_title">Yandex Ads</string>
-    <string name="mobile_mediation_title">Mobile mediation</string>
-    <string name="third_party_mediation_title">Third-Party mediation</string>
-    <string name="gdpr_navigation_title">GDPR</string>
-    <string name="adfox_navigation_title">AdFox</string>
-    <string name="banner_title">Banner</string>
+
+    <string name="app_name">Yandex Mobile Ads</string>
+
+    <!--  Ad units  -->
+    <string name="sticky_banner_title">Sticky banner</string>
+    <string name="flex_banner_title">Flex banner</string>
     <string name="interstitial_title">Interstitial</string>
     <string name="rewarded_title">Rewarded</string>
-    <string name="instream_title">Instream</string>
-    <string name="native_title">Native</string>
+    <string name="native_template_title">Native template</string>
+    <string name="native_custom_title">Custom native</string>
+    <string name="instream_simple_title">Simple instream</string>
+    <string name="instream_binder_title">Instream: Pre / Mid / Post-Roll</string>
+    <string name="instream_inroll_title">Instream: In-Roll</string>
+
+    <!--  Mediation networks  -->
+    <string name="yandex_title">Yandex</string>
+    <string name="adcolony_title">AdColony</string>
     <string name="admob_title">AdMob</string>
-    <string name="gdpr_title">GDPR</string>
-    <string name="gdpr_setting_title">GDPR Setting</string>
-    <string name="load_button_text">Load</string>
-    <string name="native_custom_ad_title">Custom</string>
-    <string name="native_template_ad_title">Template</string>
+    <string name="applovin_title">AppLovin</string>
+    <string name="chartboost_title">Chartboost</string>
+    <string name="mintegral_title">Mintegral</string>
+    <string name="my_target_title">MyTarget</string>
+    <string name="startapp_title">StartApp</string>
+    <string name="vungle_title">Vungle</string>
+    <string name="ironsource_title">IronSource</string>
+    <string name="pangle_title">Pangle</string>
+    <string name="tapjoy_title">Tapjoy</string>
+    <string name="unity_ads_title">Unity Ads</string>
+    <string name="adfox_title">AdFox</string>
+
+    <!--  Ad info  -->
+    <string name="network">Network</string>
+    <string name="logs">Logs</string>
+    <string name="load_ad">Load ad</string>
+    <string name="loading_ad">Loading ad</string>
+    <string name="pause_inroll_button_text">Pause</string>
+    <string name="resume_inroll_button_text">Resume</string>
+    <string name="instream_content_url">https://storage.mds.yandex.net/get-ads-mobile-sdk/212922/d170b1d2-0871-40ef-af57-9a0ae7428622</string>
+
+    <!--  Native ad  -->
     <string name="native_ad_title_text">Yandex.Browser for iPhone and Android</string>
     <string name="native_ad_body_text">Your bookmarks and favorite sites are available to you on any device with Yandex.Browser. You will never lose them, even if you lose your device or break it.</string>
     <string name="native_ad_domain_text">https://browser.yandex.com</string>
@@ -35,35 +58,33 @@
     <string name="native_ad_warning_text">We strongly recommend avoiding this type of website and not clicking the Ignore this warning button!</string>
     <string name="native_ad_call_to_action_text">Install</string>
     <string name="native_appinstall_price_text">Free</string>
-    <string name="yandex_title">Yandex</string>
-    <string name="adcolony_title">AdColony</string>
-    <string name="applovin_title">AppLovin</string>
-    <string name="facebook_title">Facebook</string>
-    <string name="chartboost_title">Chartboost</string>
-    <string name="my_target_title">MyTarget</string>
-    <string name="startapp_title">StartApp</string>
-    <string name="vungle_title">Vungle</string>
-    <string name="ironsource_title">IronSource</string>
-    <string name="pangle_title">Pangle</string>
-    <string name="tapjoy_title">Tapjoy</string>
-    <string name="unity_ads_title">Unity Ads</string>
-    <string name="action_settings">Settings</string>
-    <string name="user_consent_title">User Consent</string>
-    <string name="preference_user_consent">User Consent</string>
-    <string name="preference_dialog_shown">Dialog was shown</string>
-    <string name="preference_category_dialog">Dialog</string>
-    <string name="preference_category_gdpr">GDPR</string>
-    <string name="gdpr_dialog_accept">Accept</string>
-    <string name="gdpr_dialog_about">About</string>
-    <string name="gdpr_dialog_decline">Decline</string>
+
+    <!--  Policies  -->
+    <string name="policies">Policies</string>
     <string name="gdpr_dialog_title">This is sample of GDPR dialog</string>
     <string name="gdpr_dialog_message">This application contains Yandex advertising code that collects data in order to show you relevant ads that better match your interests. To learn more about how and why Yandex processes your data, see the Privacy Policy.</string>
-    <string name="instream_ad_inroll_title">Inroll</string>
-    <string name="instream_ad_simple_instream_title">Simple: Pre / Mid / Post-Roll</string>
-    <string name="instream_ad_advanced_instream_binder_title">Advanced: Pre / Mid / Post-Roll</string>
-    <string name="instream_ad_advanced_instream_inroll_title">Advanced: In-Roll</string>
-    <string name="play_inroll_button_text">Play</string>
-    <string name="pause_inroll_button_text">Pause</string>
-    <string name="resume_inroll_button_text">Resume</string>
-    <string name="content_url_for_instream_ad">https://storage.mds.yandex.net/get-ads-mobile-sdk/212922/d170b1d2-0871-40ef-af57-9a0ae7428622</string>
+    <string name="gdpr_enabled">User consent enabled</string>
+    <string name="gdpr_disabled">User consent disabled</string>
+    <string name="coppa_dialog_title">This is a sample of COPPA dialog</string>
+    <string name="coppa_dialog_message">This application contains Yandex advertising code that may show ads that are not suitable for children. Please enter your age so we can make sure the ads shown are appropriate.</string>
+    <string name="coppa_enabled">User is age restricted</string>
+    <string name="coppa_disabled">User is not age restricted</string>
+    <string name="location_dialog_title">This is a sample of location dialog</string>
+    <string name="location_dialog_message">This application contains Yandex advertising code that gets your approximate location in order to show you relevant ads that better match your region.</string>
+    <string name="location_enabled">Location consent enabled</string>
+    <string name="location_disabled">Location consent disabled</string>
+    <string name="open_dialog">Open dialog</string>
+    <string name="accept">Accept</string>
+    <string name="about">About</string>
+    <string name="decline">Decline</string>
+    <string name="coppa_underage">I am underage</string>
+    <string name="coppa__not_underage">I am not underage</string>
+    <string name="age">Age</string>
+
+    <!--  Other  -->
+    <string name="navigation_item_icon">Navigation item icon</string>
+    <string name="list_item_icon">List item icon</string>
+    <string name="chevron">chevron</string>
+    <string name="warning">Warning</string>
+    <string name="network_warning">Keep in mind that some ad networks do not work globally and could not show ads in some regions.\nFor testing purposes see supported regions for every ad network and use VPN or other tools to request ads from supported regions.</string>
 </resources>
