@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is a part of the Yandex Advertising Network
-  ~
-  ~ Version for Android (C) 2021 YANDEX
-  ~
-  ~ You may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
-  -->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yandex.ads.sample">
-
-    <!-- IronSource -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!-- For MRAID 2 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- For MRAID 2 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -26,211 +11,52 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
-            android:name=".MainActivity"
+            android:name="com.yandex.ads.sample.adunits.InstreamAdInrollActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.yandex.ads.sample.adunits.InstreamAdBinderActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.yandex.ads.sample.settings.PoliciesActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.yandex.ads.sample.adunits.SimpleInstreamAdActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.yandex.ads.sample.adunits.CustomNativeAdActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.yandex.ads.sample.adunits.NativeTemplateAdActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.yandex.ads.sample.adunits.RewardedAdActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.yandex.ads.sample.adunits.InterstitialAdActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.yandex.ads.sample.adunits.FlexBannerAdActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.yandex.ads.sample.adunits.StickyBannerAdActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- Yandex ads -->
-        <activity
-            android:name=".yandex.YandexAdsActivity"
-            android:label="@string/yandex_ads_title"
-            android:exported="false" />
-
-        <activity
-            android:name=".yandex.banner.BannerYandexAdsActivity"
-            android:exported="false"
-            android:label="@string/banner_title" />
-
-        <activity
-            android:name=".yandex.interstitial.InterstitialYandexAdsActivity"
-            android:exported="false"
-            android:label="@string/interstitial_title" />
-
-        <activity
-            android:name=".yandex.rewarded.RewardedYandexAdsActivity"
-            android:exported="false"
-            android:label="@string/rewarded_title" />
-
-        <activity
-            android:name=".yandex.nativeAd.NativeYandexAdsActivity"
-            android:label="@string/native_title"
-            android:exported="false" />
-
-        <activity
-            android:name=".yandex.nativeAd.TemplateNativeYandexAdsActivity"
-            android:exported="false"
-            android:label="@string/native_template_ad_title" />
-
-        <activity
-            android:name=".yandex.nativeAd.CustomNativeYandexAdsActivity"
-            android:exported="false"
-            android:label="@string/native_custom_ad_title" />
-
-        <activity
-            android:name=".yandex.instream.InstreamYandexAdsActivity"
-            android:exported="false"
-            android:label="@string/instream_title" />
-
-        <activity
-            android:name=".yandex.instream.simple.SimpleInstreamYandexAdsActivity"
-            android:exported="false"
-            android:label="@string/instream_ad_simple_instream_title" />
-
-        <activity
-            android:name=".yandex.instream.advanced.InstreamBinderYandexAdsActivity"
-            android:exported="false"
-            android:label="@string/instream_ad_advanced_instream_binder_title" />
-
-        <activity
-            android:name=".yandex.instream.advanced.InstreamInrollYandexAdsActivity"
-            android:exported="false"
-            android:label="@string/instream_ad_advanced_instream_inroll_title" />
-
-        <!-- Mobile mediation -->
-        <activity
-            android:name=".mediation.mobile.MobileMediationActivity"
-            android:exported="false"
-            android:label="@string/mobile_mediation_title" />
-
-        <activity
-            android:name=".mediation.mobile.banner.BannerMobileMediationActivity"
-            android:exported="false"
-            android:label="@string/banner_title" />
-
-        <activity
-            android:name=".mediation.mobile.interstitial.InterstitialMobileMediationActivity"
-            android:exported="false"
-            android:label="@string/interstitial_title" />
-
-        <activity
-            android:name=".mediation.mobile.rewarded.RewardedMobileMediationActivity"
-            android:exported="false"
-            android:label="@string/rewarded_title" />
-
-        <activity
-            android:name=".mediation.mobile.nativeAd.NativeMobileMediationActivity"
-            android:exported="false"
-            android:label="@string/native_title" />
-
-        <!-- Mobile Mediation: IronSource-->
-        <activity
-            android:name="com.ironsource.sdk.controller.ControllerActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="false"
-            android:hardwareAccelerated="true" />
-
-        <activity
-            android:name="com.ironsource.sdk.controller.InterstitialActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="false"
-            android:hardwareAccelerated="true"
-            android:theme="@android:style/Theme.Translucent" />
-
-        <activity
-            android:name="com.ironsource.sdk.controller.OpenUrlActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="false"
-            android:hardwareAccelerated="true"
-            android:theme="@android:style/Theme.Translucent" />
-
-        <!-- Third-Party mediation -->
-        <activity
-            android:name=".mediation.thirdparty.ThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/third_party_mediation_title" />
-
-        <activity
-            android:name=".mediation.thirdparty.admob.AdMobThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/admob_title" />
-
-        <activity
-            android:name=".mediation.thirdparty.admob.banner.BannerAdMobThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/banner_title" />
-
-        <activity
-            android:name=".mediation.thirdparty.admob.interstitial.InterstitialAdMobThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/interstitial_title" />
-
-        <activity
-            android:name=".mediation.thirdparty.admob.rewarded.RewardedAdMobThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/rewarded_title" />
-
-        <activity
-            android:name=".mediation.thirdparty.admob.nativeAd.NativeAdMobThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/native_title" />
-
-        <activity
-            android:name=".mediation.thirdparty.ironsource.IronsourceThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/ironsource_title"/>
-
-        <activity
-            android:name=".mediation.thirdparty.ironsource.interstital.InterstitialIronsourceThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/interstitial_title" />
-
-        <activity
-            android:name=".mediation.thirdparty.ironsource.rewarded.RewardedIronsourceThirdPartyMediationActivity"
-            android:exported="false"
-            android:label="@string/rewarded_title"/>
-
-        <!-- GDPR -->
-        <activity
-            android:name=".gdpr.GdprActivity"
-            android:exported="false"
-            android:label="@string/gdpr_title" />
-
-        <activity
-            android:name=".gdpr.settings.SettingGdprActivity"
-            android:exported="false"
-            android:label="@string/gdpr_setting_title"
-            />
-
-        <!-- AdFox -->
-        <activity
-            android:name=".adfox.AdFoxActivity"
-            android:exported="false"
-            android:label="@string/adfox_navigation_title" />
-
-        <activity
-            android:name=".adfox.banner.BannerAdFoxActivity"
-            android:exported="false"
-            android:label="@string/banner_title"/>
-
-        <activity
-            android:name=".adfox.interstitial.InterstitialAdFoxActivity"
-            android:exported="false"
-            android:label="@string/interstitial_title"/>
-
-        <activity
-            android:name=".adfox.nativeAd.NativeAdFoxActivity"
-            android:exported="false"
-            android:label="@string/native_title"/>
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-        <!-- Google Mobile Ads activity. -->
-        <activity
-            android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-
-        <!-- Initialize AdMob SDK with sample AppId -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
@@ -238,6 +64,6 @@
         <receiver
             android:name="com.vungle.warren.NetworkProviderReceiver"
             android:exported="true" />
-
     </application>
+
 </manifest>

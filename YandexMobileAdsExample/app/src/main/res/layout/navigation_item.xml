@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is a part of the Yandex Advertising Network
+  ~
+  ~ Version for Android (C) 2022 YANDEX
+  ~
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
+  -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:gravity="center_vertical"
+    android:padding="@dimen/item_padding">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:src="@drawable/ic_outline_ad_units_24"
+        app:tint="@color/material_on_surface_emphasis_medium"
+        android:contentDescription="@string/navigation_item_icon" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_marginHorizontal="@dimen/navigation_item_text_padding"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:text="@string/sticky_banner_title"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/chevron"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:src="@drawable/ic_outline_chevron_right_24"
+        app:tint="@color/material_on_surface_emphasis_medium"
+        android:contentDescription="@string/chevron" />
+
+</LinearLayout>
