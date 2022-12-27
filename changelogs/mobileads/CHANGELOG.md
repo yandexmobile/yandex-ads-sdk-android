@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 5.5.0
+
+#### Added
+* Improvements and optimizations
+
+#### Fixed
+* Fixed possible crash during ad video playback
+
 ## Version 5.4.1
 
 #### Fixed
@@ -10,7 +18,6 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
 ### Added
 * Added support of COPPA
-* Added opportunity to set preferred theme
 
 ## Version 5.3.2
 
@@ -23,18 +30,14 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * Improvements and optimizations
 
 ## Version 5.3.0
-
-### Added
 * Added SDK integration log
 * Added getter for banner size
 * Improvements and optimizations
 
-## Version 5.2.1
- 
-### Added
-* Improvements and optimizations
- 
 ## Version 5.2.0
+
+### Breaking changes
+* Feedback and domain native ads assets marked as required for all advertising creatives
 
 ### Added
 * Improvements and optimizations
