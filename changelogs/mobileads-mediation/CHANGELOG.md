@@ -1,6 +1,27 @@
 # Change Log
 All notable changes to Yandex Full Mediation will be documented in this file.
 
+## Version 5.5.0.0
+
+#### Added
+* Removed transitive ExoPlayer dependency
+* Added support for Applovin Adapter version 11.6.0.0
+* Updated minimum supported Applovin Adapter version to 11.6.0.0
+* Added support for ChartBoost Adapter version 9.1.1.0
+* Updated minimum supported ChartBoost Adapter version to 9.1.1.0
+* Added support for Mintegral Adapter version 16.3.11.0
+* Updated minimum supported Mintegral Adapter version to 16.3.11.0
+* Added support for MyTarget Adapter version 5.16.2.0
+* Updated minimum supported MyTarget Adapter version to 5.16.2.0
+* Added support for Pangle Adapter version 4.8.1.0
+* Updated minimum supported Pangle Adapter version to 4.8.1.0.0
+
+## Version 5.4.1.1
+
+#### Added
+* Added support for Mintegral Adapter version 16.2.61.0
+* Updated minimum supported Mintegral Adapter version to 16.2.61.0
+
 ## Version 5.4.1.0
 
 #### Added

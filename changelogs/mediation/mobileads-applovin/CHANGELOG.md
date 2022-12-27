@@ -1,14 +1,26 @@
 # Change Log
 All notable changes to AppLovin Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 11.6.0.0
+
+#### Added
+* Added support for AppLovin sdk version 11.6.0
+* Updated minimum supported AppLovin sdk version to 11.6.0
+
 ## Version 11.5.3.0
 
 #### Added
+* Added support for AppLovin sdk version 11.5.3
+* Updated minimum supported AppLovin sdk version to 11.5.3
 * Added support for Yandex Mobile Ads SDK version 5.4.0
 * Updated minimum supported Yandex Mobile Ads SDK version to 5.4.0
-* Added support for AppLovin SDK version 11.5.3
-* Updated minimum supported AppLovin SDK version to 11.5.3
 * Added COPPA Support
+
+## Version 11.5.0.0
+
+#### Added
+* Added support for AppLovin sdk version 11.5.0
+* Updated minimum supported AppLovin sdk version to 11.5.0
 
 ## Version 11.0.0.2
 
@@ -98,4 +110,4 @@ All notable changes to AppLovin Adapter for Yandex Mobile Ads Mediation will be 
 ## Version 0.1.0
 
 #### Added
-* Added support for mediation of Interstitial and Rewarded ads 
+* Added support for mediation of Interstitial and Rewarded ads

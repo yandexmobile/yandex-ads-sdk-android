@@ -4,10 +4,10 @@ All notable changes to UnityAds Adapter for Yandex Mobile Ads Mediation will be 
 ## Version 4.4.1.0
 
 #### Added
+* Added support for UnityAds sdk version 4.4.1
+* Updated minimum supported UnityAds sdk version to 4.4.1
 * Added support for Yandex Mobile Ads SDK version 5.4.0
 * Updated minimum supported Yandex Mobile Ads SDK version to 5.4.0
-* Added support for UnityAds SDK version 4.4.1
-* Updated minimum supported UnityAds SDK version to 4.4.1
 * Added COPPA Support
 
 ## Version 4.2.1.1
@@ -74,4 +74,4 @@ All notable changes to UnityAds Adapter for Yandex Mobile Ads Mediation will be 
 ## Version 1.0.0
 
 #### Added
-* Added support for mediation of Intersittial and Rewarded ads 
+* Added support for mediation of Intersittial and Rewarded ads
