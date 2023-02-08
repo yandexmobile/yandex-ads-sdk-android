@@ -8,4 +8,4 @@
  */
 
 rootProject.name = "YandexMobileAdsExample"
-include ':app'
+include(":app")
