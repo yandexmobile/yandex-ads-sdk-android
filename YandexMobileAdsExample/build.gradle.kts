@@ -14,8 +14,8 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:7.1.3"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
+        classpath("com.android.tools.build:gradle:7.1.3")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -28,19 +28,15 @@ allprojects {
         mavenCentral()
 
         // IronSource
-        maven { url 'https://android-sdk.is.com/' }
+        maven { url = uri("https://android-sdk.is.com/") }
 
         // Pangle
-        maven { url 'https://artifact.bytedance.com/repository/pangle' }
+        maven { url = uri("https://artifact.bytedance.com/repository/pangle") }
 
         // Tapjoy
-        maven { url "https://sdk.tapjoy.com/" }
+        maven { url = uri("https://sdk.tapjoy.com/") }
 
         // Mintegral
-        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"}
+        maven { url = uri("https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea") }
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
