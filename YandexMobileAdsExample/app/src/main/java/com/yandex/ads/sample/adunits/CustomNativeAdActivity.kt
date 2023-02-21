@@ -138,7 +138,7 @@ class CustomNativeAdActivity : AppCompatActivity(R.layout.activity_custom_native
     companion object {
 
         private val networks = arrayListOf(
-            Network(R.drawable.ic_yandex_icon_24, R.string.yandex_title, "demo-native-yandex"),
+            Network(R.drawable.ic_yandex_icon_24, R.string.yandex_title, "demo-native-content-yandex"),
         )
     }
 }
