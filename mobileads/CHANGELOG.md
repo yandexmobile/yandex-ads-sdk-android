@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 5.6.0
+
+#### Updated
+* Kotlin Standard Library updated to 1.7.10
+
+#### Fixed
+* Fixed class VerifyError during dex2oat processing
+
 ## Version 5.5.1
 
 #### Added

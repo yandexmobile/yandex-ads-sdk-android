@@ -18,12 +18,7 @@ gen-external-apklibs/**
 local.properties
 
 # IntellijJ IDEA
-*.iml
-*.ipr
-*.iws
-*.idea/**
-classes/**
-target/**
+.idea/
 
 # Mac OS
 .DS_Store
@@ -31,5 +26,6 @@ target/**
 # Gradle
 gradle-app.setting
 .gradletasknamecache
-.gradle/**
-build/**
+.gradle
+build
+.arcignore

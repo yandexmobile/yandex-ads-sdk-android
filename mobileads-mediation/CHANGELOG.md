@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to Yandex Full Mediation will be documented in this file.
 
+## Version 5.6.0.0
+
+#### Updated
+* Yandex Mobile Ads SDK 5.6.0
+
 ## Version 5.5.1.0
 
 #### Updated
