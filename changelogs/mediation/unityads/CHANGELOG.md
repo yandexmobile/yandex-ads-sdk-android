@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to UnityAds Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 4.4.1.1
+
+#### Fixed
+* Fixed fullscreen adapter is loaded logic
+
 ## Version 4.4.1.0
 
 #### Added
