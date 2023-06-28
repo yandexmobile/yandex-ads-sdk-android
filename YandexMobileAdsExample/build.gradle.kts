@@ -38,5 +38,8 @@ allprojects {
 
         // Mintegral
         maven { url = uri("https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea") }
+
+        // Chartboost
+        maven { url = uri("https://cboost.jfrog.io/artifactory/chartboost-ads/") }
     }
 }

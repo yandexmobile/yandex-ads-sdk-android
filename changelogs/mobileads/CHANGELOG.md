@@ -2,6 +2,14 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 5.9.0
+
+#### Added
+* Improvements and optimizations
+
+#### Updated
+* DivKit version updated to 25.2.0
+
 ## Version 5.8.0
 
 #### Added
