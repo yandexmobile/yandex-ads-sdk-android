@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to AdColony Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 4.8.0.4
+
+#### Updated
+* Yandex Mobile Ads SDK 5.9.0
+
 ## Version 4.8.0.3
 
 #### Updated
