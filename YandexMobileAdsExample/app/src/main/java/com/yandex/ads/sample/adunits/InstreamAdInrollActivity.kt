@@ -30,7 +30,7 @@ import com.yandex.mobile.ads.instream.inroll.InrollQueueProvider
 
 class InstreamAdInrollActivity : AppCompatActivity(R.layout.activity_instream_ad_inroll) {
 
-    private val adInfoFragment get() = _adInfoFragment!!
+    private val adInfoFragment get() = requireNotNull(_adInfoFragment)
     private val eventLogger = InstreamAdEventLogger()
 
     private var instreamAdPlayer: SampleInstreamAdPlayer? = null

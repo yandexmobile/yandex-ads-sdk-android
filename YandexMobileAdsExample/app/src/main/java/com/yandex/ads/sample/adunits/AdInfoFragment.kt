@@ -26,7 +26,7 @@ class AdInfoFragment : Fragment(R.layout.fragment_ad_info) {
 
     var onLoadClickListener: (() -> Unit)? = null
 
-    private val binding get() = _binding!!
+    private val binding get() = requireNotNull(_binding)
 
     private var selectedIndex = 0
     private var _binding: FragmentAdInfoBinding? = null

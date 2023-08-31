@@ -22,7 +22,7 @@ class NetworkWarningDialogFragment : DialogFragment() {
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.warning)
             .setMessage(R.string.network_warning)
-            .setPositiveButton(R.string.ok) { _, _ -> setDialogShown() }
+            .setPositiveButton(R.string.ok_button) { _, _ -> setDialogShown() }
             .create()
     }
 

@@ -10,28 +10,30 @@
 package com.yandex.ads.sample.adunits
 
 import android.os.Bundle
+import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.commit
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityStickyBannerAdBinding
 import com.yandex.ads.sample.network.Network
-import com.yandex.ads.sample.utils.ScreenUtil.screenWidth
-import com.yandex.mobile.ads.banner.AdSize
 import com.yandex.mobile.ads.banner.BannerAdEventListener
+import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdView
 import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
+import kotlin.math.roundToInt
 
 class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner_ad) {
 
-    private val adInfoFragment get() = _adInfoFragment!!
+    private val adInfoFragment get() = requireNotNull(_adInfoFragment)
     private val eventLogger = BannerAdEventLogger()
 
-    private var bannerWidth = 0
     private var _adInfoFragment: AdInfoFragment? = null
     private var bannerAd: BannerAdView? = null
+    private var currentAdUnitId: String? = null
+    private var bannerAdSize: BannerAdSize? = null
 
     private lateinit var binding: ActivityStickyBannerAdBinding
 
@@ -47,36 +49,54 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
             setReorderingAllowed(true)
             replace(R.id.ad_info, adInfoFragment)
         }
-        initBanner()
+        bannerAd = binding.banner
+        configureAdSize()
     }
 
-    private fun initBanner() {
-        bannerAd = binding.banner
-        bannerWidth = screenWidth
+    private fun configureAdSize() {
+        binding.coordinatorLayout.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                binding.coordinatorLayout.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                val adWidthPixels = binding.coordinatorLayout.width
+                val adWidthDp = (adWidthPixels / resources.displayMetrics.density).roundToInt()
+
+                // For achieve the best performance of sticky banner BannerAdSize.stickySize
+                // should be called after SDK initialization.
+                // Initialize SDK as early as possible, for example in Application.onCreate
+                // or at least Activity.onCreate
+                bannerAdSize = BannerAdSize.stickySize(this@StickyBannerAdActivity, adWidthDp)
+            }
+        })
     }
 
     private fun loadBanner() {
-        destroyBanner()
-        createBanner()
-        val adRequest = if (adInfoFragment.selectedNetwork.titleId == R.string.adfox_title) {
-            adFoxRequest
-        } else {
-            AdRequest.Builder().build()
+        bannerAdSize?.let { bannerAdSize ->
+            val selectedAdUnitId = adInfoFragment.selectedNetwork.adUnitId
+            if (currentAdUnitId != selectedAdUnitId) {
+                destroyBanner()
+                createBanner(selectedAdUnitId, bannerAdSize)
+            }
+            val adRequest = AdRequest.Builder()
+                .setParameters(getRequestParameters())
+                .build()
+            bannerAd?.loadAd(adRequest)
+            adInfoFragment.showLoading()
         }
-        bannerAd?.loadAd(adRequest)
-        adInfoFragment.showLoading()
     }
 
-    private fun createBanner() {
+    private fun createBanner(adUnitId: String, bannerAdSize: BannerAdSize) {
         bannerAd = BannerAdView(this).apply {
             id = R.id.banner
-            setAdUnitId(adInfoFragment.selectedNetwork.adUnitId)
-            setAdSize(AdSize.stickySize(bannerWidth))
+            setAdUnitId(adUnitId)
+            currentAdUnitId = adUnitId
+            setAdSize(bannerAdSize)
             setBannerAdEventListener(eventLogger)
         }
+        // you can use sticky banner size in your layout
         val params = ConstraintLayout.LayoutParams(
-            ConstraintLayout.LayoutParams.MATCH_PARENT,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+            bannerAdSize.getWidthInPixels(this),
+            bannerAdSize.getHeightInPixels(this),
         ).apply {
             bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
         }
@@ -89,12 +109,19 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
             binding.root.removeView(it)
         }
         bannerAd = null
+        currentAdUnitId = null
     }
 
     override fun onDestroy() {
         _adInfoFragment = null
         destroyBanner()
         super.onDestroy()
+    }
+
+    private fun getRequestParameters(): Map<String, String> {
+        return if (adInfoFragment.selectedNetwork.titleId == R.string.adfox_title) {
+            return mapOf("adf_ownerid" to "270901", "adf_p1" to "cqtgg", "adf_p2" to "fhlx")
+        } else emptyMap()
     }
 
     private inner class BannerAdEventLogger : BannerAdEventListener {
@@ -142,9 +169,5 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
             Network(R.drawable.ic_vungle_icon_24, R.string.vungle_title, "demo-banner-vungle"),
             Network(R.drawable.ic_adfox_icon, R.string.adfox_title, "R-M-243655-8"),
         )
-
-        private val adFoxRequest = AdRequest.Builder().setParameters(
-            mapOf("adf_ownerid" to "270901", "adf_p1" to "cqtgh", "adf_p2" to "fkbd")
-        ).build()
     }
 }

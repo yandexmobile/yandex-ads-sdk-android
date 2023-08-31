@@ -10,36 +10,36 @@
 package com.yandex.ads.sample.adunits
 
 import android.os.Bundle
+import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.commit
 import com.yandex.ads.sample.R
-import com.yandex.ads.sample.databinding.ActivityFlexBannerAdBinding
+import com.yandex.ads.sample.databinding.ActivityInlineBannerAdBinding
 import com.yandex.ads.sample.network.Network
-import com.yandex.ads.sample.utils.ScreenUtil.screenHeight
-import com.yandex.ads.sample.utils.ScreenUtil.screenWidth
-import com.yandex.mobile.ads.banner.AdSize
 import com.yandex.mobile.ads.banner.BannerAdEventListener
+import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdView
 import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
+import kotlin.math.roundToInt
 
-class FlexBannerAdActivity : AppCompatActivity(R.layout.activity_flex_banner_ad) {
+class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner_ad) {
 
-    private val adInfoFragment get() = _adInfoFragment!!
+    private val adInfoFragment get() = requireNotNull(_adInfoFragment)
     private val eventLogger = BannerAdEventLogger()
 
-    private var bannerWidth = 0
-    private var bannerHeight = 0
     private var _adInfoFragment: AdInfoFragment? = null
     private var bannerAd: BannerAdView? = null
+    private var currentAdUnitId: String? = null
+    private var bannerAdSize: BannerAdSize? = null
 
-    private lateinit var binding: ActivityFlexBannerAdBinding
+    private lateinit var binding: ActivityInlineBannerAdBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFlexBannerAdBinding.inflate(layoutInflater)
+        binding = ActivityInlineBannerAdBinding.inflate(layoutInflater)
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
         setContentView(binding.root)
 
@@ -49,31 +49,45 @@ class FlexBannerAdActivity : AppCompatActivity(R.layout.activity_flex_banner_ad)
             setReorderingAllowed(true)
             replace(R.id.ad_info, adInfoFragment)
         }
-        initBanner()
-    }
-
-    private fun initBanner() {
         bannerAd = binding.banner
-        bannerWidth = screenWidth
-        bannerHeight = screenHeight / 3
+        configureBannerAdSize()
     }
 
-    private fun loadBanner() {
-        destroyBanner()
-        createBanner()
-        val adRequest = if (adInfoFragment.selectedNetwork.titleId == R.string.adfox_title) {
-            adFoxRequest
-        } else {
-            AdRequest.Builder().build()
+    private fun configureBannerAdSize() {
+        binding.coordinatorLayout.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                binding.coordinatorLayout.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                val screenHeight = resources.displayMetrics.run { heightPixels / density }.roundToInt()
+                // Calculate the width of the ad, taking into account the padding in the ad container.
+                val adWidthPixels = binding.coordinatorLayout.width
+                val adWidth = (adWidthPixels / resources.displayMetrics.density).roundToInt()
+                val maxAdHeight = screenHeight / 3
+                bannerAdSize = BannerAdSize.inlineSize(this@InlineBannerAdActivity, adWidth, maxAdHeight)
+            }
+        })
+    }
+
+    fun loadBanner() {
+        bannerAdSize?.let { bannerAdSize ->
+            val selectedAdUnitId = adInfoFragment.selectedNetwork.adUnitId
+            if (currentAdUnitId != selectedAdUnitId) {
+                destroyBanner()
+                createBanner(selectedAdUnitId, bannerAdSize)
+            }
+            val adRequest = AdRequest.Builder()
+                .setParameters(getRequestParameters())
+                .build()
+            bannerAd?.loadAd(adRequest)
         }
-        bannerAd?.loadAd(adRequest)
     }
 
-    private fun createBanner() {
+    private fun createBanner(adUnitId: String, bannerAdSize: BannerAdSize) {
         bannerAd = BannerAdView(this).apply {
             id = R.id.banner
-            setAdUnitId(adInfoFragment.selectedNetwork.adUnitId)
-            setAdSize(AdSize.flexibleSize(bannerWidth, bannerHeight))
+            setAdUnitId(adUnitId)
+            currentAdUnitId = adUnitId
+            setAdSize(bannerAdSize)
             setBannerAdEventListener(eventLogger)
         }
         val params = ConstraintLayout.LayoutParams(
@@ -91,12 +105,19 @@ class FlexBannerAdActivity : AppCompatActivity(R.layout.activity_flex_banner_ad)
             binding.root.removeView(it)
         }
         bannerAd = null
+        currentAdUnitId = null
     }
 
     override fun onDestroy() {
         _adInfoFragment = null
         destroyBanner()
         super.onDestroy()
+    }
+
+    private fun getRequestParameters(): Map<String, String> {
+        return if (adInfoFragment.selectedNetwork.titleId == R.string.adfox_title) {
+            return mapOf("adf_ownerid" to "270901", "adf_p1" to "cqtgg", "adf_p2" to "fhlx")
+        } else emptyMap()
     }
 
     private inner class BannerAdEventLogger : BannerAdEventListener {
@@ -139,14 +160,10 @@ class FlexBannerAdActivity : AppCompatActivity(R.layout.activity_flex_banner_ad)
             Network(R.drawable.ic_applovin_icon_24, R.string.applovin_title, "demo-banner-applovin"),
             Network(R.drawable.ic_chartboost_icon, R.string.chartboost_title, "demo-banner-chartboost"),
             Network(R.drawable.ic_mintegral_logo, R.string.mintegral_title, "demo-banner-mintegral"),
-            Network(R.drawable.ic_mytarget_icon_24, R.string.my_target_title, "demo-banner-mytarget"),
+            Network(R.drawable.ic_mytarget_icon_24, R.string.my_target_title, "demo-banner-mytarget-mrec"),
             Network(R.drawable.ic_startapp_icon_24, R.string.startapp_title, "demo-banner-startapp"),
             Network(R.drawable.ic_vungle_icon_24, R.string.vungle_title, "demo-banner-vungle"),
             Network(R.drawable.ic_adfox_icon, R.string.adfox_title, "R-M-243655-8"),
         )
-
-        private val adFoxRequest = AdRequest.Builder().setParameters(
-            mapOf("adf_ownerid" to "270901", "adf_p1" to "cqtgh", "adf_p2" to "fkbd")
-        ).build()
     }
 }

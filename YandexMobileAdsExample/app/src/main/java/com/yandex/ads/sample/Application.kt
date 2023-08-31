@@ -12,6 +12,7 @@ package com.yandex.ads.sample
 import androidx.multidex.MultiDexApplication
 import androidx.preference.PreferenceManager
 import com.google.android.material.color.DynamicColors
+import com.yandex.ads.sample.appopenad.AppOpenAdManager
 import com.yandex.ads.sample.settings.CoppaDialogFragment
 import com.yandex.ads.sample.settings.GdprDialogFragment
 import com.yandex.ads.sample.settings.LocationDialogFragment
@@ -20,6 +21,8 @@ import com.yandex.mobile.ads.common.MobileAds
 import com.yandex.mobile.ads.instream.MobileInstreamAds
 
 class Application : MultiDexApplication() {
+
+    private val appOpenAdManager by lazy { AppOpenAdManager(this) }
 
     override fun onCreate() {
         super.onCreate()
@@ -33,6 +36,8 @@ class Application : MultiDexApplication() {
         MobileInstreamAds.setAdGroupPreloading(INSTREAM_AD_GROUP_PRELOADING_ENABLED)
         MobileAds.initialize(this) {
             Logger.debug("SDK initialized")
+            // wait until sdk initialized before using Ads
+            initAppOpenAdManager()
         }
         MobileAds.enableLogging(true)
     }
@@ -44,6 +49,10 @@ class Application : MultiDexApplication() {
             MobileAds.setLocationConsent(getBoolean(LocationDialogFragment.TAG, false))
             MobileAds.setAgeRestrictedUser(getBoolean(CoppaDialogFragment.TAG, false))
         }
+    }
+
+    private fun initAppOpenAdManager() {
+        appOpenAdManager.initialize()
     }
 
     private companion object {

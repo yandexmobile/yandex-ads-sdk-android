@@ -16,8 +16,9 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yandex.ads.sample.databinding.ActivityHomeBinding
+import com.yandex.ads.sample.adunits.AppOpenAdActivity
 import com.yandex.ads.sample.adunits.CustomNativeAdActivity
-import com.yandex.ads.sample.adunits.FlexBannerAdActivity
+import com.yandex.ads.sample.adunits.InlineBannerAdActivity
 import com.yandex.ads.sample.adunits.InstreamAdBinderActivity
 import com.yandex.ads.sample.adunits.InstreamAdInrollActivity
 import com.yandex.ads.sample.adunits.InterstitialAdActivity
@@ -70,8 +71,8 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
             ),
             NavigationItem(
                 R.drawable.ic_outline_aspect_ratio_24,
-                R.string.flex_banner_title,
-                FlexBannerAdActivity::class.java,
+                R.string.inline_banner_title,
+                InlineBannerAdActivity::class.java,
             ),
             NavigationItem(
                 R.drawable.ic_outline_fullscreen_24,
@@ -112,6 +113,11 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
                 R.drawable.ic_outline_child_care_24,
                 R.string.policies,
                 PoliciesActivity::class.java,
+            ),
+            NavigationItem(
+                R.drawable.ic_full_coverage_24px,
+                R.string.appopenad_title,
+                AppOpenAdActivity::class.java,
             ),
         )
     }
