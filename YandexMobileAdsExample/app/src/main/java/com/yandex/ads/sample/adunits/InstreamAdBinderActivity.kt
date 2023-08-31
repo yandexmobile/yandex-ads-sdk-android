@@ -26,7 +26,7 @@ import com.yandex.mobile.ads.instream.InstreamAdRequestConfiguration
 
 class InstreamAdBinderActivity : AppCompatActivity(R.layout.activity_instream_ad_binder) {
 
-    private val adInfoFragment get() = _adInfoFragment!!
+    private val adInfoFragment get() = requireNotNull(_adInfoFragment)
     private val eventLogger = InstreamAdEventLogger()
 
     private var instreamAdLoader: InstreamAdLoader? = null

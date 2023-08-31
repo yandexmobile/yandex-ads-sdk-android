@@ -39,11 +39,12 @@
             android:name="com.yandex.ads.sample.adunits.InterstitialAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.adunits.FlexBannerAdActivity"
+            android:name="com.yandex.ads.sample.adunits.InlineBannerAdActivity"
             android:exported="false" />
         <activity
             android:name="com.yandex.ads.sample.adunits.StickyBannerAdActivity"
             android:exported="false" />
+        <activity android:name=".adunits.AppOpenAdActivity" android:exported="false"/>
         <activity
             android:name=".HomeActivity"
             android:exported="true">
@@ -59,7 +60,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="ca-app-pub-4449457472880521~8476795127" />
 
         <receiver
             android:name="com.vungle.warren.NetworkProviderReceiver"

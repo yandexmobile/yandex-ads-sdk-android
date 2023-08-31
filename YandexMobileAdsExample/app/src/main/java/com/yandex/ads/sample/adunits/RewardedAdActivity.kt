@@ -11,24 +11,28 @@ package com.yandex.ads.sample.adunits
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityRewardedAdBinding
 import com.yandex.ads.sample.network.Network
-import com.yandex.mobile.ads.common.AdRequest
+import com.yandex.ads.sample.network.NetworkAdapter
+import com.yandex.mobile.ads.common.AdError
+import com.yandex.mobile.ads.common.AdRequestConfiguration
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.rewarded.Reward
 import com.yandex.mobile.ads.rewarded.RewardedAd
 import com.yandex.mobile.ads.rewarded.RewardedAdEventListener
+import com.yandex.mobile.ads.rewarded.RewardedAdLoader
+import com.yandex.mobile.ads.rewarded.RewardedAdLoadListener
 
-class RewardedAdActivity : AppCompatActivity(R.layout.activity_rewarded_ad) {
+class RewardedAdActivity : AppCompatActivity(R.layout.activity_rewarded_ad),
+    RewardedAdLoadListener {
 
-    private val adInfoFragment get() = _adInfoFragment!!
     private val eventLogger = RewardedAdEventLogger()
+    private var rewardedAdLoader: RewardedAdLoader? = null
 
-    private var adUnitId = ""
-    private var _adInfoFragment: AdInfoFragment? = null
+    private var selectedIndex: Int = 0
+    private val selectedNetwork get() = networks[selectedIndex]
     private var rewardedAd: RewardedAd? = null
 
     private lateinit var binding: ActivityRewardedAdBinding
@@ -36,86 +40,116 @@ class RewardedAdActivity : AppCompatActivity(R.layout.activity_rewarded_ad) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRewardedAdBinding.inflate(layoutInflater)
-        binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        binding.setupUiBidding()
         setContentView(binding.root)
 
-        _adInfoFragment = AdInfoFragment.newInstance(networks)
-        adInfoFragment.onLoadClickListener = ::loadRewarded
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            replace(R.id.ad_info, adInfoFragment)
+        // Rewarded ads loading should occur after initialization of the SDK.
+        // Initialize SDK as early as possible, for example in Application.onCreate or at least Activity.onCreate
+        // It's recommended to use the same instance of InterstitialAdLoader for every load for
+        // achieve better performance
+        rewardedAdLoader = RewardedAdLoader(this).apply {
+            setAdLoadListener(this@RewardedAdActivity)
+        }
+        loadRewardedAd()
+    }
+
+    private fun loadRewardedAd() {
+        disabeShowAdButton()
+        rewardedAdLoader?.loadAd(createAdRequestConfiguration())
+    }
+
+    private fun createAdRequestConfiguration(): AdRequestConfiguration =
+        AdRequestConfiguration.Builder(selectedNetwork.adUnitId).build()
+
+    private fun showRewardedAd() {
+        disabeShowAdButton()
+        rewardedAd?.apply {
+            setAdEventListener(eventLogger)
+            show(this@RewardedAdActivity)
         }
     }
 
-    private fun loadRewarded() {
-        if (adUnitId != adInfoFragment.selectedNetwork.adUnitId) {
-            adUnitId = adInfoFragment.selectedNetwork.adUnitId
-            destroyRewarded()
-            createRewarded()
-        }
-        rewardedAd?.loadAd(AdRequest.Builder().build())
+    override fun onAdLoaded(rewardedAd: RewardedAd) {
+        log("Rewarded ad loaded")
+        this.rewardedAd = rewardedAd
+        enableShowAdButton()
     }
 
-    private fun createRewarded() {
-        rewardedAd = RewardedAd(this).apply {
-            setAdUnitId(adUnitId)
-            setRewardedAdEventListener(eventLogger)
-        }
+    override fun onAdFailedToLoad(adRequestError: AdRequestError) {
+        log(
+            "Rewarded ad ${adRequestError.adUnitId} failed to load " +
+                "with code ${adRequestError.code}: ${adRequestError.description}"
+        )
+        disabeShowAdButton()
     }
 
-    private fun destroyRewarded() {
-        rewardedAd?.destroy()
+    private fun destroyRewardedAd() {
+        // don't forget to clean up event listener to null?
+        rewardedAd?.setAdEventListener(null)
         rewardedAd = null
     }
 
     override fun onDestroy() {
-        _adInfoFragment = null
-        destroyRewarded()
+        // Set listener to null to avoid memory leaks
+        rewardedAdLoader?.setAdLoadListener(null)
+        rewardedAdLoader = null
+        destroyRewardedAd()
         super.onDestroy()
     }
 
     private inner class RewardedAdEventLogger : RewardedAdEventListener {
 
-        override fun onAdLoaded() {
-            adInfoFragment.log("Rewarded ad loaded")
-            adInfoFragment.hideLoading()
-            rewardedAd?.show()
-        }
-
-        override fun onAdFailedToLoad(error: AdRequestError) {
-            adInfoFragment.log(
-                "Rewarded ad failed to load with code ${error.code}: ${error.description}"
-            )
-            adInfoFragment.hideLoading()
-        }
-
         override fun onAdShown() {
-            adInfoFragment.log("Rewarded ad shown")
+            log("Rewarded ad shown")
+        }
+
+        override fun onAdFailedToShow(adError: AdError) {
+            log("Rewarded ad show error: $adError")
         }
 
         override fun onAdDismissed() {
-            adInfoFragment.log("Rewarded ad dismissed")
+            log("Rewarded ad dismissed")
+            destroyRewardedAd()
+            // Now you can preload the next interstitial ad.
+            loadRewardedAd()
         }
 
         override fun onRewarded(reward: Reward) {
-            adInfoFragment.log("Reward: ${reward.amount} of ${reward.type}")
+            log("Reward: ${reward.amount} of ${reward.type}")
         }
 
         override fun onAdClicked() {
-            adInfoFragment.log("Rewarded ad clicked")
+            log("Rewarded ad clicked")
         }
 
-        override fun onLeftApplication() {
-            adInfoFragment.log("Left application")
+        override fun onAdImpression(data: ImpressionData?) {
+            log("Impression: ${data?.rawData}")
         }
+    }
 
-        override fun onReturnedToApplication() {
-            adInfoFragment.log("Returned to application")
+    private fun ActivityRewardedAdBinding.setupUiBidding() {
+        showAdButton.setOnClickListener { showRewardedAd() }
+        toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        networkMenu.setStartIconDrawable(selectedNetwork.iconId)
+        networkTextView.setText(selectedNetwork.titleId)
+        networkTextView.setAdapter(NetworkAdapter(this@RewardedAdActivity, networks))
+        networkTextView.setOnItemClickListener { _, _, position, _ ->
+            selectedIndex = position
+            networkMenu.setStartIconDrawable(selectedNetwork.iconId)
+            loadRewardedAd()
         }
+    }
 
-        override fun onImpression(data: ImpressionData?) {
-            adInfoFragment.log("Impression: ${data?.rawData}")
-        }
+    private fun enableShowAdButton() {
+        binding.showAdButton.isEnabled = true
+    }
+
+    private fun disabeShowAdButton() {
+        binding.showAdButton.isEnabled = false
+    }
+
+    private fun log(message: String) {
+        binding.log.text = getString(R.string.log_format, binding.log.text, message)
     }
 
     companion object {

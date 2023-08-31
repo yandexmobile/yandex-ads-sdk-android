@@ -16,7 +16,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".adunits.FlexBannerAdActivity">
+    tools:context=".adunits.InlineBannerAdActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_outline_arrow_back_24"
         app:navigationIconTint="@color/material_on_surface_emphasis_medium"
-        app:title="@string/flex_banner_title" />
+        app:title="@string/inline_banner_title" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/ad_info"

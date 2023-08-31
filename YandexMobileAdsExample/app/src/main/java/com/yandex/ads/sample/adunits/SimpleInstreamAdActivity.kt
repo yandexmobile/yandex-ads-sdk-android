@@ -27,7 +27,7 @@ import com.yandex.mobile.ads.instream.exoplayer.YandexAdsLoader
 
 class SimpleInstreamAdActivity : AppCompatActivity(R.layout.activity_simple_instream_ad) {
 
-    private val adInfoFragment get() = _adInfoFragment!!
+    private val adInfoFragment get() = requireNotNull(_adInfoFragment)
 
     private var _adInfoFragment: AdInfoFragment? = null
 

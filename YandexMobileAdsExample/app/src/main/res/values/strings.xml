@@ -15,9 +15,10 @@
 
     <!--  Ad units  -->
     <string name="sticky_banner_title">Sticky banner</string>
-    <string name="flex_banner_title">Flex banner</string>
+    <string name="inline_banner_title">Inline banner</string>
     <string name="interstitial_title">Interstitial</string>
     <string name="rewarded_title">Rewarded</string>
+    <string name="appopenad_title">AppOpenAd</string>
     <string name="native_template_title">Native template</string>
     <string name="native_custom_title">Custom native</string>
     <string name="instream_simple_title">Simple instream</string>
@@ -87,4 +88,11 @@
     <string name="chevron">chevron</string>
     <string name="warning">Warning</string>
     <string name="network_warning">Keep in mind that some ad networks do not work globally and could not show ads in some regions.\nFor testing purposes see supported regions for every ad network and use VPN or other tools to request ads from supported regions.</string>
+    <string name="ok_button">OK</string>
+    <string name="show_ad">Show Ad</string>
+    <string name="log_format">%1$s\n%2$s</string>
+
+    <!--  AppOpenAd  -->
+    <string name="info_title">Info</string>
+    <string name="appopenad_info_body">Collapse and open App from recent to view AppOpenAd.</string>
 </resources>

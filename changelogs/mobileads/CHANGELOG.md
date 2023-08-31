@@ -2,6 +2,17 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 6.0.0
+
+### Added
+* App Open Ad format
+* Improvements and optimizations
+
+### Breaking changes
+* New banner ad size API
+* Interstitial ad loading and ad show API decomposition
+* Rewarded ad loading and ad show API decomposition
+
 ## Version 5.10.0
 
 #### Added

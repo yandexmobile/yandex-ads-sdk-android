@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to AdMob Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 22.2.0.0
+
+#### Updated
+* Google Mobile Ads SDK version 22.2.0
+* Added support for Yandex Mobile Ads SDK version 6.0.0
+* Updated minimum supported Yandex Mobile Ads SDK version to 6.0.0
+* Rebranded adapter name to "Google Adapter"
+
 ## Version 22.1.0.0
 
 #### Updated

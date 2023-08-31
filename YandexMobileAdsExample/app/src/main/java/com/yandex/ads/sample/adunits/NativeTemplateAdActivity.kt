@@ -25,7 +25,7 @@ import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration
 
 class NativeTemplateAdActivity : AppCompatActivity(R.layout.activity_native_template_ad) {
 
-    private val adInfoFragment get() = _adInfoFragment!!
+    private val adInfoFragment get() = requireNotNull(_adInfoFragment)
     private val eventLogger = NativeAdEventLogger()
 
     private var nativeAdLoader: NativeAdLoader? = null

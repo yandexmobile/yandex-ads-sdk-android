@@ -11,23 +11,27 @@ package com.yandex.ads.sample.adunits
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityInterstitialAdBinding
 import com.yandex.ads.sample.network.Network
-import com.yandex.mobile.ads.common.AdRequest
+import com.yandex.ads.sample.network.NetworkAdapter
+import com.yandex.mobile.ads.common.AdError
+import com.yandex.mobile.ads.common.AdRequestConfiguration
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.interstitial.InterstitialAd
 import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener
+import com.yandex.mobile.ads.interstitial.InterstitialAdLoadListener
+import com.yandex.mobile.ads.interstitial.InterstitialAdLoader
 
-class InterstitialAdActivity : AppCompatActivity(R.layout.activity_interstitial_ad) {
+class InterstitialAdActivity : AppCompatActivity(R.layout.activity_interstitial_ad),
+    InterstitialAdLoadListener {
 
-    private val adInfoFragment get() = _adInfoFragment!!
     private val eventLogger = InterstitialAdEventLogger()
+    private var interstitialAdLoader: InterstitialAdLoader? = null
 
-    private var adUnitId = ""
-    private var _adInfoFragment: AdInfoFragment? = null
+    private var selectedIndex: Int = 0
+    private val selectedNetwork get() = networks[selectedIndex]
     private var interstitialAd: InterstitialAd? = null
 
     private lateinit var binding: ActivityInterstitialAdBinding
@@ -35,87 +39,118 @@ class InterstitialAdActivity : AppCompatActivity(R.layout.activity_interstitial_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInterstitialAdBinding.inflate(layoutInflater)
-        binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        binding.setupUiBidding()
         setContentView(binding.root)
 
-        _adInfoFragment = AdInfoFragment.newInstance(networks)
-        adInfoFragment.onLoadClickListener = ::loadInterstitial
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            replace(R.id.ad_info, adInfoFragment)
+        // Interstitial ads loading should occur after initialization of the SDK.
+        // Initialize SDK as early as possible, for example in Application.onCreate or at least Activity.onCreate
+        // It's recommended to use the same instance of InterstitialAdLoader for every load for
+        // achieve better performance
+        interstitialAdLoader = InterstitialAdLoader(this).apply {
+            setAdLoadListener(this@InterstitialAdActivity)
         }
+        loadInterstitialAd()
     }
 
-    private fun loadInterstitial() {
-        if (adUnitId != adInfoFragment.selectedNetwork.adUnitId) {
-            adUnitId = adInfoFragment.selectedNetwork.adUnitId
-            destroyInterstitial()
-            createInterstitial()
-        }
-        val adRequest = if (adInfoFragment.selectedNetwork.titleId == R.string.adfox_title) {
-            adFoxRequest
+    private fun loadInterstitialAd() {
+        disableShowAdButton()
+        interstitialAdLoader?.loadAd(createAdRequestConfiguration())
+    }
+
+    private fun createAdRequestConfiguration(): AdRequestConfiguration {
+        return if (selectedNetwork.titleId == R.string.adfox_title) {
+            AdRequestConfiguration.Builder(selectedNetwork.adUnitId)
+                .setParameters(adFoxRequestParameters)
         } else {
-            AdRequest.Builder().build()
-        }
-        interstitialAd?.loadAd(adRequest)
+            AdRequestConfiguration.Builder(selectedNetwork.adUnitId)
+        }.build()
     }
 
-    private fun createInterstitial() {
-        interstitialAd = InterstitialAd(this).apply {
-            setAdUnitId(adUnitId)
-            setInterstitialAdEventListener(eventLogger)
+    private fun showInterstitialAd() {
+        disableShowAdButton()
+        interstitialAd?.apply {
+            setAdEventListener(eventLogger)
+            show(this@InterstitialAdActivity)
         }
+    }
+
+    override fun onAdLoaded(interstitialAd: InterstitialAd) {
+        log("Interstitial ad loaded")
+        this.interstitialAd = interstitialAd
+        enableShowAdButton()
+    }
+
+    override fun onAdFailedToLoad(adRequestError: AdRequestError) {
+        log(
+            "Interstitial ad ${adRequestError.adUnitId} failed to load " +
+                "with code ${adRequestError.code}: ${adRequestError.description}"
+        )
+        disableShowAdButton()
     }
 
     private fun destroyInterstitial() {
-        interstitialAd?.destroy()
+        // don't forget to clean up event listener to null?
+        interstitialAd?.setAdEventListener(null)
         interstitialAd = null
     }
 
     override fun onDestroy() {
-        _adInfoFragment = null
+        // set listener to null to avoid memory leaks
+        interstitialAdLoader?.setAdLoadListener(null)
+        interstitialAdLoader = null
         destroyInterstitial()
         super.onDestroy()
     }
 
     private inner class InterstitialAdEventLogger : InterstitialAdEventListener {
 
-        override fun onAdLoaded() {
-            adInfoFragment.log("Interstitial ad loaded")
-            adInfoFragment.hideLoading()
-            interstitialAd?.show()
-        }
-
-        override fun onAdFailedToLoad(error: AdRequestError) {
-            adInfoFragment.log(
-                "Interstitial ad failed to load with code ${error.code}: ${error.description}"
-            )
-            adInfoFragment.hideLoading()
-        }
-
         override fun onAdShown() {
-            adInfoFragment.log("Interstitial ad shown")
+            log("Interstitial ad shown")
+        }
+
+        override fun onAdFailedToShow(adError: AdError) {
+            log("Interstitial ad show error: $adError")
         }
 
         override fun onAdDismissed() {
-            adInfoFragment.log("Interstitial ad dismissed")
+            log("Interstitial ad dismissed")
+            destroyInterstitial()
+            // Now you can preload the next interstitial ad.
+            loadInterstitialAd()
         }
 
         override fun onAdClicked() {
-            adInfoFragment.log("Interstitial ad clicked")
+            log("Interstitial ad clicked")
         }
 
-        override fun onLeftApplication() {
-            adInfoFragment.log("Left application")
+        override fun onAdImpression(data: ImpressionData?) {
+            log("Impression: ${data?.rawData}")
         }
+    }
 
-        override fun onReturnedToApplication() {
-            adInfoFragment.log("Returned to application")
+    private fun ActivityInterstitialAdBinding.setupUiBidding() {
+        showAdButton.setOnClickListener { showInterstitialAd() }
+        toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        networkMenu.setStartIconDrawable(selectedNetwork.iconId)
+        networkTextView.setText(selectedNetwork.titleId)
+        networkTextView.setAdapter(NetworkAdapter(this@InterstitialAdActivity, networks))
+        networkTextView.setOnItemClickListener { _, _, position, _ ->
+            selectedIndex = position
+            networkMenu.setStartIconDrawable(selectedNetwork.iconId)
+            loadInterstitialAd()
         }
+    }
 
-        override fun onImpression(data: ImpressionData?) {
-            adInfoFragment.log("Impression: ${data?.rawData}")
-        }
+    private fun enableShowAdButton() {
+        binding.showAdButton.isEnabled = true
+    }
+
+    private fun disableShowAdButton() {
+        binding.showAdButton.isEnabled = false
+    }
+
+    private fun log(message: String) {
+        binding.log.text = getString(R.string.log_format, binding.log.text, message)
     }
 
     companion object {
@@ -137,8 +172,7 @@ class InterstitialAdActivity : AppCompatActivity(R.layout.activity_interstitial_
             Network(R.drawable.ic_adfox_icon, R.string.adfox_title, "R-M-243655-8"),
         )
 
-        private val adFoxRequest = AdRequest.Builder().setParameters(
+        private val adFoxRequestParameters =
             mapOf("adf_ownerid" to "270901", "adf_p1" to "cqtgg", "adf_p2" to "fhlx")
-        ).build()
     }
 }
