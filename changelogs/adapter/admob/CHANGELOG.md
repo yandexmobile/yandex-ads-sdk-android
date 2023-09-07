@@ -2,6 +2,12 @@
 
 All notable changes to Yandex Adapter for AdMob Mediation will be documented in this file.
 
+## Version 6.0.0.1
+
+#### Fixed
+
+* Fixed Interstitial and Rewarded ad presentation
+
 ## Version 6.0.0.0
 
 #### Updated
