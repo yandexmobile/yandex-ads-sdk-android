@@ -2,6 +2,11 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 6.0.1
+
+### Fixed
+* Fixed handling of incompatible mediation adapters
+
 ## Version 6.0.0
 
 ### Added
