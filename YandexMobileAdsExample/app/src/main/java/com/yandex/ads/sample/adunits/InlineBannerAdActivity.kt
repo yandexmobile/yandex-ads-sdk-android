@@ -159,9 +159,11 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
             Network(R.drawable.ic_admob_icon_24, R.string.admob_title, "demo-banner-admob"),
             Network(R.drawable.ic_applovin_icon_24, R.string.applovin_title, "demo-banner-applovin"),
             Network(R.drawable.ic_chartboost_icon, R.string.chartboost_title, "demo-banner-chartboost"),
+            Network(R.drawable.ic_inmobi_icon, R.string.inmobi_title, "demo-banner-inmobi"),
             Network(R.drawable.ic_mintegral_logo, R.string.mintegral_title, "demo-banner-mintegral"),
             Network(R.drawable.ic_mytarget_icon_24, R.string.my_target_title, "demo-banner-mytarget-mrec"),
             Network(R.drawable.ic_startapp_icon_24, R.string.startapp_title, "demo-banner-startapp"),
+            Network(R.drawable.ic_unityads_icon_24, R.string.unity_ads_title, "demo-banner-unityads"),
             Network(R.drawable.ic_vungle_icon_24, R.string.vungle_title, "demo-banner-vungle"),
             Network(R.drawable.ic_adfox_icon, R.string.adfox_title, "R-M-243655-8"),
         )
