@@ -161,6 +161,7 @@ class InterstitialAdActivity : AppCompatActivity(R.layout.activity_interstitial_
             Network(R.drawable.ic_admob_icon_24, R.string.admob_title, "demo-interstitial-admob"),
             Network(R.drawable.ic_applovin_icon_24, R.string.applovin_title, "demo-interstitial-applovin"),
             Network(R.drawable.ic_chartboost_icon, R.string.chartboost_title, "demo-interstitial-chartboost"),
+            Network(R.drawable.ic_inmobi_icon, R.string.inmobi_title, "demo-interstitial-inmobi"),
             Network(R.drawable.ic_mintegral_logo, R.string.mintegral_title, "demo-interstitial-mintegral"),
             Network(R.drawable.ic_mytarget_icon_24, R.string.my_target_title, "demo-interstitial-mytarget"),
             Network(R.drawable.ic_ironsource_icon_24, R.string.ironsource_title, "demo-interstitial-ironsource"),
