@@ -2,6 +2,34 @@
 
 All notable changes to Yandex Full Mediation will be documented in this file.
 
+## Version 6.1.0.0
+
+#### Updated
+
+* Yandex Mobile Ads SDK 6.1.0
+* Adcolony Adapter version 4.8.0.7
+* Applovin Adapter version 11.11.3.0
+* Bigoads Adapter version 4.1.2.0
+* ChartBoost Adapter version 9.3.1.1
+* Google Adapter version 22.4.0.0
+  * Supported AdMob AppOpenAd format
+* InMobi Adapter version 10.5.9.0
+* IronSource Adapter version 7.5.1.0
+* Mintegral Adapter version 16.5.21.0
+  * Turned off sound in video ads by default
+* Mytarget Adapter version 5.18.0.1
+* Pangle Adapter version 5.5.0.3.0
+* StartApp Adapter version 4.11.0.3
+* Tapjoy Adapter version 13.2.1.0
+* UnityAds Adapter version 4.9.0.0
+* Vungle Adapter version 6.12.1.4
+
+## Version 6.0.1.1
+
+#### Added
+
+* ChartBoost Adapter version 9.3.1.0
+
 ## Version 6.0.1.0
 
 #### Updated
@@ -14,10 +42,9 @@ All notable changes to Yandex Full Mediation will be documented in this file.
 
 * Yandex Mobile Ads SDK 6.0.0
 * Adcolony Adapter version 4.8.0.6
-* Google Adapter version 22.2.0.0
 * Applovin Adapter version 11.11.2.0
 * Bigoads Adapter version 4.0.2.0
-* ChartBoost Adapter version 9.3.1.0
+* Google Adapter version 22.2.0.0
 * IronSource Adapter version 7.4.0.0
 * Mintegral Adapter version 16.4.71.1
 * Mytarget Adapter version 5.18.0.0
@@ -40,7 +67,6 @@ All notable changes to Yandex Full Mediation will be documented in this file.
 * AdMob Adapter version 22.1.0.0
 * Applovin Adapter version 11.10.1.1
 * Bigoads Adapter version 2.9.0.2
-* ChartBoost Adapter version 9.3.0.2
 * IronSource Adapter version 7.3.1.1.0
 * Mintegral Adapter version 16.4.71.0
 * Mytarget Adapter version 5.17.0.0
@@ -75,7 +101,6 @@ All notable changes to Yandex Full Mediation will be documented in this file.
 * Applovin Adapter version 11.9.0.0
 * AdMob Adapter version 21.5.0.0
 * BigoAds Adapter version 2.9.0.0
-* ChartBoost Adapter version 9.3.0.0
 * Inmobi Adapter version 10.1.4.0
 * Mytarget Adapter version 5.16.4.0
 * Pangle Adapter version 4.8.2.7.0
@@ -104,6 +129,7 @@ All notable changes to Yandex Full Mediation will be documented in this file.
 #### Updated
 
 * Yandex Mobile Ads SDK 5.5.1
+* Removed support for ChartBoost Adapter
 
 ## Version 5.5.0.0
 
