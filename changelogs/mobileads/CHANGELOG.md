@@ -2,6 +2,16 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 6.1.0
+
+#### Added
+* New video ads design
+* Improved ads loading caching
+
+#### Fixed
+* Fixed Instream ads skin localization
+* Instream ads navigation on Android TV
+
 ## Version 6.0.1
 
 ### Fixed
@@ -11,12 +21,15 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
 ### Added
 * App Open Ad format
+* New ad formats in rewarded
+* Ability to close rewarded ad before reward
 * Improvements and optimizations
 
 ### Breaking changes
 * New banner ad size API
 * Interstitial ad loading and ad show API decomposition
 * Rewarded ad loading and ad show API decomposition
+* See [migration guide](https://yandex.ru/support2/mobile-ads/ru/dev/android/release/6-0-0-migration)
 
 ## Version 5.10.0
 
