@@ -2,6 +2,18 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 6.2.0
+
+#### Added
+* Additional parameters for Open Bidding token generator
+
+#### Updated
+* AppMetrica SDK version updated to 6.0.0
+* DivKit SDK version updated to 28.9.0
+
+#### Fixed
+* Fix callback for multi ads design
+
 ## Version 6.1.0
 
 #### Added
