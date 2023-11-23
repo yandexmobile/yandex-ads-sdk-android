@@ -160,6 +160,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
             Network(R.drawable.ic_applovin_icon_24, R.string.applovin_title, "demo-banner-applovin"),
             Network(R.drawable.ic_chartboost_icon, R.string.chartboost_title, "demo-banner-chartboost"),
             Network(R.drawable.ic_inmobi_icon, R.string.inmobi_title, "demo-banner-inmobi"),
+            Network(R.drawable.ic_ironsource_icon_24, R.string.ironsource_title, "demo-banner-ironsource"),
             Network(R.drawable.ic_mintegral_logo, R.string.mintegral_title, "demo-banner-mintegral"),
             Network(R.drawable.ic_mytarget_icon_24, R.string.my_target_title, "demo-banner-mytarget-mrec"),
             Network(R.drawable.ic_startapp_icon_24, R.string.startapp_title, "demo-banner-startapp"),
