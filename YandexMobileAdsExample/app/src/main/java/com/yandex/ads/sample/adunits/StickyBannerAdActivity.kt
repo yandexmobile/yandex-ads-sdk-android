@@ -120,7 +120,7 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
 
     private fun getRequestParameters(): Map<String, String> {
         return if (adInfoFragment.selectedNetwork.titleId == R.string.adfox_title) {
-            return mapOf("adf_ownerid" to "270901", "adf_p1" to "cqtgg", "adf_p2" to "fhlx")
+            return mapOf("adf_ownerid" to "270901", "adf_p1" to "cqtgh", "adf_p2" to "fkbd")
         } else emptyMap()
     }
 
