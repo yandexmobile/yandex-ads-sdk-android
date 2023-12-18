@@ -41,5 +41,8 @@ allprojects {
 
         // Chartboost
         maven { url = uri("https://cboost.jfrog.io/artifactory/chartboost-ads/") }
+
+        // AppNext
+        maven { url = uri("https://dl.appnext.com/") }
     }
 }
