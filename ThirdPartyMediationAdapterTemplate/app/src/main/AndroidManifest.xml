@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:label="ThirdPartyMediationAdapterTemplate"
+        android:icon="@android:drawable/ic_menu_info_details" />
+
+</manifest>
