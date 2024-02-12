@@ -116,7 +116,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
 
     private fun getRequestParameters(): Map<String, String> {
         return if (adInfoFragment.selectedNetwork.titleId == R.string.adfox_title) {
-            return mapOf("adf_ownerid" to "270901", "adf_p1" to "cqtgg", "adf_p2" to "fhlx")
+            return mapOf("adf_ownerid" to "270901", "adf_p1" to "cqtgh", "adf_p2" to "fkbd")
         } else emptyMap()
     }
 
@@ -165,7 +165,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
             Network(R.drawable.ic_mytarget_icon_24, R.string.my_target_title, "demo-banner-mytarget-mrec"),
             Network(R.drawable.ic_startapp_icon_24, R.string.startapp_title, "demo-banner-startapp"),
             Network(R.drawable.ic_unityads_icon_24, R.string.unity_ads_title, "demo-banner-unityads"),
-            Network(R.drawable.ic_vungle_icon_24, R.string.vungle_title, "demo-banner-vungle"),
+            Network(R.drawable.ic_vungle_icon_24, R.string.vungle_title, "demo-banner-vungle-mrec"),
             Network(R.drawable.ic_adfox_icon, R.string.adfox_title, "R-M-243655-8"),
         )
     }

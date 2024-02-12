@@ -24,14 +24,20 @@ class NetworkAdapter(
 ) : ArrayAdapter<String>(context, R.layout.list_item, items.map { context.getString(it.titleId) }) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        if (convertView != null) return convertView
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ListItemBinding.inflate(inflater, parent, false)
+        var binding = convertView?.getTag(R.id.network_item_binding) as? ListItemBinding
+
+        if (binding == null) {
+            val inflater = LayoutInflater.from(parent.context)
+            binding = ListItemBinding.inflate(inflater, parent, false)
+        }
+
         val item = items[position]
+
         binding.run {
             icon.setImageDrawable(ContextCompat.getDrawable(context, item.iconId))
             title.text = context.getString(item.titleId)
         }
+
         return binding.root
     }
 }
