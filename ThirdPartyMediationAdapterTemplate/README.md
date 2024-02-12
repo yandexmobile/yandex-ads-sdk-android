@@ -102,7 +102,7 @@ val loadListener = object : BidderTokenLoadListener {
 BidderTokenLoader.loadBidderToken(context, tokenRequest, loadListener)
 ```
 
-You need to load a bidder token for each new ad request. Token request can be created as follows (also shown in [template]((./app/src/main/java/com/example/mediation/YandexAdapters.kt#L611))):
+You need to load a bidder token for each new ad request. Token request can be created as follows (also shown in [template](./app/src/main/java/com/example/mediation/YandexAdapters.kt#L611)):
 
 ```kotlin
 fun createBidderTokenRequestConfiguration(): BidderTokenRequestConfiguration {
