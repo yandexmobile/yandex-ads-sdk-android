@@ -2,6 +2,14 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 6.4.0
+
+#### Added
+* Improvements and optimizations
+
+#### Updated
+* Okio version updated to 3.4.0
+
 ## Version 6.3.0
 
 #### Added

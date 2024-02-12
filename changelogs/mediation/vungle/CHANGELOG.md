@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to Vungle Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 7.1.0.0
+
+#### Added
+* Yandex Mobile Ads SDK 6.4.0
+* Vungle SDK version 7.1.0
+* Updated minimum supported Vungle SDK version to 7.1.0
+
 ## Version 6.12.1.6
 
 #### Updated
