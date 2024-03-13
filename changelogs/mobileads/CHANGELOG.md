@@ -2,6 +2,11 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 6.4.1
+
+### Fixed
+* Fixed a possible crash during initialization process
+
 ## Version 6.4.0
 
 #### Added
