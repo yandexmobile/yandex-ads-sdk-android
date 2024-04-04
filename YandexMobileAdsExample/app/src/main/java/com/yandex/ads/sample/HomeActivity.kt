@@ -15,9 +15,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.yandex.ads.sample.databinding.ActivityHomeBinding
 import com.yandex.ads.sample.adunits.AppOpenAdActivity
 import com.yandex.ads.sample.adunits.CustomNativeAdActivity
+import com.yandex.ads.sample.adunits.FeedActivity
 import com.yandex.ads.sample.adunits.InlineBannerAdActivity
 import com.yandex.ads.sample.adunits.InstreamAdBinderActivity
 import com.yandex.ads.sample.adunits.InstreamAdInrollActivity
@@ -26,8 +26,11 @@ import com.yandex.ads.sample.adunits.NativeTemplateAdActivity
 import com.yandex.ads.sample.adunits.RewardedAdActivity
 import com.yandex.ads.sample.adunits.SimpleInstreamAdActivity
 import com.yandex.ads.sample.adunits.StickyBannerAdActivity
+import com.yandex.ads.sample.databinding.ActivityHomeBinding
 import com.yandex.ads.sample.navigation.NavigationAdapter
 import com.yandex.ads.sample.navigation.NavigationItem
+import com.yandex.ads.sample.navigation.NavigationItem.NavigationType.ActivityNavigation
+import com.yandex.ads.sample.navigation.NavigationItem.NavigationType.DebugPanelNavigation
 import com.yandex.ads.sample.settings.PoliciesActivity
 
 class HomeActivity : AppCompatActivity(R.layout.activity_home) {
@@ -67,58 +70,68 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
             NavigationItem(
                 R.drawable.ic_outline_ad_units_24,
                 R.string.sticky_banner_title,
-                StickyBannerAdActivity::class.java,
+                ActivityNavigation(StickyBannerAdActivity::class.java),
             ),
             NavigationItem(
                 R.drawable.ic_outline_aspect_ratio_24,
                 R.string.inline_banner_title,
-                InlineBannerAdActivity::class.java,
+                ActivityNavigation(InlineBannerAdActivity::class.java),
             ),
             NavigationItem(
                 R.drawable.ic_outline_fullscreen_24,
                 R.string.interstitial_title,
-                InterstitialAdActivity::class.java,
+                ActivityNavigation(InterstitialAdActivity::class.java),
             ),
             NavigationItem(
                 R.drawable.ic_outline_video_library_24,
                 R.string.rewarded_title,
-                RewardedAdActivity::class.java,
+                ActivityNavigation(RewardedAdActivity::class.java),
             ),
             NavigationItem(
                 R.drawable.ic_outline_developer_mode_24,
                 R.string.native_template_title,
-                NativeTemplateAdActivity::class.java,
+                ActivityNavigation(NativeTemplateAdActivity::class.java),
             ),
             NavigationItem(
                 R.drawable.ic_outline_developer_board_24,
                 R.string.native_custom_title,
-                CustomNativeAdActivity::class.java,
+                ActivityNavigation(CustomNativeAdActivity::class.java),
             ),
             NavigationItem(
                 R.drawable.ic_outline_movie_24,
                 R.string.instream_simple_title,
-                SimpleInstreamAdActivity::class.java,
+                ActivityNavigation(SimpleInstreamAdActivity::class.java),
             ),
             NavigationItem(
                 R.drawable.ic_outline_movie_filter_24,
                 R.string.instream_binder_title,
-                InstreamAdBinderActivity::class.java,
+                ActivityNavigation(InstreamAdBinderActivity::class.java),
             ),
             NavigationItem(
                 R.drawable.ic_outline_video_settings_24,
                 R.string.instream_inroll_title,
-                InstreamAdInrollActivity::class.java,
+                ActivityNavigation(InstreamAdInrollActivity::class.java),
             ),
             NavigationItem(
                 R.drawable.ic_outline_child_care_24,
                 R.string.policies,
-                PoliciesActivity::class.java,
+                ActivityNavigation(PoliciesActivity::class.java),
             ),
             NavigationItem(
-                R.drawable.ic_full_coverage_24px,
+                R.drawable.ic_full_coverage_24,
                 R.string.appopenad_title,
-                AppOpenAdActivity::class.java,
+                ActivityNavigation(AppOpenAdActivity::class.java),
             ),
+            NavigationItem(
+                R.drawable.ic_outline_feed_24,
+                R.string.feed_title,
+                ActivityNavigation(FeedActivity::class.java),
+            ),
+            NavigationItem(
+                R.drawable.ic_outline_instruments_24,
+                R.string.debug_panel,
+                DebugPanelNavigation
+            )
         )
     }
 }

@@ -24,6 +24,7 @@
     <string name="instream_simple_title">Simple instream</string>
     <string name="instream_binder_title">Instream: Pre / Mid / Post-Roll</string>
     <string name="instream_inroll_title">Instream: In-Roll</string>
+    <string name="feed_title">Feed</string>
 
     <!--  Mediation networks  -->
     <string name="yandex_title">Yandex</string>
@@ -92,8 +93,15 @@
     <string name="ok_button">OK</string>
     <string name="show_ad">Show Ad</string>
     <string name="log_format">%1$s\n%2$s</string>
+    <string name="debug_panel">Debug Panel</string>
 
     <!--  AppOpenAd  -->
     <string name="info_title">Info</string>
     <string name="appopenad_info_body">Collapse and open App from recent to view AppOpenAd.</string>
+
+    <!-- Feed -->
+    <string name="another_adapter_item_title">Another adapter item #%1$d</string>
+    <string name="show_feed_ad">Show feed</string>
+    <string name="show_concat_feed_ad">Show concat feed</string>
+    <string name="feed_log">Feed log</string>
 </resources>

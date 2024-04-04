@@ -509,7 +509,7 @@ class YandexBaseAdapter: MediationBaseAdapter {
     /**
      * Yandex SDK version can be obtained that way.
      */
-    override fun getSDKVersionInfo(): String = MobileAds.getLibraryVersion()
+    override fun getSDKVersionInfo(): String = MobileAds.libraryVersion
 
     /**
      * Method for updating privacy policies.

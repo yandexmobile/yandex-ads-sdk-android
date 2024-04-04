@@ -44,6 +44,9 @@
         <activity
             android:name="com.yandex.ads.sample.adunits.StickyBannerAdActivity"
             android:exported="false" />
+        <activity
+            android:name="com.yandex.ads.sample.adunits.FeedActivity"
+            android:exported="false" />
         <activity android:name=".adunits.AppOpenAdActivity" android:exported="false"/>
         <activity
             android:name=".HomeActivity"
