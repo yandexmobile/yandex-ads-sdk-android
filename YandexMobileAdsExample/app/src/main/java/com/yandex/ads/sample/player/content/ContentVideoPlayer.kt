@@ -29,6 +29,13 @@ class ContentVideoPlayer(
 
     private var videoPlayerListener: VideoPlayerListener? = null
 
+    override val videoDuration: Long
+        get() = exoPlayer.duration
+    override val videoPosition: Long
+        get() = exoPlayer.currentPosition
+    override val volume: Float
+        get() = exoPlayer.volume
+
     init {
         exoPlayer.addListener(ContentPlayerEventsListener())
     }
@@ -52,12 +59,6 @@ class ContentVideoPlayer(
             prepare()
         }
     }
-
-    override fun getVideoPosition() = exoPlayer.currentPosition
-
-    override fun getVideoDuration() = exoPlayer.duration
-
-    override fun getVolume() = exoPlayer.volume
 
     override fun pauseVideo() {
         exoPlayerView.useController = false

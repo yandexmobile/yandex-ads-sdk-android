@@ -9,7 +9,6 @@
 
 package com.yandex.ads.sample.navigation
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -39,7 +38,7 @@ class NavigationAdapter(private val items: List<NavigationItem>) :
             icon.setImageDrawable(ContextCompat.getDrawable(context, item.iconId))
             title.text = context.getString(item.titleId)
             root.setOnClickListener {
-                context.startActivity(Intent(context, item.activity))
+                item.navigate(context)
             }
         }
     }

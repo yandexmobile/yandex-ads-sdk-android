@@ -2,6 +2,27 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.0.0
+
+### Added
+* Feed Ad format
+* Debug Panel
+* AdPod ads support
+* Auto-preload support for fullscreen ads
+* EndCard support for video ads
+* Improvements and optimizations
+
+### Fixed
+* Fixed memory leaks and bugs
+
+### Breaking changes
+* Increased the minimum Android API level to 21
+* Use BidderTokenLoader.loadBidderToken(Context, BidderTokenRequestConfiguration, BidderTokenLoadListener) instead of deleted BidderTokenLoader.loadBidderToken(Context, BidderTokenLoadListener)
+* Use methods instead of property access syntax in Rating interface in Kotlin
+* Override properties instead of methods in VideoPlayer in Kotlin
+* Use property instead of method in MobileAds version obtaining in Kotlin
+* See [migration guide](https://ads.yandex.com/helpcenter/en/dev/android/release/7-0-0-migration)
+
 ## Version 6.4.1
 
 ### Fixed

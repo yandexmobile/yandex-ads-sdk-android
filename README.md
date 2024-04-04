@@ -20,7 +20,7 @@ EULA is available at [EULA website] [LICENSE]
 ##### Add YandexMobileAds SDK:
 
 ```sh
-implementation 'com.yandex.android:mobileads:6.4.1'
+implementation 'com.yandex.android:mobileads:7.0.0'
 ```
 
 ##### Or you can use our library with all available mediations:
@@ -31,7 +31,7 @@ implementation 'com.yandex.android:mobileads:6.4.1'
 
 dependencies {
   ...
-  implementation 'com.yandex.android:mobileads-mediation:6.4.1.0'
+  implementation 'com.yandex.android:mobileads-mediation:7.0.0.0'
 }
 ```
 
@@ -57,7 +57,7 @@ allprojects {
 
         // Chartboost
         maven { url 'https://cboost.jfrog.io/artifactory/chartboost-ads/' }
-        
+
         // AppNext
         maven { url 'https://dl.appnext.com/' }
     }
