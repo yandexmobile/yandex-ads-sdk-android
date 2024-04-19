@@ -2,6 +2,13 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.0.1
+
+### Fixed
+
+* Fixed compile-time build errors related to R8 and DebugPanel
+* Improvements and optimizations
+
 ## Version 7.0.0
 
 ### Added
