@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to StartApp Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 5.0.0.0
+
+#### Updated
+* Yandex Mobile Ads SDK 7.1.0
+* StartApp SDK version 5.0.0
+
 ## Version 4.11.5.1
 
 #### Updated
