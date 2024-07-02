@@ -6,6 +6,21 @@ All notable changes to Pangle Adapter for Yandex Mobile Ads Mediation will be do
 #### Updated
 * Yandex Mobile Ads SDK 7.1.0
 
+## Version 5.9.0.6.0
+
+#### Updated
+* Pangle SDK version 5.9.0.6
+
+## Version 5.9.0.5.0
+
+#### Updated
+* Pangle SDK version 5.9.0.5
+
+## Version 5.9.0.4.0
+
+#### Updated
+* Pangle SDK version 5.9.0.4
+
 ## Version 5.8.1.0.0
 
 #### Updated
