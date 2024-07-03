@@ -13,13 +13,15 @@ plugins {
 }
 
 android {
-    compileSdk = 33
-    buildToolsVersion = "33.0.0"
+
+    namespace = "com.yandex.ads.sample"
+    compileSdk = 34
+    buildToolsVersion = "34.0.0"
 
     defaultConfig {
         applicationId = "com.yandex.ads.mobile"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         multiDexEnabled = true
@@ -40,6 +42,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     compileOptions {
@@ -56,7 +59,7 @@ android {
 
 dependencies {
     // Yandex Mobile Ads SDK with mediation adapters
-    implementation("com.yandex.android:mobileads-mediation:7.1.0.0")
+    implementation("com.yandex.android:mobileads-mediation:7.2.0.0")
 
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("androidx.activity:activity-ktx:1.6.1")
@@ -71,12 +74,12 @@ dependencies {
     implementation("com.google.android.exoplayer:exoplayer:2.18.1")
     implementation("androidx.lifecycle:lifecycle-process:2.4.1")
 
-    androidTestImplementation("androidx.test:runner:1.4.0")
-    androidTestImplementation("androidx.test:rules:1.4.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("androidx.test.ext:junit-ktx:1.1.5")
+    androidTestImplementation("androidx.test:runner:1.6.1")
+    androidTestImplementation("androidx.test:rules:1.6.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation("androidx.test.ext:junit-ktx:1.2.1")
     androidTestImplementation("com.kaspersky.android-components:kaspresso:1.5.2")
     androidTestImplementation("com.kaspersky.android-components:kaspresso-allure-support:1.5.2")
 
-    androidTestUtil("androidx.test:orchestrator:1.4.0")
+    androidTestUtil("androidx.test:orchestrator:1.5.0")
 }

@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.2.0
+
+### Fixed
+* Added keep rules for AGP resources shrinker
+* Fixed memory leak in fullscreen ads
+* Improvements and optimizations
+
 ## Version 7.1.0
 
 #### Updated

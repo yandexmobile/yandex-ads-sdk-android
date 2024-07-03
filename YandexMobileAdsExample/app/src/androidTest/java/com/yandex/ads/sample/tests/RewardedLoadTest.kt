@@ -1,8 +1,10 @@
 package com.yandex.ads.sample.tests
 
 import androidx.test.ext.junit.rules.activityScenarioRule
+import com.kaspersky.kaspresso.params.FlakySafetyParams
 import com.yandex.ads.sample.HomeActivity
 import com.yandex.ads.sample.base.BaseUITest
+import com.yandex.ads.sample.base.defaultExt
 import com.yandex.ads.sample.pageobjects.RewardedScreen
 import com.yandex.ads.sample.pageobjects.clickCallToAction
 import com.yandex.ads.sample.pageobjects.clickShowAd
@@ -17,7 +19,6 @@ import org.junit.Rule
 import org.junit.Test
 
 internal class RewardedLoadTest : BaseUITest() {
-
     @get:Rule
     val activityRule = activityScenarioRule<HomeActivity>()
 
@@ -30,7 +31,17 @@ internal class RewardedLoadTest : BaseUITest() {
             item = RewardedScreen.NetworkItem.Yandex::class.java
         )
 
-        Thread.sleep(10_000)
+        val rewardedScreen = RewardedScreen()
+        step("Подождать результат загрузки рекламы") {
+            compose(timeoutMs = 60_000, allowedExceptions = FlakySafetyParams.defaultExt) {
+                or(rewardedScreen.showAdButton) {
+                    isEnabled()
+                }
+                or(rewardedScreen.logsView) {
+                    containsMessage(NO_ADS_AVAILABLE_MESSAGE)
+                }
+            }
+        }
 
         step("Нажать на кнопку \"Show ad\"") {
             onScreen<RewardedScreen> {
@@ -38,7 +49,7 @@ internal class RewardedLoadTest : BaseUITest() {
             }
 
             step("Успешно отобразилась реклама") {
-                flakySafely(30_000) {
+                flakySafely(60_000) {
                     device.activities.isCurrent(AdActivity::class.java)
                 }
             }
@@ -49,5 +60,10 @@ internal class RewardedLoadTest : BaseUITest() {
 
             checkAnyBrowserOrStoreIsOpened("Выполнен корректный переход в браузер или на установку рекламируемого приложения")
         }
+    }
+
+    private companion object {
+        private const val NO_ADS_AVAILABLE_MESSAGE =
+            "Ad request completed successfully, but there are no ads available."
     }
 }

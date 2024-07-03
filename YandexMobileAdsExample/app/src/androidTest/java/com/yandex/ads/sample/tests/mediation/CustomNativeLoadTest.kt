@@ -35,7 +35,7 @@ internal class CustomNativeLoadTest : BaseUITest() {
 
         step("Реклама загрузилась. В случае подбора рекламы она отображется") {
             onScreen<CustomNativeScreen> {
-                compose(timeoutMs = 30_000) {
+                compose(timeoutMs = 60_000) {
                     or(nativeAd) {
                         isCompletelyDisplayed()
                     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yandex.ads.sample">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- For MRAID 2 -->
@@ -47,7 +47,9 @@
         <activity
             android:name="com.yandex.ads.sample.adunits.FeedActivity"
             android:exported="false" />
-        <activity android:name=".adunits.AppOpenAdActivity" android:exported="false"/>
+        <activity
+            android:name=".adunits.AppOpenAdActivity"
+            android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="true">
