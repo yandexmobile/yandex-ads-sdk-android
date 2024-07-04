@@ -40,7 +40,7 @@ internal class InlineBannerLoadTest(
 
         step("Баннер загрузился. В случае подбора рекламы отобразился") {
             onScreen<InlineBannerScreen> {
-                compose(timeoutMs = 30_000) {
+                compose(timeoutMs = 60_000) {
                     or(banner) {
                         isCompletelyDisplayed()
                     }

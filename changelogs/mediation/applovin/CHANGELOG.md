@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to AppLovin Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 12.5.0.1
+
+#### Updated
+* Yandex Mobile Ads SDK 7.2.0
+
 ## Version 12.5.0.0
 
 #### Updated

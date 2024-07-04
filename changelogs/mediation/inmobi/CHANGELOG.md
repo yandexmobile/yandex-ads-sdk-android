@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to InMobi Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 10.7.4.0
+
+#### Updated
+* Yandex Mobile Ads SDK 7.2.0
+* Inmobi SDK version 10.7.4
+
 ## Version 10.6.7.1
 
 #### Updated

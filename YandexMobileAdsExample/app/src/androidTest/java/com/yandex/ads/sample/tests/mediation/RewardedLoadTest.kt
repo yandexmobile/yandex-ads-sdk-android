@@ -23,7 +23,6 @@ import org.junit.runners.Parameterized
 internal class RewardedLoadTest(
     private val networkItem: Class<out RewardedScreen.NetworkItem>
 ) : BaseUITest() {
-
     @get:Rule
     val activityRule = activityScenarioRule<HomeActivity>()
 
@@ -36,7 +35,17 @@ internal class RewardedLoadTest(
             item = networkItem
         )
 
-        Thread.sleep(10_000)
+        val rewardedScreen = RewardedScreen()
+        step("Подождать результат загрузки рекламы") {
+            compose(timeoutMs = 60_000, allowedExceptions = FlakySafetyParams.defaultExt) {
+                or(rewardedScreen.showAdButton) {
+                    isEnabled()
+                }
+                or(rewardedScreen.logsView) {
+                    containsMessage(NO_ADS_AVAILABLE_MESSAGE)
+                }
+            }
+        }
 
         step("Нажать на кнопку \"Show ad\"") {
             onScreen<RewardedScreen> {
@@ -44,15 +53,10 @@ internal class RewardedLoadTest(
             }
 
             step("Реклама загрузилась. В случае подбора рекламы отобразилась на полный экран.") {
-                val rewardedScreen = RewardedScreen()
                 val adScreen = SomeKindOfAppScreen()
-
-                compose(
-                    timeoutMs = 30_000,
-                    allowedExceptions = FlakySafetyParams.defaultExt
-                ) {
+                compose(timeoutMs = 60_000, allowedExceptions = FlakySafetyParams.defaultExt) {
                     or(rewardedScreen.logsView) {
-                        containsMessage("Ad request completed successfully, but there are no ads available.")
+                        containsMessage(NO_ADS_AVAILABLE_MESSAGE)
                     }
 
                     or(adScreen.rootView) {
@@ -64,6 +68,9 @@ internal class RewardedLoadTest(
     }
 
     companion object {
+
+        private const val NO_ADS_AVAILABLE_MESSAGE =
+            "Ad request completed successfully, but there are no ads available."
 
         @JvmStatic
         @Parameterized.Parameters

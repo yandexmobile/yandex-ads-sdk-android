@@ -23,7 +23,6 @@ import org.junit.runners.Parameterized
 internal class InterstitialLoadTest(
     private val networkItem: Class<out InterstitialScreen.NetworkItem>
 ) : BaseUITest() {
-
     @get:Rule
     val activityRule = activityScenarioRule<HomeActivity>()
 
@@ -36,7 +35,17 @@ internal class InterstitialLoadTest(
             item = networkItem
         )
 
-        Thread.sleep(10_000)
+        val interstitialScreen = InterstitialScreen()
+        step("Подождать результат загрузки рекламы") {
+            compose(timeoutMs = 60_000) {
+                or(interstitialScreen.showAdButton) {
+                    isEnabled()
+                }
+                or(interstitialScreen.logsView) {
+                    containsMessage(NO_ADS_AVAILABLE_MESSAGE)
+                }
+            }
+        }
 
         step("Нажать на кнопку \"Show ad\"") {
             onScreen<InterstitialScreen> {
@@ -44,9 +53,7 @@ internal class InterstitialLoadTest(
             }
 
             step("Реклама загрузилась. В случае подбора рекламы отобразилась на полный экран.") {
-                val interstitialScreen = InterstitialScreen()
                 val adScreen = SomeKindOfAppScreen()
-
                 compose(
                     timeoutMs = 30_000,
                     allowedExceptions = FlakySafetyParams.defaultExt
@@ -57,7 +64,7 @@ internal class InterstitialLoadTest(
                     }
 
                     or(interstitialScreen.logsView) {
-                        containsMessage("Ad request completed successfully, but there are no ads available.")
+                        containsMessage(NO_ADS_AVAILABLE_MESSAGE)
                     }
                 }
             }
@@ -65,6 +72,9 @@ internal class InterstitialLoadTest(
     }
 
     companion object {
+
+        private const val NO_ADS_AVAILABLE_MESSAGE =
+            "Ad request completed successfully, but there are no ads available."
 
         @JvmStatic
         @Parameterized.Parameters

@@ -40,7 +40,7 @@ internal class StickyBannerLoadTest(
 
         step("Баннер загрузился. В случае подбора рекламы отобразился") {
             onScreen<StickyBannerScreen> {
-                compose(timeoutMs = 30_000) {
+                compose(timeoutMs = 60_000) {
                     or(banner) {
                         isCompletelyDisplayed()
                     }

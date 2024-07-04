@@ -17,7 +17,6 @@ import org.junit.Rule
 import org.junit.Test
 
 internal class InterstitialLoadTest : BaseUITest() {
-
     @get:Rule
     val activityRule = activityScenarioRule<HomeActivity>()
 
@@ -30,7 +29,17 @@ internal class InterstitialLoadTest : BaseUITest() {
             item = InterstitialScreen.NetworkItem.Yandex::class.java
         )
 
-        Thread.sleep(10_000)
+        val interstitialScreen = InterstitialScreen()
+        step("Подождать результат загрузки рекламы") {
+            compose(timeoutMs = 60_000) {
+                or(interstitialScreen.showAdButton) {
+                    isEnabled()
+                }
+                or(interstitialScreen.logsView) {
+                    containsMessage(NO_ADS_AVAILABLE_MESSAGE)
+                }
+            }
+        }
 
         step("Нажать на кнопку \"Show ad\"") {
             onScreen<InterstitialScreen> {
@@ -49,5 +58,10 @@ internal class InterstitialLoadTest : BaseUITest() {
 
             checkAnyBrowserOrStoreIsOpened("Выполнен корректный переход в браузер или на установку рекламируемого приложения")
         }
+    }
+
+    private companion object {
+        private const val NO_ADS_AVAILABLE_MESSAGE =
+            "Ad request completed successfully, but there are no ads available."
     }
 }
