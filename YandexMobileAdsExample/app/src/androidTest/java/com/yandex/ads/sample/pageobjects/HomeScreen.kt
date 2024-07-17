@@ -29,10 +29,11 @@ internal class HomeScreen(
             NavigationItem.Rewarded::class.java -> 3
             NavigationItem.NativeTemplate::class.java -> 4
             NavigationItem.CustomNative::class.java -> 5
-            NavigationItem.InstreamBinder::class.java -> 7
-            NavigationItem.InstreamInRoll::class.java -> 8
-            NavigationItem.Policies::class.java -> 9
-            NavigationItem.AppOpenAd::class.java -> 10
+            NavigationItem.AdfoxSlider::class.java -> 6
+            NavigationItem.InstreamBinder::class.java -> 8
+            NavigationItem.InstreamInRoll::class.java -> 9
+            NavigationItem.Policies::class.java -> 10
+            NavigationItem.AppOpenAd::class.java -> 11
             else -> error("unsupported type")
         }
     }
@@ -43,6 +44,7 @@ internal class HomeScreen(
         {
             itemType { NavigationItem.NativeTemplate(it) }
             itemType { NavigationItem.CustomNative(it) }
+            itemType { NavigationItem.AdfoxSlider(it) }
             itemType { NavigationItem.Policies(it) }
             itemType { NavigationItem.AppOpenAd(it) }
             itemType { NavigationItem.Rewarded(it) }
@@ -84,6 +86,8 @@ internal class HomeScreen(
         class NativeTemplate(matcher: Matcher<View>) : NavigationItem<NativeTemplate>(matcher)
 
         class CustomNative(matcher: Matcher<View>) : NavigationItem<CustomNative>(matcher)
+
+        class AdfoxSlider(matcher: Matcher<View>) : NavigationItem<AdfoxSlider>(matcher)
 
         class Policies(matcher: Matcher<View>) : NavigationItem<Policies>(matcher)
 

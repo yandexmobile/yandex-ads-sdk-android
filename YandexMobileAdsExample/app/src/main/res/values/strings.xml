@@ -21,6 +21,7 @@
     <string name="appopenad_title">AppOpenAd</string>
     <string name="native_template_title">Native template</string>
     <string name="native_custom_title">Custom native</string>
+    <string name="adfox_slider_title">Adfox slider</string>
     <string name="instream_simple_title">Simple instream</string>
     <string name="instream_binder_title">Instream: Pre / Mid / Post-Roll</string>
     <string name="instream_inroll_title">Instream: In-Roll</string>
@@ -61,6 +62,10 @@
     <string name="native_ad_warning_text">We strongly recommend avoiding this type of website and not clicking the Ignore this warning button!</string>
     <string name="native_ad_call_to_action_text">Install</string>
     <string name="native_appinstall_price_text">Free</string>
+
+    <!-- Adfox slider -->
+    <string name="adfox_slider_previous_ad">Previous ad</string>
+    <string name="adfox_slider_next_ad">Next ad</string>
 
     <!--  Policies  -->
     <string name="policies">Policies</string>

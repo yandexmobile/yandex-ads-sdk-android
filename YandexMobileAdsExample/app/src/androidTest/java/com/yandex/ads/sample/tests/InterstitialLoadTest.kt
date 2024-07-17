@@ -43,7 +43,9 @@ internal class InterstitialLoadTest : BaseUITest() {
 
         step("Нажать на кнопку \"Show ad\"") {
             onScreen<InterstitialScreen> {
-                clickShowAd()
+                flakySafely(10_000) {
+                    clickShowAd()
+                }
             }
 
             step("Успешно отобразилась реклама") {

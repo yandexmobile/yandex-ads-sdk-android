@@ -49,7 +49,9 @@ internal class RewardedLoadTest(
 
         step("Нажать на кнопку \"Show ad\"") {
             onScreen<RewardedScreen> {
-                clickShowAd()
+                flakySafely(10_000) {
+                    clickShowAd()
+                }
             }
 
             step("Реклама загрузилась. В случае подбора рекламы отобразилась на полный экран.") {
@@ -68,7 +70,6 @@ internal class RewardedLoadTest(
     }
 
     companion object {
-
         private const val NO_ADS_AVAILABLE_MESSAGE =
             "Ad request completed successfully, but there are no ads available."
 

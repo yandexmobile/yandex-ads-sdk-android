@@ -49,7 +49,9 @@ internal class InterstitialLoadTest(
 
         step("Нажать на кнопку \"Show ad\"") {
             onScreen<InterstitialScreen> {
-                clickShowAd()
+                flakySafely(10_000) {
+                    clickShowAd()
+                }
             }
 
             step("Реклама загрузилась. В случае подбора рекламы отобразилась на полный экран.") {

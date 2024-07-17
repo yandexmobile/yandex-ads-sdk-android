@@ -78,6 +78,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintTop_toBottomOf="@id/load_ad_button"
         app:layout_constraintBottom_toBottomOf="parent">
 

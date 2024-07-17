@@ -27,7 +27,7 @@
             android:id="@+id/components"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="age,feedback,feedback,icon,title" />
+            app:constraint_referenced_ids="age,sponsored,feedback,title" />
 
         <TextView
             android:id="@+id/age"
@@ -253,8 +253,10 @@
 
         <com.yandex.mobile.ads.nativeads.MediaView
             android:id="@+id/media"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constrainedHeight="true"
+            app:layout_constrainedWidth="true"
             android:layout_marginTop="@dimen/native_offset_small"
             android:layout_marginBottom="@dimen/native_offset_small"
             app:layout_constraintEnd_toEndOf="parent"

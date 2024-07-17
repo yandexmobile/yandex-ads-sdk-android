@@ -30,6 +30,9 @@
             android:name="com.yandex.ads.sample.adunits.CustomNativeAdActivity"
             android:exported="false" />
         <activity
+            android:name="com.yandex.ads.sample.adunits.AdfoxSliderAdActivity"
+            android:exported="false" />
+        <activity
             android:name="com.yandex.ads.sample.adunits.NativeTemplateAdActivity"
             android:exported="false" />
         <activity
