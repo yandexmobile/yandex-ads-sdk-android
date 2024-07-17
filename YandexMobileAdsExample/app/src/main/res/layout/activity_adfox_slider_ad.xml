@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is a part of the Yandex Advertising Network
+  ~
+  ~ Version for Android (C) 2023 YANDEX
+  ~
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adunits.AdfoxSliderAdActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_outline_arrow_back_24"
+        app:navigationIconTint="@color/material_on_surface_emphasis_medium"
+        app:title="@string/adfox_slider_title" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/ad_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/slider_native_ad_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintVertical_weight="1"
+        tools:layout="@layout/fragment_ad_info" />
+
+    <com.yandex.mobile.ads.nativeads.NativeAdView
+        android:id="@+id/slider_native_ad_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ad_info"
+        app:layout_constraintVertical_weight="2">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/slider_ad_view_pager_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/slider_ad_left_button"
+            android:layout_width="@dimen/adfox_slider_control_size"
+            android:layout_height="@dimen/adfox_slider_control_size"
+            android:layout_gravity="center_vertical|start"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/adfox_slider_previous_ad"
+            android:src="@drawable/ic_adfox_slider_arrow_left"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/slider_ad_right_button"
+            android:layout_width="@dimen/adfox_slider_control_size"
+            android:layout_height="@dimen/adfox_slider_control_size"
+            android:layout_gravity="center_vertical|end"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/adfox_slider_next_ad"
+            android:src="@drawable/ic_adfox_slider_arrow_right"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/slider_ad_indicator_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_margin="8dp"
+            android:background="@drawable/shape_adfox_slider_indicator_background"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </com.yandex.mobile.ads.nativeads.NativeAdView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

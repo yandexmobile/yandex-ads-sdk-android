@@ -45,7 +45,9 @@ internal class RewardedLoadTest : BaseUITest() {
 
         step("Нажать на кнопку \"Show ad\"") {
             onScreen<RewardedScreen> {
-                clickShowAd()
+                flakySafely(10_000) {
+                    clickShowAd()
+                }
             }
 
             step("Успешно отобразилась реклама") {

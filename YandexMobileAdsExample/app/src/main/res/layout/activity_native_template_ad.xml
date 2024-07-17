@@ -40,12 +40,15 @@
         app:layout_constraintBottom_toTopOf="@id/native_banner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"
         tools:layout="@layout/fragment_ad_info" />
 
     <com.yandex.mobile.ads.nativeads.template.NativeBannerView
         android:id="@+id/native_banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/ad_info"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

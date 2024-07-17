@@ -9,8 +9,9 @@
 
 package com.yandex.ads.sample.adunits
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.commit
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityNativeTemplateAdBinding
@@ -60,6 +61,7 @@ class NativeTemplateAdActivity : AppCompatActivity(R.layout.activity_native_temp
 
     private fun bindNative(nativeAd: NativeAd) {
         nativeAd.setNativeAdEventListener(eventLogger)
+        binding.nativeBanner.isVisible = true
         binding.nativeBanner.setAd(nativeAd)
     }
 
