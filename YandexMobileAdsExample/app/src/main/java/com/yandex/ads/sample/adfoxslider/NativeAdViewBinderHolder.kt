@@ -19,7 +19,7 @@ class NativeAdViewBinderHolder(binding: AdfoxSliderItemBinding) : RecyclerView.V
 
     private fun createNativeAdViewBinder(binding: AdfoxSliderItemBinding): NativeAdViewBinder {
         return binding.nativeAd.run {
-            NativeAdViewBinder.Builder(binding.root)
+            NativeAdViewBinder.Builder(root)
                 .setAgeView(age)
                 .setBodyView(body)
                 .setCallToActionView(callToAction)

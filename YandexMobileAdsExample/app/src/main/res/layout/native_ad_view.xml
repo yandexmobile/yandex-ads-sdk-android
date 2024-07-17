@@ -27,7 +27,7 @@
             android:id="@+id/components"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="age,sponsored,feedback,icon,title" />
+            app:constraint_referenced_ids="age,sponsored,feedback,title" />
 
         <TextView
             android:id="@+id/age"
