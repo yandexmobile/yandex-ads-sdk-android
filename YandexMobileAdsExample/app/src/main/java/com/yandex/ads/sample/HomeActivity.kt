@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.yandex.ads.sample.adunits.AdfoxSliderAdActivity
+import com.yandex.ads.sample.adunits.AdfoxCarouselAdActivity
 import com.yandex.ads.sample.adunits.AppOpenAdActivity
 import com.yandex.ads.sample.adunits.CustomNativeAdActivity
 import com.yandex.ads.sample.adunits.FeedActivity
@@ -100,8 +100,8 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
             ),
             NavigationItem(
                 R.drawable.ic_outline_carousel_24,
-                R.string.adfox_slider_title,
-                ActivityNavigation(AdfoxSliderAdActivity::class.java),
+                R.string.adfox_carousel_title,
+                ActivityNavigation(AdfoxCarouselAdActivity::class.java),
             ),
             NavigationItem(
                 R.drawable.ic_outline_movie_24,

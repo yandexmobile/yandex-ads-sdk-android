@@ -22,7 +22,7 @@ internal class GoToSection<ScenarioData>(
     enum class NavigationItem {
         NATIVE_TEMPLATE,
         CUSTOM_NATIVE,
-        ADFOX_SLIDER,
+        ADFOX_CAROUSEL,
         POLICIES,
         APP_OPEN_AD,
         REWARDED,
@@ -40,7 +40,7 @@ internal class GoToSection<ScenarioData>(
             get() = when (this) {
                 NavigationItem.NATIVE_TEMPLATE -> R.string.native_template_title
                 NavigationItem.CUSTOM_NATIVE -> R.string.native_custom_title
-                NavigationItem.ADFOX_SLIDER -> R.string.adfox_slider_title
+                NavigationItem.ADFOX_CAROUSEL -> R.string.adfox_carousel_title
                 NavigationItem.POLICIES -> R.string.policies
                 NavigationItem.APP_OPEN_AD -> R.string.appopenad_title
                 NavigationItem.REWARDED -> R.string.rewarded_title
@@ -55,7 +55,7 @@ internal class GoToSection<ScenarioData>(
             get() = when (this) {
                 NavigationItem.NATIVE_TEMPLATE -> HomeScreen.NavigationItem.NativeTemplate::class.java
                 NavigationItem.CUSTOM_NATIVE -> HomeScreen.NavigationItem.CustomNative::class.java
-                NavigationItem.ADFOX_SLIDER -> HomeScreen.NavigationItem.AdfoxSlider::class.java
+                NavigationItem.ADFOX_CAROUSEL -> HomeScreen.NavigationItem.AdfoxCarousel::class.java
                 NavigationItem.POLICIES -> HomeScreen.NavigationItem.Policies::class.java
                 NavigationItem.APP_OPEN_AD -> HomeScreen.NavigationItem.AppOpenAd::class.java
                 NavigationItem.REWARDED -> HomeScreen.NavigationItem.Rewarded::class.java
