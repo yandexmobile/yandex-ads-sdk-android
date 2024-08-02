@@ -21,7 +21,7 @@
     <string name="appopenad_title">AppOpenAd</string>
     <string name="native_template_title">Native template</string>
     <string name="native_custom_title">Custom native</string>
-    <string name="adfox_slider_title">Adfox slider</string>
+    <string name="adfox_carousel_title">Adfox Carousel</string>
     <string name="instream_simple_title">Simple instream</string>
     <string name="instream_binder_title">Instream: Pre / Mid / Post-Roll</string>
     <string name="instream_inroll_title">Instream: In-Roll</string>

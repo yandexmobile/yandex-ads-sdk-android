@@ -7,18 +7,18 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.yandex.ads.sample.adfoxslider
+package com.yandex.ads.sample.adfoxcarousel
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.yandex.ads.sample.databinding.AdfoxSliderItemBinding
+import com.yandex.ads.sample.databinding.AdfoxCarouselItemBinding
 import com.yandex.mobile.ads.nativeads.NativeAd
 import com.yandex.mobile.ads.nativeads.NativeAdException
 import com.yandex.mobile.ads.nativeads.NativeAdViewBinder
 
-class AdfoxSliderAdapter : RecyclerView.Adapter<NativeAdViewBinderHolder>() {
+class AdfoxCarouselAdapter : RecyclerView.Adapter<NativeAdViewBinderHolder>() {
 
     private var nativeAds: List<NativeAd> = listOf()
 
@@ -28,7 +28,7 @@ class AdfoxSliderAdapter : RecyclerView.Adapter<NativeAdViewBinderHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NativeAdViewBinderHolder {
-        val binding = AdfoxSliderItemBinding.inflate(
+        val binding = AdfoxCarouselItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         return NativeAdViewBinderHolder(binding)
