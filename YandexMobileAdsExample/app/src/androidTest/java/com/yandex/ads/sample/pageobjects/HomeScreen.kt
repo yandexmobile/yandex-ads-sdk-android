@@ -29,7 +29,7 @@ internal class HomeScreen(
             NavigationItem.Rewarded::class.java -> 3
             NavigationItem.NativeTemplate::class.java -> 4
             NavigationItem.CustomNative::class.java -> 5
-            NavigationItem.AdfoxSlider::class.java -> 6
+            NavigationItem.AdfoxCarousel::class.java -> 6
             NavigationItem.InstreamBinder::class.java -> 8
             NavigationItem.InstreamInRoll::class.java -> 9
             NavigationItem.Policies::class.java -> 10
@@ -44,7 +44,7 @@ internal class HomeScreen(
         {
             itemType { NavigationItem.NativeTemplate(it) }
             itemType { NavigationItem.CustomNative(it) }
-            itemType { NavigationItem.AdfoxSlider(it) }
+            itemType { NavigationItem.AdfoxCarousel(it) }
             itemType { NavigationItem.Policies(it) }
             itemType { NavigationItem.AppOpenAd(it) }
             itemType { NavigationItem.Rewarded(it) }
@@ -87,7 +87,7 @@ internal class HomeScreen(
 
         class CustomNative(matcher: Matcher<View>) : NavigationItem<CustomNative>(matcher)
 
-        class AdfoxSlider(matcher: Matcher<View>) : NavigationItem<AdfoxSlider>(matcher)
+        class AdfoxCarousel(matcher: Matcher<View>) : NavigationItem<AdfoxCarousel>(matcher)
 
         class Policies(matcher: Matcher<View>) : NavigationItem<Policies>(matcher)
 

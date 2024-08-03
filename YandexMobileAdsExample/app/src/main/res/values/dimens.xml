@@ -34,10 +34,10 @@
     <dimen name="offset_medium">8dp</dimen>
     <dimen name="icon_size">24dp</dimen>
 
-    <dimen name="adfox_slider_indicator_dot_size_large">6dp</dimen>
-    <dimen name="adfox_slider_indicator_dot_size_medium">4dp</dimen>
-    <dimen name="adfox_slider_indicator_dot_size_small">2dp</dimen>
-    <dimen name="adfox_slider_indicator_dot_margin">2dp</dimen>
-    <dimen name="adfox_slider_control_size">48dp</dimen>
-    <dimen name="adfox_slider_ad_padding">32dp</dimen>
+    <dimen name="adfox_carousel_indicator_dot_size_large">6dp</dimen>
+    <dimen name="adfox_carousel_indicator_dot_size_medium">4dp</dimen>
+    <dimen name="adfox_carousel_indicator_dot_size_small">2dp</dimen>
+    <dimen name="adfox_carousel_indicator_dot_margin">2dp</dimen>
+    <dimen name="adfox_carousel_control_size">48dp</dimen>
+    <dimen name="adfox_carousel_ad_padding">32dp</dimen>
 </resources>

@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.3.0
+
+### Updated
+* DivKit version updated to 30.5.0
+
+### Fixed
+* Fixed the size of the banner while displaying mediation
+* Improvements and optimizations
+
 ## Version 7.2.0
 
 ### Fixed

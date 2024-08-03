@@ -7,7 +7,7 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
-package com.yandex.ads.sample.adfoxslider
+package com.yandex.ads.sample.adfoxcarousel
 
 import androidx.viewpager2.widget.ViewPager2
 import kotlinx.coroutines.Job
@@ -15,7 +15,7 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SliderAutoscroller(private val viewPager2: ViewPager2) {
+class ViewPagerAutoscroller(private val viewPager2: ViewPager2) {
 
     private val itemCount get() = viewPager2.adapter!!.itemCount
     private val currentItem get() = viewPager2.currentItem
