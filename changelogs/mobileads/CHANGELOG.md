@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.4.0
+
+### Fixed
+* Fixed ANR during In-App Bidding ad requests
+* Improvements and optimizations
+
 ## Version 7.3.0
 
 ### Updated
