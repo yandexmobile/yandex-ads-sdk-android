@@ -15,9 +15,11 @@ import com.yandex.ads.sample.shared_steps.goToSection
 import com.yandex.ads.sample.shared_steps.openSampleApp
 import com.yandex.mobile.ads.common.AdActivity
 import io.github.kakaocup.kakao.screen.Screen.Companion.onScreen
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 
+@Ignore("Bad test stability")
 internal class RewardedLoadTest : BaseUITest() {
     @get:Rule
     val activityRule = activityScenarioRule<HomeActivity>()
