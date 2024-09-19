@@ -1,6 +1,18 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.5.0
+
+### Added
+* Support for media3 in Instream Ads
+
+### Updated
+* DivKit version updated to 30.14.0
+* AppMetrica version updated to 7.2.0
+
+### Fixed
+* Improvements and optimizations
+
 ## Version 7.4.0
 
 ### Fixed

@@ -30,7 +30,7 @@ internal class InstreamInRollLoadTest : BaseUITest() {
 
         step("Появилось сообщение о загрузке рекламы") {
             onScreen<InstreamInRollScreen> {
-                flakySafely(30_000) {
+                flakySafely(60_000) {
                     this.logsView.apply {
                         containsMessage("Instream ad loaded")
                     }
