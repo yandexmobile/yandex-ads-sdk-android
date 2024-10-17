@@ -9,14 +9,17 @@
 package com.yandex.ads.sample.player.creator
 
 import android.content.Context
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
-import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.upstream.cache.CacheDataSource
-import com.google.android.exoplayer2.util.Util
+import androidx.annotation.OptIn
+import androidx.media3.common.MediaItem
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.common.util.Util
+import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.datasource.cache.CacheDataSource
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
+import androidx.media3.exoplayer.source.MediaSource
 import com.yandex.ads.sample.player.cache.DiskCacheProvider
 
+@OptIn(UnstableApi::class)
 class MediaSourceCreator(
     private val context: Context,
 ) {
@@ -25,7 +28,8 @@ class MediaSourceCreator(
         val cache = DiskCacheProvider.getCache(context)
         val adMediaItem = MediaItem.fromUri(streamUrl)
         val userAgent = Util.getUserAgent(context, context.packageName)
-        val defaultDataSourceFactory = DefaultDataSourceFactory(context, userAgent)
+
+        val defaultDataSourceFactory = DefaultHttpDataSource.Factory().setUserAgent(userAgent)
         val adPlayerCacheFactory = CacheDataSource.Factory()
             .setCache(cache)
             .setUpstreamDataSourceFactory(defaultDataSourceFactory)
