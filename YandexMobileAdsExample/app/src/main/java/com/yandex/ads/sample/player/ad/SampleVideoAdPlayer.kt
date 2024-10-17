@@ -9,14 +9,17 @@
 
 package com.yandex.ads.sample.player.ad
 
-import com.google.android.exoplayer2.PlaybackException
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.ui.PlayerView
+import androidx.annotation.OptIn
+import androidx.media3.common.PlaybackException
+import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.ui.PlayerView
 import com.yandex.ads.sample.player.creator.MediaSourceCreator
 import com.yandex.mobile.ads.instream.player.ad.InstreamAdPlayerListener
 import com.yandex.mobile.ads.video.playback.model.VideoAd
 
+@OptIn(UnstableApi::class)
 class SampleVideoAdPlayer(
     private val videoAd: VideoAd,
     private val exoPlayerView: PlayerView,
@@ -26,7 +29,7 @@ class SampleVideoAdPlayer(
     private val exoPlayerErrorConverter = ExoPlayerErrorConverter()
     private val mediaSourceCreator = MediaSourceCreator(context)
 
-    private val adPlayer = SimpleExoPlayer.Builder(context).build().apply {
+    private val adPlayer = ExoPlayer.Builder(context).build().apply {
         addListener(ExoPlayerEventsListener())
     }
 
@@ -132,6 +135,7 @@ class SampleVideoAdPlayer(
                 }
                 Player.STATE_BUFFERING -> onAdBufferingStarted()
                 Player.STATE_ENDED -> onEndedState()
+                else -> { }
             }
         }
 

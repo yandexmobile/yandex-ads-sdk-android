@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout="@layout/fragment_ad_info" />
 
-    <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+    <androidx.media3.ui.AspectRatioFrameLayout
         android:id="@+id/player_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -52,12 +52,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintDimensionRatio="16:9">
 
-        <com.google.android.exoplayer2.ui.PlayerView
+        <androidx.media3.ui.PlayerView
             android:id="@+id/player_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/item_padding" />
 
-    </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+    </androidx.media3.ui.AspectRatioFrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

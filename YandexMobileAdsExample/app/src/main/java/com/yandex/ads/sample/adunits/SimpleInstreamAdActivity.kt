@@ -9,31 +9,35 @@
 
 package com.yandex.ads.sample.adunits
 
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.util.Util
+import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivitySimpleInstreamAdBinding
 import com.yandex.ads.sample.network.Network
 import com.yandex.mobile.ads.instream.InstreamAdRequestConfiguration
-import com.yandex.mobile.ads.instream.exoplayer.YandexAdsLoader
+import com.yandex.mobile.ads.instream.media3.YandexAdsLoader
 
 class SimpleInstreamAdActivity : AppCompatActivity(R.layout.activity_simple_instream_ad) {
 
     private val adInfoFragment get() = requireNotNull(_adInfoFragment)
 
     private var _adInfoFragment: AdInfoFragment? = null
+    private var player: Player? = null
+
+    private var wasPlaying = false
+    private var rememberedPlayerPosition = 0L
+    private var rememberedPlayWhenReady = false
 
     private lateinit var binding: ActivitySimpleInstreamAdBinding
     private lateinit var yandexAdsLoader: YandexAdsLoader
-    private lateinit var player: Player
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,91 +51,104 @@ class SimpleInstreamAdActivity : AppCompatActivity(R.layout.activity_simple_inst
             setReorderingAllowed(true)
             replace(R.id.ad_info, adInfoFragment)
         }
-        initPlayer()
+        initAdsLoader()
     }
 
-    private fun initPlayer() {
+    private fun initAdsLoader() {
         val configuration = InstreamAdRequestConfiguration
             .Builder(networks.first().adUnitId)
             .build()
         yandexAdsLoader = YandexAdsLoader(this, configuration)
-        player = createPlayer()
+    }
+
+    private fun initPlayer() {
+        player = createPlayer().also {
+            binding.playerView.player = it
+            yandexAdsLoader.setPlayer(it)
+
+            // restore player if was playing before
+            if (wasPlaying) {
+                it.setMediaItem(getMediaItem())
+                it.playWhenReady = rememberedPlayWhenReady
+                it.seekTo(rememberedPlayerPosition)
+                it.prepare()
+            }
+        }
     }
 
     private fun createPlayer(): Player {
-        val userAgent = Util.getUserAgent(this, getString(R.string.app_name))
-        val dataSourceFactory = DefaultDataSourceFactory(this, userAgent)
-        val mediaSourceFactory = DefaultMediaSourceFactory(dataSourceFactory)
-            .setAdsLoaderProvider { yandexAdsLoader }
-            .setAdViewProvider(binding.playerView)
+        val mediaSourceFactory = DefaultMediaSourceFactory(this)
+            .setLocalAdInsertionComponents({ yandexAdsLoader }, binding.playerView)
 
-        val player = SimpleExoPlayer.Builder(this)
+        val player = ExoPlayer.Builder(this)
             .setMediaSourceFactory(mediaSourceFactory)
             .build()
-        binding.playerView.player = player
-        yandexAdsLoader.setPlayer(player)
 
         return player
     }
 
     private fun loadInstream() {
+        wasPlaying = true
+        player?.apply {
+            setMediaItem(getMediaItem())
+            playWhenReady = true
+            prepare()
+        }
+    }
+
+    private fun getMediaItem(): MediaItem {
         val contentVideoUrl = getString(R.string.instream_content_url)
+        val adTagUri = Uri.parse(YandexAdsLoader.AD_TAG_URI)
         val mediaItem = MediaItem.Builder()
             .setUri(contentVideoUrl)
-            .setAdTagUri(YandexAdsLoader.AD_TAG_URI).build()
-
-        player.apply {
-            setMediaItem(mediaItem)
-            prepare()
-            playWhenReady = true
-        }
+            .setAdsConfiguration(MediaItem.AdsConfiguration.Builder(adTagUri).build())
+            .build()
+        return mediaItem
     }
 
-    private fun restorePlayer() {
-        yandexAdsLoader.setPlayer(player)
-        binding.playerView.player = player
-        if (player.isPlayingAd) {
-            player.playWhenReady = true
-        }
-    }
 
     private fun releasePlayer() {
         yandexAdsLoader.setPlayer(null)
         binding.playerView.player = null
-        player.playWhenReady = false
+        player?.also {
+            rememberedPlayerPosition = it.contentPosition
+            rememberedPlayWhenReady = it.playWhenReady
+            it.release()
+        }
+        player = null
     }
 
     override fun onStart() {
         super.onStart()
-        if (Util.SDK_INT <= Build.VERSION_CODES.M) return
-        restorePlayer()
+        if (Build.VERSION.SDK_INT <= 23) return
+        initPlayer()
         binding.playerView.onResume()
     }
 
     override fun onStop() {
         super.onStop()
-        if (Util.SDK_INT <= Build.VERSION_CODES.M) return
+        if (Build.VERSION.SDK_INT <= 23) return
         binding.playerView.onPause()
         releasePlayer()
     }
 
     override fun onResume() {
         super.onResume()
-        if (Util.SDK_INT > Build.VERSION_CODES.M) return
-        restorePlayer()
+        if (Build.VERSION.SDK_INT > 23) return
+        initPlayer()
         binding.playerView.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        if (Util.SDK_INT > Build.VERSION_CODES.M) return
+        if (Build.VERSION.SDK_INT > 23) return
         binding.playerView.onPause()
         releasePlayer()
     }
 
     override fun onDestroy() {
+        releasePlayer()
         yandexAdsLoader.release()
-        player.release()
         _adInfoFragment = null
         super.onDestroy()
     }

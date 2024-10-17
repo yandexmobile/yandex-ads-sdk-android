@@ -10,11 +10,14 @@
 package com.yandex.ads.sample.player.cache
 
 import android.content.Context
-import com.google.android.exoplayer2.database.ExoDatabaseProvider
-import com.google.android.exoplayer2.upstream.cache.Cache
-import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
-import com.google.android.exoplayer2.upstream.cache.SimpleCache
+import androidx.annotation.OptIn
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.database.StandaloneDatabaseProvider
+import androidx.media3.datasource.cache.Cache
+import androidx.media3.datasource.cache.LeastRecentlyUsedCacheEvictor
+import androidx.media3.datasource.cache.SimpleCache
 
+@OptIn(UnstableApi::class)
 object DiskCacheProvider {
 
     private const val CACHE_DIRECTORY_NAME = "video-cache"
@@ -34,7 +37,7 @@ object DiskCacheProvider {
     private fun createCache(context: Context): Cache {
         val cacheDir = diskCachePathProvider.getDiskCacheDirectory(context, CACHE_DIRECTORY_NAME)
         val cacheEvictor = LeastRecentlyUsedCacheEvictor(MIN_DISK_CACHE_SIZE_BYTES)
-        val databaseProvider = ExoDatabaseProvider(context)
+        val databaseProvider = StandaloneDatabaseProvider(context)
 
         return SimpleCache(cacheDir, cacheEvictor, databaseProvider)
     }

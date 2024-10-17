@@ -9,22 +9,26 @@
 
 package com.yandex.ads.sample.player.content
 
-import com.google.android.exoplayer2.PlaybackException
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.ui.PlayerView
+
+import androidx.annotation.OptIn
+import androidx.media3.common.PlaybackException
+import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.ui.PlayerView
 import com.yandex.ads.sample.player.SamplePlayer
 import com.yandex.ads.sample.player.creator.MediaSourceCreator
 import com.yandex.mobile.ads.instream.player.content.VideoPlayer
 import com.yandex.mobile.ads.instream.player.content.VideoPlayerListener
 
+@OptIn(UnstableApi::class)
 class ContentVideoPlayer(
     private val videoUrl: String,
     private val exoPlayerView: PlayerView
 ) : VideoPlayer, SamplePlayer {
 
     private val context = exoPlayerView.context
-    private val exoPlayer = SimpleExoPlayer.Builder(context).build()
+    private val exoPlayer = ExoPlayer.Builder(context).build()
     private val mediaSourceCreator = MediaSourceCreator(context)
 
     private var videoPlayerListener: VideoPlayerListener? = null
@@ -71,8 +75,8 @@ class ContentVideoPlayer(
         resume()
     }
 
-    override fun setVideoPlayerListener(playerListener: VideoPlayerListener?) {
-        videoPlayerListener = playerListener
+    override fun setVideoPlayerListener(listener: VideoPlayerListener?) {
+        videoPlayerListener = listener
     }
 
     fun release() {

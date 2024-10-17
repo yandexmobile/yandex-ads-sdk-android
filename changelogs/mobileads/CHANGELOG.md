@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.6.0
+
+### Fixed
+* Fixed ANR when using media3 AdsLoader
+* Improvements and optimizations
+
 ## Version 7.5.0
 
 ### Added

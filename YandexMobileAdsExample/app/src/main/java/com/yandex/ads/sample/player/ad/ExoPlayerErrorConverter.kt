@@ -13,26 +13,29 @@ import android.media.MediaCodec
 import android.media.MediaDrmResetException
 import android.media.ResourceBusyException
 import android.os.Build
-import com.google.android.exoplayer2.ExoPlaybackException
-import com.google.android.exoplayer2.ExoTimeoutException
-import com.google.android.exoplayer2.IllegalSeekPositionException
-import com.google.android.exoplayer2.ParserException
-import com.google.android.exoplayer2.audio.AudioSink
-import com.google.android.exoplayer2.audio.DefaultAudioSink
-import com.google.android.exoplayer2.drm.DrmSession
-import com.google.android.exoplayer2.drm.KeysExpiredException
-import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-import com.google.android.exoplayer2.mediacodec.MediaCodecUtil
-import com.google.android.exoplayer2.source.BehindLiveWindowException
-import com.google.android.exoplayer2.text.SubtitleDecoderException
-import com.google.android.exoplayer2.upstream.HttpDataSource
-import com.google.android.exoplayer2.upstream.Loader
-import com.google.android.exoplayer2.upstream.cache.Cache
-import com.google.android.exoplayer2.video.MediaCodecVideoDecoderException
+import androidx.annotation.OptIn
+import androidx.media3.common.IllegalSeekPositionException
+import androidx.media3.common.ParserException
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.datasource.HttpDataSource
+import androidx.media3.datasource.cache.Cache
+import androidx.media3.exoplayer.ExoPlaybackException
+import androidx.media3.exoplayer.ExoTimeoutException
+import androidx.media3.exoplayer.audio.AudioSink
+import androidx.media3.exoplayer.audio.DefaultAudioSink
+import androidx.media3.exoplayer.drm.DrmSession
+import androidx.media3.exoplayer.drm.KeysExpiredException
+import androidx.media3.exoplayer.mediacodec.MediaCodecRenderer
+import androidx.media3.exoplayer.mediacodec.MediaCodecUtil
+import androidx.media3.exoplayer.source.BehindLiveWindowException
+import androidx.media3.exoplayer.upstream.Loader
+import androidx.media3.exoplayer.video.MediaCodecVideoDecoderException
+import androidx.media3.extractor.text.SubtitleDecoderException
 import com.yandex.mobile.ads.instream.player.ad.error.InstreamAdPlayerError
 import java.net.HttpURLConnection
 import javax.net.ssl.SSLHandshakeException
 
+@OptIn(UnstableApi::class)
 class ExoPlayerErrorConverter {
 
     fun convertExoPlayerError(throwable: Throwable): InstreamAdPlayerError {

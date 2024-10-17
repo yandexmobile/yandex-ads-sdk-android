@@ -9,7 +9,7 @@
 
 package com.yandex.ads.sample.player.ad
 
-import com.google.android.exoplayer2.ui.PlayerView
+import androidx.media3.ui.PlayerView
 import com.yandex.ads.sample.player.SamplePlayer
 import com.yandex.mobile.ads.instream.player.ad.InstreamAdPlayer
 import com.yandex.mobile.ads.instream.player.ad.InstreamAdPlayerListener
