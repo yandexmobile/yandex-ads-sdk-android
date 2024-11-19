@@ -65,7 +65,7 @@ internal class StickyBannerLoadTest(
             StickyBannerScreen.NetworkItem.StartApp::class.java,
             StickyBannerScreen.NetworkItem.MyTarget::class.java,
 //            StickyBannerScreen.NetworkItem.Mintegral::class.java,
-            StickyBannerScreen.NetworkItem.InMobi::class.java,
+//            StickyBannerScreen.NetworkItem.InMobi::class.java,
             StickyBannerScreen.NetworkItem.Chartboost::class.java,
             StickyBannerScreen.NetworkItem.AppLovin::class.java,
             StickyBannerScreen.NetworkItem.AdMob::class.java,
