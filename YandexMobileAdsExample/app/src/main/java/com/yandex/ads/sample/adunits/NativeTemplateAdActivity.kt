@@ -114,7 +114,6 @@ class NativeTemplateAdActivity : AppCompatActivity(R.layout.activity_native_temp
             Network(R.drawable.ic_yandex_icon_24, R.string.yandex_title, "demo-native-content-yandex"),
             Network(R.drawable.ic_admob_icon_24, R.string.admob_title, "demo-native-admob"),
             Network(R.drawable.ic_mytarget_icon_24, R.string.my_target_title, "demo-native-mytarget"),
-            Network(R.drawable.ic_startapp_icon_24, R.string.startapp_title, "demo-native-startapp"),
             Network(R.drawable.ic_adfox_icon, R.string.adfox_title, "R-M-243655-10"),
         )
 

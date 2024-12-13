@@ -166,7 +166,6 @@ class InterstitialAdActivity : AppCompatActivity(R.layout.activity_interstitial_
             Network(R.drawable.ic_mytarget_icon_24, R.string.my_target_title, "demo-interstitial-mytarget"),
             Network(R.drawable.ic_ironsource_icon_24, R.string.ironsource_title, "demo-interstitial-ironsource"),
             Network(R.drawable.ic_pangle_icon, R.string.pangle_title, "demo-interstitial-pangle"),
-            Network(R.drawable.ic_startapp_icon_24, R.string.startapp_title, "demo-interstitial-startapp"),
             Network(R.drawable.ic_tapjoy_icon, R.string.tapjoy_title, "demo-interstitial-tapjoy"),
             Network(R.drawable.ic_unityads_icon_24, R.string.unity_ads_title, "demo-interstitial-unityads"),
             Network(R.drawable.ic_vungle_icon_24, R.string.vungle_title, "demo-interstitial-vungle"),
