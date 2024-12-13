@@ -35,7 +35,6 @@ internal class RewardedScreen: KScreen<RewardedScreen>(),
             itemType(NetworkItem::AdColony)
             itemType(NetworkItem::Vungle)
             itemType(NetworkItem::UnityAds)
-            itemType(NetworkItem::StartApp)
             itemType(NetworkItem::MyTarget)
             itemType(NetworkItem::Mintegral)
             itemType(NetworkItem::InMobi)
@@ -50,7 +49,6 @@ internal class RewardedScreen: KScreen<RewardedScreen>(),
                 NetworkItem.Vungle::class.java -> 13
                 NetworkItem.UnityAds::class.java -> 12
                 NetworkItem.Tapjoy::class.java -> 11
-                NetworkItem.StartApp::class.java -> 10
                 NetworkItem.Pangle::class.java -> 9
                 NetworkItem.MyTarget::class.java -> 7
                 NetworkItem.Mintegral::class.java -> 6
@@ -82,8 +80,6 @@ internal class RewardedScreen: KScreen<RewardedScreen>(),
         class Vungle(interaction: DataInteraction) : NetworkItem(interaction)
 
         class UnityAds(interaction: DataInteraction) : NetworkItem(interaction)
-
-        class StartApp(interaction: DataInteraction) : NetworkItem(interaction)
 
         class MyTarget(interaction: DataInteraction) : NetworkItem(interaction)
 

@@ -43,7 +43,6 @@ internal class StickyBannerScreen : KScreen<StickyBannerScreen>(),
             itemType(NetworkItem::AdFox)
             itemType(NetworkItem::Vungle)
             itemType(NetworkItem::UnityAds)
-            itemType(NetworkItem::StartApp)
             itemType(NetworkItem::MyTarget)
             itemType(NetworkItem::Mintegral)
             itemType(NetworkItem::InMobi)
@@ -56,7 +55,6 @@ internal class StickyBannerScreen : KScreen<StickyBannerScreen>(),
                 NetworkItem.AdFox::class.java -> 12
                 NetworkItem.Vungle::class.java -> 11
                 NetworkItem.UnityAds::class.java -> 10
-                NetworkItem.StartApp::class.java -> 9
                 NetworkItem.MyTarget::class.java -> 8
                 NetworkItem.Mintegral::class.java -> 7
                 NetworkItem.InMobi::class.java -> 5
@@ -90,8 +88,6 @@ internal class StickyBannerScreen : KScreen<StickyBannerScreen>(),
         class Vungle(interaction: DataInteraction) : NetworkItem(interaction)
 
         class UnityAds(interaction: DataInteraction) : NetworkItem(interaction)
-
-        class StartApp(interaction: DataInteraction) : NetworkItem(interaction)
 
         class MyTarget(interaction: DataInteraction) : NetworkItem(interaction)
 

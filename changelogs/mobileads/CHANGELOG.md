@@ -1,7 +1,29 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.8.0
+
+### Added
+* Added API callback about closing banner ads
+* Added API to get advertiser info in in-stream ads
+* Added API to customize feedback asset in in-stream ads
+* Added preview support for loading video
+
+### Fixed
+* Fixed ads appearance in edge-to-edge mode on API 35+
+* Improved SDK ANR and crash collection
+* Improvements and optimizations
+
 ## Version 7.7.0
+
+### Added
+* Added background image preloading
+* Added preview support for loading image
+* Added dependencies consistency verification through Gradle Rich Versions
+
+### Fixed
+* Fixed video controls displaying
+* Improved SDK ANR and crash collection
 
 #### Updated
 * AppMetrica SDK version 7.3.0

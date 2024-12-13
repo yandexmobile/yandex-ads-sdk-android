@@ -2,6 +2,26 @@
 
 All notable changes to Yandex Full Mediation will be documented in this file.
 
+## Version 7.8.0.0
+
+#### Updated
+
+* Yandex Mobile Ads SDK 7.8.0
+* Applovin Adapter version 12.6.0.5
+* Appnext Adapter version 2.7.6.473.5
+* Bigoads Adapter version 5.0.2.0
+* Chartboost Adapter version 9.3.1.13
+* Google Adapter version 23.5.0.0
+* Inmobi Adapter version 10.8.0.0
+* Ironsource Adapter version 8.5.0.0
+* Mintegral Adapter version 16.8.61.2
+* Mytarget Adapter version 5.22.1.4
+* Pangle Adapter version 6.4.0.2.0
+* Startapp Adapter version 5.0.2.5
+* Tapjoy Adapter version 13.4.1.8
+* Unityads Adapter version 4.12.5.0
+* Vungle Adapter version 7.4.2.0
+
 ## Version 7.7.0.0
 
 #### Updated
