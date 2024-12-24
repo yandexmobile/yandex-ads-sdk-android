@@ -11,6 +11,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 ### Added
 * Added API callback about closing banner ads
 * Added API to get advertiser info in in-stream ads
+* Added API to customize feedback asset in in-stream ads
 * Added preview support for loading video
 
 ### Fixed
