@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to ChartBoost Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 9.3.1.14
+
+#### Updated
+* Yandex Mobile Ads SDK version 7.9.0
+
 ## Version 9.3.1.13
 
 #### Updated

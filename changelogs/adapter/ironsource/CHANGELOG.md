@@ -2,6 +2,14 @@
 
 All notable changes to Yandex Adapter for IronSource Mediation will be documented in this file.
 
+## Version 7.9.0.0
+
+#### Deprecated
+* This adapter is no longer supported. Please, use [official adapter implementation](https://developers.is.com/ironsource-mobile/android/yandex-integration-guide)
+
+#### Updated
+* Yandex Mobile Ads SDK version 7.9.0
+
 ## Version 7.8.1.0
 
 #### Updated
