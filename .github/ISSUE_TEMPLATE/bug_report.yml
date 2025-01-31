@@ -1,0 +1,78 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: "Please review our [documentation](https://ads.yandex.com/helpcenter/en/dev/platforms) before submitting a bug report.\n\nThanks for taking the time to fill out this bug report!"
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Choose the appropriate description of the issue
+      options:
+        - Issues with ad behavior/display
+        - Project build issues
+        - SDK causes app crashes
+        - Other
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: latest-sdk-version
+    attributes:
+      label: Does the issue occur in the latest SDK version?
+      options:
+        - "Haven't checked"
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sample-issue
+    attributes:
+      label: Can the issue be reproduced in our public sample?
+      options:
+        - "Haven't checked"
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: dependencies-versions
+    attributes:
+      label: Specify the versions of dependencies you are using
+      description: List the versions of all relevant dependencies
+      placeholder: |
+        SDK version:
+        Other relevant dependencies:
+    validations:
+      required: true
+  
+  - type: input
+    id: app-identifier
+    attributes:
+      label: Provide your application identifier from the partner interface
+      description: Enter the app ID from your partner dashboard. Providing this information will help us resolve your issue faster
+      placeholder: "123456789"
+    validations:
+      required: false
+  
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Provide any additional information that will help us resolve the issue as quickly as possible
+      description: Include any relevant details, error messages, logs, or steps to reproduce
+      placeholder: |
+        - Additional context
+        - Error messages
+        - Logs
+        - Steps to reproduce
+        - Screenshots (if applicable)
+  
+  - type: textarea
+    id: comments
+    attributes:
+      label: Comments
