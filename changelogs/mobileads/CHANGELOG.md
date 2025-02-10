@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.10.0
+
+### Updated
+* DivKit version updated to 31.0.0
+* AppMetrica SDK version updated to 7.6.0
+
+### Fixed
+* Improvements and optimizations
+
 ## Version 7.9.0
 
 ### Fixed
