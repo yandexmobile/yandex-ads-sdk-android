@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.10.1
+
+### Fixed
+* Fixed a possible crash in the mediation banner during auto-refresh
+
 ## Version 7.10.0
 
 ### Updated

@@ -41,6 +41,7 @@ internal class NativeTemplateScreen : KScreen<NativeTemplateScreen>(),
             itemType(NetworkItem::Yandex)
             itemType(NetworkItem::AdMob)
             itemType(NetworkItem::AdFox)
+            itemType(NetworkItem::StartApp)
             itemType(NetworkItem::MyTarget)
         },
         positionProvider = { clazz ->
@@ -48,6 +49,7 @@ internal class NativeTemplateScreen : KScreen<NativeTemplateScreen>(),
                 NetworkItem.Yandex::class.java -> 0
                 NetworkItem.AdMob::class.java -> 1
                 NetworkItem.MyTarget::class.java -> 2
+                NetworkItem.StartApp::class.java -> 3
                 NetworkItem.AdFox::class.java -> 4
                 else -> error("unsupported type")
             }
@@ -75,6 +77,8 @@ internal class NativeTemplateScreen : KScreen<NativeTemplateScreen>(),
         class AdMob(interaction: DataInteraction) : NetworkItem(interaction)
 
         class AdFox(interaction: DataInteraction) : NetworkItem(interaction)
+
+        class StartApp(interaction: DataInteraction) : NetworkItem(interaction)
 
         class MyTarget(interaction: DataInteraction) : NetworkItem(interaction)
     }

@@ -62,6 +62,7 @@ internal class InlineBannerLoadTest(
             InlineBannerScreen.NetworkItem.AdFox::class.java,
             InlineBannerScreen.NetworkItem.Vungle::class.java,
             InlineBannerScreen.NetworkItem.UnityAds::class.java,
+            InlineBannerScreen.NetworkItem.StartApp::class.java,
 //            InlineBannerScreen.NetworkItem.Mintegral::class.java,
 //            InlineBannerScreen.NetworkItem.InMobi::class.java,
             InlineBannerScreen.NetworkItem.Chartboost::class.java,

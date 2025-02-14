@@ -5,13 +5,14 @@ plugins {
 
 android {
     namespace = "com.example.partner"
-    compileSdk = 33
-    buildToolsVersion = "33.0.0"
+    compileSdk = 34
+    buildToolsVersion = "34.0.0"
 
     defaultConfig {
         applicationId = "com.example.partner"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
+        multiDexEnabled = true
     }
 
     compileOptions {
@@ -20,9 +21,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        languageVersion = "1.9"
     }
 }
 
 dependencies {
-    implementation("com.yandex.android:mobileads:7.10.0")
+    implementation("com.yandex.android:mobileads:7.10.1")
 }

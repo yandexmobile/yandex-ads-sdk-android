@@ -163,6 +163,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
             Network(R.drawable.ic_ironsource_icon_24, R.string.ironsource_title, "demo-banner-ironsource"),
             Network(R.drawable.ic_mintegral_logo, R.string.mintegral_title, "demo-banner-mintegral"),
             Network(R.drawable.ic_mytarget_icon_24, R.string.my_target_title, "demo-banner-mytarget-mrec"),
+            Network(R.drawable.ic_startapp_icon_24, R.string.startapp_title, "demo-banner-startapp"),
             Network(R.drawable.ic_unityads_icon_24, R.string.unity_ads_title, "demo-banner-unityads"),
             Network(R.drawable.ic_vungle_icon_24, R.string.vungle_title, "demo-banner-vungle-mrec"),
             Network(R.drawable.ic_adfox_icon, R.string.adfox_title, "R-M-243655-8"),
