@@ -61,7 +61,7 @@
             android:layout_height="@dimen/adfox_carousel_control_size"
             android:layout_gravity="center_vertical|start"
             android:layout_margin="8dp"
-            android:contentDescription="@string/adfox_carousel_previous_ad"
+            android:contentDescription="@string/adfox_slider_previous_ad"
             android:src="@drawable/ic_adfox_carousel_arrow_left"
             android:visibility="gone"
             tools:visibility="visible" />
@@ -72,7 +72,7 @@
             android:layout_height="@dimen/adfox_carousel_control_size"
             android:layout_gravity="center_vertical|end"
             android:layout_margin="8dp"
-            android:contentDescription="@string/adfox_carousel_next_ad"
+            android:contentDescription="@string/adfox_slider_next_ad"
             android:src="@drawable/ic_adfox_carousel_arrow_right"
             android:visibility="gone"
             tools:visibility="visible" />

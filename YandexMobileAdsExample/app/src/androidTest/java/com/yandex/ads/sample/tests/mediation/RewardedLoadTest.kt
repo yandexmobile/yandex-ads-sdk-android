@@ -79,6 +79,7 @@ internal class RewardedLoadTest(
             RewardedScreen.NetworkItem.Vungle::class.java,
             RewardedScreen.NetworkItem.UnityAds::class.java,
             RewardedScreen.NetworkItem.Tapjoy::class.java,
+            RewardedScreen.NetworkItem.StartApp::class.java,
             RewardedScreen.NetworkItem.Pangle::class.java,
             RewardedScreen.NetworkItem.MyTarget::class.java,
 //            RewardedScreen.NetworkItem.Mintegral::class.java,

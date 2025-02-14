@@ -84,6 +84,7 @@ internal class InterstitialLoadTest(
             InterstitialScreen.NetworkItem.Vungle::class.java,
             InterstitialScreen.NetworkItem.UnityAds::class.java,
             InterstitialScreen.NetworkItem.Tapjoy::class.java,
+            InterstitialScreen.NetworkItem.StartApp::class.java,
             InterstitialScreen.NetworkItem.Pangle::class.java,
             InterstitialScreen.NetworkItem.MyTarget::class.java,
 //            InterstitialScreen.NetworkItem.Mintegral::class.java,
