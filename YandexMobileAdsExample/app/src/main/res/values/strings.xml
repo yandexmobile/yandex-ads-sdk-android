@@ -62,9 +62,9 @@
     <string name="native_ad_call_to_action_text">Install</string>
     <string name="native_appinstall_price_text">Free</string>
 
-    <!-- Adfox slider -->
-    <string name="adfox_slider_previous_ad">Previous ad</string>
-    <string name="adfox_slider_next_ad">Next ad</string>
+    <!-- Adfox carousel -->
+    <string name="adfox_carousel_previous_ad">Previous ad</string>
+    <string name="adfox_carousel_next_ad">Next ad</string>
 
     <!--  Policies  -->
     <string name="policies">Policies</string>
