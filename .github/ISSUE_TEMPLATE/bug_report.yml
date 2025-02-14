@@ -39,6 +39,18 @@ body:
         - "No"
     validations:
       required: true
+
+  - type: dropdown
+    id: reproduce-issue
+    attributes:
+      label: "Can you reproduce the issue?"
+      options:
+        - "No"
+        - "Rarely"
+        - "Often"
+        - "Consistently reproducible"
+    validations:
+      required: true
   
   - type: textarea
     id: dependencies-versions
@@ -67,6 +79,7 @@ body:
       description: Include any relevant details, error messages, logs, or steps to reproduce
       placeholder: |
         - Additional context
+        - Sniffer Session
         - Error messages
         - Logs
         - Steps to reproduce
