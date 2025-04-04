@@ -2,6 +2,8 @@
 
 All notable changes to Yandex Adapter for IronSource Mediation will be documented in this file.
 
+## Version ##.##.##
+
 ## Version 7.9.0.0
 
 #### Deprecated

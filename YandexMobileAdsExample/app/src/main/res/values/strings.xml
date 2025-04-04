@@ -29,7 +29,6 @@
 
     <!--  Mediation networks  -->
     <string name="yandex_title">Yandex</string>
-    <string name="adcolony_title">AdColony</string>
     <string name="admob_title">AdMob</string>
     <string name="applovin_title">AppLovin</string>
     <string name="chartboost_title">Chartboost</string>

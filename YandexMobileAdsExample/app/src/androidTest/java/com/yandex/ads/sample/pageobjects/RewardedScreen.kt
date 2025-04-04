@@ -32,7 +32,6 @@ internal class RewardedScreen: KScreen<RewardedScreen>(),
         builder = { withClassName(Matchers.containsString("EndCompoundLayout")) },
         itemTypeBuilder = {
             itemType(NetworkItem::Yandex)
-            itemType(NetworkItem::AdColony)
             itemType(NetworkItem::Vungle)
             itemType(NetworkItem::UnityAds)
             itemType(NetworkItem::StartApp)
@@ -47,18 +46,17 @@ internal class RewardedScreen: KScreen<RewardedScreen>(),
         },
         positionProvider = { clazz ->
             when (clazz) {
-                NetworkItem.Vungle::class.java -> 13
-                NetworkItem.UnityAds::class.java -> 12
-                NetworkItem.Tapjoy::class.java -> 11
-                NetworkItem.StartApp::class.java -> 10
-                NetworkItem.Pangle::class.java -> 9
-                NetworkItem.MyTarget::class.java -> 7
-                NetworkItem.Mintegral::class.java -> 6
-                NetworkItem.InMobi::class.java -> 5
-                NetworkItem.Chartboost::class.java -> 4
-                NetworkItem.AppLovin::class.java -> 3
-                NetworkItem.AdMob::class.java -> 2
-                NetworkItem.AdColony::class.java -> 1
+                NetworkItem.Vungle::class.java -> 11
+                NetworkItem.UnityAds::class.java -> 10
+                NetworkItem.Tapjoy::class.java -> 9
+                NetworkItem.StartApp::class.java -> 8
+                NetworkItem.Pangle::class.java -> 7
+                NetworkItem.MyTarget::class.java -> 6
+                NetworkItem.Mintegral::class.java -> 5
+                NetworkItem.InMobi::class.java -> 4
+                NetworkItem.Chartboost::class.java -> 3
+                NetworkItem.AppLovin::class.java -> 2
+                NetworkItem.AdMob::class.java -> 1
                 NetworkItem.Yandex::class.java -> 0
                 else -> error("unsupported type")
             }
@@ -96,8 +94,6 @@ internal class RewardedScreen: KScreen<RewardedScreen>(),
         class AppLovin(interaction: DataInteraction) : NetworkItem(interaction)
 
         class AdMob(interaction: DataInteraction) : NetworkItem(interaction)
-
-        class AdColony(interaction: DataInteraction) : NetworkItem(interaction)
 
         class Tapjoy(interaction: DataInteraction) : NetworkItem(interaction)
 

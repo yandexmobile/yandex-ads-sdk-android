@@ -87,12 +87,11 @@ internal class InterstitialLoadTest(
             InterstitialScreen.NetworkItem.StartApp::class.java,
             InterstitialScreen.NetworkItem.Pangle::class.java,
             InterstitialScreen.NetworkItem.MyTarget::class.java,
-//            InterstitialScreen.NetworkItem.Mintegral::class.java,
+            InterstitialScreen.NetworkItem.Mintegral::class.java,
             InterstitialScreen.NetworkItem.InMobi::class.java,
             InterstitialScreen.NetworkItem.Chartboost::class.java,
             InterstitialScreen.NetworkItem.AppLovin::class.java,
             InterstitialScreen.NetworkItem.AdMob::class.java,
-            InterstitialScreen.NetworkItem.AdColony::class.java,
         )
     }
 }

@@ -82,12 +82,11 @@ internal class RewardedLoadTest(
             RewardedScreen.NetworkItem.StartApp::class.java,
             RewardedScreen.NetworkItem.Pangle::class.java,
             RewardedScreen.NetworkItem.MyTarget::class.java,
-//            RewardedScreen.NetworkItem.Mintegral::class.java,
+            RewardedScreen.NetworkItem.Mintegral::class.java,
             RewardedScreen.NetworkItem.InMobi::class.java,
             RewardedScreen.NetworkItem.Chartboost::class.java,
             RewardedScreen.NetworkItem.AppLovin::class.java,
             RewardedScreen.NetworkItem.AdMob::class.java,
-            RewardedScreen.NetworkItem.AdColony::class.java,
         )
     }
 }

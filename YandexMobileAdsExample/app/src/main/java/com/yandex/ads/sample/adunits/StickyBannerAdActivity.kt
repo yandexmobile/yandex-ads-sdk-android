@@ -159,7 +159,6 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
 
         private val networks = arrayListOf(
             Network(R.drawable.ic_yandex_icon_24, R.string.yandex_title, "demo-banner-yandex"),
-            Network(R.drawable.ic_adcolony_icon_24, R.string.adcolony_title, "demo-banner-adcolony"),
             Network(R.drawable.ic_admob_icon_24, R.string.admob_title, "demo-banner-admob"),
             Network(R.drawable.ic_applovin_icon_24, R.string.applovin_title, "demo-banner-applovin"),
             Network(R.drawable.ic_chartboost_icon, R.string.chartboost_title, "demo-banner-chartboost"),
