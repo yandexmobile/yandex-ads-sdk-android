@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.12.0
+
+#### Updated
+* Prepare SDK for Android 16
+* Migrate SDK and adapters to Gradle rich versions from Lint API
+
+### Fixed
+* Fix memory leak in video ads
+
 ## Version 7.11.0
 
 #### Updated

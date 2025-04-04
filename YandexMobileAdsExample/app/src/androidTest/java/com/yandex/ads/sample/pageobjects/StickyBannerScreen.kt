@@ -39,7 +39,6 @@ internal class StickyBannerScreen : KScreen<StickyBannerScreen>(),
         builder = { withClassName(Matchers.containsString("EndCompoundLayout")) },
         itemTypeBuilder = {
             itemType(NetworkItem::Yandex)
-            itemType(NetworkItem::AdColony)
             itemType(NetworkItem::AdFox)
             itemType(NetworkItem::Vungle)
             itemType(NetworkItem::UnityAds)
@@ -53,17 +52,16 @@ internal class StickyBannerScreen : KScreen<StickyBannerScreen>(),
         },
         positionProvider = { clazz ->
             when (clazz) {
-                NetworkItem.AdFox::class.java -> 12
-                NetworkItem.Vungle::class.java -> 11
-                NetworkItem.UnityAds::class.java -> 10
-                NetworkItem.StartApp::class.java -> 9
-                NetworkItem.MyTarget::class.java -> 8
-                NetworkItem.Mintegral::class.java -> 7
-                NetworkItem.InMobi::class.java -> 5
-                NetworkItem.Chartboost::class.java -> 4
-                NetworkItem.AppLovin::class.java -> 3
-                NetworkItem.AdMob::class.java -> 2
-                NetworkItem.AdColony::class.java -> 1
+                NetworkItem.AdFox::class.java -> 10
+                NetworkItem.Vungle::class.java -> 9
+                NetworkItem.UnityAds::class.java -> 8
+                NetworkItem.StartApp::class.java -> 7
+                NetworkItem.MyTarget::class.java -> 6
+                NetworkItem.Mintegral::class.java -> 5
+                NetworkItem.InMobi::class.java -> 4
+                NetworkItem.Chartboost::class.java -> 3
+                NetworkItem.AppLovin::class.java -> 2
+                NetworkItem.AdMob::class.java -> 1
                 NetworkItem.Yandex::class.java -> 0
                 else -> error("unsupported type")
             }
@@ -104,7 +102,5 @@ internal class StickyBannerScreen : KScreen<StickyBannerScreen>(),
         class AppLovin(interaction: DataInteraction) : NetworkItem(interaction)
 
         class AdMob(interaction: DataInteraction) : NetworkItem(interaction)
-
-        class AdColony(interaction: DataInteraction) : NetworkItem(interaction)
     }
 }
