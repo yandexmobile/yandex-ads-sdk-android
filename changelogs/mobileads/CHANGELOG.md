@@ -1,68 +1,93 @@
 # Change Log
+
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
+
+## Version 7.12.2
+
+#### Updated
+
+* DivKit SDK version 31.13.0
+
+### Fixed
+
+* Improvements and optimizations
 
 ## Version 7.12.1
 
 #### Updated
+
 * AppMetrica SDK version updated to 7.7.2
 
 ### Fixed
+
 * Improvements and optimizations
 
 ## Version 7.12.0
 
 #### Updated
+
 * Prepare SDK for Android 16
 * Migrate SDK and adapters to Gradle rich versions from Lint API
 
 ### Fixed
+
 * Fix memory leak in video ads
 
 ## Version 7.11.0
 
 #### Updated
+
 * DivKit SDK version 31.4.0
 
 ### Fixed
+
 * Improvements and optimizations
 
 ## Version 7.10.2
 
 #### Updated
+
 * DivKit SDK version 31.1.0
 
 ## Version 7.10.1
 
 ### Fixed
+
 * Fixed a possible crash in the mediation banner during auto-refresh
 
 ## Version 7.10.0
 
 ### Updated
+
 * DivKit version updated to 31.0.0
 * AppMetrica SDK version updated to 7.6.0
 
 ### Fixed
+
 * Improvements and optimizations
 
 ## Version 7.9.0
 
 ### Fixed
+
 * Improvements and optimizations
 
 ## Version 7.8.1
 
 ### Fixed
+
 * Fixed and improved the network stack operation
 
 ## Version 7.8.0
 
 ### Added
+
 * Added API callback about closing banner ads
 * Added API to get advertiser info in in-stream ads
 * Added preview support for loading video
 
 ### Fixed
+
 * Fixed ads appearance in edge-to-edge mode on API 35+
 * Improved SDK ANR and crash collection
 * Improvements and optimizations
@@ -70,53 +95,64 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 ## Version 7.7.0
 
 ### Added
+
 * Added background image preloading
 * Added preview support for loading image
 * Added dependencies consistency verification through Gradle Rich Versions
 
 ### Fixed
+
 * Fixed video controls displaying
 * Improved SDK ANR and crash collection
 
 #### Updated
+
 * AppMetrica SDK version 7.3.0
 
 ## Version 7.6.0
 
 ### Fixed
+
 * Fixed ANR when using media3 AdsLoader
 * Improvements and optimizations
 
 ## Version 7.5.0
 
 ### Added
+
 * Support for media3 in Instream Ads
 
 ### Updated
+
 * DivKit version updated to 30.14.0
 * AppMetrica version updated to 7.2.0
 
 ### Fixed
+
 * Improvements and optimizations
 
 ## Version 7.4.0
 
 ### Fixed
+
 * Fixed ANR during In-App Bidding ad requests
 * Improvements and optimizations
 
 ## Version 7.3.0
 
 ### Updated
+
 * DivKit version updated to 30.5.0
 
 ### Fixed
+
 * Fixed the size of the banner while displaying mediation
 * Improvements and optimizations
 
 ## Version 7.2.0
 
 ### Fixed
+
 * Added keep rules for AGP resources shrinker
 * Fixed memory leak in fullscreen ads
 * Improvements and optimizations
@@ -124,9 +160,11 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 ## Version 7.1.0
 
 #### Updated
+
 * DivKit version updated to 30.2.0
 
 ### Fixed
+
 * Implicit WebView initialization during ad load that could lead to ANR
 * Improvements and optimizations
 
@@ -140,6 +178,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 ## Version 7.0.0
 
 ### Added
+
 * Feed Ad format
 * Debug Panel
 * AdPod ads support
@@ -148,9 +187,11 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * Improvements and optimizations
 
 ### Fixed
+
 * Fixed memory leaks and bugs
 
 ### Breaking changes
+
 * Increased the minimum Android API level to 21
 * Use BidderTokenLoader.loadBidderToken(Context, BidderTokenRequestConfiguration, BidderTokenLoadListener) instead of deleted BidderTokenLoader.loadBidderToken(Context, BidderTokenLoadListener)
 * Use methods instead of property access syntax in Rating interface in Kotlin
@@ -161,57 +202,69 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 ## Version 6.4.1
 
 ### Fixed
+
 * Fixed a possible crash during initialization process
 
 ## Version 6.4.0
 
 #### Added
+
 * Improvements and optimizations
 
 #### Updated
+
 * Okio version updated to 3.4.0
 
 ## Version 6.3.0
 
 #### Added
+
 * Improvements and optimizations
 
 ## Version 6.2.0
 
 #### Added
+
 * Additional parameters for Open Bidding token generator
 
 #### Updated
+
 * AppMetrica SDK version updated to 6.0.0
 * DivKit SDK version updated to 28.9.0
 
 #### Fixed
+
 * Fix callback for multi ads design
 
 ## Version 6.1.0
 
 #### Added
+
 * New video ads design
 * Improved ads loading caching
 
 #### Fixed
+
 * Fixed Instream ads skin localization
 * Instream ads navigation on Android TV
 
 ## Version 6.0.1
 
 ### Fixed
+
 * Fixed handling of incompatible mediation adapters
 
 ## Version 6.0.0
 
 ### Added
+
 * App Open Ad format
 * New ad formats in rewarded
 * Ability to close rewarded ad before reward
 * Improvements and optimizations
 
 ### Breaking changes
+
 * New banner ad size API
 * Interstitial ad loading and ad show API decomposition
 * Rewarded ad loading and ad show API decomposition
@@ -220,23 +273,28 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 ## Version 5.10.0
 
 #### Added
+
 * Improvements and optimizations
 
 ## Version 5.9.0
 
 #### Added
+
 * Improvements and optimizations
 
 #### Updated
+
 * DivKit version updated to 25.2.0
 
 ## Version 5.8.0
 
 #### Added
+
 * Improved logs for SDK correct integration check
 * Improvements and optimizations
 
 #### Updated
+
 * DivKit version updated to 24.3.0
 
 ## Version 5.7.0

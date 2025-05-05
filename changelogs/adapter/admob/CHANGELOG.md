@@ -2,6 +2,11 @@
 
 All notable changes to Yandex Adapter for AdMob Mediation will be documented in this file.
 
+## Version 7.12.2.0
+
+#### Updated
+* Yandex Mobile Ads SDK version 7.12.2
+
 ## Version 7.12.1.0
 
 #### Updated
