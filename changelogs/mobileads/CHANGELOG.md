@@ -2,6 +2,22 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.13.0
+
+### Added
+* Added QR Code for instream
+* Improved image rendering
+* Improved ad validation
+
+#### Updated
+* AppMetrica SDK version updated to 7.9.0
+
+### Fixed
+* Fixed ANR during heavy app initialization
+* Fixed Out of Memory
+* Fixed NPE when getting application context
+* Fixed other ANR and bugs
+
 ## Version 7.12.3
 
 ### Fixed
