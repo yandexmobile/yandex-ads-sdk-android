@@ -2,6 +2,12 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.14.0
+
+### Fixed
+* Fixed ANR when using Exoplayer
+* Fixed other ANR and bugs
+
 ## Version 7.13.0
 
 ### Added
