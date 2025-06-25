@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to AppNext Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 2.7.6.473.13
+
+#### Updated
+* Yandex Mobile Ads SDK version 7.14.1
+
 ## Version 2.7.6.473.12
 
 #### Updated
