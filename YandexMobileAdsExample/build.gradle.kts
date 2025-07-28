@@ -45,5 +45,8 @@ allprojects {
 
         // AppNext
         maven { url = uri("https://dl.appnext.com/") }
+
+        // PetalAds
+        maven { url = uri("https://developer.huawei.com/repo/") }
     }
 }

@@ -2,6 +2,18 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.15.0
+
+### Added
+* Added accessibility ids to Instream ad
+
+#### Updated
+* DivKit SDK version updated to 32.5.0
+* AppMetrica SDK version updated to 7.10.0
+
+### Fixed
+* Fixed possible ANR during Native ad load
+
 ## Version 7.14.1
 
 ### Fixed
