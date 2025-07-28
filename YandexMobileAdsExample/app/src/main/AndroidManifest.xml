@@ -15,7 +15,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:networkSecurityConfig">
+        tools:replace="android:networkSecurityConfig,android:allowBackup">
         <activity
             android:name="com.yandex.ads.sample.adunits.InstreamAdInrollActivity"
             android:exported="false" />
