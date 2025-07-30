@@ -23,6 +23,12 @@ All notable changes to Yandex Full Mediation will be documented in this file.
 * Vungle Adapter version 7.4.2.9
 * Zmaticoo Adapter version 1.8.5.4
 
+## Version 7.15.0-unity.0
+
+#### Updated
+
+* Yandex Mobile Ads SDK 7.15.0-unity
+
 ## Version 7.14.1.0
 
 #### Updated
