@@ -2,6 +2,12 @@
 
 All notable changes to Yandex Full Mediation will be documented in this file.
 
+## Version 7.15.0.1
+
+#### Updated
+
+* Petal Adapter version 3.4.79.301.1
+
 ## Version 7.15.0.0
 
 #### Updated

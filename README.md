@@ -20,7 +20,7 @@ EULA is available at [EULA website] [LICENSE]
 ##### Add YandexMobileAds SDK:
 
 ```sh
-implementation 'com.yandex.android:mobileads:7.15.0-unity'
+implementation 'com.yandex.android:mobileads:7.15.0'
 ```
 
 ##### Or you can use our library with all available mediations:
@@ -31,7 +31,7 @@ implementation 'com.yandex.android:mobileads:7.15.0-unity'
 
 dependencies {
   ...
-  implementation 'com.yandex.android:mobileads-mediation:7.15.0-unity.0'
+  implementation 'com.yandex.android:mobileads-mediation:7.15.0.1'
 }
 ```
 
