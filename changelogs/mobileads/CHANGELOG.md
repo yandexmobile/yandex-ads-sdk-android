@@ -2,6 +2,16 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.15.1
+
+#### Updated
+* DivKit SDK version updated to 32.11.0
+
+### Fixed
+* Fixed compatibility with AGP 7
+* Fixed insets processing for Unity integration
+* Improvements and optimizations
+
 ## Version 7.15.0
 
 ### Added
@@ -14,18 +24,26 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 ### Fixed
 * Fixed possible ANR during Native ad load
 
-## Version 7.15.0-unity.0
+## Version 7.15.0-unity
 
 #### Updated
 * DivKit SDK version 30.23.0
 
 ### Fixed
-* Fixed compatibility with Unity versions below 6
+* Fixed compatibility with AGP 7
 
 ## Version 7.14.1
 
 ### Fixed
 * Improvements and optimizations
+
+## Version 7.14.1-unity
+
+#### Updated
+* DivKit SDK version 30.23.0
+
+### Fixed
+* Fixed compatibility with AGP 7
 
 ## Version 7.14.0
 

@@ -16,12 +16,11 @@ android {
 
     namespace = "com.yandex.ads.sample"
     compileSdk = 34
-    buildToolsVersion = "34.0.0"
 
     defaultConfig {
         applicationId = "com.yandex.ads.mobile"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
         multiDexEnabled = true
@@ -59,8 +58,8 @@ android {
 
 dependencies {
     // Yandex Mobile Ads SDK with mediation adapters
-    implementation("com.yandex.android:mobileads-mediation:7.15.0.1")
-    implementation("com.yandex.ads.mediation:mobileads-startapp:5.0.2.14")
+    implementation("com.yandex.android:mobileads-mediation:7.15.1.0")
+    implementation("com.yandex.ads.mediation:mobileads-startapp:5.0.2.15")
 
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("androidx.activity:activity-ktx:1.6.1")
