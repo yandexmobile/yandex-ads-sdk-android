@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to AppLovin Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 13.1.0.7
+
+#### Fixes
+* Fixed calling view methods on another thread than the UI thread issue
+
 ## Version 13.1.0.6
 
 #### Updated
