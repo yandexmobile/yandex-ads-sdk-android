@@ -15,6 +15,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.view.setPadding
@@ -23,6 +24,7 @@ import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityCustomNativeAdBinding
 import com.yandex.ads.sample.network.Network
 import com.yandex.ads.sample.utils.Logger
+import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.nativeads.NativeAd
@@ -49,9 +51,11 @@ class CustomNativeAdActivity : AppCompatActivity(R.layout.activity_custom_native
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityCustomNativeAdBinding.inflate(layoutInflater)
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
         setContentView(binding.root)
+        applySystemBarsPadding(findViewById(R.id.coordinatorLayout))
 
         _adInfoFragment = AdInfoFragment.newInstance(networks)
         adInfoFragment.onLoadClickListener = ::loadNative

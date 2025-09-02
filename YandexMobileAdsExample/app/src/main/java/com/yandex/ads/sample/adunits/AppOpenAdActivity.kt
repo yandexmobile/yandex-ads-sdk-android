@@ -10,9 +10,11 @@
 package com.yandex.ads.sample.adunits
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityAppOpenAdBinding
+import com.yandex.ads.sample.utils.applySystemBarsPadding
 
 class AppOpenAdActivity : AppCompatActivity(R.layout.activity_app_open_ad) {
 
@@ -20,8 +22,10 @@ class AppOpenAdActivity : AppCompatActivity(R.layout.activity_app_open_ad) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityAppOpenAdBinding.inflate(layoutInflater)
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
         setContentView(binding.root)
+        applySystemBarsPadding(findViewById(R.id.coordinatorLayout))
     }
 }

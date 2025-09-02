@@ -10,12 +10,13 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    kotlin("plugin.serialization") version "1.8.22"
 }
 
 android {
 
     namespace = "com.yandex.ads.sample"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.yandex.ads.mobile"
@@ -42,6 +43,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        compose = true
     }
 
     compileOptions {
@@ -50,6 +52,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.8"
     }
     testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
@@ -76,6 +81,16 @@ dependencies {
     implementation("androidx.media3:media3-ui:1.4.1")
     implementation("androidx.lifecycle:lifecycle-process:2.4.1")
 
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx")
+    implementation("androidx.activity:activity-compose")
+    implementation(platform("androidx.compose:compose-bom:2025.07.00"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.navigation:navigation-compose:2.8.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
     androidTestImplementation("androidx.test:runner:1.6.1")
     androidTestImplementation("androidx.test:rules:1.6.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
@@ -83,5 +98,5 @@ dependencies {
     androidTestImplementation("com.kaspersky.android-components:kaspresso:1.5.2")
     androidTestImplementation("com.kaspersky.android-components:kaspresso-allure-support:1.5.2")
 
-    androidTestUtil("androidx.test:orchestrator:1.5.0")
+    androidTestUtil("androidx.test:orchestrator:1.5.1")
 }

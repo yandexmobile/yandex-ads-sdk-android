@@ -11,12 +11,14 @@ package com.yandex.ads.sample.adunits
 
 import android.os.Bundle
 import android.view.ViewTreeObserver
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.commit
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityInlineBannerAdBinding
 import com.yandex.ads.sample.network.Network
+import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdView
@@ -39,9 +41,11 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityInlineBannerAdBinding.inflate(layoutInflater)
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
         setContentView(binding.root)
+        applySystemBarsPadding(findViewById(R.id.coordinatorLayout))
 
         _adInfoFragment = AdInfoFragment.newInstance(networks)
         adInfoFragment.onLoadClickListener = ::loadBanner

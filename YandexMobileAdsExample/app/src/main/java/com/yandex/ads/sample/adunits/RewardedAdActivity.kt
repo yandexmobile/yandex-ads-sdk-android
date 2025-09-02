@@ -10,11 +10,13 @@
 package com.yandex.ads.sample.adunits
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityRewardedAdBinding
 import com.yandex.ads.sample.network.Network
 import com.yandex.ads.sample.network.NetworkAdapter
+import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.common.AdError
 import com.yandex.mobile.ads.common.AdRequestConfiguration
 import com.yandex.mobile.ads.common.AdRequestError
@@ -39,9 +41,11 @@ class RewardedAdActivity : AppCompatActivity(R.layout.activity_rewarded_ad),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityRewardedAdBinding.inflate(layoutInflater)
         binding.setupUiBidding()
         setContentView(binding.root)
+        applySystemBarsPadding(findViewById(R.id.coordinatorLayout))
 
         // Rewarded ads loading should occur after initialization of the SDK.
         // Initialize SDK as early as possible, for example in Application.onCreate or at least Activity.onCreate

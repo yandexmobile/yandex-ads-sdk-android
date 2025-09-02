@@ -11,6 +11,7 @@ package com.yandex.ads.sample.settings
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityPoliciesBinding
 import com.yandex.ads.sample.policy.PolicyAdapter
 import com.yandex.ads.sample.policy.PolicyItem
+import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.common.MobileAds
 
 class PoliciesActivity : AppCompatActivity(R.layout.activity_policies) {
@@ -27,9 +29,11 @@ class PoliciesActivity : AppCompatActivity(R.layout.activity_policies) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityPoliciesBinding.inflate(layoutInflater)
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
         setContentView(binding.root)
+        applySystemBarsPadding(findViewById(R.id.coordinatorLayout))
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
         binding.policies.layoutManager = LinearLayoutManager(this)
