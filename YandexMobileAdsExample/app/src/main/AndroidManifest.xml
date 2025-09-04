@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- For MRAID 2 -->
@@ -17,51 +21,58 @@
         android:theme="@style/AppTheme"
         tools:replace="android:networkSecurityConfig,android:allowBackup">
         <activity
-            android:name="com.yandex.ads.sample.adunits.InstreamAdInrollActivity"
+            android:name=".adunits.InstreamAdInrollActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.adunits.InstreamAdBinderActivity"
+            android:name=".adunits.InstreamAdBinderActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.settings.PoliciesActivity"
+            android:name=".settings.PoliciesActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.adunits.SimpleInstreamAdActivity"
+            android:name=".adunits.SimpleInstreamAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.adunits.CustomNativeAdActivity"
+            android:name=".adunits.CustomNativeAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.adunits.AdfoxCarouselAdActivity"
+            android:name=".adunits.AdfoxCarouselAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.adunits.NativeTemplateAdActivity"
+            android:name=".adunits.NativeTemplateAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.adunits.RewardedAdActivity"
+            android:name=".adunits.RewardedAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.adunits.InterstitialAdActivity"
+            android:name=".adunits.InterstitialAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.adunits.InlineBannerAdActivity"
+            android:name=".adunits.InlineBannerAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.adunits.StickyBannerAdActivity"
+            android:name=".adunits.StickyBannerAdActivity"
             android:exported="false" />
         <activity
-            android:name="com.yandex.ads.sample.adunits.FeedActivity"
+            android:name=".adunits.FeedActivity"
             android:exported="false" />
         <activity
             android:name=".adunits.AppOpenAdActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
-            android:exported="true">
+            android:exported="false" />
+        <activity
+            android:name=".tv.TVActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LauncherActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
 
