@@ -39,7 +39,7 @@ internal class DefaultActivitiesExt(
                     applicationId,
                     PackageManager.GET_ACTIVITIES
                 )
-                .activities
+                .run { requireNotNull(this.activities) }
                 .asSequence()
                 .map { it.name }
                 .partition { it.startsWith(packageName) }

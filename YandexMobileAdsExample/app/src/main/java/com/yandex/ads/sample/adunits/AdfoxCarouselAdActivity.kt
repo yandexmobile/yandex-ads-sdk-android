@@ -10,6 +10,7 @@
 package com.yandex.ads.sample.adunits
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.commit
@@ -21,6 +22,7 @@ import com.yandex.ads.sample.adfoxcarousel.ViewPagerAutoscroller
 import com.yandex.ads.sample.adfoxcarousel.ViewPagerIndicatorController
 import com.yandex.ads.sample.databinding.ActivityAdfoxCarouselAdBinding
 import com.yandex.ads.sample.network.Network
+import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.nativeads.NativeAd
@@ -51,9 +53,11 @@ class AdfoxCarouselAdActivity : AppCompatActivity(R.layout.activity_adfox_carous
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityAdfoxCarouselAdBinding.inflate(layoutInflater)
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
         setContentView(binding.root)
+        applySystemBarsPadding(findViewById(R.id.coordinatorLayout))
 
         _adInfoFragment = AdInfoFragment.newInstance(networks)
         adInfoFragment.onLoadClickListener = ::loadAds

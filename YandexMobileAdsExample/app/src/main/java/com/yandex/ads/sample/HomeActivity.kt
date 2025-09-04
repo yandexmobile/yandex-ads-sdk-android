@@ -11,6 +11,7 @@ package com.yandex.ads.sample
 
 import android.content.res.Configuration
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
@@ -33,6 +34,7 @@ import com.yandex.ads.sample.navigation.NavigationItem
 import com.yandex.ads.sample.navigation.NavigationItem.NavigationType.ActivityNavigation
 import com.yandex.ads.sample.navigation.NavigationItem.NavigationType.DebugPanelNavigation
 import com.yandex.ads.sample.settings.PoliciesActivity
+import com.yandex.ads.sample.utils.applySystemBarsPadding
 
 class HomeActivity : AppCompatActivity(R.layout.activity_home) {
 
@@ -40,8 +42,10 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        applySystemBarsPadding(findViewById(R.id.coordinatorLayout))
 
         showNetworkWarningDialog()
 

@@ -11,6 +11,7 @@ package com.yandex.ads.sample.adunits
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.fragment.app.commit
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityInstreamAdInrollBinding
@@ -19,6 +20,7 @@ import com.yandex.ads.sample.player.ad.SampleInstreamAdPlayer
 import com.yandex.ads.sample.player.content.ContentVideoPlayer
 import com.yandex.ads.sample.player.content.ContentVideoPlayerListener
 import com.yandex.ads.sample.utils.Logger
+import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.instream.InstreamAd
 import com.yandex.mobile.ads.instream.InstreamAdBreakEventListener
 import com.yandex.mobile.ads.instream.InstreamAdListener
@@ -44,9 +46,11 @@ class InstreamAdInrollActivity : AppCompatActivity(R.layout.activity_instream_ad
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityInstreamAdInrollBinding.inflate(layoutInflater)
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
         setContentView(binding.root)
+        applySystemBarsPadding(findViewById(R.id.coordinatorLayout))
 
         _adInfoFragment = AdInfoFragment.newInstance(arrayListOf())
         adInfoFragment.onLoadClickListener = ::loadInstreamAd

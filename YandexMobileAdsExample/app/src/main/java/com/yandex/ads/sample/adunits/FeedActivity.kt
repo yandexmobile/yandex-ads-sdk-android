@@ -12,6 +12,7 @@ package com.yandex.ads.sample.adunits
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,7 @@ import com.yandex.ads.sample.feed.ScreenContentDataAdapter
 import com.yandex.ads.sample.feed.LogsDialog
 import com.yandex.ads.sample.utils.Logger
 import com.yandex.ads.sample.utils.ScreenUtil.screenWidth
+import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.feed.FeedAd
@@ -49,9 +51,11 @@ class FeedActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityFeedBinding.inflate(layoutInflater)
         binding.setupUiBinding()
         setContentView(binding.root)
+        applySystemBarsPadding(findViewById(R.id.coordinatorLayout))
 
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener {

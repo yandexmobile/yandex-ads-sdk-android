@@ -108,4 +108,23 @@
     <string name="show_feed_ad">Show feed</string>
     <string name="show_concat_feed_ad">Show concat feed</string>
     <string name="feed_log">Feed log</string>
+
+    <!-- TV Start screen -->
+    <string name="tv_formats">Форматы</string>
+    <string name="tv_instream_preroll">Instream Preroll</string>
+    <string name="tv_instream_midroll">Instream Midroll</string>
+    <string name="tv_instream_postroll">Instream Postroll</string>
+    <string name="tv_yandex_ads">Яндекс Реклама</string>
+    <string name="tv_watch_demo">Смотреть демо</string>
+    <string name="tv_qr_code">QR код</string>
+    <string name="tv_scan_qr_text">Отсканируйте QR-код \n с документацией для SDK</string>
+
+    <!-- TV Instream -->
+    <string name="tv_video_name">Название видео</string>
+    <string name="tv_video_description">Описание видео</string>
+    <string name="tv_pause">Пауза</string>
+    <string name="tv_play">Воспроизвести</string>
+    <string name="tv_back_to_format">Назад к формату</string>
+    <string name="tv_return_to_menu">Вернуться в меню</string>
+    <string name="tv_error">Что-то пошло не так, попробуйте еще раз</string>
 </resources>
