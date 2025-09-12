@@ -2,6 +2,11 @@
 
 All notable changes to Yandex Full Mediation will be documented in this file.
 
+## Version 7.15.2.1
+
+#### Updated
+* Fixed dependencies versions
+
 ## Version 7.15.2.0
 
 #### Updated

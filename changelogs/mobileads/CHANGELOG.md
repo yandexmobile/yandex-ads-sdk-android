@@ -5,6 +5,10 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 ## Version 7.15.2
 
 ### Added
+* Added new InStream API (experimental)
+* Improved ad validation
+
+### Fixed
 * Improvements and optimizations
 
 ## Version 7.15.1
