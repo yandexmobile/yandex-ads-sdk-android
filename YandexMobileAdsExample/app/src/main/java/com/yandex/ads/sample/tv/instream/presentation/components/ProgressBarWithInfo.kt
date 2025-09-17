@@ -27,10 +27,10 @@ fun ProgressBarWithInfo(
     seekForward: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val currentProgressText by remember {
+    val currentProgressText by remember(currentPosition) {
         derivedStateOf { formatTimestamp(currentPosition()) }
     }
-    val videoDurationText by remember {
+    val videoDurationText by remember(videoDuration) {
         derivedStateOf { formatTimestamp(videoDuration()) }
     }
 

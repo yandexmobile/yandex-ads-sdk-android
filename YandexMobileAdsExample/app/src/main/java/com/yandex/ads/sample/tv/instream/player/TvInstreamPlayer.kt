@@ -1,10 +1,6 @@
 package com.yandex.ads.sample.tv.instream.player
 
 import android.content.Context
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableLongStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.core.net.toUri
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
@@ -23,6 +19,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -37,15 +36,10 @@ class TvInstreamPlayer(
     private var playerListener: InstreamPlayerListener? = null
     private var yandexAdsLoader: YandexAdsLoader? = null
     private var tvAdPlaybackListener: TVAdPlaybackListener? = null
+    private var manuallyChangedProgress = false
 
-    var currentPosition by mutableLongStateOf(DEFAULT_CURRENT_PROGRESS)
-        private set
-    var duration by mutableLongStateOf(DEFAULT_DURATION)
-        private set
-    var isPlaying by mutableStateOf(false)
-        private set
-    var isShowingAd by mutableStateOf(false)
-        private set
+    private val _state = MutableStateFlow(TvInstreamPlayerState())
+    val state = _state.asStateFlow()
 
     fun play() {
         player?.play()
@@ -56,15 +50,19 @@ class TvInstreamPlayer(
     }
 
     fun seekBack() {
-        player?.seekTo((currentPosition - SEEK_DURATION).coerceAtLeast(0L))
+        manuallyChangedProgress = true
+        player?.seekTo((state.value.currentPosition - SEEK_DURATION).coerceAtLeast(0L))
     }
 
     fun seekForward() {
-        player?.seekTo((currentPosition + SEEK_DURATION).coerceAtMost(duration))
+        manuallyChangedProgress = true
+        player?.seekTo(
+            (state.value.currentPosition + SEEK_DURATION).coerceAtMost(state.value.duration)
+        )
     }
 
     fun requestAdFocus() {
-        if (isShowingAd.not()) return
+        if (state.value.isShowingAd.not()) return
         playerView.post {
             playerView.adViewGroup.requestFocus()
         }
@@ -87,11 +85,13 @@ class TvInstreamPlayer(
     private fun startTimelineUpdater() {
         scope.launch {
             while (true) {
-                withContext(Dispatchers.Main) {
-                    player?.let { player ->
-                        currentPosition = player.currentPosition
-                        if (player.duration == C.TIME_UNSET) return@let
-                        duration = player.duration
+                if (state.value.isShowingAd.not()) {
+                    withContext(Dispatchers.Main) {
+                        player?.let { player ->
+                            updateState { it.copy(currentPosition = player.currentPosition) }
+                            if (player.duration == C.TIME_UNSET) return@let
+                            updateState { it.copy(duration = player.duration) }
+                        }
                     }
                 }
                 delay(PROGRESS_UPDATE_DELAY)
@@ -170,9 +170,23 @@ class TvInstreamPlayer(
         yandexAdsLoader = null
     }
 
+    private fun updateState(update: (TvInstreamPlayerState) -> TvInstreamPlayerState) {
+        _state.update { update(it) }
+    }
+
     private inner class InstreamPlayerListener : Player.Listener {
+        override fun onPlaybackStateChanged(playbackState: Int) {
+            super.onPlaybackStateChanged(playbackState)
+            if (playbackState == Player.STATE_BUFFERING && manuallyChangedProgress.not()) {
+                updateState { it.copy(isLoading = true) }
+            } else {
+                manuallyChangedProgress = false
+                updateState { it.copy(isLoading = playbackState == Player.STATE_IDLE) }
+            }
+        }
+
         override fun onIsPlayingChanged(isPlaying: Boolean) {
-            this@TvInstreamPlayer.isPlaying = isPlaying
+            updateState { it.copy(isPlaying = isPlaying) }
         }
 
         override fun onPlayerError(error: PlaybackException) {
@@ -186,7 +200,7 @@ class TvInstreamPlayer(
 
         override fun onAdCompleted(videoAd: VideoAd) {
             playerView.useController = false
-            isShowingAd = false
+            updateState { it.copy(isShowingAd = false) }
         }
 
         override fun onAdError(videoAd: VideoAd) {
@@ -201,13 +215,14 @@ class TvInstreamPlayer(
 
         override fun onAdSkipped(videoAd: VideoAd) {
             playerView.useController = false
-            isShowingAd = false
+            updateState { it.copy(isShowingAd = false) }
         }
 
         override fun onAdStarted(videoAd: VideoAd) {
-            if (isPlaying.not()) player?.play()
+            if (state.value.isPlaying.not()) player?.play()
             playerView.useController = true
-            isShowingAd = true
+            updateState { it.copy(isShowingAd = true) }
+            requestAdFocus()
         }
 
         override fun onAdStopped(videoAd: VideoAd) = Unit
@@ -218,8 +233,6 @@ class TvInstreamPlayer(
     }
 
     private companion object {
-        private const val DEFAULT_CURRENT_PROGRESS = 0L
-        private const val DEFAULT_DURATION = 0L
         private const val PROGRESS_UPDATE_DELAY = 200L
         private const val SEEK_DURATION = 5000L
     }
