@@ -1,6 +1,9 @@
 package com.yandex.ads.sample.tv.instream.presentation.components
 
 import android.view.KeyEvent
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
@@ -48,11 +51,18 @@ fun InstreamProgressIndicator(
     var isFocused by remember { mutableStateOf(false) }
     var trackWidth by remember { mutableIntStateOf(0) }
 
-    val progressWidth by remember {
+    val animatedProgress by animateFloatAsState(
+        targetValue = progress().coerceIn(0f, 1f),
+        animationSpec = tween(
+            durationMillis = 200,
+            easing = LinearEasing
+        )
+    )
+
+    val progressWidth by remember(animatedProgress) {
         derivedStateOf {
-            val progress = progress().coerceIn(0f, 1f)
-            val pixels = if (trackWidth <= 0) 0 else (trackWidth * progress).roundToInt()
-            with(density) { pixels.toDp() }
+            if (trackWidth <= 0) 0.dp
+            else with(density) { (trackWidth * animatedProgress).roundToInt().toDp() }
         }
     }
     val focusCircleOffset = remember(progressWidth) {
