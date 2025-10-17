@@ -2,6 +2,9 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.16.1
+
+
 ## Version 7.16.0
 
 ### Added

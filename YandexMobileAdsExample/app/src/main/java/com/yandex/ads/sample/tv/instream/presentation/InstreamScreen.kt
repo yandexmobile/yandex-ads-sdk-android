@@ -59,6 +59,7 @@ fun InstreamScreen(
                 InstreamAction.SeekForward -> player.seekForward()
                 InstreamAction.BackToMenu -> onBack()
                 InstreamAction.BackToFormat -> player.requestAdFocus()
+                InstreamAction.TryAgain -> player.restart()
             }
         },
         modifier = Modifier.fillMaxSize()

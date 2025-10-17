@@ -14,4 +14,6 @@ object ColorScheme {
     val InstreamButtonTextUnfocused = Color.White
     val InstreamButtonTextFocused = Color.Black
     val InstreamButtonTextDisabled = Color.White.copy(alpha = 0.3f)
+    val InstreamErrorIcon = Color(0x668694B0)
+    val InstreamErrorContainer = Color.Black.copy(alpha = 0.6f)
 }

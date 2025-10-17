@@ -54,7 +54,7 @@ fun InstreamProgressIndicator(
     val animatedProgress by animateFloatAsState(
         targetValue = progress().coerceIn(0f, 1f),
         animationSpec = tween(
-            durationMillis = 200,
+            durationMillis = 100,
             easing = LinearEasing
         )
     )

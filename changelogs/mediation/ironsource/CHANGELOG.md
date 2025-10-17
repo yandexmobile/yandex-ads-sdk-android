@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to IronSource Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 8.8.0.7
+
+#### Updated
+* Yandex Mobile Ads SDK version 7.16.1
+
 ## Version 8.8.0.6
 
 #### Updated

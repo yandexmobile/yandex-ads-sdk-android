@@ -7,4 +7,5 @@ sealed interface InstreamAction {
     object Pause : InstreamAction
     object SeekBack : InstreamAction
     object SeekForward : InstreamAction
+    object TryAgain : InstreamAction
 }

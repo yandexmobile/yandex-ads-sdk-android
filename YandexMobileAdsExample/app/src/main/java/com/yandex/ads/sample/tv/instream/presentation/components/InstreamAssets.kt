@@ -15,7 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.yandex.ads.sample.R
-import com.yandex.ads.sample.tv.instream.player.TvInstreamPlayerState
+import com.yandex.ads.sample.tv.instream.player.model.ContentType
+import com.yandex.ads.sample.tv.instream.player.model.TvInstreamPlayerState
 import com.yandex.ads.sample.tv.instream.presentation.InstreamAction
 
 @Composable
@@ -26,24 +27,32 @@ fun InstreamAssets(
 ) {
     val focusRequester = remember { FocusRequester() }
 
-    LaunchedEffect(state.isShowingAd, state.isLoading) {
-        if (state.isShowingAd.not() && state.isLoading.not()) {
+    LaunchedEffect(state.contentType, state.isLoading) {
+        if (state.contentType is ContentType.Content && state.isLoading.not()) {
             focusRequester.requestFocus()
         }
     }
 
     Box(modifier) {
 
-        InstreamNavigationBlock(
-            controlsEnabled = state.isShowingAd.not(),
-            onExit = { onAction(InstreamAction.BackToMenu) },
-            onBackToFormat = { onAction(InstreamAction.BackToFormat) },
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .padding(end = 32.dp)
-        )
+        if (state.contentType is ContentType.Error) {
+            InstreamErrorScreen(
+                error = state.contentType.type,
+                onTryAgain = { onAction(InstreamAction.TryAgain) },
+                onBackToMenu = { onAction(InstreamAction.BackToMenu) }
+            )
+        } else {
+            InstreamNavigationBlock(
+                controlsEnabled = state.contentType is ContentType.Content,
+                onExit = { onAction(InstreamAction.BackToMenu) },
+                onBackToFormat = { onAction(InstreamAction.BackToFormat) },
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .padding(end = 32.dp)
+            )
+        }
 
-        if (state.isShowingAd.not()) {
+        if (state.contentType is ContentType.Content) {
             if (state.isLoading) {
                 InstreamLoadingIndicator(
                     modifier = Modifier.align(Alignment.Center)
