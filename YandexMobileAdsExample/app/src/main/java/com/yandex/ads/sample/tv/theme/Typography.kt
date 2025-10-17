@@ -73,4 +73,20 @@ object Typography {
         lineHeight = 18.sp,
         letterSpacing = 0.sp
     )
+
+    val InstreamErrorHeaderStyle = TextStyle(
+        fontFamily = YSText,
+        fontWeight = FontWeight.Medium,
+        fontSize = 18.sp,
+        lineHeight = 18.sp,
+        letterSpacing = 0.sp
+    )
+
+    val InstreamErrorDescriptionStyle = TextStyle(
+        fontFamily = YSText,
+        fontWeight = FontWeight.Light,
+        fontSize = 14.sp,
+        lineHeight = 18.sp,
+        letterSpacing = 0.sp
+    )
 }

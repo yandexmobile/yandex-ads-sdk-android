@@ -1,16 +1,21 @@
 package com.yandex.ads.sample.tv.instream.player
 
 import android.content.Context
+import androidx.annotation.OptIn
 import androidx.core.net.toUri
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
+import androidx.media3.exoplayer.upstream.DefaultLoadErrorHandlingPolicy
 import androidx.media3.ui.PlayerView
 import com.yandex.ads.sample.R
-import com.yandex.ads.sample.utils.Logger
+import com.yandex.ads.sample.tv.instream.player.model.ContentType
+import com.yandex.ads.sample.tv.instream.player.model.ErrorType
+import com.yandex.ads.sample.tv.instream.player.model.TvInstreamPlayerState
 import com.yandex.mobile.ads.instream.InstreamAdRequestConfiguration
 import com.yandex.mobile.ads.instream.media3.YandexAdsLoader
 import com.yandex.mobile.ads.video.playback.VideoAdPlaybackListener
@@ -36,7 +41,9 @@ class TvInstreamPlayer(
     private var playerListener: InstreamPlayerListener? = null
     private var yandexAdsLoader: YandexAdsLoader? = null
     private var tvAdPlaybackListener: TVAdPlaybackListener? = null
+
     private var manuallyChangedProgress = false
+    private var error = false
 
     private val _state = MutableStateFlow(TvInstreamPlayerState())
     val state = _state.asStateFlow()
@@ -62,7 +69,7 @@ class TvInstreamPlayer(
     }
 
     fun requestAdFocus() {
-        if (state.value.isShowingAd.not()) return
+        if (state.value.contentType !is ContentType.Ad) return
         playerView.post {
             playerView.adViewGroup.requestFocus()
         }
@@ -82,10 +89,22 @@ class TvInstreamPlayer(
         releaseAdsLoader()
     }
 
+    fun restart() {
+        release()
+        resetState()
+        init()
+    }
+
+    private fun resetState() {
+        error = false
+        manuallyChangedProgress = false
+        updateState { TvInstreamPlayerState() }
+    }
+
     private fun startTimelineUpdater() {
         scope.launch {
             while (true) {
-                if (state.value.isShowingAd.not()) {
+                if (state.value.contentType !is ContentType.Ad) {
                     withContext(Dispatchers.Main) {
                         player?.let { player ->
                             updateState { it.copy(currentPosition = player.currentPosition) }
@@ -135,8 +154,10 @@ class TvInstreamPlayer(
         }
     }
 
+    @OptIn(UnstableApi::class)
     private fun createPlayer(): Player {
         val mediaSourceFactory = DefaultMediaSourceFactory(context)
+            .setLoadErrorHandlingPolicy(DefaultLoadErrorHandlingPolicy(GET_MEDIA_RETRY_COUNT))
             .setLocalAdInsertionComponents({ yandexAdsLoader }, playerView)
 
         return ExoPlayer.Builder(context)
@@ -170,6 +191,12 @@ class TvInstreamPlayer(
         yandexAdsLoader = null
     }
 
+    private fun setError(errorType: ErrorType) {
+        if (error) return
+        updateState { it.copy(contentType = ContentType.Error(errorType)) }
+        error = true
+    }
+
     private fun updateState(update: (TvInstreamPlayerState) -> TvInstreamPlayerState) {
         _state.update { update(it) }
     }
@@ -190,7 +217,7 @@ class TvInstreamPlayer(
         }
 
         override fun onPlayerError(error: PlaybackException) {
-            Logger.error(context.getString(R.string.tv_error))
+            setError(ErrorType.CONTENT)
             super.onPlayerError(error)
         }
     }
@@ -200,11 +227,11 @@ class TvInstreamPlayer(
 
         override fun onAdCompleted(videoAd: VideoAd) {
             playerView.useController = false
-            updateState { it.copy(isShowingAd = false) }
+            updateState { it.copy(contentType = ContentType.Content) }
         }
 
         override fun onAdError(videoAd: VideoAd) {
-            Logger.error(context.getString(R.string.tv_error))
+            setError(ErrorType.AD)
         }
 
         override fun onAdPaused(videoAd: VideoAd) = Unit
@@ -215,13 +242,13 @@ class TvInstreamPlayer(
 
         override fun onAdSkipped(videoAd: VideoAd) {
             playerView.useController = false
-            updateState { it.copy(isShowingAd = false) }
+            updateState { it.copy(contentType = ContentType.Content) }
         }
 
         override fun onAdStarted(videoAd: VideoAd) {
             if (state.value.isPlaying.not()) player?.play()
             playerView.useController = true
-            updateState { it.copy(isShowingAd = true) }
+            updateState { it.copy(contentType = ContentType.Ad) }
             requestAdFocus()
         }
 
@@ -233,7 +260,8 @@ class TvInstreamPlayer(
     }
 
     private companion object {
-        private const val PROGRESS_UPDATE_DELAY = 200L
+        private const val PROGRESS_UPDATE_DELAY = 100L
         private const val SEEK_DURATION = 5000L
+        private const val GET_MEDIA_RETRY_COUNT = 3
     }
 }

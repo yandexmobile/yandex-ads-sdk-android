@@ -126,5 +126,10 @@
     <string name="tv_play">Воспроизвести</string>
     <string name="tv_back_to_format">Назад к формату</string>
     <string name="tv_return_to_menu">Вернуться в меню</string>
-    <string name="tv_error">Что-то пошло не так, попробуйте еще раз</string>
+    <string name="tv_ad_error_title">Реклама не загрузилась</string>
+    <string name="tv_content_error_title">Основное видео не загрузилось</string>
+    <string name="tv_error_description">Вы можете попробовать ещё раз или вернуться в меню.</string>
+    <string name="tv_error_try_again">Загрузить еще раз</string>
+    <string name="tv_error_return_to_menu">В меню</string>
+
 </resources>
