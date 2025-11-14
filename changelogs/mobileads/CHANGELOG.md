@@ -2,8 +2,29 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.17.0
+
+### Added
+* Added `creativeId` and `campaignId` properties for ad
+* Added new Bidder Token API methods
+* Added default player for Instream API
+* Added video dash format support
+* Added html ad in Instream support
+
+#### Updated
+* DivKit version updated to 32.18.1
+* AppMetrica SDK version updated to 7.13.0
+
+### Fixed
+* Improvements and optimizations
+
+### Deprecated
+* Deprecated old Bidder Token API methods
+
 ## Version 7.16.1
 
+### Fixed
+* Improvements and optimizations
 
 ## Version 7.16.0
 

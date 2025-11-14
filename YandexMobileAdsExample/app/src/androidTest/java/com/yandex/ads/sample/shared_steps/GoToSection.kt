@@ -30,7 +30,9 @@ internal class GoToSection<ScenarioData>(
         INTERSTITIAL,
         STICKY_BANNER,
         INSTREAM_IN_ROLL,
-        INSTREAM_BINDER;
+        INSTREAM_BINDER,
+        FEED,
+        DEBUG_PANEL;
     }
 
     private companion object {
@@ -49,6 +51,8 @@ internal class GoToSection<ScenarioData>(
                 NavigationItem.STICKY_BANNER -> R.string.sticky_banner_title
                 NavigationItem.INSTREAM_IN_ROLL -> R.string.instream_inroll_title
                 NavigationItem.INSTREAM_BINDER -> R.string.instream_binder_title
+                NavigationItem.FEED -> R.string.feed_title
+                NavigationItem.DEBUG_PANEL -> R.string.debug_panel
             }
 
         val NavigationItem.navigationItemClazz: Class<out HomeScreen.NavigationItem<*>>
@@ -64,6 +68,8 @@ internal class GoToSection<ScenarioData>(
                 NavigationItem.STICKY_BANNER -> HomeScreen.NavigationItem.StickyBanner::class.java
                 NavigationItem.INSTREAM_IN_ROLL -> HomeScreen.NavigationItem.InstreamInRoll::class.java
                 NavigationItem.INSTREAM_BINDER -> HomeScreen.NavigationItem.InstreamBinder::class.java
+                NavigationItem.FEED -> HomeScreen.NavigationItem.Feed::class.java
+                NavigationItem.DEBUG_PANEL -> HomeScreen.NavigationItem.DebugPanel::class.java
             }
     }
 }

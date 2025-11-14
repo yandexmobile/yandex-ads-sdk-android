@@ -20,7 +20,7 @@ internal class AppOpenAdLoadTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadAppOpenAdOnResume() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.APP_OPEN_AD)
 

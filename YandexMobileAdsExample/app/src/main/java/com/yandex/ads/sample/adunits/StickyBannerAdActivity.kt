@@ -163,13 +163,17 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
 
         private val networks = arrayListOf(
             Network(R.drawable.ic_yandex_icon_24, R.string.yandex_title, "demo-banner-yandex"),
+            Network(R.drawable.ic_admanager_icon, R.string.admanager_title, "demo-banner-admanager"),
             Network(R.drawable.ic_admob_icon_24, R.string.admob_title, "demo-banner-admob"),
             Network(R.drawable.ic_applovin_icon_24, R.string.applovin_title, "demo-banner-applovin"),
+            Network(R.drawable.ic_appnext_icon, R.string.appnext_title, "demo-banner-appnext"),
+            Network(R.drawable.ic_bigoads_icon, R.string.bigoads_title, "demo-banner-bigoads"),
             Network(R.drawable.ic_chartboost_icon, R.string.chartboost_title, "demo-banner-chartboost"),
             Network(R.drawable.ic_inmobi_icon, R.string.inmobi_title, "demo-banner-inmobi"),
             Network(R.drawable.ic_ironsource_icon_24, R.string.ironsource_title, "demo-banner-ironsource"),
             Network(R.drawable.ic_mintegral_logo, R.string.mintegral_title, "demo-banner-mintegral"),
             Network(R.drawable.ic_mytarget_icon_24, R.string.my_target_title, "demo-banner-mytarget"),
+            Network(R.drawable.ic_pangle_icon, R.string.pangle_title, "demo-banner-pangle"),
             Network(R.drawable.ic_startapp_icon_24, R.string.startapp_title, "demo-banner-startapp"),
             Network(R.drawable.ic_unityads_icon_24, R.string.unity_ads_title, "demo-banner-unityads"),
             Network(R.drawable.ic_vungle_icon_24, R.string.vungle_title, "demo-banner-vungle"),

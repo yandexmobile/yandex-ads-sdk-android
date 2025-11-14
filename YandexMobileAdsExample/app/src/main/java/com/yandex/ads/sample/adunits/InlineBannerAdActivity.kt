@@ -159,8 +159,11 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
 
         private val networks = arrayListOf(
             Network(R.drawable.ic_yandex_icon_24, R.string.yandex_title, "demo-banner-yandex"),
+            Network(R.drawable.ic_admanager_icon, R.string.admanager_title, "demo-banner-admanager"),
             Network(R.drawable.ic_admob_icon_24, R.string.admob_title, "demo-banner-admob"),
             Network(R.drawable.ic_applovin_icon_24, R.string.applovin_title, "demo-banner-applovin"),
+            Network(R.drawable.ic_appnext_icon, R.string.appnext_title, "demo-banner-appnext"),
+            Network(R.drawable.ic_bigoads_icon, R.string.bigoads_title, "demo-banner-bigoads"),
             Network(R.drawable.ic_chartboost_icon, R.string.chartboost_title, "demo-banner-chartboost"),
             Network(R.drawable.ic_inmobi_icon, R.string.inmobi_title, "demo-banner-inmobi"),
             Network(R.drawable.ic_ironsource_icon_24, R.string.ironsource_title, "demo-banner-ironsource"),

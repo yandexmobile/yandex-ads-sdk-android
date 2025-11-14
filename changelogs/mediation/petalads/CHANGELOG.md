@@ -1,3 +1,8 @@
+## Version 3.4.79.301.5
+
+#### Updated
+* Yandex Mobile Ads SDK version 7.17.0
+
 ## Version 3.4.79.301.4
 
 #### Updated

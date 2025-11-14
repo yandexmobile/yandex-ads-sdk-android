@@ -27,7 +27,7 @@ internal class InterstitialLoadTest(
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadInterstitialAdFromMediationNetwork() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.INTERSTITIAL)
         choiceNetwork(
@@ -49,7 +49,7 @@ internal class InterstitialLoadTest(
 
         step("Нажать на кнопку \"Show ad\"") {
             onScreen<InterstitialScreen> {
-                flakySafely(10_000) {
+                flakySafely {
                     clickShowAd()
                 }
             }

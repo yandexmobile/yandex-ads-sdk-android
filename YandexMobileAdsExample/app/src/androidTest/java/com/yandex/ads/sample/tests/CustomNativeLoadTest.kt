@@ -21,7 +21,7 @@ internal class CustomNativeLoadTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadCustomNativeAdAndNavigateToBrowser() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.CUSTOM_NATIVE)
         step("Нажать на кнопку \"Load ad\"") {
