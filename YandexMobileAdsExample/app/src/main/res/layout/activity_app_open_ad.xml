@@ -32,38 +32,75 @@
         app:navigationIconTint="@color/material_on_surface_emphasis_medium"
         app:title="@string/appopenad_title" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/network_menu"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/network"
+        app:startIconDrawable="@drawable/ic_outline_ad_units_24"
+        app:startIconTint="@null"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/network_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/show_ad_button"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_ad"
+        app:icon="@drawable/ic_outline_play_arrow_24"
+        android:layout_margin="@dimen/item_padding"
+        app:layout_constraintTop_toBottomOf="@id/network_menu"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <ImageView
         android:id="@+id/icon"
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
         android:src="@drawable/ic_outline_feed_24"
         app:tint="@color/material_on_surface_emphasis_medium"
+        android:contentDescription="@string/list_item_icon"
+        android:layout_marginHorizontal="@dimen/item_padding"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        android:layout_margin="@dimen/item_padding"
-        android:contentDescription="@string/list_item_icon" />
+        app:layout_constraintTop_toTopOf="@id/show_ad_button"
+        app:layout_constraintBottom_toBottomOf="@id/show_ad_button" />
 
     <TextView
         android:id="@+id/title"
-        android:layout_marginHorizontal="@dimen/list_item_text_padding"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/TextAppearance.Material3.TitleMedium"
-        android:text="@string/info_title"
+        android:text="@string/logs"
+        android:layout_marginHorizontal="@dimen/list_item_text_padding"
         app:layout_constraintStart_toEndOf="@id/icon"
-        app:layout_constraintTop_toTopOf="@id/icon"
-        app:layout_constraintBottom_toBottomOf="@id/icon"/>
+        app:layout_constraintEnd_toStartOf="@id/show_ad_button"
+        app:layout_constraintTop_toTopOf="@id/show_ad_button"
+        app:layout_constraintBottom_toBottomOf="@id/show_ad_button" />
 
-    <TextView
-        android:id="@+id/info"
-        android:layout_width="0dp"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="16dp"
-        android:text="@string/appopenad_info_body"
-        style="@style/TextAppearance.Material3.BodyMedium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/show_ad_button"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            tools:text="Logs..." />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@ internal class CustomNativeLoadTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadCustomNativeFromMediationNetwork() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.CUSTOM_NATIVE)
         choiceNetwork(

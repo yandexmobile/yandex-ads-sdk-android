@@ -24,7 +24,7 @@ internal class StickyBannerLoadTest(
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadStickyBannerFromMediationNetwork() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.STICKY_BANNER)
         choiceNetwork(

@@ -17,7 +17,7 @@ internal class LocationPolicyChangeTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldChangeLocationPolicy() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.POLICIES)
         checkChangePolicy(

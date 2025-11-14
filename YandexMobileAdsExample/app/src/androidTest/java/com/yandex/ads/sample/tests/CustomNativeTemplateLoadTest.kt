@@ -22,7 +22,7 @@ internal class CustomNativeTemplateLoadTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadNativeTemplateAndNavigateToBrowser() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.NATIVE_TEMPLATE)
         choiceNetwork(

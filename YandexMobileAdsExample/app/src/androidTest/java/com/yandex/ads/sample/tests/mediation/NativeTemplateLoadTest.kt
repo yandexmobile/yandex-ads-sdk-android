@@ -24,7 +24,7 @@ internal class NativeTemplateLoadTest(
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadNativeTemplateFromMediationNetwork() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.NATIVE_TEMPLATE)
         choiceNetwork(

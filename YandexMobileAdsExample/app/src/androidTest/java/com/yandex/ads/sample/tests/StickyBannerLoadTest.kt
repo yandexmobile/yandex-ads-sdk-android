@@ -22,7 +22,7 @@ internal class StickyBannerLoadTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadStickyBannerAndNavigateToBrowser() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.STICKY_BANNER)
         choiceNetwork(

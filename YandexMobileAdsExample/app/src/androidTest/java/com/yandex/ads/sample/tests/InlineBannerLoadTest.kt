@@ -22,7 +22,7 @@ internal class InlineBannerLoadTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadInlineBannerAndNavigateToBrowser() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.INLINE_BANNER)
         choiceNetwork(

@@ -27,7 +27,7 @@ internal class GdprPolicyChangeTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldChangeGdprPolicyAndOpenPrivacyPage() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.POLICIES)
         step("Возле пункта \"${getResourceString(R.string.gdpr_disabled)}\" нажать на кнопку \"Open dialog\"") {

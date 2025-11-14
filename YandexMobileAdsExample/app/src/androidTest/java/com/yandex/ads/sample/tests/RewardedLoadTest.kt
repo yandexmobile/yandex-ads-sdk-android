@@ -25,7 +25,7 @@ internal class RewardedLoadTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadRewardedAdAndNavigateToBrowser() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.REWARDED)
         choiceNetwork(
@@ -47,7 +47,7 @@ internal class RewardedLoadTest : BaseUITest() {
 
         step("Нажать на кнопку \"Show ad\"") {
             onScreen<RewardedScreen> {
-                flakySafely(10_000) {
+                flakySafely {
                     clickShowAd()
                 }
             }

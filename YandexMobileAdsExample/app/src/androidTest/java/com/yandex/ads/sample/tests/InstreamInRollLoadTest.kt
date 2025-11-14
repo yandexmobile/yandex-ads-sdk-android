@@ -18,7 +18,7 @@ internal class InstreamInRollLoadTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadInstreamInRollAd() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.INSTREAM_IN_ROLL)
 

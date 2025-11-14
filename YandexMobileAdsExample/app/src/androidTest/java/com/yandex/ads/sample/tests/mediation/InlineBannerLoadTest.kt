@@ -24,7 +24,7 @@ internal class InlineBannerLoadTest(
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadInlineBannerFromMediationNetwork() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.INLINE_BANNER)
         choiceNetwork(

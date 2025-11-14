@@ -29,8 +29,11 @@
 
     <!--  Mediation networks  -->
     <string name="yandex_title">Yandex</string>
+    <string name="admanager_title">Admanager</string>
     <string name="admob_title">AdMob</string>
     <string name="applovin_title">AppLovin</string>
+    <string name="appnext_title">Appnext</string>
+    <string name="bigoads_title">BigoAds</string>
     <string name="chartboost_title">Chartboost</string>
     <string name="inmobi_title">InMobi</string>
     <string name="mintegral_title">Mintegral</string>

@@ -19,7 +19,7 @@ internal class CoppaPoliciesChangeTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldChangeCoppaPolicy() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.POLICIES)
         checkChangePolicy(

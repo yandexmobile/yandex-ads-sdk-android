@@ -18,7 +18,7 @@ internal class InstreamBinderLoadTest : BaseUITest() {
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadInstreamBinderAd() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.INSTREAM_BINDER)
 

@@ -34,6 +34,8 @@ internal class HomeScreen(
             NavigationItem.InstreamInRoll::class.java -> 9
             NavigationItem.Policies::class.java -> 10
             NavigationItem.AppOpenAd::class.java -> 11
+            NavigationItem.Feed::class.java -> 12
+            NavigationItem.DebugPanel::class.java -> 13
             else -> error("unsupported type")
         }
     }
@@ -53,6 +55,8 @@ internal class HomeScreen(
             itemType { NavigationItem.StickyBanner(it) }
             itemType { NavigationItem.InstreamInRoll(it) }
             itemType { NavigationItem.InstreamBinder(it) }
+            itemType { NavigationItem.Feed(it) }
+            itemType { NavigationItem.DebugPanel(it) }
         }
     )
 
@@ -104,5 +108,9 @@ internal class HomeScreen(
         class InstreamInRoll(matcher: Matcher<View>): NavigationItem<InstreamInRoll>(matcher)
 
         class InstreamBinder(matcher: Matcher<View>): NavigationItem<InstreamBinder>(matcher)
+
+        class Feed(matcher: Matcher<View>) : NavigationItem<Feed>(matcher)
+
+        class DebugPanel(matcher: Matcher<View>) : NavigationItem<DebugPanel>(matcher)
     }
 }

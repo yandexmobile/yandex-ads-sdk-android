@@ -27,7 +27,7 @@ internal class RewardedLoadTest(
     val activityRule = activityScenarioRule<HomeActivity>()
 
     @Test
-    fun check() = run {
+    fun shouldLoadRewardedAdFromMediationNetwork() = run {
         openSampleApp()
         goToSection(GoToSection.NavigationItem.REWARDED)
         choiceNetwork(
@@ -49,7 +49,7 @@ internal class RewardedLoadTest(
 
         step("Нажать на кнопку \"Show ad\"") {
             onScreen<RewardedScreen> {
-                flakySafely(10_000) {
+                flakySafely {
                     clickShowAd()
                 }
             }
