@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to TapJoy Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 14.3.1.8
+
+#### Updated
+* Yandex Mobile Ads SDK version 7.18.0
+
 ## Version 14.3.1.7
 
 #### Updated

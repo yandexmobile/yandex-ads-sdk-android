@@ -2,6 +2,7 @@ package com.yandex.ads.sample.components
 
 import androidx.test.espresso.DataInteraction
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.matcher.ViewMatchers
 import io.github.kakaocup.kakao.common.assertions.BaseAssertions
 import io.github.kakaocup.kakao.common.builders.ViewBuilder
 import io.github.kakaocup.kakao.common.matchers.SpinnerPopupMatcher
@@ -22,8 +23,9 @@ interface OrdinalSpinner<T : OrdinalItem> : SpinnerAdapterActions,
 
     operator fun invoke(function: OrdinalSpinner<T>.() -> Unit)
 
-
     fun <I : T> onItem(clazz: Class<I>, block: I.() -> Unit)
+
+    fun <I : T> onItemByText(clazz: Class<I>, text: String, block: I.() -> Unit)
 }
 
 internal class DefaultOrdinalSpinner<T : OrdinalItem> private constructor(
@@ -59,6 +61,22 @@ internal class DefaultOrdinalSpinner<T : OrdinalItem> private constructor(
         val interaction = Espresso.onData(Matchers.anything())
             .inRoot(SpinnerPopupMatcher())
             .atPosition(position)
+
+        block(provideItem(interaction) as I)
+    }
+
+    override fun <I : T> onItemByText(clazz: Class<I>, text: String, block: I.() -> Unit) {
+        val provideItem = spinner.itemTypes.getOrElse(clazz.kotlin) {
+            throw IllegalStateException("${clazz.simpleName} did not register to Spinner")
+        }.provideItem
+
+        val interaction = Espresso.onData(
+            Matchers.allOf(
+                Matchers.instanceOf(String::class.java),
+                Matchers.`is`(text)
+            )
+        )
+            .inRoot(SpinnerPopupMatcher())
 
         block(provideItem(interaction) as I)
     }

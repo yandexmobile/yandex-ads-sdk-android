@@ -1,5 +1,6 @@
 package com.yandex.ads.sample.pageobjects
 
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.UiController
@@ -56,6 +57,93 @@ internal fun FeedScreen.checkFeedHasItems(): Int {
     return itemCount
 }
 
+internal fun FeedScreen.waitForAdToLoad(timeoutMs: Long = 60_000): Boolean {
+    var adFound = false
+
+    feedRecyclerView.view.perform(object : ViewAction {
+        override fun getConstraints(): Matcher<View> = ViewMatchers.isDisplayed()
+
+        override fun getDescription(): String = "Wait for ad to load"
+
+        override fun perform(uiController: UiController, view: View) {
+            val recyclerView = view as RecyclerView
+            val startTime = System.currentTimeMillis()
+            val checkInterval = 1000L
+
+            Log.d("KASPRESSO", "waitForAdToLoad: начинаем ожидание загрузки рекламы, таймаут ${timeoutMs}мс")
+
+            while (System.currentTimeMillis() - startTime < timeoutMs) {
+                var hasLoadedAd = false
+
+                for (i in 0 until recyclerView.childCount) {
+                    val child = recyclerView.getChildAt(i)
+                    if (child != null && isAdView(child)) {
+                        val hasClickableElement = findFirstClickableView(child) != null
+                        Log.d("KASPRESSO", "waitForAdToLoad: найдена реклама на позиции $i, кликабельный элемент: $hasClickableElement")
+
+                        if (hasClickableElement) {
+                            hasLoadedAd = true
+                            break
+                        }
+                    }
+                }
+
+                if (hasLoadedAd) {
+                    Log.d("KASPRESSO", "waitForAdToLoad: реклама успешно загружена за ${System.currentTimeMillis() - startTime}мс")
+                    adFound = true
+                    return
+                }
+
+                val elapsed = System.currentTimeMillis() - startTime
+                if (elapsed % 10000 < checkInterval) {
+                    Log.d("KASPRESSO", "waitForAdToLoad: реклама еще не загрузилась, прошло ${elapsed}мс")
+                }
+
+                Thread.sleep(checkInterval)
+            }
+
+            Log.e("KASPRESSO", "waitForAdToLoad: таймаут ожидания загрузки рекламы (${timeoutMs}мс)")
+        }
+
+        private fun isAdView(view: View): Boolean {
+            val className = view.javaClass.simpleName
+            if (className.contains("FeedItemContainer") ||
+                className.contains("ExtendedNativeAdView")) {
+                return true
+            }
+
+            if (view is android.view.ViewGroup) {
+                for (i in 0 until view.childCount) {
+                    if (isAdView(view.getChildAt(i))) {
+                        return true
+                    }
+                }
+            }
+
+            return false
+        }
+
+        private fun findFirstClickableView(view: View): View? {
+            if (view.isClickable && view.visibility == View.VISIBLE && view.isEnabled) {
+                return view
+            }
+
+            if (view is android.view.ViewGroup) {
+                for (i in 0 until view.childCount) {
+                    val clickable = findFirstClickableView(view.getChildAt(i))
+                    if (clickable != null) {
+                        return clickable
+                    }
+                }
+            }
+
+            return null
+        }
+    })
+
+    return adFound
+}
+
 internal fun FeedScreen.getItemCount(): Int {
     var itemCount = 0
     feedRecyclerView.view.perform(object : ViewAction {
@@ -105,21 +193,40 @@ internal fun FeedScreen.scrollToAd() {
             if (adapter != null && adapter.itemCount > 0) {
                 var found = false
                 var attempts = 0
-                val maxAttempts = adapter.itemCount
+                val maxAttempts = 50
+                val waitBetweenScrolls = 1000L
+                val waitForAdLoad = 2000L
+
+                Log.d("KASPRESSO", "scrollToAd: начинаем поиск рекламы, элементов в адаптере: ${adapter.itemCount}")
 
                 while (!found && attempts < maxAttempts) {
-                    recyclerView.smoothScrollToPosition(attempts)
-                    Thread.sleep(500)
+                    val scrollPosition = minOf(attempts * 3, adapter.itemCount - 1)
+                    Log.d("KASPRESSO", "scrollToAd: попытка $attempts, скроллим к позиции $scrollPosition")
+
+                    recyclerView.smoothScrollToPosition(scrollPosition)
+                    Thread.sleep(waitBetweenScrolls)
 
                     for (i in 0 until recyclerView.childCount) {
                         val child = recyclerView.getChildAt(i)
                         if (child != null && isAdView(child)) {
+                            Log.d("KASPRESSO", "scrollToAd: найдена реклама на позиции $i, ждем загрузки ${waitForAdLoad}мс")
+                            Thread.sleep(waitForAdLoad)
                             found = true
                             break
                         }
                     }
 
                     attempts++
+
+                    if (attempts % 5 == 0) {
+                        Log.d("KASPRESSO", "scrollToAd: выполнено $attempts попыток, текущее количество элементов: ${adapter.itemCount}")
+                    }
+                }
+
+                if (found) {
+                    Log.d("KASPRESSO", "scrollToAd: реклама успешно найдена и загружена")
+                } else {
+                    Log.e("KASPRESSO", "scrollToAd: реклама не найдена после $attempts попыток")
                 }
             }
         }
@@ -206,7 +313,6 @@ internal fun FeedScreen.dumpViewHierarchy() {
 }
 
 internal fun FeedScreen.clickFirstAdItem() {
-
     feedRecyclerView.view.perform(object : ViewAction {
         override fun getConstraints(): Matcher<View> = ViewMatchers.isDisplayed()
 
@@ -214,15 +320,44 @@ internal fun FeedScreen.clickFirstAdItem() {
 
         override fun perform(uiController: UiController, view: View) {
             val recyclerView = view as RecyclerView
-            val firstChild = recyclerView.getChildAt(0)
+            val maxAttempts = 30
+            val waitBetweenAttempts = 1000L
+            var clicked = false
 
-            if (firstChild != null) {
-                val clickableView = findFirstClickableView(firstChild)
-                if (clickableView != null) {
-                    clickableView.performClick()
+            Log.d("KASPRESSO", "clickFirstAdItem: начинаем поиск первого элемента для клика")
+
+            for (attempt in 0 until maxAttempts) {
+                Log.d("KASPRESSO", "clickFirstAdItem: попытка ${attempt + 1}/$maxAttempts")
+
+                val firstChild = recyclerView.getChildAt(0)
+                if (firstChild != null) {
+                    val clickableView = findFirstClickableView(firstChild)
+                    if (clickableView != null) {
+                        Log.d("KASPRESSO", "clickFirstAdItem: найден кликабельный элемент ${clickableView.javaClass.simpleName}, выполняем клик")
+                        clickableView.performClick()
+                        clicked = true
+                        return
+                    } else if (firstChild.isClickable) {
+                        Log.d("KASPRESSO", "clickFirstAdItem: первый элемент кликабелен, выполняем клик")
+                        firstChild.performClick()
+                        clicked = true
+                        return
+                    } else {
+                        Log.w("KASPRESSO", "clickFirstAdItem: первый элемент найден, но не найден кликабельный подэлемент")
+                    }
                 } else {
-                    firstChild.performClick()
+                    Log.w("KASPRESSO", "clickFirstAdItem: первый элемент не найден")
                 }
+
+                if (!clicked) {
+                    Log.d("KASPRESSO", "clickFirstAdItem: кликабельный элемент не найден, ждем ${waitBetweenAttempts}мс")
+                    Thread.sleep(waitBetweenAttempts)
+                }
+            }
+
+            if (!clicked) {
+                Log.e("KASPRESSO", "clickFirstAdItem: не удалось найти и кликнуть первый элемент после $maxAttempts попыток")
+                throw IllegalStateException("Не удалось найти кликабельный первый элемент после $maxAttempts попыток")
             }
         }
 
@@ -246,8 +381,6 @@ internal fun FeedScreen.clickFirstAdItem() {
 }
 
 internal fun FeedScreen.clickVisibleAdItem() {
-    Thread.sleep(1000)
-
     feedRecyclerView.view.perform(object : ViewAction {
         override fun getConstraints(): Matcher<View> = ViewMatchers.isDisplayed()
 
@@ -255,19 +388,46 @@ internal fun FeedScreen.clickVisibleAdItem() {
 
         override fun perform(uiController: UiController, view: View) {
             val recyclerView = view as RecyclerView
+            val maxAttempts = 30
+            val waitBetweenAttempts = 1000L
+            var clicked = false
 
-            for (i in 0 until recyclerView.childCount) {
-                val child = recyclerView.getChildAt(i)
-                if (child != null && isAdView(child)) {
-                    val clickableView = findFirstClickableView(child)
-                    if (clickableView != null) {
-                        clickableView.performClick()
-                        return
-                    } else {
-                        child.performClick()
-                        return
+            Log.d("KASPRESSO", "clickVisibleAdItem: начинаем поиск видимой рекламы для клика")
+
+            for (attempt in 0 until maxAttempts) {
+                Log.d("KASPRESSO", "clickVisibleAdItem: попытка ${attempt + 1}/$maxAttempts")
+
+                for (i in 0 until recyclerView.childCount) {
+                    val child = recyclerView.getChildAt(i)
+                    if (child != null && isAdView(child)) {
+                        Log.d("KASPRESSO", "clickVisibleAdItem: найден рекламный элемент на позиции $i")
+
+                        val clickableView = findFirstClickableView(child)
+                        if (clickableView != null) {
+                            Log.d("KASPRESSO", "clickVisibleAdItem: найден кликабельный элемент ${clickableView.javaClass.simpleName}, выполняем клик")
+                            clickableView.performClick()
+                            clicked = true
+                            return
+                        } else if (child.isClickable) {
+                            Log.d("KASPRESSO", "clickVisibleAdItem: родительский элемент кликабелен, выполняем клик")
+                            child.performClick()
+                            clicked = true
+                            return
+                        } else {
+                            Log.w("KASPRESSO", "clickVisibleAdItem: найдена реклама, но не найден кликабельный элемент")
+                        }
                     }
                 }
+
+                if (!clicked) {
+                    Log.d("KASPRESSO", "clickVisibleAdItem: реклама не найдена, ждем ${waitBetweenAttempts}мс")
+                    Thread.sleep(waitBetweenAttempts)
+                }
+            }
+
+            if (!clicked) {
+                Log.e("KASPRESSO", "clickVisibleAdItem: не удалось найти и кликнуть рекламу после $maxAttempts попыток")
+                throw IllegalStateException("Не удалось найти кликабельную рекламу после $maxAttempts попыток")
             }
         }
 
