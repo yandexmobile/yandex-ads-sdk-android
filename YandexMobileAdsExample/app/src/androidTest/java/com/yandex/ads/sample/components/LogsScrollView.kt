@@ -104,7 +104,7 @@ class LogsScrollView private constructor(private val scrollView: KScrollView) :
     override fun hasMessage(message: String) {
         view.check(
             ViewAssertions.matches(
-                childMatcherOf(Matchers.`is`(message))
+                ViewMatchers.hasDescendant(ViewMatchers.withText(Matchers.`is`(message)))
             )
         )
     }
@@ -112,15 +112,10 @@ class LogsScrollView private constructor(private val scrollView: KScrollView) :
     override fun containsMessage(message: String) {
         view.check(
             ViewAssertions.matches(
-                childMatcherOf(Matchers.containsString(message))
+                ViewMatchers.hasDescendant(
+                    ViewMatchers.withText(Matchers.containsString(message))
+                )
             )
         )
-    }
-
-    private companion object {
-
-        fun childMatcherOf(matcher: Matcher<String>): Matcher<View> {
-            return ViewMatchers.withChild(ViewMatchers.withText(matcher))
-        }
     }
 }

@@ -53,17 +53,17 @@ internal class InlineBannerScreen : KScreen<InlineBannerScreen>(),
         },
         positionProvider = { clazz ->
             when (clazz) {
-                NetworkItem.AdFox::class.java -> 10
-                NetworkItem.Vungle::class.java -> 9
-                NetworkItem.UnityAds::class.java -> 8
-                NetworkItem.StartApp::class.java -> 7
-                NetworkItem.MyTarget::class.java -> 6
-                NetworkItem.Mintegral::class.java -> 5
-                NetworkItem.InMobi::class.java -> 4
-                NetworkItem.Chartboost::class.java -> 3
-                NetworkItem.AppLovin::class.java -> 2
-                NetworkItem.AdMob::class.java -> 1
                 NetworkItem.Yandex::class.java -> 0
+                NetworkItem.AdMob::class.java -> 2
+                NetworkItem.AppLovin::class.java -> 3
+                NetworkItem.Chartboost::class.java -> 6
+                NetworkItem.InMobi::class.java -> 7
+                NetworkItem.Mintegral::class.java -> 9
+                NetworkItem.MyTarget::class.java -> 10
+                NetworkItem.StartApp::class.java -> 11
+                NetworkItem.UnityAds::class.java -> 12
+                NetworkItem.Vungle::class.java -> 13
+                NetworkItem.AdFox::class.java -> 14
                 else -> error("unsupported type")
             }
         }

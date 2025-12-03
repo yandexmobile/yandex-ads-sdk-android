@@ -18,9 +18,9 @@ internal class ChoiceNetwork<ScenarioData, Item, SuperItem, Screen>(
 
     override val steps: TestContext<ScenarioData>.() -> Unit = {
         step("Во вкладке \"Network\" выбрать ${item.simpleName}") {
-            val screen = screen.newInstance()
+            val screenInstance = screen.newInstance()
 
-            screen {
+            screenInstance {
                 openNetworkMenu()
                 clickNetworkItem(item)
             }

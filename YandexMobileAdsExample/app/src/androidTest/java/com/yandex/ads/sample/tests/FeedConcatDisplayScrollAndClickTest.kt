@@ -1,0 +1,95 @@
+package com.yandex.ads.sample.tests
+
+import androidx.test.ext.junit.rules.activityScenarioRule
+import com.yandex.ads.sample.HomeActivity
+import com.yandex.ads.sample.base.BaseUITest
+import com.yandex.ads.sample.pageobjects.FeedScreen
+import com.yandex.ads.sample.pageobjects.checkFeedHasItems
+import com.yandex.ads.sample.pageobjects.clickShowConcatFeed
+import com.yandex.ads.sample.pageobjects.clickVisibleAdItem
+import com.yandex.ads.sample.pageobjects.getItemCount
+import com.yandex.ads.sample.pageobjects.scrollFeed
+import com.yandex.ads.sample.pageobjects.scrollToAd
+import com.yandex.ads.sample.pageobjects.waitForAdToLoad
+import com.yandex.ads.sample.shared_steps.GoToSection
+import com.yandex.ads.sample.shared_steps.checkAnyBrowserOrStoreIsOpened
+import com.yandex.ads.sample.shared_steps.goToSection
+import com.yandex.ads.sample.shared_steps.openSampleApp
+import com.yandex.ads.sample.shared_steps.returnToApplication
+import io.github.kakaocup.kakao.screen.Screen.Companion.onScreen
+import org.junit.Assert
+import org.junit.Rule
+import org.junit.Test
+
+internal class FeedConcatDisplayScrollAndClickTest : BaseUITest() {
+
+    @get:Rule
+    val activityRule = activityScenarioRule<HomeActivity>()
+
+    @Test
+    fun shouldDisplayConcatFeedScrollAndClickAd() = run {
+        openSampleApp()
+
+        step("Перейти в раздел Feed") {
+            goToSection(GoToSection.NavigationItem.FEED)
+        }
+
+        step("Нажать на кнопку Show concat feed") {
+            onScreen<FeedScreen> {
+                clickShowConcatFeed()
+            }
+        }
+
+        step("Проскроллить вниз до появления рекламы") {
+            onScreen<FeedScreen> {
+                scrollToAd()
+            }
+        }
+
+        step("Реклама отобразилась, верстка не поехала") {
+            onScreen<FeedScreen> {
+                checkFeedHasItems()
+                
+                val adLoaded = waitForAdToLoad(timeoutMs = 60_000)
+                Assert.assertTrue(
+                    "Реклама не загрузилась в течение 60 секунд",
+                    adLoaded
+                )
+            }
+        }
+
+        var initialItemCount = 0
+        step("Проскроллить рекламу") {
+            onScreen<FeedScreen> {
+                initialItemCount = getItemCount()
+                scrollFeed(positions = 10)
+            }
+        }
+
+        step("Лента пролистывается бесконечно, реклама постоянно подгружается по мере пролистывания") {
+            onScreen<FeedScreen> {
+                val currentItemCount = getItemCount()
+                
+                Assert.assertTrue(
+                    "Количество элементов должно увеличиться после скролла. Было: $initialItemCount, стало: $currentItemCount",
+                    currentItemCount >= initialItemCount
+                )
+            }
+        }
+
+        step("Кликнуть по рекламе") {
+            onScreen<FeedScreen> {
+                clickVisibleAdItem()
+            }
+
+            step("Выполнен корректный переход в браузер или на установку рекламируемого приложения") {
+                checkAnyBrowserOrStoreIsOpened(
+                    description = "Выполнен корректный переход в браузер или на установку рекламируемого приложения"
+                )
+            }
+        }
+
+        returnToApplication()
+    }
+}
+

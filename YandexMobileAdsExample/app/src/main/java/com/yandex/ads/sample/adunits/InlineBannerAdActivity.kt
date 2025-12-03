@@ -127,31 +127,35 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
     private inner class BannerAdEventLogger : BannerAdEventListener {
 
         override fun onAdLoaded() {
-            adInfoFragment.hideLoading()
-            adInfoFragment.log("Banner ad loaded")
+            _adInfoFragment?.let { fragment ->
+                fragment.hideLoading()
+                fragment.log("Banner ad loaded")
+            }
         }
 
         override fun onAdFailedToLoad(error: AdRequestError) {
-            adInfoFragment.hideLoading()
-            adInfoFragment.log(
-                "Banner ad failed to load with code ${error.code}: ${error.description}"
-            )
+            _adInfoFragment?.let { fragment ->
+                fragment.hideLoading()
+                fragment.log(
+                    "Banner ad failed to load with code ${error.code}: ${error.description}"
+                )
+            }
         }
 
         override fun onAdClicked() {
-            adInfoFragment.log("Banner ad clicked")
+            _adInfoFragment?.log("Banner ad clicked")
         }
 
         override fun onLeftApplication() {
-            adInfoFragment.log("Left application")
+            _adInfoFragment?.log("Left application")
         }
 
         override fun onReturnedToApplication() {
-            adInfoFragment.log("Returned to application")
+            _adInfoFragment?.log("Returned to application")
         }
 
         override fun onImpression(data: ImpressionData?) {
-            adInfoFragment.log("Impression: ${data?.rawData}")
+            _adInfoFragment?.log("Impression: ${data?.rawData}")
         }
     }
 

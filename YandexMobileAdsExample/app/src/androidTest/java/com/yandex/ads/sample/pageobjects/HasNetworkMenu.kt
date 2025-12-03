@@ -18,6 +18,14 @@ fun <I : T, T : OrdinalItem> HasNetworkMenu<T>.clickNetworkItem(
     click()
 }
 
+fun <I : T, T : OrdinalItem> HasNetworkMenu<T>.clickNetworkItemByText(
+    clazz: Class<I>,
+    text: String
+) = networkMenu.onItemByText(clazz, text) {
+    isVisible()
+    click()
+}
+
 interface HasNetworkMenu<T : OrdinalItem> {
 
     val networkMenu: OrdinalSpinner<T>
