@@ -2,6 +2,13 @@
 
 All notable changes to Yandex Full Mediation will be documented in this file.
 
+## Version 7.18.1.1
+
+#### Updated
+
+* Digitalturbine Adapter version 8.4.1.1
+* Mytarget Adapter version 5.27.4.1
+
 ## Version 7.18.1.0
 
 #### Updated
