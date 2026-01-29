@@ -2,6 +2,12 @@
 
 All notable changes to Yandex Full Mediation will be documented in this file.
 
+## Version 7.18.2.0
+
+#### Updated
+
+* Applovin Adapter version 13.1.0.12
+
 ## Version 7.18.1.1
 
 #### Updated
