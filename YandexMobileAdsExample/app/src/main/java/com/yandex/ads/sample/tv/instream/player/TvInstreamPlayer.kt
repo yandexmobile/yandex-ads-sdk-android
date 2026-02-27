@@ -16,7 +16,7 @@ import com.yandex.ads.sample.R
 import com.yandex.ads.sample.tv.instream.player.model.ContentType
 import com.yandex.ads.sample.tv.instream.player.model.ErrorType
 import com.yandex.ads.sample.tv.instream.player.model.TvInstreamPlayerState
-import com.yandex.mobile.ads.instream.InstreamAdRequestConfiguration
+import com.yandex.mobile.ads.instream.InstreamAdRequest
 import com.yandex.mobile.ads.instream.media3.YandexAdsLoader
 import com.yandex.mobile.ads.video.playback.VideoAdPlaybackListener
 import com.yandex.mobile.ads.video.playback.model.VideoAd
@@ -139,7 +139,7 @@ class TvInstreamPlayer(
     }
 
     private fun initAdsLoader() {
-        val configuration = InstreamAdRequestConfiguration
+        val configuration = InstreamAdRequest
             .Builder(adUnitId)
             .build()
         yandexAdsLoader = YandexAdsLoader(context, configuration)

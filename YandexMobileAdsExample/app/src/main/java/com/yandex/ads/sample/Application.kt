@@ -17,8 +17,8 @@ import com.yandex.ads.sample.settings.CoppaDialogFragment
 import com.yandex.ads.sample.settings.GdprDialogFragment
 import com.yandex.ads.sample.settings.LocationDialogFragment
 import com.yandex.ads.sample.utils.Logger
-import com.yandex.mobile.ads.common.MobileAds
-import com.yandex.mobile.ads.instream.MobileInstreamAds
+import com.yandex.mobile.ads.common.YandexAds
+import com.yandex.mobile.ads.instream.YandexInstreamAds
 
 class Application : MultiDexApplication() {
 
@@ -33,21 +33,21 @@ class Application : MultiDexApplication() {
     }
 
     private fun initSdk() {
-        MobileInstreamAds.setAdGroupPreloading(INSTREAM_AD_GROUP_PRELOADING_ENABLED)
-        MobileAds.initialize(this) {
+        YandexInstreamAds.setAdGroupPreloading(INSTREAM_AD_GROUP_PRELOADING_ENABLED)
+        YandexAds.initialize(this) {
             Logger.debug("SDK initialized")
             // wait until sdk initialized before using Ads
             initAppOpenAdManager()
         }
-        MobileAds.enableLogging(true)
+        YandexAds.enableLogging(true)
     }
 
     private fun initPreferences() {
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
         preferences.run {
-            MobileAds.setUserConsent(getBoolean(GdprDialogFragment.TAG, false))
-            MobileAds.setLocationConsent(getBoolean(LocationDialogFragment.TAG, false))
-            MobileAds.setAgeRestrictedUser(getBoolean(CoppaDialogFragment.TAG, false))
+            YandexAds.privacy.setUserConsent(getBoolean(GdprDialogFragment.TAG, false))
+            YandexAds.privacy.setLocationTracking(getBoolean(LocationDialogFragment.TAG, false))
+            YandexAds.privacy.setAgeRestricted(getBoolean(CoppaDialogFragment.TAG, false))
         }
     }
 

@@ -23,7 +23,7 @@ import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivitySimpleInstreamAdBinding
 import com.yandex.ads.sample.network.Network
 import com.yandex.ads.sample.utils.applySystemBarsPadding
-import com.yandex.mobile.ads.instream.InstreamAdRequestConfiguration
+import com.yandex.mobile.ads.instream.InstreamAdRequest
 import com.yandex.mobile.ads.instream.media3.YandexAdsLoader
 
 class SimpleInstreamAdActivity : AppCompatActivity(R.layout.activity_simple_instream_ad) {
@@ -59,7 +59,7 @@ class SimpleInstreamAdActivity : AppCompatActivity(R.layout.activity_simple_inst
     }
 
     private fun initAdsLoader() {
-        val configuration = InstreamAdRequestConfiguration
+        val configuration = InstreamAdRequest
             .Builder(networks.first().adUnitId)
             .build()
         yandexAdsLoader = YandexAdsLoader(this, configuration)

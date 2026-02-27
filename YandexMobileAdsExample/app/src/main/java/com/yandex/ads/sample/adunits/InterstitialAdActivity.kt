@@ -18,7 +18,7 @@ import com.yandex.ads.sample.network.Network
 import com.yandex.ads.sample.network.NetworkAdapter
 import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.common.AdError
-import com.yandex.mobile.ads.common.AdRequestConfiguration
+import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.interstitial.InterstitialAd
@@ -50,23 +50,22 @@ class InterstitialAdActivity : AppCompatActivity(R.layout.activity_interstitial_
         // Initialize SDK as early as possible, for example in Application.onCreate or at least Activity.onCreate
         // It's recommended to use the same instance of InterstitialAdLoader for every load for
         // achieve better performance
-        interstitialAdLoader = InterstitialAdLoader(this).apply {
-            setAdLoadListener(this@InterstitialAdActivity)
-        }
+        interstitialAdLoader = InterstitialAdLoader(this)
         loadInterstitialAd()
     }
 
     private fun loadInterstitialAd() {
         disableShowAdButton()
-        interstitialAdLoader?.loadAd(createAdRequestConfiguration())
+        val adRequest = createAdRequest()
+        interstitialAdLoader?.loadAd(adRequest, this)
     }
 
-    private fun createAdRequestConfiguration(): AdRequestConfiguration {
+    private fun createAdRequest(): AdRequest {
         return if (selectedNetwork.titleId == R.string.adfox_title) {
-            AdRequestConfiguration.Builder(selectedNetwork.adUnitId)
+            AdRequest.Builder(selectedNetwork.adUnitId, )
                 .setParameters(adFoxRequestParameters)
         } else {
-            AdRequestConfiguration.Builder(selectedNetwork.adUnitId)
+            AdRequest.Builder(selectedNetwork.adUnitId)
         }.build()
     }
 
@@ -99,8 +98,7 @@ class InterstitialAdActivity : AppCompatActivity(R.layout.activity_interstitial_
     }
 
     override fun onDestroy() {
-        // set listener to null to avoid memory leaks
-        interstitialAdLoader?.setAdLoadListener(null)
+        interstitialAdLoader?.cancelLoading()
         interstitialAdLoader = null
         destroyInterstitial()
         super.onDestroy()

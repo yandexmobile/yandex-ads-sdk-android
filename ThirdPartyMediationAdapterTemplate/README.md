@@ -35,14 +35,14 @@ See [also](https://yandex.ru/support2/mobile-ads/en/dev/android/quick-start#app)
 Copy [YandexAdapters](./app/src/main/java/com/example/mediation/YandexAdapters.kt) file content and change stub API to your actual API.
 This way you will get a separate adapter class for each of the ad formats. If your API requires a single class for all formats, you can merge classes.
 
-* Mediation parameters must be set for each request as shown in the [template](./app/src/main/java/com/example/mediation/YandexAdapters.kt#L631):
+* When using `MobileAds.initializeForAdapter()`, adapter identity parameters are automatically added to all requests:
     * `"adapter_version"` represents Yandex adapter version. Construct this version by adding one more number to the Yandex SDK version. For example, `6.2.1.0` if the Yandex SDK version is `6.2.1`. If you need to update an adapter without changing the Yandex SDK version, increment the fourth number like `6.2.1.1`.
     * `"adapter_network_name"` represents your ad network name in lowercase.
     * `"adapter_network_sdk_version"` represents your ad network SDK version.
 
-* `Interstitial`, `Rewarded`, `AppOpen` and `Native` formats provide loader classes. A loader object can be [created](./app/src/main/java/com/example/mediation/YandexAdapters.kt#L60) once and can be reused. This speeds up loading and can be helpful to implement preloading logic, if your network supports it.
+* `Interstitial`, `Rewarded`, `AppOpen` and `Native` formats provide loader classes. A loader object can be created once and can be reused. This speeds up loading and can be helpful to implement preloading logic, if your network supports it.
 
-* `Native` format includes both the required and optional [assets](https://yandex.ru/support2/mobile-ads/en/dev/android/components). The way to provide custom assets for binding strongly depends on the API of your ads SDK. The [template](./app/src/main/java/com/example/mediation/YandexAdapters.kt#L690) shows how these assets are passed to adapter during the ad request by providing a map of `string identifier` to `asset view identifier` on the publisher side.
+* `Native` format includes both the required and optional [assets](https://yandex.ru/support2/mobile-ads/en/dev/android/components). The way to provide custom assets for binding strongly depends on the API of your ads SDK. The template shows how these assets are passed to adapter during the ad request by providing a map of `string identifier` to `asset view identifier` on the publisher side.
 
 ### 4. Test integration
 
@@ -70,7 +70,20 @@ Successfully initializing the Yandex Mobile Ads SDK is an important condition fo
 </manifest>
 ```
 
-Manual initialization of the SDK can be used like this (this method is safety and can be reinvoked if SDK already initialized):
+For mediation adapters, use `initializeForAdapter()` method which stores the adapter identity globally and automatically adds adapter parameters to all requests:
+```kotlin
+val adapterIdentity = AdapterIdentity(
+    adapterNetworkName = "your_network_name",
+    adapterVersion = "1.0.0.0",
+    adapterNetworkVersion = "1.0.0"
+)
+
+MobileAds.initializeForAdapter(context, adapterIdentity) {
+    onInitializationComplete.invoke()
+}
+```
+
+For reqular integration, use the standard initialization:
 ```kotlin
 MobileAds.initialize(context) {
     onInitializationComplete.invoke()
@@ -91,7 +104,7 @@ See also: [GDPR](https://yandex.ru/support2/mobile-ads/en/dev/android/gdpr) and 
 
 ### S2S bidding integration
 
-As shown in the [template](./app/src/main/java/com/example/mediation/YandexAdapters.kt#L664), the bidder token can be obtained as follows:
+The bidder token can be obtained using the `BidderTokenLoader` class:
 
 ```kotlin
 val loadListener = object : BidderTokenLoadListener {
@@ -99,21 +112,23 @@ val loadListener = object : BidderTokenLoadListener {
     override fun onBidderTokenFailedToLoad(msg: String) = callback.onTokenFailedToLoad()
 }
 
-BidderTokenLoader.loadBidderToken(context, tokenRequest, loadListener)
+// Create an instance of BidderTokenLoader
+val bidderTokenLoader = BidderTokenLoader(context)
+bidderTokenLoader.loadBidderToken(tokenRequest, loadListener)
 ```
 
-You need to load a bidder token for each new ad request. Token request can be created as follows (also shown in [template](./app/src/main/java/com/example/mediation/YandexAdapters.kt#L611)):
+You need to load a bidder token for each new ad request. Token request can be created as follows:
 
 ```kotlin
 fun createBidderTokenRequestConfiguration(): BidderTokenRequestConfiguration {
-        val requestBuilder = BidderTokenRequestConfiguration.Builder(adType)
-
-        if (adType == AdType.BANNER) {
-            requestBuilder.setBannerAdSize(bannerAdSize)
-        }
-
-        return requestBuilder
-            .setParameters(mediationParameters)
-            .build()
+    return when (adType) {
+        AdType.BANNER -> BidderTokenRequestConfiguration.banner(bannerAdSize)
+        AdType.INTERSTITIAL -> BidderTokenRequestConfiguration.interstitial()
+        AdType.REWARDED -> BidderTokenRequestConfiguration.rewarded()
+        AdType.NATIVE -> BidderTokenRequestConfiguration.native()
+        AdType.APP_OPEN_AD -> BidderTokenRequestConfiguration.appOpenAd()
     }
+}
 ```
+
+> Note: `adapterIdentity` is optional. When using `MobileAds.initializeForAdapter()`, the adapter identity is automatically included in all requests. `bannerAdSize` is required for banner configurations.

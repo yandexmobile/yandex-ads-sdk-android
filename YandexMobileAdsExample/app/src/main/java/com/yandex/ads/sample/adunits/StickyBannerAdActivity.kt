@@ -79,9 +79,10 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
             val selectedAdUnitId = adInfoFragment.selectedNetwork.adUnitId
             if (currentAdUnitId != selectedAdUnitId) {
                 destroyBanner()
-                createBanner(selectedAdUnitId, bannerAdSize)
+                createBanner(bannerAdSize)
+                currentAdUnitId = selectedAdUnitId
             }
-            val adRequest = AdRequest.Builder()
+            val adRequest = AdRequest.Builder(selectedAdUnitId)
                 .setParameters(getRequestParameters())
                 .build()
             bannerAd?.loadAd(adRequest)
@@ -89,11 +90,9 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
         }
     }
 
-    private fun createBanner(adUnitId: String, bannerAdSize: BannerAdSize) {
+    private fun createBanner(bannerAdSize: BannerAdSize) {
         bannerAd = BannerAdView(this).apply {
             id = R.id.banner
-            setAdUnitId(adUnitId)
-            currentAdUnitId = adUnitId
             setAdSize(bannerAdSize)
             setBannerAdEventListener(eventLogger)
         }

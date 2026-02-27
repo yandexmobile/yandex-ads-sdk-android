@@ -11,13 +11,13 @@ import com.yandex.mobile.ads.appopenad.AppOpenAdEventListener
 import com.yandex.mobile.ads.appopenad.AppOpenAdLoadListener
 import com.yandex.mobile.ads.appopenad.AppOpenAdLoader
 import com.yandex.mobile.ads.common.AdError
-import com.yandex.mobile.ads.common.AdRequestConfiguration
+import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import java.lang.ref.WeakReference
 import java.util.concurrent.atomic.AtomicBoolean
 
-class AppOpenAdManager(application: Application) : AppOpenAdLoadListener {
+class AppOpenAdManager(application: Application): AppOpenAdLoadListener {
 
     private val context: Context = application
 
@@ -27,7 +27,8 @@ class AppOpenAdManager(application: Application) : AppOpenAdLoadListener {
     private val appOpenAdActivityObserver = AppOpenAdActivityObserver()
 
     private val appOpenAdLoader = AppOpenAdLoader(application)
-    private val adRequestConfiguration = AdRequestConfiguration.Builder(AD_UNIT_ID).build()
+    private val adRequest = AdRequest.Builder(AD_UNIT_ID).build()
+
     private var loadingInProgress = AtomicBoolean(false)
     private var activityReference: WeakReference<Activity>? = null
     private var appOpenAd: AppOpenAd? = null
@@ -42,7 +43,6 @@ class AppOpenAdManager(application: Application) : AppOpenAdLoadListener {
     }
 
     fun initialize() {
-        appOpenAdLoader.setAdLoadListener(this)
         // load first Ad
         loadAppOpenAd()
     }
@@ -80,7 +80,7 @@ class AppOpenAdManager(application: Application) : AppOpenAdLoadListener {
     private fun loadAppOpenAd() {
         // load new Ad if there is no loaded Ad and new ad isn't loading
         if (loadingInProgress.compareAndSet(false, true)) {
-            appOpenAdLoader.loadAd(adRequestConfiguration)
+            appOpenAdLoader.loadAd(adRequest, this)
         }
     }
 

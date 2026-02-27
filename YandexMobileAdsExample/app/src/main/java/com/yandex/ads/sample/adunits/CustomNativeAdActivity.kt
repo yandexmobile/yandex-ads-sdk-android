@@ -23,16 +23,16 @@ import androidx.fragment.app.commit
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityCustomNativeAdBinding
 import com.yandex.ads.sample.network.Network
-import com.yandex.ads.sample.utils.Logger
 import com.yandex.ads.sample.utils.applySystemBarsPadding
+import com.yandex.mobile.ads.common.AdBindingResult
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
+import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.nativeads.NativeAd
 import com.yandex.mobile.ads.nativeads.NativeAdEventListener
-import com.yandex.mobile.ads.nativeads.NativeAdException
 import com.yandex.mobile.ads.nativeads.NativeAdLoadListener
 import com.yandex.mobile.ads.nativeads.NativeAdLoader
-import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration
+import com.yandex.mobile.ads.nativeads.NativeAdOptions
 import com.yandex.mobile.ads.nativeads.NativeAdViewBinder
 import org.json.JSONException
 import org.json.JSONObject
@@ -66,22 +66,33 @@ class CustomNativeAdActivity : AppCompatActivity(R.layout.activity_custom_native
     }
 
     private fun loadNative() {
-        createNative()
+        nativeAdLoader?.cancelLoading()
+        nativeAdLoader = NativeAdLoader(this)
         additionalContainer.removeAllViews()
         nativeAdView.isVisible = false
-        nativeAdLoader?.loadAd(buildAdRequestConfiguration())
-    }
-
-    private fun createNative() {
-        nativeAdLoader = NativeAdLoader(this)
-        nativeAdLoader?.setNativeAdLoadListener(eventLogger)
-    }
-
-    private fun buildAdRequestConfiguration(): NativeAdRequestConfiguration {
         val adUnitId = adInfoFragment.selectedNetwork.adUnitId
-        return NativeAdRequestConfiguration
-            .Builder(adUnitId)
+        val adRequest = buildAdRequest(adUnitId)
+        val options = NativeAdOptions.Builder()
             .setShouldLoadImagesAutomatically(true)
+            .build()
+        nativeAdLoader?.loadAd(adRequest, options, object : NativeAdLoadListener {
+            override fun onAdLoaded(nativeAd: NativeAd) {
+                adInfoFragment.log("Native ad loaded")
+                adInfoFragment.hideLoading()
+                bindNative(nativeAd)
+            }
+
+            override fun onAdFailedToLoad(error: AdRequestError) {
+                adInfoFragment.log(
+                    "Native ad failed to load with code ${error.code}: ${error.description}"
+                )
+                adInfoFragment.hideLoading()
+            }
+        })
+    }
+
+    private fun buildAdRequest(adUnitId: String): AdRequest {
+        return AdRequest.Builder(adUnitId)
             .apply {
                 if (adUnitId == AD_FOX_AD_UNIT_ID) {
                     setParameters(adFoxParameters)
@@ -109,13 +120,16 @@ class CustomNativeAdActivity : AppCompatActivity(R.layout.activity_custom_native
                 .build()
         }
 
-        try {
-            nativeAd.bindNativeAd(nativeAdViewBinder)
-            nativeAd.info?.let { processAdditionalText(it) }
-            nativeAd.setNativeAdEventListener(eventLogger)
-            nativeAdView.isVisible = true
-        } catch (exception: NativeAdException) {
-            Logger.error(exception.message.orEmpty())
+        when (nativeAd.bindNativeAd(nativeAdViewBinder)) {
+            is AdBindingResult.Success -> {
+                nativeAd.adInfo.partnerText?.let { processAdditionalText(it) }
+                nativeAd.setNativeAdEventListener(eventLogger)
+                nativeAdView.isVisible = true
+            }
+
+            is AdBindingResult.Failure -> {
+                nativeAdView.isVisible = false
+            }
         }
     }
 
@@ -166,25 +180,13 @@ class CustomNativeAdActivity : AppCompatActivity(R.layout.activity_custom_native
     }
 
     override fun onDestroy() {
+        nativeAdLoader?.cancelLoading()
         nativeAdLoader = null
         _adInfoFragment = null
         super.onDestroy()
     }
 
-    private inner class NativeAdEventLogger : NativeAdLoadListener, NativeAdEventListener {
-
-        override fun onAdLoaded(ad: NativeAd) {
-            adInfoFragment.log("Native ad loaded")
-            adInfoFragment.hideLoading()
-            bindNative(ad)
-        }
-
-        override fun onAdFailedToLoad(error: AdRequestError) {
-            adInfoFragment.log(
-                "Native ad failed to load with code ${error.code}: ${error.description}"
-            )
-            adInfoFragment.hideLoading()
-        }
+    private inner class NativeAdEventLogger : NativeAdEventListener {
 
         override fun onAdClicked() {
             adInfoFragment.log("Native ad clicked")

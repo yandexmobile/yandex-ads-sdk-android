@@ -20,7 +20,7 @@ import com.yandex.ads.sample.databinding.ActivityPoliciesBinding
 import com.yandex.ads.sample.policy.PolicyAdapter
 import com.yandex.ads.sample.policy.PolicyItem
 import com.yandex.ads.sample.utils.applySystemBarsPadding
-import com.yandex.mobile.ads.common.MobileAds
+import com.yandex.mobile.ads.common.YandexAds
 
 class PoliciesActivity : AppCompatActivity(R.layout.activity_policies) {
 
@@ -51,7 +51,7 @@ class PoliciesActivity : AppCompatActivity(R.layout.activity_policies) {
                 R.string.gdpr_enabled,
                 GdprDialogFragment.TAG,
                 ::GdprDialogFragment,
-                MobileAds::setUserConsent,
+                YandexAds.privacy::setUserConsent,
             ),
             PolicyItem(
                 R.drawable.ic_outline_place_24,
@@ -59,7 +59,7 @@ class PoliciesActivity : AppCompatActivity(R.layout.activity_policies) {
                 R.string.location_enabled,
                 LocationDialogFragment.TAG,
                 ::LocationDialogFragment,
-                MobileAds::setLocationConsent,
+                YandexAds.privacy::setLocationTracking,
             ),
             PolicyItem(
                 R.drawable.ic_outline_child_care_24,
@@ -67,7 +67,7 @@ class PoliciesActivity : AppCompatActivity(R.layout.activity_policies) {
                 R.string.coppa_enabled,
                 CoppaDialogFragment.TAG,
                 ::CoppaDialogFragment,
-                MobileAds::setAgeRestrictedUser,
+                YandexAds.privacy::setAgeRestricted,
             ),
         )
     }

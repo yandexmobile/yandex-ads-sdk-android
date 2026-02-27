@@ -25,9 +25,11 @@ import com.yandex.ads.sample.network.Network
 import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
+import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.nativeads.NativeAd
 import com.yandex.mobile.ads.nativeads.NativeAdEventListener
-import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration
+import com.yandex.mobile.ads.nativeads.NativeAdLoadListener
+import com.yandex.mobile.ads.nativeads.NativeAdOptions
 import com.yandex.mobile.ads.nativeads.NativeAdViewBinder
 import com.yandex.mobile.ads.nativeads.SliderAd
 import com.yandex.mobile.ads.nativeads.SliderAdLoadListener
@@ -82,12 +84,18 @@ class AdfoxCarouselAdActivity : AppCompatActivity(R.layout.activity_adfox_carous
     }
 
     private fun loadAds() {
-        sliderAdLoader?.loadSlider(buildAdRequestConfiguration())
+        val adUnitId = adInfoFragment.selectedNetwork.adUnitId
+        val adRequest = AdRequest.Builder(adUnitId)
+            .setParameters(adFoxParameters)
+            .build()
+        val options = NativeAdOptions.Builder()
+            .setShouldLoadImagesAutomatically(true)
+            .build()
+        sliderAdLoader?.loadSlider(adRequest, options, eventLogger)
     }
 
     private fun configureAdLoader() {
         sliderAdLoader = SliderAdLoader(this)
-        sliderAdLoader?.setSliderAdLoadListener(eventLogger)
     }
 
     private fun configureViewPager() {
@@ -97,14 +105,6 @@ class AdfoxCarouselAdActivity : AppCompatActivity(R.layout.activity_adfox_carous
         configureViewPagerControls()
     }
 
-    private fun buildAdRequestConfiguration(): NativeAdRequestConfiguration {
-        val adUnitId = adInfoFragment.selectedNetwork.adUnitId
-        return NativeAdRequestConfiguration
-            .Builder(adUnitId)
-            .setShouldLoadImagesAutomatically(true)
-            .setParameters(adFoxParameters)
-            .build()
-    }
 
     private fun bindSliderAd(sliderAd: SliderAd) {
         val viewBinder = NativeAdViewBinder.Builder(nativeAdView).build()

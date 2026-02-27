@@ -12,6 +12,7 @@ import com.yandex.mobile.ads.appopenad.AppOpenAdLoader
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdView
+import com.yandex.mobile.ads.common.AdapterIdentity
 import com.yandex.mobile.ads.common.AdError
 import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestConfiguration
@@ -504,7 +505,7 @@ class YandexNativeAdapter(
 /**
  * This class implements the base logic of adapter.
  */
-class YandexBaseAdapter: MediationBaseAdapter {
+class YandexBaseAdapter : MediationBaseAdapter {
 
     /**
      * Yandex SDK version can be obtained that way.
@@ -526,8 +527,12 @@ class YandexBaseAdapter: MediationBaseAdapter {
     }
 
     /**
-     * Method for manual SDK initialization. By default, the SDK is initialized automatically at app
-     * startup. That accelerates ad loading and consequently increases monetization revenue.
+     * Method for manual SDK initialization for adapters. By default, the SDK is initialized
+     * automatically at app startup. That accelerates ad loading and consequently increases
+     * monetization revenue.
+     *
+     * Using initializeForAdapter() stores the AdapterIdentity globally in the SDK, so that
+     * adapter parameters are automatically added to all requests.
      *
      * @see <a href=
      *     "https://yandex.ru/support2/mobile-ads/en/dev/android/quick-start#init">
@@ -542,7 +547,15 @@ class YandexBaseAdapter: MediationBaseAdapter {
             MobileAds.enableLogging(true)
         }
 
-        MobileAds.initialize(context) {
+        // Create AdapterIdentity with all required fields
+        val adapterIdentity = AdapterIdentity(
+            adapterNetworkName = params.getAdapterNetworkName(),
+            adapterVersion = params.getAdapterVersion(),
+            adapterNetworkVersion = params.getAdapterNetworkSdkVersion()
+        )
+
+        // Use initializeForAdapter to store adapter identity globally
+        MobileAds.initializeForAdapter(context, adapterIdentity) {
             onInitializationComplete.invoke()
         }
     }
@@ -581,6 +594,10 @@ class YandexParametersMapper {
 
 /**
  * This class is used for creating different request to Yandex SDK.
+ *
+ * Note: When using MobileAds.initializeForAdapter(), the adapter identity parameters
+ * (adapter_network_name, adapter_version, adapter_network_sdk_version) are automatically
+ * added to all requests. Manual parameter addition is no longer required.
  */
 class YandexRequestCreator(
     private val parametersMapper: YandexParametersMapper = YandexParametersMapper()
@@ -590,14 +607,12 @@ class YandexRequestCreator(
         params: MediationParameters
     ) = AdRequest.Builder()
         .setBiddingData(params.getBidderToken())
-        .setParameters(extractMediationParameters(params))
         .build()
 
     fun createAdRequestConfiguration(
         params: MediationParameters
     ) = AdRequestConfiguration.Builder(params.getAdUnitId())
         .setBiddingData(params.getBidderToken())
-        .setParameters(extractMediationParameters(params))
         .build()
 
     fun createNativeAdRequestConfiguration(
@@ -605,40 +620,30 @@ class YandexRequestCreator(
     ) = NativeAdRequestConfiguration.Builder(params.getAdUnitId())
         .setBiddingData(params.getBidderToken())
         .setShouldLoadImagesAutomatically(true)
-        .setParameters(extractMediationParameters(params))
         .build()
 
+    /**
+     * Creates a BidderTokenRequestConfiguration for the specified ad format.
+     * AdapterIdentity and bannerAdSize are optional parameters.
+     */
     fun createBidderTokenRequestConfiguration(
         context: Context,
         params: MediationParameters
     ): BidderTokenRequestConfiguration {
-        val adType = parametersMapper.getAdType(params)
-        val requestBuilder = BidderTokenRequestConfiguration.Builder(adType)
-
         val adFormat = params.getAdFormat()
-        if (adFormat is MediationAdFormat.Banner) {
-            requestBuilder.setBannerAdSize(parametersMapper.getBannerAdSize(context, adFormat))
+
+        return when (parametersMapper.getAdType(params)) {
+            AdType.BANNER -> {
+                require(adFormat is MediationAdFormat.Banner) { "Banner ad format is required for BANNER ad type" }
+                val bannerAdSize = parametersMapper.getBannerAdSize(context, adFormat)
+                BidderTokenRequestConfiguration.banner(bannerAdSize)
+            }
+            AdType.INTERSTITIAL -> BidderTokenRequestConfiguration.interstitial()
+            AdType.REWARDED -> BidderTokenRequestConfiguration.rewarded()
+            AdType.NATIVE -> BidderTokenRequestConfiguration.native()
+            AdType.APP_OPEN_AD -> BidderTokenRequestConfiguration.appOpenAd()
+            else -> BidderTokenRequestConfiguration.interstitial()
         }
-
-        return requestBuilder
-            .setParameters(extractMediationParameters(params))
-            .build()
-    }
-
-    /**
-     * Method for obtaining necessary mediation parameters for requests.
-     */
-    private fun extractMediationParameters(params: MediationParameters) = mapOf(
-        ADAPTER_VERSION_KEY to params.getAdapterVersion(),
-        ADAPTER_NETWORK_NAME_KEY to params.getAdapterNetworkName(),
-        ADAPTER_NETWORK_SDK_VERSION_KEY to params.getAdapterNetworkSdkVersion(),
-    )
-
-    companion object {
-
-        private const val ADAPTER_VERSION_KEY = "adapter_version"
-        private const val ADAPTER_NETWORK_NAME_KEY = "adapter_network_name"
-        private const val ADAPTER_NETWORK_SDK_VERSION_KEY = "adapter_network_sdk_version"
     }
 }
 
@@ -650,7 +655,7 @@ class YandexBiddingProvider(
 ) : MediationBiddingProvider {
 
     /**
-     * This method are used to obtain a bidding token. If the ad network supports s2s bidding, token
+     * This method is used to obtain a bidding token. If the ad network supports s2s bidding, token
      * can be obtained that way.
      */
     override fun loadBidderToken(
@@ -661,7 +666,8 @@ class YandexBiddingProvider(
         val tokenRequest = adRequestCreator.createBidderTokenRequestConfiguration(context, params)
         val loadListener = YandexBidderTokenListener(callback)
 
-        BidderTokenLoader.loadBidderToken(context, tokenRequest, loadListener)
+        val bidderTokenLoader = BidderTokenLoader(context)
+        bidderTokenLoader.loadBidderToken(tokenRequest, loadListener)
     }
 
     /**
