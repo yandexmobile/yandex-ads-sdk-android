@@ -2,6 +2,14 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 7.18.3
+
+#### Updated
+* AppMetrica SDK version updated to 7.14.2
+
+#### Fixed
+* Improvements and optimizations
+
 ## Version 7.18.2
 
 ### Fixed
