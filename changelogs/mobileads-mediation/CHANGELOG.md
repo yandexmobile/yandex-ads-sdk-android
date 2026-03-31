@@ -2,6 +2,16 @@
 
 All notable changes to Yandex Full Mediation will be documented in this file.
 
+## Version 8.0.0.0-beta.1
+
+#### Breaking changes
+
+* Raised the Android minSdk version to 23
+
+#### Updated
+
+* Yandex Mobile Ads SDK 8.0.0-beta.1
+
 ## Version 7.18.2.0
 
 #### Updated

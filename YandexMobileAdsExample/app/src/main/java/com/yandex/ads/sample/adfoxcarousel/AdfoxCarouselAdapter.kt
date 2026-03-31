@@ -9,13 +9,11 @@
 
 package com.yandex.ads.sample.adfoxcarousel
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yandex.ads.sample.databinding.AdfoxCarouselItemBinding
 import com.yandex.mobile.ads.nativeads.NativeAd
-import com.yandex.mobile.ads.nativeads.NativeAdException
 import com.yandex.mobile.ads.nativeads.NativeAdViewBinder
 
 class AdfoxCarouselAdapter : RecyclerView.Adapter<NativeAdViewBinderHolder>() {
@@ -44,15 +42,6 @@ class AdfoxCarouselAdapter : RecyclerView.Adapter<NativeAdViewBinderHolder>() {
     }
 
     private fun bindNativeAd(nativeAd: NativeAd, viewBinder: NativeAdViewBinder) {
-        try {
-            nativeAd.bindNativeAd(viewBinder)
-        } catch (exception: NativeAdException) {
-            Log.d(VIEW_PAGER_TAG, "${exception.message}")
-        }
-    }
-
-    companion object {
-
-        private const val VIEW_PAGER_TAG = "ViewPagerAdapter"
+        nativeAd.bindNativeAd(viewBinder)
     }
 }

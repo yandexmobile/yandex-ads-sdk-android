@@ -14,6 +14,7 @@
     <string name="app_name">Yandex Mobile Ads</string>
 
     <!--  Ad units  -->
+    <string name="compose_examples_title">Jetpack Compose Examples</string>
     <string name="sticky_banner_title">Sticky banner</string>
     <string name="inline_banner_title">Inline banner</string>
     <string name="interstitial_title">Interstitial</string>

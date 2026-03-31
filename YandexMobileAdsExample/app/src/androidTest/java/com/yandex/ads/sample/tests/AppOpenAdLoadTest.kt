@@ -6,10 +6,10 @@ import com.yandex.ads.sample.HomeActivity
 import com.yandex.ads.sample.base.BaseUITest
 import com.yandex.ads.sample.shared_steps.GoToSection
 import com.yandex.ads.sample.shared_steps.checkAnyBrowserOrStoreIsOpened
+import com.yandex.ads.sample.shared_steps.clickCallToAction
 import com.yandex.ads.sample.shared_steps.goToSection
 import com.yandex.ads.sample.shared_steps.openSampleApp
 import com.yandex.mobile.ads.common.AdActivity
-import io.github.kakaocup.kakao.text.KButton
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
@@ -50,14 +50,8 @@ internal class AppOpenAdLoadTest : BaseUITest() {
             }
         }
 
-        step("Кликнуть по рекламе/нажать на кнопку \"Перейти\"/\"Установить\"/\"Подробнее\" или любая другая кнопка, призывающая перейти по рекламе") {
-            KButton { withTag("call_to_action") }.invoke {
-                isVisible()
-                isClickable()
-                click()
-            }
+        clickCallToAction()
 
-            checkAnyBrowserOrStoreIsOpened("Выполнен корректный переход в браузер или на установку рекламируемого приложения")
-        }
+        checkAnyBrowserOrStoreIsOpened("Выполнен корректный переход в браузер или на установку рекламируемого приложения")
     }
 }

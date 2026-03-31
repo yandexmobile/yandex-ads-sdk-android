@@ -63,6 +63,10 @@
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
+            android:name=".compose.ComposeExamplesActivity"
+            android:exported="false"
+            android:label="Compose Examples" />
+        <activity
             android:name=".tv.TVActivity"
             android:exported="false" />
         <activity

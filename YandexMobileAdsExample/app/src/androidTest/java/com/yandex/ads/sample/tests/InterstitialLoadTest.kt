@@ -4,20 +4,17 @@ import androidx.test.ext.junit.rules.activityScenarioRule
 import com.yandex.ads.sample.HomeActivity
 import com.yandex.ads.sample.base.BaseUITest
 import com.yandex.ads.sample.pageobjects.InterstitialScreen
-import com.yandex.ads.sample.pageobjects.clickCallToAction
-import com.yandex.ads.sample.pageobjects.clickShowAd
 import com.yandex.ads.sample.shared_steps.GoToSection
 import com.yandex.ads.sample.shared_steps.checkAnyBrowserOrStoreIsOpened
+import com.yandex.ads.sample.shared_steps.clickCallToAction
+import com.yandex.ads.sample.shared_steps.clickShowAd
 import com.yandex.ads.sample.shared_steps.choiceNetwork
 import com.yandex.ads.sample.shared_steps.goToSection
 import com.yandex.ads.sample.shared_steps.openSampleApp
 import com.yandex.mobile.ads.common.AdActivity
-import io.github.kakaocup.kakao.screen.Screen.Companion.onScreen
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 
-@Ignore
 internal class InterstitialLoadTest : BaseUITest() {
     @get:Rule
     val activityRule = activityScenarioRule<HomeActivity>()
@@ -43,25 +40,17 @@ internal class InterstitialLoadTest : BaseUITest() {
             }
         }
 
-        step("Нажать на кнопку \"Show ad\"") {
-            onScreen<InterstitialScreen> {
-                flakySafely {
-                    clickShowAd()
-                }
-            }
+        clickShowAd()
 
-            step("Успешно отобразилась реклама") {
-                flakySafely(30_000) {
-                    device.activities.isCurrent(AdActivity::class.java)
-                }
+        step("Успешно отобразилась реклама") {
+            flakySafely(30_000) {
+                device.activities.isCurrent(AdActivity::class.java)
             }
         }
 
-        step("Кликнуть по рекламе/нажать на кнопку \"Перейти\"/\"Установить\"/\"Подробнее\"") {
-            onScreen<InterstitialScreen> { clickCallToAction() }
+        clickCallToAction()
 
-            checkAnyBrowserOrStoreIsOpened("Выполнен корректный переход в браузер или на установку рекламируемого приложения")
-        }
+        checkAnyBrowserOrStoreIsOpened("Выполнен корректный переход в браузер или на установку рекламируемого приложения")
     }
 
     private companion object {
