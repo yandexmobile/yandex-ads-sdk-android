@@ -26,5 +26,5 @@ android {
 }
 
 dependencies {
-    implementation("com.yandex.android:mobileads:7.18.4")
+    implementation("com.yandex.android:mobileads:7.18.5")
 }
