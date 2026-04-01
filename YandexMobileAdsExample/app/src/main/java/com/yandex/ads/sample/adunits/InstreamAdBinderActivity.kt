@@ -20,11 +20,12 @@ import com.yandex.ads.sample.player.ad.SampleInstreamAdPlayer
 import com.yandex.ads.sample.player.content.ContentVideoPlayer
 import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.instream.InstreamAd
-import com.yandex.mobile.ads.instream.InstreamAdBinder
+import com.yandex.mobile.ads.instream.binder.InstreamAdBinder
 import com.yandex.mobile.ads.instream.InstreamAdListener
 import com.yandex.mobile.ads.instream.InstreamAdLoadListener
 import com.yandex.mobile.ads.instream.InstreamAdLoader
-import com.yandex.mobile.ads.instream.InstreamAdRequestConfiguration
+import com.yandex.mobile.ads.instream.InstreamAdRequest
+import com.yandex.mobile.ads.instream.InstreamAdRequestError
 
 class InstreamAdBinderActivity : AppCompatActivity(R.layout.activity_instream_ad_binder) {
 
@@ -94,11 +95,10 @@ class InstreamAdBinderActivity : AppCompatActivity(R.layout.activity_instream_ad
 
     private fun loadInstreamAd() {
         instreamAdLoader = InstreamAdLoader(this)
-        instreamAdLoader?.setInstreamAdLoadListener(eventLogger)
 
         // Replace demo Page ID with actual Page ID
-        val configuration = InstreamAdRequestConfiguration.Builder(PAGE_ID).build()
-        instreamAdLoader?.loadInstreamAd(this, configuration)
+        val configuration = InstreamAdRequest.Builder(PAGE_ID).build()
+        instreamAdLoader?.loadAd(configuration, eventLogger)
     }
 
     private fun showInstreamAd(instreamAd: InstreamAd) {
@@ -122,8 +122,8 @@ class InstreamAdBinderActivity : AppCompatActivity(R.layout.activity_instream_ad
             showInstreamAd(ad)
         }
 
-        override fun onInstreamAdFailedToLoad(error: String) {
-            adInfoFragment.log("Instream ad failed to load: $error")
+        override fun onInstreamAdFailedToLoad(error: InstreamAdRequestError) {
+            adInfoFragment.log("Instream ad failed to load: ${error.description}")
         }
 
         override fun onInstreamAdCompleted() {

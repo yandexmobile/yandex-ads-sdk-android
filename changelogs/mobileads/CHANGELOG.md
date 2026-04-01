@@ -2,6 +2,49 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 8.0.0-beta.1
+
+### Breaking Changes
+
+* Removed `AdRequestConfiguration` and `NativeAdRequestConfiguration` → use `AdRequest`
+* Removed `BannerAdView.setAdUnitId()` → pass `adUnitId` to `AdRequest.Builder("id")`
+* Removed `setAge`, `setGender`, `setLocation`, `setContextQuery`, `setContextTags` from `AdRequest.Builder` → use `AdTargeting`
+* Removed `setAdLoadListener` and similar setters → pass listener directly to `loadAd()`
+* Removed `BannerAdSize.stickySize` and `BannerAdSize.inlineSize` → use `sticky` and `inline`
+* Removed `info` and `adAttributes` → use `adInfo`; removed `AdInfo.data` and `AdInfo.adSize`
+* Removed `NativeAd.creativeId` and `NativeAd.campaignId` → use `adInfo.creatives`
+* Changed `warning` type in `NativeAdAssets`: `String?` → `NativeAdWarning?`
+* `bindNativeAd` and `bindSliderAd` no longer throw exceptions → return `AdBindingResult`
+* Removed native ad templates: `NativeBannerView`, `NativeTemplateAppearance`, `SizeConstraint`, and related classes
+* Removed `ClosableBannerAdEventListener` and `ClosableNativeAdEventListener`
+* Removed `onLeftApplication` and `onReturnToApplication` callbacks
+* Removed `MobileAds` → use `YandexAds`; `setAgeRestrictedUser` → `setAgeRestricted`; `setLocationConsent` → `setLocationTracking`
+* Removed `InstreamAdRequestConfiguration` → use `InstreamAdRequest`
+* Moved `InstreamAdBinder` to `com.yandex.mobile.ads.instream.binder` package
+* Renamed `InstreamAdBreak` → `AdBreakData`; replaced `Inroll` and `Pauseroll` → `InstreamAdBreak`
+* Removed `InrollQueueProvider` and `PauserollQueueProvider` → use `instreamAd.instreamAdBreaks` with type filter
+* Changed `onInstreamAdFailedToLoad(String)` → `onInstreamAdFailedToLoad(InstreamAdRequestError)`
+* Removed `setInstreamAdLoadListener` → pass listener directly to `loadAd()`
+
+### Added
+
+* `AdTargeting` and `AdTargeting.Builder` for targeting parameters
+* `suspend` overloads for all ad loaders (Kotlin Coroutines) with sealed `Success`/`Failure` results
+* `AdInfo.creatives`, `AdInfo.extraData`, `AdInfo.partnerText`
+* `Creative.placeId`, `Creative.offerId`
+* `NativeAdWarning` with `value` and `minimumRequiredArea`
+* `NativeAdMedia.hasVideo`
+* `AdBindingResult`
+* `InstreamAdBreakLoader` and `InstreamAdBreakLoadListener`
+* `InstreamAdBreakRequest`
+* `suspend` overloads for `InstreamAdLoader` and `InstreamAdBreakLoader`
+
+### Updated
+
+* `AdRequest.Builder` now accepts `adUnitId` as a constructor parameter
+* `loadAd()` on all loaders now accepts listener as a parameter
+* `NativeAdLoader.loadAd`, `SliderAdLoader.loadSlider`, `NativeBulkAdLoader.loadAds` — `NativeAdOptions` is now an optional parameter
+
 ## Version 7.18.4
 
 #### Fixed

@@ -12,19 +12,19 @@ package com.yandex.ads.sample.adunits
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.fragment.app.commit
 import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityNativeTemplateAdBinding
 import com.yandex.ads.sample.network.Network
 import com.yandex.ads.sample.utils.applySystemBarsPadding
+import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.nativeads.NativeAd
 import com.yandex.mobile.ads.nativeads.NativeAdEventListener
 import com.yandex.mobile.ads.nativeads.NativeAdLoadListener
 import com.yandex.mobile.ads.nativeads.NativeAdLoader
-import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration
+import com.yandex.mobile.ads.nativeads.NativeAdOptions
 
 class NativeTemplateAdActivity : AppCompatActivity(R.layout.activity_native_template_ad) {
 
@@ -53,58 +53,44 @@ class NativeTemplateAdActivity : AppCompatActivity(R.layout.activity_native_temp
     }
 
     private fun loadNative() {
-        createNative()
-        nativeAdLoader?.loadAd(
-            NativeAdRequestConfiguration
-                .Builder(adInfoFragment.selectedNetwork.adUnitId)
-                .setParameters(adFoxParameters)
-                .setShouldLoadImagesAutomatically(true)
-                .build()
-        )
-    }
-
-    private fun bindNative(nativeAd: NativeAd) {
-        nativeAd.setNativeAdEventListener(eventLogger)
-        binding.nativeBanner.isVisible = true
-        binding.nativeBanner.setAd(nativeAd)
-    }
-
-    private fun createNative() {
+        nativeAdLoader?.cancelLoading()
         nativeAdLoader = NativeAdLoader(this)
-        nativeAdLoader?.setNativeAdLoadListener(eventLogger)
+        val adUnitId = adInfoFragment.selectedNetwork.adUnitId
+        val options = NativeAdOptions.Builder()
+            .setShouldLoadImagesAutomatically(true)
+            .build()
+        val adRequest = AdRequest.Builder(adUnitId)
+            .setParameters(adFoxParameters)
+            .build()
+        nativeAdLoader?.loadAd(adRequest, options, object : NativeAdLoadListener {
+            override fun onAdLoaded(nativeAd: NativeAd) {
+                adInfoFragment.log("Native ad loaded")
+                adInfoFragment.hideLoading()
+                nativeAd.setNativeAdEventListener(eventLogger)
+//                binding.nativeBanner.isVisible = true
+//                binding.nativeBanner.setAd(nativeAd)
+            }
+
+            override fun onAdFailedToLoad(error: AdRequestError) {
+                adInfoFragment.log(
+                    "Native ad failed to load with code ${error.code}: ${error.description}"
+                )
+                adInfoFragment.hideLoading()
+            }
+        })
     }
 
     override fun onDestroy() {
+        nativeAdLoader?.cancelLoading()
         nativeAdLoader = null
         _adInfoFragment = null
         super.onDestroy()
     }
 
-    private inner class NativeAdEventLogger : NativeAdLoadListener, NativeAdEventListener {
-
-        override fun onAdLoaded(ad: NativeAd) {
-            adInfoFragment.log("Native ad loaded")
-            adInfoFragment.hideLoading()
-            bindNative(ad)
-        }
-
-        override fun onAdFailedToLoad(error: AdRequestError) {
-            adInfoFragment.log(
-                "Native ad failed to load with code ${error.code}: ${error.description}"
-            )
-            adInfoFragment.hideLoading()
-        }
+    private inner class NativeAdEventLogger : NativeAdEventListener {
 
         override fun onAdClicked() {
             adInfoFragment.log("Native ad clicked")
-        }
-
-        override fun onLeftApplication() {
-            adInfoFragment.log("Left application")
-        }
-
-        override fun onReturnedToApplication() {
-            adInfoFragment.log("Returned to application")
         }
 
         override fun onImpression(data: ImpressionData?) {
@@ -115,14 +101,30 @@ class NativeTemplateAdActivity : AppCompatActivity(R.layout.activity_native_temp
     companion object {
 
         private val networks = arrayListOf(
-            Network(R.drawable.ic_yandex_icon_24, R.string.yandex_title, "demo-native-content-yandex"),
-            Network(R.drawable.ic_admanager_icon, R.string.admanager_title, "demo-native-admanager"),
+            Network(
+                R.drawable.ic_yandex_icon_24,
+                R.string.yandex_title,
+                "demo-native-content-yandex"
+            ),
+            Network(
+                R.drawable.ic_admanager_icon,
+                R.string.admanager_title,
+                "demo-native-admanager"
+            ),
             Network(R.drawable.ic_admob_icon_24, R.string.admob_title, "demo-native-admob"),
             Network(R.drawable.ic_appnext_icon, R.string.appnext_title, "demo-native-appnext"),
             Network(R.drawable.ic_bigoads_icon, R.string.bigoads_title, "demo-native-bigoads"),
-            Network(R.drawable.ic_mytarget_icon_24, R.string.my_target_title, "demo-native-mytarget"),
+            Network(
+                R.drawable.ic_mytarget_icon_24,
+                R.string.my_target_title,
+                "demo-native-mytarget"
+            ),
             Network(R.drawable.ic_pangle_icon, R.string.pangle_title, "demo-native-pangle"),
-            Network(R.drawable.ic_startapp_icon_24, R.string.startapp_title, "demo-native-startapp"),
+            Network(
+                R.drawable.ic_startapp_icon_24,
+                R.string.startapp_title,
+                "demo-native-startapp"
+            ),
             Network(R.drawable.ic_adfox_icon, R.string.adfox_title, "R-M-243655-10"),
         )
 

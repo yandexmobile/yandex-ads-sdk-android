@@ -8,12 +8,11 @@ import com.yandex.ads.sample.base.currentIsExternal
 import com.yandex.ads.sample.base.defaultExt
 import com.yandex.ads.sample.pageobjects.InterstitialScreen
 import com.yandex.ads.sample.pageobjects.SomeKindOfAppScreen
-import com.yandex.ads.sample.pageobjects.clickShowAd
 import com.yandex.ads.sample.shared_steps.GoToSection
 import com.yandex.ads.sample.shared_steps.choiceNetwork
+import com.yandex.ads.sample.shared_steps.clickShowAd
 import com.yandex.ads.sample.shared_steps.goToSection
 import com.yandex.ads.sample.shared_steps.openSampleApp
-import io.github.kakaocup.kakao.screen.Screen.Companion.onScreen
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -47,27 +46,21 @@ internal class InterstitialLoadTest(
             }
         }
 
-        step("Нажать на кнопку \"Show ad\"") {
-            onScreen<InterstitialScreen> {
-                flakySafely {
-                    clickShowAd()
+        clickShowAd()
+
+        step("Реклама загрузилась. В случае подбора рекламы отобразилась на полный экран.") {
+            val adScreen = SomeKindOfAppScreen()
+            compose(
+                timeoutMs = 30_000,
+                allowedExceptions = FlakySafetyParams.defaultExt
+            ) {
+                or(adScreen.rootView) {
+                    isDisplayed()
+                    device.activities.currentIsExternal()
                 }
-            }
 
-            step("Реклама загрузилась. В случае подбора рекламы отобразилась на полный экран.") {
-                val adScreen = SomeKindOfAppScreen()
-                compose(
-                    timeoutMs = 30_000,
-                    allowedExceptions = FlakySafetyParams.defaultExt
-                ) {
-                    or(adScreen.rootView) {
-                        isDisplayed()
-                        device.activities.currentIsExternal()
-                    }
-
-                    or(interstitialScreen.logsView) {
-                        containsMessage(NO_ADS_AVAILABLE_MESSAGE)
-                    }
+                or(interstitialScreen.logsView) {
+                    containsMessage(NO_ADS_AVAILABLE_MESSAGE)
                 }
             }
         }

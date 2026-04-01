@@ -9,10 +9,13 @@
 
 package com.yandex.ads.sample.player.ad
 
+import android.widget.FrameLayout
 import androidx.media3.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.yandex.ads.sample.player.SamplePlayer
 import com.yandex.mobile.ads.instream.player.ad.InstreamAdPlayer
 import com.yandex.mobile.ads.instream.player.ad.InstreamAdPlayerListener
+import com.yandex.mobile.ads.instream.player.ad.InstreamAdMimeTypes
 import com.yandex.mobile.ads.video.playback.model.VideoAd
 
 class SampleInstreamAdPlayer(
@@ -23,6 +26,9 @@ class SampleInstreamAdPlayer(
 
     private var currentVideoAd: VideoAd? = null
     private var adPlayerListener: InstreamAdPlayerListener? = null
+
+    override val supportedMimeTypes: List<String>
+        get() = listOf(InstreamAdMimeTypes.MP4, InstreamAdMimeTypes.WEBM)
 
     override fun setInstreamAdPlayerListener(instreamAdPlayerListener: InstreamAdPlayerListener?) {
         adPlayerListener = instreamAdPlayerListener
@@ -64,6 +70,18 @@ class SampleInstreamAdPlayer(
 
     override fun getVolume(videoAd: VideoAd): Float {
         return adPlayers[videoAd]?.getVolume() ?: DEFAULT_VOLUME
+    }
+
+    override fun bindPlayerView(container: FrameLayout) {
+        val playerView = createPlayerView(container)
+        container.addView(playerView)
+    }
+
+    private fun createPlayerView(container: FrameLayout): StyledPlayerView {
+        val playerView = StyledPlayerView(container.context)
+        return playerView.apply {
+            useController = false
+        }
     }
 
     override fun getAdDuration(videoAd: VideoAd): Long {

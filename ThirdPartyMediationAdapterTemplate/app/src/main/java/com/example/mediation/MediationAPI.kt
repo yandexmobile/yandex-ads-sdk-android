@@ -307,8 +307,6 @@ interface MediationBannerListener {
     fun onAdLoaded(loadedBanner: View)
     fun onAdFailedToLoad()
     fun onAdClicked()
-    fun onLeftApplication()
-    fun onReturnedToApplication()
     fun onImpression()
 }
 
@@ -395,8 +393,6 @@ interface MediationNativeListener {
     fun onAdLoaded(mapper: MediationNativeMapper)
     fun onAdFailedToLoad()
     fun onAdClicked()
-    fun onLeftApplication()
-    fun onReturnedToApplication()
     fun onImpression()
 }
 

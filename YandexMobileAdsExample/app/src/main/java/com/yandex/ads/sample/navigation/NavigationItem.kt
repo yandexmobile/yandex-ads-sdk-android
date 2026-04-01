@@ -14,7 +14,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.yandex.mobile.ads.common.MobileAds
+import com.yandex.mobile.ads.common.YandexAds
 
 data class NavigationItem(
     @DrawableRes val iconId: Int,
@@ -29,7 +29,7 @@ data class NavigationItem(
             }
 
             is NavigationType.DebugPanelNavigation -> {
-                MobileAds.showDebugPanel(context)
+                YandexAds.showDebugPanel(context)
             }
         }
     }

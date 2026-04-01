@@ -5,6 +5,10 @@ import android.content.Context
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import com.yandex.mobile.ads.appopenad.AppOpenAd
 import com.yandex.mobile.ads.appopenad.AppOpenAdEventListener
 import com.yandex.mobile.ads.appopenad.AppOpenAdLoadListener
@@ -12,16 +16,17 @@ import com.yandex.mobile.ads.appopenad.AppOpenAdLoader
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdView
+import com.yandex.mobile.ads.common.AdBindingResult
+import com.yandex.mobile.ads.common.AdapterIdentity
 import com.yandex.mobile.ads.common.AdError
 import com.yandex.mobile.ads.common.AdRequest
-import com.yandex.mobile.ads.common.AdRequestConfiguration
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.AdType
 import com.yandex.mobile.ads.common.BidderTokenLoadListener
 import com.yandex.mobile.ads.common.BidderTokenLoader
-import com.yandex.mobile.ads.common.BidderTokenRequestConfiguration
+import com.yandex.mobile.ads.common.BidderTokenRequest
 import com.yandex.mobile.ads.common.ImpressionData
-import com.yandex.mobile.ads.common.MobileAds
+import com.yandex.mobile.ads.common.YandexAds
 import com.yandex.mobile.ads.interstitial.InterstitialAd
 import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener
 import com.yandex.mobile.ads.interstitial.InterstitialAdLoadListener
@@ -31,7 +36,6 @@ import com.yandex.mobile.ads.nativeads.NativeAd
 import com.yandex.mobile.ads.nativeads.NativeAdEventListener
 import com.yandex.mobile.ads.nativeads.NativeAdLoadListener
 import com.yandex.mobile.ads.nativeads.NativeAdLoader
-import com.yandex.mobile.ads.nativeads.NativeAdRequestConfiguration
 import com.yandex.mobile.ads.nativeads.NativeAdView
 import com.yandex.mobile.ads.nativeads.NativeAdViewBinder
 import com.yandex.mobile.ads.nativeads.Rating
@@ -69,12 +73,9 @@ class YandexAppOpenAdapter(
         callback: MediationAppOpenListener
     ) {
         val adLoader = getAppOpenAdLoader(context)
-
+        val adRequest = adRequestCreator.createAdRequest(params)
         val loadListener = YandexAppOpenAdListener(callback)
-        adLoader.setAdLoadListener(loadListener)
-
-        val adRequest = adRequestCreator.createAdRequestConfiguration(params)
-        adLoader.loadAd(adRequest)
+        adLoader.loadAd(adRequest, loadListener)
     }
 
     override fun showAppOpenAd(activity: Activity) {
@@ -82,7 +83,6 @@ class YandexAppOpenAdapter(
     }
 
     override fun destroy() {
-        appOpenAdLoader?.setAdLoadListener(null)
         appOpenAdLoader = null
         appOpenAd?.setAdEventListener(null)
         appOpenAd = null
@@ -115,8 +115,8 @@ class YandexAppOpenAdapter(
         private val callback: MediationAppOpenListener
     ) : AppOpenAdLoadListener, AppOpenAdEventListener {
 
-        override fun onAdLoaded(ad: AppOpenAd) {
-            appOpenAd = ad.also {
+        override fun onAdLoaded(appOpenAd: AppOpenAd) {
+            this@YandexAppOpenAdapter.appOpenAd = appOpenAd.also {
                 it.setAdEventListener(this)
             }
             callback.onAdLoaded()
@@ -126,7 +126,7 @@ class YandexAppOpenAdapter(
 
         override fun onAdShown() = callback.onAdShown()
 
-        override fun onAdFailedToShow(error: AdError) = callback.onAdFailedToShow()
+        override fun onAdFailedToShow(adError: AdError) = callback.onAdFailedToShow()
 
         override fun onAdDismissed() {
             appOpenAd?.setAdEventListener(null)
@@ -136,7 +136,7 @@ class YandexAppOpenAdapter(
 
         override fun onAdClicked() = callback.onAdClicked()
 
-        override fun onAdImpression(data: ImpressionData?) = callback.onAdImpression()
+        override fun onAdImpression(impressionData: ImpressionData?) = callback.onAdImpression()
     }
 }
 
@@ -168,12 +168,9 @@ class YandexInterstitialAdapter(
         callback: MediationInterstitialListener
     ) {
         val adLoader = getInterstitialAdLoader(context)
-
+        val adRequest = adRequestCreator.createAdRequest(params)
         val loadListener = YandexInterstitialAdListener(callback)
-        adLoader.setAdLoadListener(loadListener)
-
-        val adRequest = adRequestCreator.createAdRequestConfiguration(params)
-        adLoader.loadAd(adRequest)
+        adLoader.loadAd(adRequest, loadListener)
     }
 
     override fun showInterstitialAd(activity: Activity) {
@@ -181,7 +178,6 @@ class YandexInterstitialAdapter(
     }
 
     override fun destroy() {
-        interstitialAdLoader?.setAdLoadListener(null)
         interstitialAdLoader = null
         interstitialAd?.setAdEventListener(null)
         interstitialAd = null
@@ -214,8 +210,8 @@ class YandexInterstitialAdapter(
         private val callback: MediationInterstitialListener
     ) : InterstitialAdLoadListener, InterstitialAdEventListener {
 
-        override fun onAdLoaded(ad: InterstitialAd) {
-            interstitialAd = ad.also {
+        override fun onAdLoaded(interstitialAd: InterstitialAd) {
+            this@YandexInterstitialAdapter.interstitialAd = interstitialAd.also {
                 it.setAdEventListener(this)
             }
             callback.onAdLoaded()
@@ -225,7 +221,7 @@ class YandexInterstitialAdapter(
 
         override fun onAdShown() = callback.onAdShown()
 
-        override fun onAdFailedToShow(error: AdError) = callback.onAdFailedToShow()
+        override fun onAdFailedToShow(adError: AdError) = callback.onAdFailedToShow()
 
         override fun onAdDismissed() {
             interstitialAd?.setAdEventListener(null)
@@ -235,7 +231,7 @@ class YandexInterstitialAdapter(
 
         override fun onAdClicked() = callback.onAdClicked()
 
-        override fun onAdImpression(data: ImpressionData?) = callback.onAdImpression()
+        override fun onAdImpression(impressionData: ImpressionData?) = callback.onAdImpression()
     }
 }
 
@@ -267,12 +263,9 @@ class YandexRewardedAdapter(
         callback: MediationRewardedListener
     ) {
         val adLoader = getRewardedAdLoader(context)
-
+        val adRequest = adRequestCreator.createAdRequest(params)
         val loadListener = YandexRewardedAdListener(callback)
-        adLoader.setAdLoadListener(loadListener)
-
-        val adRequest = adRequestCreator.createAdRequestConfiguration(params)
-        adLoader.loadAd(adRequest)
+        adLoader.loadAd(adRequest, loadListener)
     }
 
     override fun showRewardedAd(activity: Activity) {
@@ -280,7 +273,6 @@ class YandexRewardedAdapter(
     }
 
     override fun destroy() {
-        rewardedAdLoader?.setAdLoadListener(null)
         rewardedAdLoader = null
         rewardedAd?.setAdEventListener(null)
         rewardedAd = null
@@ -313,8 +305,8 @@ class YandexRewardedAdapter(
         private val callback: MediationRewardedListener
     ) : RewardedAdLoadListener, RewardedAdEventListener {
 
-        override fun onAdLoaded(ad: RewardedAd) {
-            rewardedAd = ad.also {
+        override fun onAdLoaded(rewarded: RewardedAd) {
+            rewardedAd = rewarded.also {
                 it.setAdEventListener(this)
             }
             callback.onAdLoaded()
@@ -324,7 +316,7 @@ class YandexRewardedAdapter(
 
         override fun onAdShown() = callback.onAdShown()
 
-        override fun onAdFailedToShow(error: AdError) = callback.onAdFailedToShow()
+        override fun onAdFailedToShow(adError: AdError) = callback.onAdFailedToShow()
 
         override fun onAdDismissed() {
             rewardedAd?.setAdEventListener(null)
@@ -334,7 +326,7 @@ class YandexRewardedAdapter(
 
         override fun onAdClicked() = callback.onAdClicked()
 
-        override fun onAdImpression(data: ImpressionData?) = callback.onAdImpression()
+        override fun onAdImpression(impressionData: ImpressionData?) = callback.onAdImpression()
 
         override fun onRewarded(reward: Reward) = callback.onRewarded()
     }
@@ -366,9 +358,7 @@ class YandexBannerAdapter(
 
         with(bannerAd) {
             setAdSize(parametersMapper.getBannerAdSize(context, adFormat))
-            setAdUnitId(params.getAdUnitId())
             setBannerAdEventListener(eventListener)
-
             loadAd(adRequestCreator.createAdRequest(params))
         }
     }
@@ -405,11 +395,7 @@ class YandexBannerAdapter(
 
         override fun onAdClicked() = callback.onAdClicked()
 
-        override fun onLeftApplication() = callback.onLeftApplication()
-
-        override fun onReturnedToApplication() = callback.onReturnedToApplication()
-
-        override fun onImpression(data: ImpressionData?) = callback.onImpression()
+        override fun onImpression(impressionData: ImpressionData?) = callback.onImpression()
     }
 }
 
@@ -441,16 +427,12 @@ class YandexNativeAdapter(
         callback: MediationNativeListener
     ) {
         val adLoader = getNativeAdLoader(context)
-
+        val adRequest = adRequestCreator.createAdRequest(params)
         val loadListener = YandexNativeAdListener(context, params.getExtraViewsIds(), callback)
-        adLoader.setNativeAdLoadListener(loadListener)
-
-        val adRequest = adRequestCreator.createNativeAdRequestConfiguration(params)
-        adLoader.loadAd(adRequest)
+        adLoader.loadAd(adRequest, loadListener)
     }
 
     override fun destroy() {
-        nativeAdLoader?.setNativeAdLoadListener(null)
         nativeAdLoader = null
     }
 
@@ -483,9 +465,9 @@ class YandexNativeAdapter(
         private val callback: MediationNativeListener
     ) : NativeAdLoadListener, NativeAdEventListener {
 
-        override fun onAdLoaded(ad: NativeAd) {
-            ad.setNativeAdEventListener(this)
-            val mapper = mapperCreator.create(context, ad, extraViewIds)
+        override fun onAdLoaded(nativeAd: NativeAd) {
+            nativeAd.setNativeAdEventListener(this)
+            val mapper = mapperCreator.create(context, nativeAd, extraViewIds)
             callback.onAdLoaded(mapper)
         }
 
@@ -493,23 +475,19 @@ class YandexNativeAdapter(
 
         override fun onAdClicked() = callback.onAdClicked()
 
-        override fun onLeftApplication() = callback.onLeftApplication()
-
-        override fun onReturnedToApplication() = callback.onReturnedToApplication()
-
-        override fun onImpression(data: ImpressionData?) = callback.onImpression()
+        override fun onImpression(impressionData: ImpressionData?) = callback.onImpression()
     }
 }
 
 /**
  * This class implements the base logic of adapter.
  */
-class YandexBaseAdapter: MediationBaseAdapter {
+class YandexBaseAdapter : MediationBaseAdapter {
 
     /**
      * Yandex SDK version can be obtained that way.
      */
-    override fun getSDKVersionInfo(): String = MobileAds.libraryVersion
+    override fun getSDKVersionInfo(): String = YandexAds.libraryVersion
 
     /**
      * Method for updating privacy policies.
@@ -520,14 +498,18 @@ class YandexBaseAdapter: MediationBaseAdapter {
      *     COPPA</a>
      */
     override fun updatePrivacyPolicies(params: MediationParameters) {
-        MobileAds.setUserConsent(params.hasUserConsent())
-        MobileAds.setAgeRestrictedUser(params.isAgeRestrictedUser())
-        MobileAds.setLocationConsent(params.hasLocationConsent())
+        YandexAds.setUserConsent(params.hasUserConsent())
+        YandexAds.setAgeRestricted(params.isAgeRestrictedUser())
+        YandexAds.setLocationTracking(params.hasLocationConsent())
     }
 
     /**
-     * Method for manual SDK initialization. By default, the SDK is initialized automatically at app
-     * startup. That accelerates ad loading and consequently increases monetization revenue.
+     * Method for manual SDK initialization for adapters. By default, the SDK is initialized
+     * automatically at app startup. That accelerates ad loading and consequently increases
+     * monetization revenue.
+     *
+     * Using setAdapterIdentity() stores the AdapterIdentity globally in the SDK, so that
+     * adapter parameters are automatically added to all requests.
      *
      * @see <a href=
      *     "https://yandex.ru/support2/mobile-ads/en/dev/android/quick-start#init">
@@ -539,10 +521,19 @@ class YandexBaseAdapter: MediationBaseAdapter {
         onInitializationComplete: () -> Unit
     ) {
         if (params.isTesting()) {
-            MobileAds.enableLogging(true)
+            YandexAds.enableLogging(true)
         }
 
-        MobileAds.initialize(context) {
+        // Create AdapterIdentity with all required fields
+        val adapterIdentity = AdapterIdentity(
+            adapterNetworkName = params.getAdapterNetworkName(),
+            adapterVersion = params.getAdapterVersion(),
+            adapterNetworkVersion = params.getAdapterNetworkSdkVersion()
+        )
+
+        // Store adapter identity globally and initialize the SDK
+        YandexAds.setAdapterIdentity(adapterIdentity)
+        YandexAds.initialize(context) {
             onInitializationComplete.invoke()
         }
     }
@@ -555,11 +546,11 @@ class YandexParametersMapper {
 
     fun getBannerAdSize(context: Context, adNetworkBanner: MediationAdFormat.Banner): BannerAdSize {
         return when (adNetworkBanner.type) {
-            MediationBannerType.Banner -> BannerAdSize.fixedSize(context, 320, 50)
-            MediationBannerType.Leader -> BannerAdSize.fixedSize(context, 728, 90)
-            MediationBannerType.Mrec -> BannerAdSize.fixedSize(context, 300, 250)
+            MediationBannerType.Banner -> BannerAdSize.fixed(context, 320, 50)
+            MediationBannerType.Leader -> BannerAdSize.fixed(context, 728, 90)
+            MediationBannerType.Mrec -> BannerAdSize.fixed(context, 300, 250)
             is MediationBannerType.Custom -> {
-                BannerAdSize.fixedSize(
+                BannerAdSize.fixed(
                     context,
                     adNetworkBanner.type.width,
                     adNetworkBanner.type.height
@@ -580,7 +571,11 @@ class YandexParametersMapper {
 }
 
 /**
- * This class is used for creating different request to Yandex SDK.
+ * This class is used for creating ad requests to Yandex SDK.
+ *
+ * Note: When using YandexAds.setAdapterIdentity(), the adapter identity parameters
+ * (adapter_network_name, adapter_version, adapter_network_sdk_version) are automatically
+ * added to all requests. Manual parameter addition is no longer required.
  */
 class YandexRequestCreator(
     private val parametersMapper: YandexParametersMapper = YandexParametersMapper()
@@ -588,57 +583,31 @@ class YandexRequestCreator(
 
     fun createAdRequest(
         params: MediationParameters
-    ) = AdRequest.Builder()
+    ) = AdRequest.Builder(params.getAdUnitId())
         .setBiddingData(params.getBidderToken())
-        .setParameters(extractMediationParameters(params))
         .build()
-
-    fun createAdRequestConfiguration(
-        params: MediationParameters
-    ) = AdRequestConfiguration.Builder(params.getAdUnitId())
-        .setBiddingData(params.getBidderToken())
-        .setParameters(extractMediationParameters(params))
-        .build()
-
-    fun createNativeAdRequestConfiguration(
-        params: MediationParameters
-    ) = NativeAdRequestConfiguration.Builder(params.getAdUnitId())
-        .setBiddingData(params.getBidderToken())
-        .setShouldLoadImagesAutomatically(true)
-        .setParameters(extractMediationParameters(params))
-        .build()
-
-    fun createBidderTokenRequestConfiguration(
-        context: Context,
-        params: MediationParameters
-    ): BidderTokenRequestConfiguration {
-        val adType = parametersMapper.getAdType(params)
-        val requestBuilder = BidderTokenRequestConfiguration.Builder(adType)
-
-        val adFormat = params.getAdFormat()
-        if (adFormat is MediationAdFormat.Banner) {
-            requestBuilder.setBannerAdSize(parametersMapper.getBannerAdSize(context, adFormat))
-        }
-
-        return requestBuilder
-            .setParameters(extractMediationParameters(params))
-            .build()
-    }
 
     /**
-     * Method for obtaining necessary mediation parameters for requests.
+     * Creates a BidderTokenRequest for the specified ad format.
+     * AdapterIdentity and bannerAdSize are optional parameters.
      */
-    private fun extractMediationParameters(params: MediationParameters) = mapOf(
-        ADAPTER_VERSION_KEY to params.getAdapterVersion(),
-        ADAPTER_NETWORK_NAME_KEY to params.getAdapterNetworkName(),
-        ADAPTER_NETWORK_SDK_VERSION_KEY to params.getAdapterNetworkSdkVersion(),
-    )
+    fun createBidderTokenRequest(
+        context: Context,
+        params: MediationParameters
+    ): BidderTokenRequest {
+        val adFormat = params.getAdFormat()
 
-    companion object {
-
-        private const val ADAPTER_VERSION_KEY = "adapter_version"
-        private const val ADAPTER_NETWORK_NAME_KEY = "adapter_network_name"
-        private const val ADAPTER_NETWORK_SDK_VERSION_KEY = "adapter_network_sdk_version"
+        return when (parametersMapper.getAdType(params)) {
+            AdType.BANNER -> {
+                require(adFormat is MediationAdFormat.Banner) { "Banner ad format is required for BANNER ad type" }
+                val bannerAdSize = parametersMapper.getBannerAdSize(context, adFormat)
+                BidderTokenRequest.banner(bannerAdSize)
+            }
+            AdType.INTERSTITIAL -> BidderTokenRequest.interstitial()
+            AdType.REWARDED -> BidderTokenRequest.rewarded()
+            AdType.NATIVE -> BidderTokenRequest.native()
+            AdType.APP_OPEN_AD -> BidderTokenRequest.appOpenAd()
+        }
     }
 }
 
@@ -650,7 +619,7 @@ class YandexBiddingProvider(
 ) : MediationBiddingProvider {
 
     /**
-     * This method are used to obtain a bidding token. If the ad network supports s2s bidding, token
+     * This method is used to obtain a bidding token. If the ad network supports s2s bidding, token
      * can be obtained that way.
      */
     override fun loadBidderToken(
@@ -658,10 +627,11 @@ class YandexBiddingProvider(
         params: MediationParameters,
         callback: MediationBiddingListener
     ) {
-        val tokenRequest = adRequestCreator.createBidderTokenRequestConfiguration(context, params)
+        val tokenRequest = adRequestCreator.createBidderTokenRequest(context, params)
         val loadListener = YandexBidderTokenListener(callback)
 
-        BidderTokenLoader.loadBidderToken(context, tokenRequest, loadListener)
+        val bidderTokenLoader = BidderTokenLoader(context)
+        bidderTokenLoader.loadBidderToken(tokenRequest, loadListener)
     }
 
     /**
@@ -671,9 +641,9 @@ class YandexBiddingProvider(
         private val callback: MediationBiddingListener
     ) : BidderTokenLoadListener {
 
-        override fun onBidderTokenLoaded(token: String) = callback.onTokenLoaded(token)
+        override fun onBidderTokenLoaded(bidderToken: String) = callback.onTokenLoaded(bidderToken)
 
-        override fun onBidderTokenFailedToLoad(msg: String) = callback.onTokenFailedToLoad()
+        override fun onBidderTokenFailedToLoad(failureReason: String) = callback.onTokenFailedToLoad()
     }
 }
 
@@ -702,7 +672,14 @@ class YandexNativeMapper(
         adNetworkView.addView(nativeAdView)
 
         val binder = createBinder(adNetworkView, nativeAdView)
-        nativeAd.bindNativeAd(binder)
+        when (val result = nativeAd.bindNativeAd(binder)) {
+            is AdBindingResult.Success -> Unit
+            is AdBindingResult.Failure -> Log.e(
+                "YandexNativeMapper",
+                "Failed to bind native ad: ${result.missingAssetName}",
+                result.exception
+            )
+        }
     }
 
     /**
@@ -756,6 +733,19 @@ class YandexNativeMapper(
     }
 }
 
+private fun Drawable.asBitmap(): Bitmap {
+    if (this is BitmapDrawable) return bitmap
+    val bitmap = Bitmap.createBitmap(
+        intrinsicWidth.coerceAtLeast(1),
+        intrinsicHeight.coerceAtLeast(1),
+        Bitmap.Config.ARGB_8888
+    )
+    val canvas = Canvas(bitmap)
+    setBounds(0, 0, canvas.width, canvas.height)
+    draw(canvas)
+    return bitmap
+}
+
 /**
  * This class is wrapper for [YandexNativeMapper] creating.
  */
@@ -775,15 +765,15 @@ class YandexNativeMapperCreator {
             body = assets.body
             callToAction = assets.callToAction
             domain = assets.domain
-            favicon = assets.favicon?.bitmap
-            icon = assets.icon?.bitmap
+            favicon = assets.favicon?.drawable?.asBitmap()
+            icon = assets.icon?.drawable?.asBitmap()
             media = MediaView(context)
             price = assets.price
             starRating = assets.rating
             reviewCount = assets.reviewCount
             sponsored = assets.sponsored
             title = assets.title
-            warning = assets.warning
+            warning = assets.warning?.value
         }
     }
 }

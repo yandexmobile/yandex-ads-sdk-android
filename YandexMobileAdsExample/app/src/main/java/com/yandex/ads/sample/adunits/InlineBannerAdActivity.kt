@@ -67,7 +67,7 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
                 val adWidthPixels = binding.coordinatorLayout.width
                 val adWidth = (adWidthPixels / resources.displayMetrics.density).roundToInt()
                 val maxAdHeight = screenHeight / 3
-                bannerAdSize = BannerAdSize.inlineSize(this@InlineBannerAdActivity, adWidth, maxAdHeight)
+                bannerAdSize = BannerAdSize.inline(this@InlineBannerAdActivity, adWidth, maxAdHeight)
             }
         })
     }
@@ -77,20 +77,19 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
             val selectedAdUnitId = adInfoFragment.selectedNetwork.adUnitId
             if (currentAdUnitId != selectedAdUnitId) {
                 destroyBanner()
-                createBanner(selectedAdUnitId, bannerAdSize)
+                createBanner(bannerAdSize)
+                currentAdUnitId = selectedAdUnitId
             }
-            val adRequest = AdRequest.Builder()
+            val adRequest = AdRequest.Builder(selectedAdUnitId)
                 .setParameters(getRequestParameters())
                 .build()
             bannerAd?.loadAd(adRequest)
         }
     }
 
-    private fun createBanner(adUnitId: String, bannerAdSize: BannerAdSize) {
+    private fun createBanner(bannerAdSize: BannerAdSize) {
         bannerAd = BannerAdView(this).apply {
             id = R.id.banner
-            setAdUnitId(adUnitId)
-            currentAdUnitId = adUnitId
             setAdSize(bannerAdSize)
             setBannerAdEventListener(eventLogger)
         }
@@ -144,14 +143,6 @@ class InlineBannerAdActivity : AppCompatActivity(R.layout.activity_inline_banner
 
         override fun onAdClicked() {
             _adInfoFragment?.log("Banner ad clicked")
-        }
-
-        override fun onLeftApplication() {
-            _adInfoFragment?.log("Left application")
-        }
-
-        override fun onReturnedToApplication() {
-            _adInfoFragment?.log("Returned to application")
         }
 
         override fun onImpression(data: ImpressionData?) {

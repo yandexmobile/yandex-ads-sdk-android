@@ -65,11 +65,11 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
                 val adWidthPixels = binding.coordinatorLayout.width
                 val adWidthDp = (adWidthPixels / resources.displayMetrics.density).roundToInt()
 
-                // For achieve the best performance of sticky banner BannerAdSize.stickySize
+                // For achieve the best performance of sticky banner BannerAdSize.sticky
                 // should be called after SDK initialization.
                 // Initialize SDK as early as possible, for example in Application.onCreate
                 // or at least Activity.onCreate
-                bannerAdSize = BannerAdSize.stickySize(this@StickyBannerAdActivity, adWidthDp)
+                bannerAdSize = BannerAdSize.sticky(this@StickyBannerAdActivity, adWidthDp)
             }
         })
     }
@@ -79,9 +79,10 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
             val selectedAdUnitId = adInfoFragment.selectedNetwork.adUnitId
             if (currentAdUnitId != selectedAdUnitId) {
                 destroyBanner()
-                createBanner(selectedAdUnitId, bannerAdSize)
+                createBanner(bannerAdSize)
+                currentAdUnitId = selectedAdUnitId
             }
-            val adRequest = AdRequest.Builder()
+            val adRequest = AdRequest.Builder(selectedAdUnitId)
                 .setParameters(getRequestParameters())
                 .build()
             bannerAd?.loadAd(adRequest)
@@ -89,11 +90,9 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
         }
     }
 
-    private fun createBanner(adUnitId: String, bannerAdSize: BannerAdSize) {
+    private fun createBanner(bannerAdSize: BannerAdSize) {
         bannerAd = BannerAdView(this).apply {
             id = R.id.banner
-            setAdUnitId(adUnitId)
-            currentAdUnitId = adUnitId
             setAdSize(bannerAdSize)
             setBannerAdEventListener(eventLogger)
         }
@@ -144,14 +143,6 @@ class StickyBannerAdActivity : AppCompatActivity(R.layout.activity_sticky_banner
 
         override fun onAdClicked() {
             adInfoFragment.log("Banner ad clicked")
-        }
-
-        override fun onLeftApplication() {
-            adInfoFragment.log("Left application")
-        }
-
-        override fun onReturnedToApplication() {
-            adInfoFragment.log("Returned to application")
         }
 
         override fun onImpression(data: ImpressionData?) {

@@ -18,7 +18,7 @@ import com.yandex.ads.sample.network.Network
 import com.yandex.ads.sample.network.NetworkAdapter
 import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.common.AdError
-import com.yandex.mobile.ads.common.AdRequestConfiguration
+import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.appopenad.AppOpenAd
@@ -47,10 +47,7 @@ class AppOpenAdActivity : AppCompatActivity(R.layout.activity_app_open_ad),
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.setupUi()
 
-        appOpenAdLoader = AppOpenAdLoader(this).apply {
-            setAdLoadListener(this@AppOpenAdActivity)
-        }
-
+        appOpenAdLoader = AppOpenAdLoader(this)
         loadAppOpenAd()
     }
 
@@ -68,11 +65,8 @@ class AppOpenAdActivity : AppCompatActivity(R.layout.activity_app_open_ad),
 
     private fun loadAppOpenAd() {
         disableShowAdButton()
-        appOpenAdLoader?.loadAd(createAdRequestConfiguration())
-    }
-
-    private fun createAdRequestConfiguration(): AdRequestConfiguration {
-        return AdRequestConfiguration.Builder(selectedNetwork.adUnitId).build()
+        val adRequest = AdRequest.Builder(selectedNetwork.adUnitId).build()
+        appOpenAdLoader?.loadAd(adRequest, this)
     }
 
     private fun showAppOpenAd() {
@@ -101,7 +95,7 @@ class AppOpenAdActivity : AppCompatActivity(R.layout.activity_app_open_ad),
     }
 
     override fun onDestroy() {
-        appOpenAdLoader?.setAdLoadListener(null)
+        appOpenAdLoader?.cancelLoading()
         appOpenAdLoader = null
         destroyAppOpen()
         super.onDestroy()

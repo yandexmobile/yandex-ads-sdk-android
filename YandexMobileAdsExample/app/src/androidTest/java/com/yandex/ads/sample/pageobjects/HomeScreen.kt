@@ -23,19 +23,20 @@ internal fun <T : HomeScreen.NavigationItem<T>> HomeScreen.clickNavigationItem(
 internal class HomeScreen(
     private val itemPositionProvider: (Class<NavigationItem<*>>) -> Int = { clazz ->
         when (clazz) {
-            NavigationItem.StickyBanner::class.java -> 0
-            NavigationItem.InlineBanner::class.java -> 1
-            NavigationItem.Interstitial::class.java -> 2
-            NavigationItem.Rewarded::class.java -> 3
-            NavigationItem.NativeTemplate::class.java -> 4
-            NavigationItem.CustomNative::class.java -> 5
-            NavigationItem.AdfoxCarousel::class.java -> 6
-            NavigationItem.InstreamBinder::class.java -> 8
-            NavigationItem.InstreamInRoll::class.java -> 9
-            NavigationItem.Policies::class.java -> 10
-            NavigationItem.AppOpenAd::class.java -> 11
-            NavigationItem.Feed::class.java -> 12
-            NavigationItem.DebugPanel::class.java -> 13
+            NavigationItem.ComposeExamples::class.java -> 0
+            NavigationItem.StickyBanner::class.java -> 1
+            NavigationItem.InlineBanner::class.java -> 2
+            NavigationItem.Interstitial::class.java -> 3
+            NavigationItem.Rewarded::class.java -> 4
+            NavigationItem.NativeTemplate::class.java -> 5
+            NavigationItem.CustomNative::class.java -> 6
+            NavigationItem.AdfoxCarousel::class.java -> 7
+            NavigationItem.InstreamBinder::class.java -> 9
+            NavigationItem.InstreamInRoll::class.java -> 10
+            NavigationItem.Policies::class.java -> 11
+            NavigationItem.AppOpenAd::class.java -> 12
+            NavigationItem.Feed::class.java -> 13
+            NavigationItem.DebugPanel::class.java -> 14
             else -> error("unsupported type")
         }
     }
@@ -44,6 +45,7 @@ internal class HomeScreen(
     val adTypes = KRecyclerView(
         { withId(R.id.ad_types) },
         {
+            itemType { NavigationItem.ComposeExamples(it) }
             itemType { NavigationItem.NativeTemplate(it) }
             itemType { NavigationItem.CustomNative(it) }
             itemType { NavigationItem.AdfoxCarousel(it) }
@@ -86,6 +88,8 @@ internal class HomeScreen(
     sealed class NavigationItem<T : NavigationItem<T>>(
         matcher: Matcher<View>
     ) : KRecyclerItem<T>(matcher) {
+
+        class ComposeExamples(matcher: Matcher<View>) : NavigationItem<ComposeExamples>(matcher)
 
         class NativeTemplate(matcher: Matcher<View>) : NavigationItem<NativeTemplate>(matcher)
 
