@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is a part of the Yandex Advertising Network
+  ~
+  ~ Version for Android (C) 2025 YANDEX
+  ~
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
+  -->
+
+<com.yandex.mobile.ads.nativeads.NativeAdView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/native_ad_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Top row: age | sponsored | feedback -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/native_ad_template_offset"
+            android:layout_marginLeft="@dimen/native_ad_template_offset"
+            android:layout_marginTop="@dimen/native_offset_medium"
+            android:layout_marginEnd="@dimen/native_ad_template_offset"
+            android:layout_marginRight="@dimen/native_ad_template_offset"
+            android:layout_marginBottom="@dimen/native_offset_small"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:textColor="@color/base_asset_text_color"
+                    android:visibility="gone"
+                    tools:text="18+"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/sponsored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/base_asset_text_color"
+                    android:textSize="@dimen/native_asset_text_size_small"
+                    android:visibility="gone"
+                    tools:text="Ad"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end">
+
+                <ImageView
+                    android:id="@+id/feedback"
+                    android:layout_width="@dimen/native_feedback_width"
+                    android:layout_height="@dimen/native_feedback_height"
+                    android:padding="4dp"
+                    android:src="@drawable/close_button"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Center row: icon + content (title, body, domain, cta) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/native_offset_small"
+            android:layout_marginEnd="@dimen/native_ad_template_offset"
+            android:layout_marginLeft="@dimen/native_ad_template_offset"
+            android:layout_marginRight="@dimen/native_ad_template_offset"
+            android:layout_marginStart="@dimen/native_ad_template_offset"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <!-- Icon -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/native_ad_template_offset"
+                android:layout_marginRight="@dimen/native_ad_template_offset"
+                android:layout_marginTop="@dimen/native_offset_small">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="@dimen/native_image_width"
+                    android:layout_height="@dimen/native_image_height"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </FrameLayout>
+
+            <!-- Content -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="@integer/asset_title_max_lines"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/native_asset_text_size_large"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:text="Ad title"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="@integer/asset_body_max_lines"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/native_asset_text_size_medium"
+                    android:visibility="gone"
+                    tools:text="Ad body text describing the product"
+                    tools:visibility="visible" />
+
+                <!-- Favicon + domain -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/favicon"
+                        android:layout_width="@dimen/native_favicon_width"
+                        android:layout_height="@dimen/native_favicon_height"
+                        android:layout_marginEnd="@dimen/native_offset_small"
+                        android:layout_marginRight="@dimen/native_offset_small"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/domain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="@integer/asset_domain_max_lines"
+                        android:textColor="@color/base_asset_text_color"
+                        android:textSize="@dimen/native_asset_text_size_medium"
+                        android:visibility="gone"
+                        tools:text="example.com"
+                        tools:visibility="visible" />
+
+                </LinearLayout>
+
+                <!-- Price / rating / review count + CTA -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Price, rating, review count -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/price"
+                            style="@style/TextAppearance.AppCompat.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:text="$0.99"
+                            tools:visibility="visible" />
+
+                        <com.yandex.ads.sample.common.RatingView
+                            android:id="@+id/rating"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/native_offset_medium"
+                            android:layout_marginRight="@dimen/native_offset_medium"
+                            android:numStars="5"
+                            android:stepSize="0.5"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/review_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="@integer/asset_review_count_max_lines"
+                            android:textColor="@color/base_asset_text_color"
+                            android:textSize="@dimen/native_asset_text_size_medium"
+                            android:visibility="gone"
+                            tools:text="1.2k reviews"
+                            tools:visibility="visible" />
+
+                    </LinearLayout>
+
+                    <!-- CTA button -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/call_to_action"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/call_to_action_background"
+                            android:ellipsize="end"
+                            android:maxLines="@integer/asset_call_to_action_max_lines"
+                            android:minHeight="@dimen/call_to_action_asset_min_height"
+                            android:textAllCaps="false"
+                            android:textSize="@dimen/native_asset_text_size_medium"
+                            android:visibility="gone"
+                            tools:text="Install"
+                            tools:visibility="visible" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Media -->
+        <com.yandex.mobile.ads.nativeads.MediaView
+            android:id="@+id/media"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/native_offset_small"
+            android:layout_marginTop="@dimen/native_offset_small"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <!-- Warning -->
+        <TextView
+            android:id="@+id/warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/warning_background"
+            android:ellipsize="end"
+            android:paddingLeft="@dimen/native_ad_template_offset"
+            android:paddingRight="@dimen/native_ad_template_offset"
+            android:paddingTop="@dimen/native_offset_small"
+            android:textColor="@color/base_asset_text_color"
+            android:textSize="@dimen/native_asset_text_size_medium"
+            android:visibility="gone"
+            tools:text="Warning text"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</com.yandex.mobile.ads.nativeads.NativeAdView>
