@@ -16,7 +16,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
-@Ignore()
 @RunWith(Parameterized::class)
 internal class NativeTemplateLoadTest(
     private val networkItem: Class<out NativeTemplateScreen.NetworkItem>
@@ -43,9 +42,9 @@ internal class NativeTemplateLoadTest(
         step("Реклама загрузилась. В случае подбора рекламы она отображется") {
             onScreen<NativeTemplateScreen> {
                 compose(timeoutMs = 60_000) {
-//                    or(adView) {
-//                        isCompletelyDisplayed()
-//                    }
+                    or(adView) {
+                        isCompletelyDisplayed()
+                    }
 
                     or(logsView) {
                         hasSize(1)

@@ -105,8 +105,8 @@ class InstreamAdBinderActivity : AppCompatActivity(R.layout.activity_instream_ad
         instreamAdBinder = InstreamAdBinder(
             this,
             instreamAd,
+            checkNotNull(contentVideoPlayer),
             checkNotNull(instreamAdPlayer),
-            checkNotNull(contentVideoPlayer)
         )
         instreamAdBinder?.apply {
             setInstreamAdListener(eventLogger)

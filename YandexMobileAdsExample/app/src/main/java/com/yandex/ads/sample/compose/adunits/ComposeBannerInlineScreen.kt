@@ -30,6 +30,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -45,6 +46,7 @@ import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.compose.Banner
 import com.yandex.mobile.ads.compose.BannerEvents
 import com.yandex.mobile.ads.compose.BannerSize
+import com.yandex.mobile.ads.compose.rememberBannerAdState
 
 private const val DEFAULT_BANNER_AD_UNIT_ID = "demo-banner-yandex"
 
@@ -58,6 +60,20 @@ fun ComposeBannerInlineScreen(
 
     fun appendLog(message: String) {
         logs = if (logs.isEmpty()) message else "$logs\n$message"
+    }
+
+    val bannerState = rememberBannerAdState(
+        adSize = BannerSize.Inline(width = 320.dp, maxHeight = 250.dp),
+        events = BannerEvents(
+            onAdLoaded = { _ -> appendLog("onAdLoaded") },
+            onAdFailedToLoad = { error -> appendLog("onAdFailedToLoad: ${error.description}") },
+            onAdClicked = { appendLog("onAdClicked") },
+            onImpression = { appendLog("onImpression") },
+        ),
+    )
+
+    LaunchedEffect(adUnitId) {
+        bannerState.loadAd(AdRequest.Builder(adUnitId).build())
     }
 
     Scaffold(
@@ -106,15 +122,8 @@ fun ComposeBannerInlineScreen(
             }
 
             Banner(
-                adRequest = AdRequest.Builder(adUnitId).build(),
-                adSize = BannerSize.Inline(width = 320, maxHeight = 250),
+                state = bannerState,
                 modifier = Modifier.fillMaxWidth().semantics { testTag = "banner" },
-                events = BannerEvents(
-                    onAdLoaded = { appendLog("onAdLoaded") },
-                    onAdFailedToLoad = { error -> appendLog("onAdFailedToLoad: ${error.description}") },
-                    onAdClicked = { appendLog("onAdClicked") },
-                    onImpression = { appendLog("onImpression") },
-                ),
             )
         }
     }

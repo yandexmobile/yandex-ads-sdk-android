@@ -24,10 +24,9 @@ internal fun NativeTemplateScreen.clickCallToAction() = callToActionButton {
     click()
 }
 
-internal fun NativeTemplateScreen.checkAdIsLoaded() = Unit
-//    adView {
-//    isDisplayed()
-//}
+internal fun NativeTemplateScreen.checkAdIsLoaded() = adView {
+    isDisplayed()
+}
 
 internal class NativeTemplateScreen : KScreen<NativeTemplateScreen>(),
     HasNetworkMenu<NativeTemplateScreen.NetworkItem> {
@@ -62,7 +61,7 @@ internal class NativeTemplateScreen : KScreen<NativeTemplateScreen>(),
         function = { withClassName(Matchers.endsWith("ScrollView")) }
     )
 
-//    val adView = KView { withId(R.id.native_banner) }
+    val adView = KView { withId(R.id.native_banner) }
 
     val loadAdButton = KButton { withId(R.id.load_ad_button) }
 

@@ -55,6 +55,7 @@ class NativeTemplateAdActivity : AppCompatActivity(R.layout.activity_native_temp
     private fun loadNative() {
         nativeAdLoader?.cancelLoading()
         nativeAdLoader = NativeAdLoader(this)
+        binding.nativeBanner.release()
         val adUnitId = adInfoFragment.selectedNetwork.adUnitId
         val options = NativeAdOptions.Builder()
             .setShouldLoadImagesAutomatically(true)
@@ -67,8 +68,7 @@ class NativeTemplateAdActivity : AppCompatActivity(R.layout.activity_native_temp
                 adInfoFragment.log("Native ad loaded")
                 adInfoFragment.hideLoading()
                 nativeAd.setNativeAdEventListener(eventLogger)
-//                binding.nativeBanner.isVisible = true
-//                binding.nativeBanner.setAd(nativeAd)
+                binding.nativeBanner.bindNativeAd(nativeAd)
             }
 
             override fun onAdFailedToLoad(error: AdRequestError) {
@@ -84,6 +84,7 @@ class NativeTemplateAdActivity : AppCompatActivity(R.layout.activity_native_temp
         nativeAdLoader?.cancelLoading()
         nativeAdLoader = null
         _adInfoFragment = null
+        binding.nativeBanner.release()
         super.onDestroy()
     }
 
