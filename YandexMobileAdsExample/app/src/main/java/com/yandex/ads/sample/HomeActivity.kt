@@ -28,6 +28,7 @@ import com.yandex.ads.sample.adunits.NativeTemplateAdActivity
 import com.yandex.ads.sample.adunits.RewardedAdActivity
 import com.yandex.ads.sample.adunits.SimpleInstreamAdActivity
 import com.yandex.ads.sample.adunits.StickyBannerAdActivity
+import com.yandex.ads.sample.compose.ComposeExamplesActivity
 import com.yandex.ads.sample.databinding.ActivityHomeBinding
 import com.yandex.ads.sample.navigation.NavigationAdapter
 import com.yandex.ads.sample.navigation.NavigationItem
@@ -72,6 +73,11 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
         private const val NETWORK_WARNING = "networkWarning"
 
         private val adTypeItems = listOf(
+            NavigationItem(
+                R.drawable.ic_outline_developer_board_24,
+                R.string.compose_examples_title,
+                ActivityNavigation(ComposeExamplesActivity::class.java),
+            ),
             NavigationItem(
                 R.drawable.ic_outline_ad_units_24,
                 R.string.sticky_banner_title,

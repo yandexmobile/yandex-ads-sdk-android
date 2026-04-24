@@ -23,12 +23,13 @@ import com.yandex.ads.sample.utils.Logger
 import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.instream.InstreamAd
 import com.yandex.mobile.ads.instream.InstreamAdBreakEventListener
+import com.yandex.mobile.ads.instream.InstreamAdBreakType
 import com.yandex.mobile.ads.instream.InstreamAdListener
 import com.yandex.mobile.ads.instream.InstreamAdLoadListener
 import com.yandex.mobile.ads.instream.InstreamAdLoader
-import com.yandex.mobile.ads.instream.InstreamAdRequestConfiguration
-import com.yandex.mobile.ads.instream.inroll.Inroll
-import com.yandex.mobile.ads.instream.inroll.InrollQueueProvider
+import com.yandex.mobile.ads.instream.InstreamAdRequest
+import com.yandex.mobile.ads.instream.InstreamAdRequestError
+import com.yandex.mobile.ads.instream.adbreak.InstreamAdBreak
 
 class InstreamAdInrollActivity : AppCompatActivity(R.layout.activity_instream_ad_inroll) {
 
@@ -37,7 +38,7 @@ class InstreamAdInrollActivity : AppCompatActivity(R.layout.activity_instream_ad
 
     private var instreamAdPlayer: SampleInstreamAdPlayer? = null
     private var contentVideoPlayer: ContentVideoPlayer? = null
-    private var currentInroll: Inroll? = null
+    private var currentInroll: InstreamAdBreak? = null
     private var activePlayer: SamplePlayer? = null
     private var isAdPlaying = false
     private var _adInfoFragment: AdInfoFragment? = null
@@ -77,17 +78,17 @@ class InstreamAdInrollActivity : AppCompatActivity(R.layout.activity_instream_ad
 
     private fun loadInstreamAd() {
         val instreamAdLoader = InstreamAdLoader(this)
-        instreamAdLoader.setInstreamAdLoadListener(eventLogger)
 
         // Replace demo Page ID with actual Page ID
-        val configuration = InstreamAdRequestConfiguration.Builder(PAGE_ID).build()
-        instreamAdLoader.loadInstreamAd(this, configuration)
+        val configuration = InstreamAdRequest.Builder(PAGE_ID).build()
+        instreamAdLoader.loadAd(configuration, eventLogger)
     }
 
     private fun showInstreamAd(instreamAd: InstreamAd) {
-        val inrollQueueProvider = InrollQueueProvider(this, instreamAd)
-        val instreamAdBreakQueue = inrollQueueProvider.queue
-        currentInroll = instreamAdBreakQueue.poll()?.apply {
+        val inrolls = instreamAd.instreamAdBreaks
+            .filter { it.adBreakData.type == InstreamAdBreakType.INROLL }
+        val instreamAdBreakQueue = ArrayDeque(inrolls)
+        currentInroll = instreamAdBreakQueue.removeFirstOrNull()?.apply {
             setListener(InrollListener())
             instreamAdPlayer?.let(::prepare)
             binding.playButton.apply {
@@ -187,8 +188,8 @@ class InstreamAdInrollActivity : AppCompatActivity(R.layout.activity_instream_ad
             showInstreamAd(ad)
         }
 
-        override fun onInstreamAdFailedToLoad(error: String) {
-            adInfoFragment.log("Instream ad failed to load: $error")
+        override fun onInstreamAdFailedToLoad(error: InstreamAdRequestError) {
+            adInfoFragment.log("Instream ad failed to load: ${error.description}")
         }
 
         override fun onInstreamAdCompleted() {

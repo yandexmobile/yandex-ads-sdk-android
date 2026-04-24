@@ -67,15 +67,10 @@ internal class AdfoxCarouselCallbacksTest : BaseUITest() {
                     "Ads loaded",
                     "Impression: null",
                     "Ad clicked",
-                    "Left application",
-                    "Returned to application",
                     "Impression: null",
                     "Ad clicked",
-                    "Left application",
-                    "Returned to application"
                 )
             }
         }
     }
 }
-

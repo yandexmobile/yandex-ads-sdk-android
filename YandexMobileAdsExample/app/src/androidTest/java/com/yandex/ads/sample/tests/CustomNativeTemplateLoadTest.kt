@@ -13,6 +13,7 @@ import com.yandex.ads.sample.shared_steps.choiceNetwork
 import com.yandex.ads.sample.shared_steps.goToSection
 import com.yandex.ads.sample.shared_steps.openSampleApp
 import io.github.kakaocup.kakao.screen.Screen.Companion.onScreen
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 

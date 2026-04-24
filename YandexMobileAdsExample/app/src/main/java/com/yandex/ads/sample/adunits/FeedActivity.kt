@@ -23,6 +23,7 @@ import com.yandex.ads.sample.feed.LogsDialog
 import com.yandex.ads.sample.utils.Logger
 import com.yandex.ads.sample.utils.ScreenUtil.screenWidth
 import com.yandex.ads.sample.utils.applySystemBarsPadding
+import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.feed.FeedAd
@@ -30,7 +31,6 @@ import com.yandex.mobile.ads.feed.FeedAdAdapter
 import com.yandex.mobile.ads.feed.FeedAdAppearance
 import com.yandex.mobile.ads.feed.FeedAdEventListener
 import com.yandex.mobile.ads.feed.FeedAdLoadListener
-import com.yandex.mobile.ads.feed.FeedAdRequestConfiguration
 import java.lang.StringBuilder
 
 class FeedActivity: AppCompatActivity() {
@@ -74,9 +74,9 @@ class FeedActivity: AppCompatActivity() {
             cardWidth = calculatedFeedCardWidth,
             cardCornerRadius = CARD_CORNER_RADIUS_DP
         )
-        val feedAdRequestConfiguration = FeedAdRequestConfiguration.Builder(AD_UNIT_ID).build()
+        val feedAdRequest = AdRequest.Builder(AD_UNIT_ID).build()
 
-        feedAd = FeedAd.Builder(this, feedAdRequestConfiguration, feedAdAppearance).build()
+        feedAd = FeedAd.Builder(this, feedAdRequest, feedAdAppearance).build()
         feedAd.loadListener = loadLogger
         feedAd.preloadAd()
     }

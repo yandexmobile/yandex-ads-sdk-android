@@ -47,10 +47,10 @@ internal class NativeTemplateScreen : KScreen<NativeTemplateScreen>(),
         positionProvider = { clazz ->
             when (clazz) {
                 NetworkItem.Yandex::class.java -> 0
-                NetworkItem.AdMob::class.java -> 1
-                NetworkItem.MyTarget::class.java -> 2
-                NetworkItem.StartApp::class.java -> 3
-                NetworkItem.AdFox::class.java -> 4
+                NetworkItem.AdMob::class.java -> 2
+                NetworkItem.MyTarget::class.java -> 5
+                NetworkItem.StartApp::class.java -> 7
+                NetworkItem.AdFox::class.java -> 8
                 else -> error("unsupported type")
             }
         }

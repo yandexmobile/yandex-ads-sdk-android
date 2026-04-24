@@ -10,7 +10,8 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    kotlin("plugin.serialization") version "1.8.22"
+    kotlin("plugin.serialization") version "2.1.0"
+    id("org.jetbrains.kotlin.plugin.compose") version "2.1.0"
 }
 
 android {
@@ -20,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId = "com.yandex.ads.mobile"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -53,9 +54,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.8"
-    }
     testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
     }
@@ -63,8 +61,11 @@ android {
 
 dependencies {
     // Yandex Mobile Ads SDK with mediation adapters
-    implementation("com.yandex.android:mobileads-mediation:7.18.5.0")
-    implementation("com.yandex.ads.mediation:mobileads-startapp:5.0.2.19")
+    implementation("com.yandex.android:mobileads-mediation:8.0.0.0")
+    implementation("com.yandex.ads.mediation:mobileads-startapp:5.0.2.20")
+    implementation("com.yandex.ads.mediation:mobileads-appnext:2.7.6.473.20")
+    implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.3.1.9")
+    implementation("com.yandex.android:mobileads-compose:8.0.0")
 
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("androidx.activity:activity-ktx:1.6.1")
@@ -97,6 +98,8 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit-ktx:1.2.1")
     androidTestImplementation("com.kaspersky.android-components:kaspresso:1.5.2")
     androidTestImplementation("com.kaspersky.android-components:kaspresso-allure-support:1.5.2")
+    androidTestImplementation(platform("androidx.compose:compose-bom:2025.07.00"))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 
     androidTestUtil("androidx.test:orchestrator:1.5.1")
 }
