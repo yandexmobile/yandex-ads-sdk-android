@@ -2,7 +2,7 @@
 
 All notable changes to Yandex Full Mediation will be documented in this file.
 
-## Version 8.0.0.0-beta.1
+## Version 8.0.0.0
 
 #### Breaking changes
 
@@ -10,7 +10,7 @@ All notable changes to Yandex Full Mediation will be documented in this file.
 
 #### Updated
 
-* Yandex Mobile Ads SDK 8.0.0-beta.1
+* Yandex Mobile Ads SDK 8.0.0
 
 ## Version 7.18.2.0
 

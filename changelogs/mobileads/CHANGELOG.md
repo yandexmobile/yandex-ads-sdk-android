@@ -2,7 +2,7 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
-## Version 8.0.0-beta.1
+## Version 8.0.0
 
 ### Breaking Changes
 
@@ -38,6 +38,7 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * `InstreamAdBreakLoader` and `InstreamAdBreakLoadListener`
 * `InstreamAdBreakRequest`
 * `suspend` overloads for `InstreamAdLoader` and `InstreamAdBreakLoader`
+* Added 8.x AI-assisted migration tool. See [migration guide](../../YandexMobileAdsExample/skills/migrate-yandex-ads-sdk-from-7-to-8/README.md).
 
 ### Updated
 
