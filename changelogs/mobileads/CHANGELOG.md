@@ -3,6 +3,8 @@
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
 ## Version 8.0.0
+* [Full migration guideline](https://ads.yandex.com/helpcenter/ru/dev/android/release/8-0-0-migration)
+* [AI migration guideline](https://ads.yandex.com/helpcenter/ru/dev/android/release/8-0-0-migration#ai)
 
 ### Breaking Changes
 
@@ -45,6 +47,11 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * `AdRequest.Builder` now accepts `adUnitId` as a constructor parameter
 * `loadAd()` on all loaders now accepts listener as a parameter
 * `NativeAdLoader.loadAd`, `SliderAdLoader.loadSlider`, `NativeBulkAdLoader.loadAds` — `NativeAdOptions` is now an optional parameter
+
+## Version 7.18.5
+
+#### Fixed
+* Improvements and optimizations
 
 ## Version 7.18.4
 

@@ -12,6 +12,24 @@ All notable changes to Yandex Full Mediation will be documented in this file.
 
 * Yandex Mobile Ads SDK 8.0.0
 
+## Version 7.18.5.0
+
+#### Updated
+
+* Yandex Mobile Ads SDK 7.18.5
+
+## Version 7.18.4.0
+
+#### Updated
+
+* Yandex Mobile Ads SDK 7.18.4
+
+## Version 7.18.3.0
+
+#### Updated
+
+* Yandex Mobile Ads SDK 7.18.3
+
 ## Version 7.18.2.0
 
 #### Updated
