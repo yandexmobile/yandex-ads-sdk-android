@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to Yandex Adapter for Mintegral Mediation will be documented in this file.
 
+## Version 17.0.41.1
+
+#### Updated
+* Yandex Mobile Ads SDK version 8.1.0
+
 ## Version 17.0.41.0
 
 #### Updated

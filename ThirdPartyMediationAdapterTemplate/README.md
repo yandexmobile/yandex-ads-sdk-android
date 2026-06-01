@@ -35,10 +35,10 @@ See [also](https://yandex.ru/support2/mobile-ads/en/dev/android/quick-start#app)
 Copy [YandexAdapters](./app/src/main/java/com/example/mediation/YandexAdapters.kt) file content and change stub API to your actual API.
 This way you will get a separate adapter class for each of the ad formats. If your API requires a single class for all formats, you can merge classes.
 
-* When using `YandexAds.setAdapterIdentity(AdapterIdentity)`, adapter identity parameters are automatically added to all requests:
-    * `adapterVersion` represents Yandex adapter version. Construct this version by adding one more number to the Yandex SDK version. For example, `6.2.1.0` if the Yandex SDK version is `6.2.1`. If you need to update an adapter without changing the Yandex SDK version, increment the fourth number like `6.2.1.1`.
-    * `adapterNetworkName` represents your ad network name in lowercase.
-    * `adapterNetworkVersion` represents your ad network SDK version.
+* When using `MobileAds.initializeForAdapter()`, adapter identity parameters are automatically added to all requests:
+    * `"adapter_version"` represents Yandex adapter version. Construct this version by adding one more number to the Yandex SDK version. For example, `6.2.1.0` if the Yandex SDK version is `6.2.1`. If you need to update an adapter without changing the Yandex SDK version, increment the fourth number like `6.2.1.1`.
+    * `"adapter_network_name"` represents your ad network name in lowercase.
+    * `"adapter_network_sdk_version"` represents your ad network SDK version.
 
 * `Interstitial`, `Rewarded`, `AppOpen` and `Native` formats provide loader classes. A loader object can be created once and can be reused. This speeds up loading and can be helpful to implement preloading logic, if your network supports it.
 
@@ -70,18 +70,16 @@ Successfully initializing the Yandex Mobile Ads SDK is an important condition fo
 </manifest>
 ```
 
-For mediation adapters, use `YandexAds.setAdapterIdentity(AdapterIdentity)` method which stores the adapter identity globally and automatically adds adapter parameters to all requests:
+For mediation adapters, use `initializeForAdapter()` method which stores the adapter identity globally and automatically adds adapter parameters to all requests:
+```kotlin
+val adapterIdentity = AdapterIdentity(
+    adapterNetworkName = "your_network_name",
+    adapterVersion = "1.0.0.0",
+    adapterNetworkVersion = "1.0.0"
+)
 
-```java
-void loadAd() {
-  AdapterIdentity adapterIdentity = new AdapterIdentity("AdNetwork", "1.0.0", "1.2.3");
-  YandexAds.setAdapterIdentity(adapterIdentity); // Call before initialize()
-  YandexAds.initialize(this, () -> { /* ... */ });
-
-  // No need to pass additional parameters
-  AdRequest adRequest = new AdRequest.Builder("R-M-XXXXX-YY").build();
-
-  bannerView.loadAd(adRequest);
+MobileAds.initializeForAdapter(context, adapterIdentity) {
+    onInitializationComplete.invoke()
 }
 ```
 
