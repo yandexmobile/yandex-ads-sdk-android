@@ -2,9 +2,21 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 8.1.0
+
+### Updated
+
+* AppMetrica SDK to version 8.1.0
+
+### Fixed
+
+* Memory leak in fullscreen ad formats
+* Crash on certain devices
+* Reading from main thread during SDK initialization
+* Warning in Google Play Console
+
 ## Version 8.0.0
-* [Full migration guideline](https://ads.yandex.com/helpcenter/ru/dev/android/release/8-0-0-migration)
-* [AI migration guideline](https://ads.yandex.com/helpcenter/ru/dev/android/release/8-0-0-migration#ai)
+**[Full migration guideline](https://ads.yandex.com/helpcenter/ru/dev/android/release/8-0-0-migration)**
 
 ### Breaking Changes
 
@@ -40,13 +52,23 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 * `InstreamAdBreakLoader` and `InstreamAdBreakLoadListener`
 * `InstreamAdBreakRequest`
 * `suspend` overloads for `InstreamAdLoader` and `InstreamAdBreakLoader`
-* Added 8.x AI-assisted migration tool. See [migration guide](../../YandexMobileAdsExample/skills/migrate-yandex-ads-sdk-from-7-to-8/README.md).
 
 ### Updated
 
 * `AdRequest.Builder` now accepts `adUnitId` as a constructor parameter
 * `loadAd()` on all loaders now accepts listener as a parameter
 * `NativeAdLoader.loadAd`, `SliderAdLoader.loadSlider`, `NativeBulkAdLoader.loadAds` — `NativeAdOptions` is now an optional parameter
+
+#### Updated
+* AppMetrica SDK version 8.0.0
+
+## Version 7.18.6
+
+#### Updated
+* AppMetrica SDK version updated to 7.14.3
+
+#### Fixed
+* Improvements and optimizations
 
 ## Version 7.18.5
 

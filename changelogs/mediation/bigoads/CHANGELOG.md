@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to Bigo Ads Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 5.7.0.1
+
+#### Updated
+* Yandex Mobile Ads SDK version 8.1.0
+
 ## Version 5.7.0.0
 
 #### Updated

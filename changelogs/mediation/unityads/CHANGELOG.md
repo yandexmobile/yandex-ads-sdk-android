@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to UnityAds Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 4.17.0.1
+
+#### Updated
+* Yandex Mobile Ads SDK version 8.1.0
+
+## Version 4.17.0.0-sdk7
+* Adapter for Yandex Ads SDK 7.18.*
+
+#### Updated
+* Unityads SDK version 4.17.0
+
 ## Version 4.16.5.0
 
 #### Updated
