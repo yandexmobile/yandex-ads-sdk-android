@@ -48,21 +48,27 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        unitTests {
+            isReturnDefaultValues = true
+            all {
+                it.useJUnitPlatform()
+            }
+        }
     }
 }
 
 dependencies {
     // Yandex Mobile Ads SDK with mediation adapters
-    implementation("com.yandex.android:mobileads-mediation:8.1.0.0")
-    implementation("com.yandex.ads.mediation:mobileads-startapp:5.2.2.0")
+    implementation("com.yandex.android:mobileads-mediation:8.2.0.0")
+    implementation("com.yandex.ads.mediation:mobileads-startapp:5.2.2.1")
     implementation("com.yandex.ads.mediation:mobileads-appnext:2.7.6.473.20")
     implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.3.1.9")
     implementation("com.yandex.android:mobileads-compose:8.0.0")
@@ -83,6 +89,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-process:2.4.1")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose")
     implementation("androidx.activity:activity-compose")
     implementation(platform("androidx.compose:compose-bom:2025.07.00"))
     implementation("androidx.compose.ui:ui")
@@ -91,6 +98,12 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+    implementation("androidx.camera:camera-camera2:1.3.4")
+    implementation("androidx.camera:camera-lifecycle:1.3.4")
+    implementation("androidx.camera:camera-view:1.3.4")
+
+    implementation("com.google.mlkit:barcode-scanning:17.3.0")
 
     androidTestImplementation("androidx.test:runner:1.6.1")
     androidTestImplementation("androidx.test:rules:1.6.1")
