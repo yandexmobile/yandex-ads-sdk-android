@@ -15,6 +15,7 @@
 
     <!--  Ad units  -->
     <string name="compose_examples_title">Jetpack Compose Examples</string>
+    <string name="playable_title">Playable</string>
     <string name="sticky_banner_title">Sticky banner</string>
     <string name="inline_banner_title">Inline banner</string>
     <string name="interstitial_title">Interstitial</string>
@@ -106,6 +107,15 @@
     <!--  AppOpenAd  -->
     <string name="info_title">Info</string>
     <string name="appopenad_info_body">Collapse and open App from recent to view AppOpenAd.</string>
+
+    <!-- Playable -->
+    <string name="playable_scan_qr_title">Scan QR Code</string>
+    <string name="playable_scan_hint">Point camera at a QR code\nto load a playable creative</string>
+    <string name="playable_camera_permission_required">Camera permission is required to scan QR codes.</string>
+    <string name="playable_empty_title">No playables yet</string>
+    <string name="playable_empty_subtitle">Scan a QR code to add a playable creative</string>
+    <string name="playable_with_video">With video</string>
+    <string name="playable_scan_qr_button">Scan QR</string>
 
     <!-- Feed -->
     <string name="another_adapter_item_title">Another adapter item #%1$d</string>

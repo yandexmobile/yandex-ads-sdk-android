@@ -29,6 +29,7 @@ import com.yandex.ads.sample.adunits.RewardedAdActivity
 import com.yandex.ads.sample.adunits.SimpleInstreamAdActivity
 import com.yandex.ads.sample.adunits.StickyBannerAdActivity
 import com.yandex.ads.sample.compose.ComposeExamplesActivity
+import com.yandex.ads.sample.compose.adunits.playable.PlayablePreviewActivity
 import com.yandex.ads.sample.databinding.ActivityHomeBinding
 import com.yandex.ads.sample.navigation.NavigationAdapter
 import com.yandex.ads.sample.navigation.NavigationItem
@@ -142,6 +143,11 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) {
                 R.drawable.ic_outline_feed_24,
                 R.string.feed_title,
                 ActivityNavigation(FeedActivity::class.java),
+            ),
+            NavigationItem(
+                R.drawable.ic_outline_play_arrow_24,
+                R.string.playable_title,
+                ActivityNavigation(PlayablePreviewActivity::class.java),
             ),
             NavigationItem(
                 R.drawable.ic_outline_instruments_24,

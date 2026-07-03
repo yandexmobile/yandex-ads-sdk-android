@@ -252,7 +252,7 @@ All SDK imports must use `com.yandex.mobile.ads.*` prefix:
 | Native Load | `loader.setNativeAdLoadListener(listener)`<br>`loader.loadAd(config)` | `loader.loadAd(request, listener)` |
 | Rewarded Load | `loader.setAdLoadListener(listener)`<br>`loader.loadAd(config)` | `loader.loadAd(request, listener)` |
 | App Open Load | `loader.setAdLoadListener(listener)`<br>`loader.loadAd(config)` | `loader.loadAd(request, listener)` |
-| Instream Load | `loader.setInstreamAdLoadListener(listener)`<br>`loader.loadInstreamAd(request)` | `loader.loadInstreamAd(request, listener)` |
+| Instream Load | `loader.setInstreamAdLoadListener(listener)`<br>`loader.loadInstreamAd(context, request)` | `loader.loadAd(request, listener)` (method renamed: `loadInstreamAd` → `loadAd`; `context` arg dropped — loader holds it internally) |
 | Slider Load | `loader.setSliderAdLoadListener(listener)`<br>`loader.loadSlider(config)` | `loader.loadAd(request, listener)` or<br>`loader.loadAd(request, options, listener)` |
 | Bulk Native Load | `loader.setNativeBulkAdLoadListener(listener)`<br>`loader.loadAds(config, count)` | `loader.loadAds(request, count, listener)` |
 | Banner Size (Sticky) | `BannerAdSize.stickySize(context, width)` | `BannerAdSize.sticky(context, width)` |
@@ -300,6 +300,7 @@ All SDK imports must use `com.yandex.mobile.ads.*` prefix:
 | `AdRequest.Builder().setAge/Gender/Location()` | Move to `AdTargeting.Builder()`, pass via `AdRequest.Builder().setTargeting()` | Extract targeting calls, wrap in `AdTargeting.Builder()`, pass to `setTargeting()` |
 | `AdRequest.Builder().setShouldLoadImagesAutomatically()` | Move to `NativeAdOptions` for native ads | Remove from `AdRequest.Builder`, pass to `NativeAdLoader.loadAd(request, options, listener)` where `options = NativeAdOptions.Builder().setShouldLoadImagesAutomatically(value).build()` |
 | `BannerAdView.setAdUnitId()` | Pass `adUnitId` to `AdRequest.Builder()` constructor | Remove `setAdUnitId()` call, extract value, pass to `AdRequest.Builder(adUnitId)` |
+| `NativeAdType.PROMO` (enum constant) | Removed — only `CONTENT`, `APP_INSTALL`, `MEDIA` remain in `NativeAdType` | Remove `NativeAdType.PROMO` from `when`/`switch` branches; merge its behaviour with another branch (typically `APP_INSTALL`) or delete the case |
 | `InrollQueueProvider` | Use `instreamAd.instreamAdBreaks.filter { it.adBreakData.type == InstreamAdBreakType.INROLL }` | Remove provider instantiation, replace queue access with filter expression |
 | `PauserollQueueProvider` | Use `instreamAd.instreamAdBreaks.filter { it.adBreakData.type == InstreamAdBreakType.PAUSEROLL }` | Remove provider instantiation, replace queue access with filter expression |
 | `InstreamAdBreak.invalidate()` | Removed - just remove from memory | Delete method calls completely |
@@ -326,7 +327,7 @@ Migration Steps:
 
 Migration Steps:
 1. Remove `setInstreamAdLoadListener(listener)` call
-2. Pass listener directly to `loadInstreamAd(request, listener)`
+2. Pass listener directly to `loadAd(request, listener)` (method renamed: `loadInstreamAd` → `loadAd`; `context` is no longer passed, loader holds it internally)
 3. Update error parameter type from `String` to `InstreamAdRequestError`
 4. Use `error.description` to get error message
 
@@ -359,7 +360,7 @@ Migration Steps:
 
 | Feature | Old SDK 7.x | New SDK 8 |
 |---------|-------------|-------------|
-| Instream Load | `loader.setInstreamAdLoadListener(listener)`<br>`loader.loadInstreamAd(request)` | `loader.loadInstreamAd(request, listener)` |
+| Instream Load | `loader.setInstreamAdLoadListener(listener)`<br>`loader.loadInstreamAd(context, request)` | `loader.loadAd(request, listener)` (method renamed: `loadInstreamAd` → `loadAd`; `context` arg dropped — loader holds it internally) |
 | Error Callback | `onInstreamAdFailedToLoad(reason: String)` | `onInstreamAdFailedToLoad(error: InstreamAdRequestError)` - use `error.description` |
 | Binder Player | `InstreamAdBinder(context, ad, player, videoPlayer)` | Player is now optional: `InstreamAdBinder(context, ad, null, videoPlayer)` |
 | Ad Break Prepare | `adBreak.prepare(player)` | Player is optional: `adBreak.prepare()` or `adBreak.prepare(player)` |

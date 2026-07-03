@@ -2,6 +2,21 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 8.2.0
+
+### Updated
+
+* AppMetrica SDK to version 8.3.0
+
+### Fixed
+
+* Memory leak in AppOpenAd
+* Native ad load cancellation hanging when load is canceled
+* Mediation banner `onAdLoaded` callback not dispatched on the main thread
+* Clicks behavior on Android 6
+* Screen orientation lock on tablets
+* Improvements and optimizations
+
 ## Version 8.1.0
 
 ### Updated
@@ -61,6 +76,12 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
 #### Updated
 * AppMetrica SDK version 8.0.0
+
+## Version 7.18.7
+
+### Fixed
+* Fixed memory leak in AppOpenAd format
+* Fixed issues about insets usage
 
 ## Version 7.18.6
 

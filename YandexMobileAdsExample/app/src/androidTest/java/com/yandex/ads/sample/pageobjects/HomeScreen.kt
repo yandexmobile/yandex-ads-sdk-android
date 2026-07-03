@@ -36,7 +36,7 @@ internal class HomeScreen(
             NavigationItem.Policies::class.java -> 11
             NavigationItem.AppOpenAd::class.java -> 12
             NavigationItem.Feed::class.java -> 13
-            NavigationItem.DebugPanel::class.java -> 14
+            NavigationItem.DebugPanel::class.java -> 15
             else -> error("unsupported type")
         }
     }
