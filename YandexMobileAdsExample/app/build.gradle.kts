@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId = "com.yandex.ads.mobile"
-        minSdk = 23
+        minSdk = 24
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -67,10 +67,9 @@ android {
 
 dependencies {
     // Yandex Mobile Ads SDK with mediation adapters
-    implementation("com.yandex.android:mobileads-mediation:8.2.0.0")
-    implementation("com.yandex.ads.mediation:mobileads-startapp:5.2.2.1")
-    implementation("com.yandex.ads.mediation:mobileads-appnext:2.7.6.473.20")
-    implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.3.1.9")
+    implementation("com.yandex.android:mobileads-mediation:8.3.0.0")
+    implementation("com.yandex.ads.mediation:mobileads-appnext:2.7.6.473.22")
+    implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.3.1.11")
     implementation("com.yandex.android:mobileads-compose:8.0.0")
 
     implementation("androidx.appcompat:appcompat:1.5.1")
