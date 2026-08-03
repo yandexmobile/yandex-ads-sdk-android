@@ -21,7 +21,15 @@ Use latest available versions in repositories :
 - Mediation adapters: [https://repo.maven.apache.org/maven2/com/yandex/ads/mediation/](https://repo.maven.apache.org/maven2/com/yandex/ads/mediation/)
 
 #### STEP 1: Identify Application Package (MANDATORY - CANNOT SKIP)
-Read `app/build.gradle.kts` and find `namespace` value (e.g., `"com.yandex.ads.sample"`).
+Read the app module's Gradle build script and find the `namespace` value (e.g., `"com.yandex.ads.sample"`).
+
+The build script may use either Gradle DSL — do NOT assume `.kts`:
+- **Kotlin DSL**: `app/build.gradle.kts` — `namespace = "com.yandex.ads.sample"`
+- **Groovy DSL**: `app/build.gradle` — `namespace "com.yandex.ads.sample"` or `namespace = "com.yandex.ads.sample"`
+
+Many projects (including Capacitor / hybrid wrappers) use the Groovy `build.gradle`. Check which file actually exists in the app module before reading it.
+
+If `namespace` is absent (older AGP), fall back to the `applicationId` in the same file or the `package` attribute in `app/src/main/AndroidManifest.xml`.
 
 CRITICAL: Any import starting with this namespace is application code, NOT SDK code.
 NEVER replace imports that start with the application namespace.
@@ -171,7 +179,7 @@ Do not automatically edit these Gradle settings unless the user explicitly agree
 ## Migrate to Yandex Ads SDK 8
 
 * When I ask to migrate to **Yandex Mobile Ads SDK 8**, start modifying files immediately in the same response without asking for confirmation.
-* Assume **Yandex artifact versions** in `build.gradle.kts` are already set by the user. Do not change **Yandex / mediation dependency coordinates** unless the user asks.
+* Assume **Yandex artifact versions** in the Gradle build script (`build.gradle.kts` or Groovy `build.gradle`) are already set by the user. Do not change **Yandex / mediation dependency coordinates** unless the user asks.
 * **Exception:** always run **STEP 0** first to check for optional build toolchain updates. Do not force changes unless the user encounters errors.
 * Follow the Fast Migration Strategy above to avoid slow iterative approach.
 
@@ -258,6 +266,7 @@ All SDK imports must use `com.yandex.mobile.ads.*` prefix:
 | Banner Size (Sticky) | `BannerAdSize.stickySize(context, width)` | `BannerAdSize.sticky(context, width)` |
 | Banner Size (Inline) | `BannerAdSize.inlineSize(context, width, maxHeight)` | `BannerAdSize.inline(context, width, maxHeight)` |
 | Ad Show (Interstitial/Rewarded/AppOpen) | `ad.setAdEventListener(listener)`<br>`ad.show(activity)` | `ad.setAdEventListener(listener)`<br>`ad.show(activity)` |
+| Cancel / detach loading | `loader.setAdLoadListener(null)` (also used to detach and avoid stale callbacks) | `loader.cancelLoading()` |
 | Native Binding | `try { ad.bindNativeAd(binder) } catch (e: NativeAdException)` | `when (ad.bindNativeAd(binder)) { is AdBindingResult.Failure -> ..., is AdBindingResult.Success -> ... }` |
 
 ---
@@ -300,6 +309,7 @@ All SDK imports must use `com.yandex.mobile.ads.*` prefix:
 | `AdRequest.Builder().setAge/Gender/Location()` | Move to `AdTargeting.Builder()`, pass via `AdRequest.Builder().setTargeting()` | Extract targeting calls, wrap in `AdTargeting.Builder()`, pass to `setTargeting()` |
 | `AdRequest.Builder().setShouldLoadImagesAutomatically()` | Move to `NativeAdOptions` for native ads | Remove from `AdRequest.Builder`, pass to `NativeAdLoader.loadAd(request, options, listener)` where `options = NativeAdOptions.Builder().setShouldLoadImagesAutomatically(value).build()` |
 | `BannerAdView.setAdUnitId()` | Pass `adUnitId` to `AdRequest.Builder()` constructor | Remove `setAdUnitId()` call, extract value, pass to `AdRequest.Builder(adUnitId)` |
+| `loader.setAdLoadListener(null)` / `setNativeAdLoadListener(null)` / `setInstreamAdLoadListener(null)` (detach listener to cancel loading / avoid stale callbacks) | `loader.cancelLoading()` | `setAdLoadListener` is removed entirely, so any `setAdLoadListener(listener)` becomes the `loadAd(request, listener)` argument. But a `setAdLoadListener(null)` call has no `loadAd` equivalent — replace it with `loader.cancelLoading()`. Applies to `InterstitialAdLoader`, `RewardedAdLoader`, `AppOpenAdLoader`, `NativeAdLoader`, `NativeBulkAdLoader`, `SliderAdLoader`, `InstreamAdLoader`. |
 | `NativeAdType.PROMO` (enum constant) | Removed — only `CONTENT`, `APP_INSTALL`, `MEDIA` remain in `NativeAdType` | Remove `NativeAdType.PROMO` from `when`/`switch` branches; merge its behaviour with another branch (typically `APP_INSTALL`) or delete the case |
 | `InrollQueueProvider` | Use `instreamAd.instreamAdBreaks.filter { it.adBreakData.type == InstreamAdBreakType.INROLL }` | Remove provider instantiation, replace queue access with filter expression |
 | `PauserollQueueProvider` | Use `instreamAd.instreamAdBreaks.filter { it.adBreakData.type == InstreamAdBreakType.PAUSEROLL }` | Remove provider instantiation, replace queue access with filter expression |
@@ -316,12 +326,14 @@ Migration Steps:
 2. Remove interface implementation from class declaration (if class implements listener)
 3. Pass listener as second parameter to `loadAd(request, listener)`
 4. Convert listener to object expression or lambda if needed
+5. **Cancellation / detach:** `setAdLoadListener` is removed, so a `setAdLoadListener(null)` call (typically used to detach the listener and cancel loading / avoid stale callbacks, e.g. in `onDestroy`) has NO `loadAd` argument to move into. Replace it with `loader.cancelLoading()`. Do not silently drop it — dropping it changes cleanup behavior and leaves the removed method as a compile error.
 
 ### Pattern 2: Native Ad Load Listener
 
 Migration Steps:
 1. Remove `setNativeAdLoadListener(listener)` call
 2. Update `loadAd()` to accept two parameters: `loadAd(request, listener)`
+3. **Cancellation / detach:** `setNativeAdLoadListener` is removed, so a `setNativeAdLoadListener(null)` call (typically used to detach the listener and cancel loading / avoid stale callbacks, e.g. in `onDestroy`) has NO `loadAd` argument to move into. Replace it with `loader.cancelLoading()`. Do not silently drop it — dropping it changes cleanup behavior and leaves the removed method as a compile error. (Same applies to `NativeBulkAdLoader`/`SliderAdLoader` with `setNativeBulkAdLoadListener(null)`/`setSliderAdLoadListener(null)`.)
 
 ### Pattern 3: Instream Ad Load Listener
 
@@ -330,6 +342,7 @@ Migration Steps:
 2. Pass listener directly to `loadAd(request, listener)` (method renamed: `loadInstreamAd` → `loadAd`; `context` is no longer passed, loader holds it internally)
 3. Update error parameter type from `String` to `InstreamAdRequestError`
 4. Use `error.description` to get error message
+5. **Cancellation / detach:** `setInstreamAdLoadListener` is removed, so a `setInstreamAdLoadListener(null)` call (typically used to detach the listener and cancel loading / avoid stale callbacks, e.g. in `onDestroy`) has NO `loadAd` argument to move into. Replace it with `loader.cancelLoading()`. Do not silently drop it — dropping it changes cleanup behavior and leaves the removed method as a compile error.
 
 ### Pattern 4: Banner Event Listener
 

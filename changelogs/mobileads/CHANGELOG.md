@@ -2,6 +2,17 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 8.3.0
+
+### Updated
+
+* Improved support for target SDK 36
+* `density` added to `configChanges` of `AdActivity`. Apps declaring `AdActivity` in their own manifest should add it to prevent fullscreen ads from being dismissed on foldable devices
+
+### Fixed
+
+* Fullscreen ad dismissal on screen density change (foldable devices)
+
 ## Version 8.2.0
 
 ### Updated

@@ -20,7 +20,7 @@ EULA is available at [EULA website] [LICENSE]
 ##### Add YandexMobileAds SDK:
 
 ```sh
-implementation 'com.yandex.android:mobileads:8.2.0'
+implementation 'com.yandex.android:mobileads:8.3.0'
 ```
 
 ##### Or you can use our library with all available mediations:
@@ -31,7 +31,7 @@ implementation 'com.yandex.android:mobileads:8.2.0'
 
 dependencies {
   ...
-  implementation 'com.yandex.android:mobileads-mediation:8.2.0.0'
+  implementation 'com.yandex.android:mobileads-mediation:8.3.0.0'
 }
 ```
 
@@ -65,7 +65,7 @@ allprojects {
 ```
 
 
-##### Note, for correct work of SDK you need Android Gradle Plugin version 8.8.2
+##### Note, for correct work of SDK you need Android Gradle Plugin version 8.9.1
 
 [DOCUMENTATION]: https://tech.yandex.com/mobile-ads/
 [LICENSE]: https://legal.yandex.com/partner_ch/
