@@ -68,9 +68,9 @@ android {
 dependencies {
     // Yandex Mobile Ads SDK with mediation adapters
     implementation("com.yandex.android:mobileads-mediation:8.3.0.0")
-    implementation("com.yandex.ads.mediation:mobileads-appnext:2.7.6.473.22")
-    implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.3.1.11")
-    implementation("com.yandex.android:mobileads-compose:8.0.0")
+    implementation("com.yandex.ads.mediation:mobileads-appnext:2.7.6.473.23")
+    implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.3.1.12")
+    implementation("com.yandex.android:mobileads-compose:8.3.0")
 
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("androidx.activity:activity-ktx:1.6.1")
