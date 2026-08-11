@@ -52,6 +52,9 @@ allprojects {
         // Tapjoy
         maven { url 'https://sdk.tapjoy.com/' }
 
+        // BidMachine
+        maven { url 'https://artifactory.bidmachine.io/bidmachine' }
+
         // Mintegral
         maven { url 'https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea'}
 
