@@ -35,6 +35,15 @@ allprojects {
 
         // Tapjoy
         maven { url = uri("https://sdk.tapjoy.com/") }
+        
+        // BidMachine
+        maven {
+            url = uri("https://artifactory.bidmachine.io/bidmachine")
+            content {
+                includeGroupByRegex("io\\.bidmachine.*")
+                includeGroup("com.explorestack")
+            }
+        }
 
         // Mintegral
         maven { url = uri("https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea") }
