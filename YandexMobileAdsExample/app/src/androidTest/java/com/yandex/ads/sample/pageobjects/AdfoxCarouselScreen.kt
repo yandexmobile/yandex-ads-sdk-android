@@ -14,6 +14,8 @@ import com.yandex.ads.sample.components.LogsScrollView
 import io.github.kakaocup.kakao.common.builders.ViewBuilder
 import io.github.kakaocup.kakao.common.views.KView
 import io.github.kakaocup.kakao.text.KButton
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 
@@ -138,6 +140,51 @@ internal fun AdfoxCarouselScreen.getCurrentPage(): Int {
     return currentPage
 }
 
+internal fun AdfoxCarouselScreen.waitForNextPage(timeoutMillis: Long = 10_000): Pair<Int, Int> {
+    val pageChanged = CountDownLatch(1)
+    var initialPage = 0
+    var currentPage: Int? = null
+    lateinit var callback: ViewPager2.OnPageChangeCallback
+
+    carouselViewPager.view.perform(object : ViewAction {
+        override fun getConstraints(): Matcher<View> = Matchers.instanceOf(ViewPager2::class.java)
+
+        override fun getDescription(): String = "Start waiting for the next ViewPager2 page"
+
+        override fun perform(uiController: UiController, view: View) {
+            val viewPager = view as ViewPager2
+            initialPage = viewPager.currentItem
+            callback = object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    if (position != initialPage && currentPage == null) {
+                        currentPage = position
+                        pageChanged.countDown()
+                    }
+                }
+            }
+            viewPager.registerOnPageChangeCallback(callback)
+        }
+    })
+
+    try {
+        check(pageChanged.await(timeoutMillis, TimeUnit.MILLISECONDS)) {
+            "Carousel page did not change from $initialPage within $timeoutMillis ms"
+        }
+    } finally {
+        carouselViewPager.view.perform(object : ViewAction {
+            override fun getConstraints(): Matcher<View> = Matchers.instanceOf(ViewPager2::class.java)
+
+            override fun getDescription(): String = "Stop waiting for the next ViewPager2 page"
+
+            override fun perform(uiController: UiController, view: View) {
+                (view as ViewPager2).unregisterOnPageChangeCallback(callback)
+            }
+        })
+    }
+
+    return initialPage to checkNotNull(currentPage)
+}
+
 internal fun AdfoxCarouselScreen.getPageCount(): Int {
     var pageCount = 0
     carouselViewPager.view.perform(object : ViewAction {
@@ -185,4 +232,3 @@ internal class AdfoxCarouselScreen : KScreen<AdfoxCarouselScreen>() {
         function = { withClassName(Matchers.endsWith("ScrollView")) }
     )
 }
-

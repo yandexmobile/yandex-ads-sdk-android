@@ -22,12 +22,18 @@ internal class ComposeStickyBannerLoadTest : BaseUITest() {
             composeTestRule.onNodeWithText("Sticky banner").performClick()
         }
 
-        step("Дождаться загрузки баннера") {
+        step("Дождаться загрузки и показа баннера") {
             composeTestRule.waitUntil(timeoutMillis = 30_000) {
-                composeTestRule
+                val isLoaded = composeTestRule
                     .onAllNodesWithText("onAdLoaded", substring = true)
                     .fetchSemanticsNodes()
                     .isNotEmpty()
+                val hasImpression = composeTestRule
+                    .onAllNodesWithText("onImpression", substring = true)
+                    .fetchSemanticsNodes()
+                    .isNotEmpty()
+
+                isLoaded && hasImpression
             }
         }
 

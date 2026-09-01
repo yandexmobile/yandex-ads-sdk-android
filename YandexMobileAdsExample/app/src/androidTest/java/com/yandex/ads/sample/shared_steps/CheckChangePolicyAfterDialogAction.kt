@@ -57,10 +57,10 @@ internal class CheckChangePolicyAfterDialogAction<ContextData>(
         }
 
         step("Нажать на кнопку \"${getResourceString(dialogButtonRes)}\"") {
-            onScreen<CoppaDialogScreen> {
+            dialogType {
                 when (dialogAction) {
-                    DialogAction.ACCEPT -> clickAccept()
-                    DialogAction.DECLINE -> clickDecline()
+                    DialogAction.ACCEPT -> dialogType.clickAccept()
+                    DialogAction.DECLINE -> dialogType.clickDecline()
                 }
             }
 

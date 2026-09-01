@@ -2,6 +2,22 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 8.4.0
+
+### Added
+
+* `YandexAds.adVolumeController` — API for controlling audio of ads rendered by the SDK
+
+### Updated
+
+* AppMetrica SDK to version 8.5.0
+* The SDK manifest now declares package visibility for Google Play (`<queries>` with `com.android.vending`). It is merged into the host application manifest and does not change SDK behaviour on its own. Apps that do not need it can drop the entry with `<package android:name="com.android.vending" tools:node="remove" />`
+
+### Fixed
+
+* A crash (`NullPointerException`) while scrolling an ad gallery in apps with R8 enabled.
+* A memory leak: the activity used to initialize the SDK could be retained for the lifetime of the process
+
 ## Version 8.3.0
 
 ### Updated

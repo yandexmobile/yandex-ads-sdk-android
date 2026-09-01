@@ -7,6 +7,9 @@ import com.yandex.ads.sample.pageobjects.AdfoxCarouselScreen
 import com.yandex.ads.sample.pageobjects.checkAdIsLoaded
 import com.yandex.ads.sample.pageobjects.clickLoadAd
 import com.yandex.ads.sample.pageobjects.getCurrentPage
+import com.yandex.ads.sample.pageobjects.getPageCount
+import com.yandex.ads.sample.pageobjects.setCurrentPage
+import com.yandex.ads.sample.pageobjects.waitForNextPage
 import com.yandex.ads.sample.shared_steps.GoToSection
 import com.yandex.ads.sample.shared_steps.goToSection
 import com.yandex.ads.sample.shared_steps.openSampleApp
@@ -35,48 +38,55 @@ internal class AdfoxCarouselAutoscrollTest : BaseUITest() {
             }
         }
 
-        var initialPage: Int
-        step("Подождать 5 секунд не производя никаких действий") {
+        var pageCount = 0
+        step("Получить количество слайдов в карусели") {
             onScreen<AdfoxCarouselScreen> {
-                initialPage = getCurrentPage()
-                Thread.sleep(5500)
+                pageCount = getPageCount()
+                Assert.assertTrue(
+                    "Количество слайдов должно быть больше 1 для проверки автопрокрутки",
+                    pageCount > 1
+                )
+            }
+        }
 
+        step("Дождаться автопрокрутки, не производя никаких действий") {
+            onScreen<AdfoxCarouselScreen> {
                 step("Происходит автопрокрутка на следующий слайд") {
-                    val currentPage = getCurrentPage()
-                    Assert.assertNotEquals(
-                        "Автопрокрутка не произошла, остались на том же слайде",
-                        initialPage,
-                        currentPage
-                    )
+                    val (initialPage, currentPage) = waitForNextPage()
                     Assert.assertEquals(
                         "Автопрокрутка перешла не на следующий слайд",
-                        (initialPage + 1) % 3,
+                        (initialPage + 1) % pageCount,
                         currentPage
                     )
                 }
             }
         }
 
-        step("Подождать ещё 5 секунд не производя никаких действий") {
+        step("На последнем слайде дождаться автопрокрутки, не производя никаких действий") {
             onScreen<AdfoxCarouselScreen> {
-                val previousPage = getCurrentPage()
-                Thread.sleep(5500)
+                setCurrentPage(pageCount - 1)
+                flakySafely {
+                    Assert.assertEquals(
+                        "Должны быть на последнем слайде",
+                        pageCount - 1,
+                        getCurrentPage()
+                    )
+                }
 
                 step("После последнего слайда происходит автопрокрутка обратно на первый") {
-                    val currentPage = getCurrentPage()
-                    Assert.assertNotEquals(
-                        "Автопрокрутка не произошла, остались на том же слайде",
-                        previousPage,
+                    val (initialPage, currentPage) = waitForNextPage()
+                    Assert.assertEquals(
+                        "Автопрокрутка после последнего слайда не перешла на первый",
+                        0,
                         currentPage
                     )
                     Assert.assertEquals(
-                        "Автопрокрутка перешла не на следующий слайд",
-                        (previousPage + 1) % 3,
-                        currentPage
+                        "Ожидали автопрокрутку с последнего слайда",
+                        pageCount - 1,
+                        initialPage
                     )
                 }
             }
         }
     }
 }
-

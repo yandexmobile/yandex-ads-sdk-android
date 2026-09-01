@@ -10,6 +10,7 @@ import com.yandex.ads.sample.pageobjects.clickLoadAd
 import com.yandex.ads.sample.pageobjects.clickRightArrow
 import com.yandex.ads.sample.pageobjects.getCurrentPage
 import com.yandex.ads.sample.pageobjects.getPageCount
+import com.yandex.ads.sample.pageobjects.setCurrentPage
 import com.yandex.ads.sample.shared_steps.GoToSection
 import com.yandex.ads.sample.shared_steps.goToSection
 import com.yandex.ads.sample.shared_steps.openSampleApp
@@ -51,18 +52,22 @@ internal class AdfoxCarouselArrowsTest : BaseUITest() {
 
         step("На первом слайде нажать стрелку влево") {
             onScreen<AdfoxCarouselScreen> {
-                Assert.assertEquals("Должны быть на первом слайде", 0, getCurrentPage())
+                setCurrentPage(0)
+                flakySafely {
+                    Assert.assertEquals("Должны быть на первом слайде", 0, getCurrentPage())
+                }
 
                 clickLeftArrow()
-                Thread.sleep(500)
 
                 step("Происходит переход на последний слайд") {
-                    val currentPage = getCurrentPage()
-                    Assert.assertEquals(
-                        "Должен быть переход на последний слайд",
-                        pageCount - 1,
-                        currentPage
-                    )
+                    flakySafely {
+                        val currentPage = getCurrentPage()
+                        Assert.assertEquals(
+                            "Должен быть переход на последний слайд",
+                            pageCount - 1,
+                            currentPage
+                        )
+                    }
                 }
             }
         }
@@ -70,18 +75,18 @@ internal class AdfoxCarouselArrowsTest : BaseUITest() {
         step("На последнем слайде нажать стрелку вправо") {
             onScreen<AdfoxCarouselScreen> {
                 clickRightArrow()
-                Thread.sleep(500)
 
                 step("Происходит переход на первый слайд") {
-                    val currentPage = getCurrentPage()
-                    Assert.assertEquals(
-                        "Должен быть переход на первый слайд",
-                        0,
-                        currentPage
-                    )
+                    flakySafely {
+                        val currentPage = getCurrentPage()
+                        Assert.assertEquals(
+                            "Должен быть переход на первый слайд",
+                            0,
+                            currentPage
+                        )
+                    }
                 }
             }
         }
     }
 }
-

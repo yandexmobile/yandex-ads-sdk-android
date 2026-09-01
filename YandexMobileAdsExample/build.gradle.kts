@@ -35,7 +35,7 @@ allprojects {
 
         // Tapjoy
         maven { url = uri("https://sdk.tapjoy.com/") }
-        
+
         // BidMachine
         maven {
             url = uri("https://artifactory.bidmachine.io/bidmachine")
