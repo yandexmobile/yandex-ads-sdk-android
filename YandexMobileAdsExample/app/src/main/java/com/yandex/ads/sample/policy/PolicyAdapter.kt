@@ -17,7 +17,9 @@ import androidx.core.content.edit
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.yandex.ads.sample.databinding.PolicyItemBinding
+import com.yandex.ads.sample.settings.GdprDialogFragment
 import com.yandex.ads.sample.settings.PoliciesActivity
+import com.yandex.ads.sample.utils.ConsentManagementSampleUtils
 
 class PolicyAdapter(
     private val context: FragmentActivity,
@@ -51,6 +53,13 @@ class PolicyAdapter(
                 val value = bundle.getBoolean(PoliciesActivity.VALUE)
                 preferences.edit { putBoolean(item.tag, value) }
                 item.onDialogResult(value)
+                if (item.tag == GdprDialogFragment.TAG) {
+                    ConsentManagementSampleUtils.applyDebugParameters(context)
+                    ConsentManagementSampleUtils.presentConsentFormIfRequired(
+                        context,
+                        ConsentManagementSampleUtils.Trigger.GDPR_DIALOG,
+                    )
+                }
                 notifyItemChanged(position)
             }
             dialogButton.setOnClickListener {

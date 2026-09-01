@@ -67,11 +67,13 @@ android {
 
 dependencies {
     // Yandex Mobile Ads SDK with mediation adapters
-    implementation("com.yandex.android:mobileads-mediation:8.3.0.0")
-    implementation("com.yandex.ads.mediation:mobileads-appnext:2.7.6.473.23")
-    implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.3.1.12")
-    implementation("com.yandex.android:mobileads-compose:8.3.0")
-
+    implementation("com.yandex.android:mobileads-mediation:8.4.0.0")
+    implementation("com.yandex.ads.mediation:mobileads-appnext:2.7.6.473.24")
+    implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.3.1.13")
+    implementation("com.yandex.android:mobileads-compose:8.4.0")
+    implementation("com.yandex.android:mobileads-consent-management:1.0.0") {
+        exclude(group = "mobile-ads-sdk")
+    }
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("androidx.activity:activity-ktx:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -82,7 +84,6 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation("com.google.android.material:material:1.7.0")
-    implementation("com.google.android.exoplayer:exoplayer:2.18.1")
     implementation("androidx.media3:media3-exoplayer:1.4.1")
     implementation("androidx.media3:media3-ui:1.4.1")
     implementation("androidx.lifecycle:lifecycle-process:2.4.1")

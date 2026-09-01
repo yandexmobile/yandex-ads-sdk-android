@@ -1,6 +1,20 @@
 # Change Log
 All notable changes to AdMob Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 1.3.0.0
+
+#### Changed
+* Artifact renamed to `com.yandex.ads.mediation:mobileads-google-nextgen`.
+  The previous artifact `com.yandex.ads.mediation:mobileads-google` is frozen at
+  `25.2.0.2` and is no longer updated — it stays on the deprecated
+  `play-services-ads` SDK. Publishers using the Google demand source must change
+  the dependency coordinate.
+
+#### Updated
+* Yandex Mobile Ads SDK version 8.4.0
+* Migrated to GMA Next-Gen SDK (`ads-mobile-sdk` 1.3.0)
+* Minimum Android API level increased to 24
+
 ## Version 25.2.0.2
 
 #### Updated

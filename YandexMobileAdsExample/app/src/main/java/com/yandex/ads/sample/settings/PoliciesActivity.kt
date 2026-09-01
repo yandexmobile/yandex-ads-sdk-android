@@ -11,6 +11,7 @@ package com.yandex.ads.sample.settings
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
@@ -19,6 +20,7 @@ import com.yandex.ads.sample.R
 import com.yandex.ads.sample.databinding.ActivityPoliciesBinding
 import com.yandex.ads.sample.policy.PolicyAdapter
 import com.yandex.ads.sample.policy.PolicyItem
+import com.yandex.ads.sample.utils.ConsentManagementSampleUtils
 import com.yandex.ads.sample.utils.applySystemBarsPadding
 import com.yandex.mobile.ads.common.YandexAds
 
@@ -32,12 +34,36 @@ class PoliciesActivity : AppCompatActivity(R.layout.activity_policies) {
         enableEdgeToEdge()
         binding = ActivityPoliciesBinding.inflate(layoutInflater)
         binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        binding.toolbar.inflateMenu(R.menu.policies_menu)
+        binding.toolbar.setOnMenuItemClickListener(::onMenuItemClick)
         setContentView(binding.root)
         applySystemBarsPadding(findViewById(R.id.coordinatorLayout))
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
         binding.policies.layoutManager = LinearLayoutManager(this)
         binding.policies.adapter = PolicyAdapter(this, preferences, policies)
+    }
+
+    private fun onMenuItemClick(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_present_cmp -> {
+                presentCmpForm()
+                true
+            }
+            R.id.action_reset_cmp -> {
+                ConsentManagementSampleUtils.resetConsentStatus(this)
+                true
+            }
+            else -> false
+        }
+    }
+
+    private fun presentCmpForm() {
+        ConsentManagementSampleUtils.applyDebugParameters(this)
+        ConsentManagementSampleUtils.presentConsentFormIfRequired(
+            this,
+            ConsentManagementSampleUtils.Trigger.MENU,
+        )
     }
 
     companion object {

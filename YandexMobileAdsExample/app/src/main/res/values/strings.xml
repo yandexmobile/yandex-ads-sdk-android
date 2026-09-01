@@ -85,6 +85,16 @@
     <string name="location_dialog_message">This application contains Yandex advertising code that gets your approximate location in order to show you relevant ads that better match your region.</string>
     <string name="location_enabled">Location consent enabled</string>
     <string name="location_disabled">Location consent disabled</string>
+    <string name="cmp_present_form">Present CMP form</string>
+    <string name="cmp_reset_status">Reset CMP</string>
+    <string name="cmp_test_device_unavailable">unavailable</string>
+    <string name="cmp_debug_params_applied">Debug params applied: geography=EEA, testDeviceId=%1$s. Add testDeviceId to AdMob test devices if the form does not appear.</string>
+    <string name="cmp_debug_present_requested">Present consent form requested (trigger=%1$s)</string>
+    <string name="cmp_message_success">Consent form has been successfully presented</string>
+    <string name="cmp_message_not_required">Consent form was not shown (NOT_REQUIRED). Common reasons: consent already collected on this device — use ⋮ → Reset CMP, then Present CMP form; device treated as outside EEA — this sample forces geography=EEA via debug params; CMP form is not configured in AdMob Privacy &amp; messaging. See logcat for testDeviceId.</string>
+    <string name="cmp_message_presentation_failed">Presentation failed: %1$s</string>
+    <string name="cmp_debug_reset_requested">Reset consent status requested</string>
+    <string name="cmp_message_reset_done">Consent status reset. Use Present CMP form to show the form again.</string>
     <string name="open_dialog">Open dialog</string>
     <string name="accept">Accept</string>
     <string name="about">About</string>

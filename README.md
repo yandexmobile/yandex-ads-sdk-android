@@ -20,7 +20,7 @@ EULA is available at [EULA website] [LICENSE]
 ##### Add YandexMobileAds SDK:
 
 ```sh
-implementation 'com.yandex.android:mobileads:8.3.0'
+implementation 'com.yandex.android:mobileads:8.4.0'
 ```
 
 ##### Or you can use our library with all available mediations:
@@ -31,7 +31,7 @@ implementation 'com.yandex.android:mobileads:8.3.0'
 
 dependencies {
   ...
-  implementation 'com.yandex.android:mobileads-mediation:8.3.0.0'
+  implementation 'com.yandex.android:mobileads-mediation:8.4.0.0'
 }
 ```
 
@@ -51,9 +51,6 @@ allprojects {
 
         // Tapjoy
         maven { url 'https://sdk.tapjoy.com/' }
-
-        // BidMachine
-        maven { url 'https://artifactory.bidmachine.io/bidmachine' }
 
         // Mintegral
         maven { url 'https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea'}

@@ -11,7 +11,6 @@ package com.yandex.ads.sample.player.ad
 
 import android.widget.FrameLayout
 import androidx.media3.ui.PlayerView
-import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.yandex.ads.sample.player.SamplePlayer
 import com.yandex.mobile.ads.instream.player.ad.InstreamAdPlayer
 import com.yandex.mobile.ads.instream.player.ad.InstreamAdPlayerListener
@@ -77,8 +76,8 @@ class SampleInstreamAdPlayer(
         container.addView(playerView)
     }
 
-    private fun createPlayerView(container: FrameLayout): StyledPlayerView {
-        val playerView = StyledPlayerView(container.context)
+    private fun createPlayerView(container: FrameLayout): PlayerView {
+        val playerView = PlayerView(container.context)
         return playerView.apply {
             useController = false
         }

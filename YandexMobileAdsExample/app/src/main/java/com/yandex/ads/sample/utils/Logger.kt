@@ -27,6 +27,11 @@ object Logger {
         Log.d(TAG, message)
     }
 
+    fun info(message: String) {
+        Log.i(TAG, message)
+        Toast.makeText(application, message, Toast.LENGTH_LONG).show()
+    }
+
     fun error(message: String) {
         Log.e(TAG, message)
         Toast.makeText(application, message, Toast.LENGTH_SHORT).show()

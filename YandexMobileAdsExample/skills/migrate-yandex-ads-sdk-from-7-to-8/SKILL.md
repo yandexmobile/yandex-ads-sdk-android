@@ -147,7 +147,7 @@ Iterate assemble application until success build, fix found issues between build
 
 **(Optional)** Check if the user's project uses this specific mediation adapters (`mobileads-google`, `mobileads-mytarget`, `mobileads-extras`):
 
-- **minSdk 23** — Only required if the user includes specific mediation adapters (e.g. `mobileads-google`, `mobileads-mytarget`, `mobileads-extras`). If they use these adapters and `minSdk` is lower than 23, warn them that a manifest merger failure will occur and suggest raising it to 23. Do not force this if they don't use these adapters.
+- **minSdk** — Only required if the user includes specific mediation adapters, and the required level differs per adapter. `mobileads-google` requires `minSdk 24` starting with Yandex Mobile Ads SDK 8.4.0, where it moved to the GMA Next-Gen SDK (it was 23 before). `mobileads-extras` bundles third-party SDKs that already require `minSdk 24`. `mobileads-mytarget` requires `minSdk 23`. If they use these adapters and `minSdk` is lower, warn them that a manifest merger failure will occur and suggest raising it accordingly. Do not force this if they don't use these adapters.
 - **Kotlin 2.1.0+** — Recommended if transitive dependencies ship Kotlin 2.1 metadata (which causes errors with 1.8 compilers). If the user upgrades Kotlin to 2.0+
 - **Compose**, if Kotlin 2.1 is updated , ensure they use the `plugin.compose` compiler plugin instead of the old `composeOptions { kotlinCompilerExtensionVersion = ... }`.
 
