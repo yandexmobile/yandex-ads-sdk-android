@@ -2,11 +2,20 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 8.5.0
+
+### Fixed
+
+* Compose `Banner`: the ad view is now owned by `BannerAdState` — create one state per ad slot
+* Optimized In-Stream ad loading initialization
+* Fixed a memory leak in Feed ads
+
 ## Version 8.4.0
 
 ### Added
 
 * `YandexAds.adVolumeController` — API for controlling audio of ads rendered by the SDK
+* Baseline Profile bundled in the AAR — faster SDK initialization and first ad load after install; no integration changes required
 
 ### Updated
 

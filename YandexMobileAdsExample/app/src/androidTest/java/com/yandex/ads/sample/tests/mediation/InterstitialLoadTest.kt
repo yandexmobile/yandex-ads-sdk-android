@@ -80,7 +80,8 @@ internal class InterstitialLoadTest(
             InterstitialScreen.NetworkItem.StartApp::class.java,
             InterstitialScreen.NetworkItem.Pangle::class.java,
             InterstitialScreen.NetworkItem.MyTarget::class.java,
-            InterstitialScreen.NetworkItem.Mintegral::class.java,
+            // Temporarily disabled: Mintegral may not finish presenting the loaded ad.
+            // InterstitialScreen.NetworkItem.Mintegral::class.java,
             InterstitialScreen.NetworkItem.InMobi::class.java,
             InterstitialScreen.NetworkItem.Chartboost::class.java,
             InterstitialScreen.NetworkItem.AppLovin::class.java,

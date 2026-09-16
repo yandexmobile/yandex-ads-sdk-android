@@ -32,6 +32,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -73,6 +74,10 @@ fun ComposeRewardedScreen(
 
     val loader = rememberRewardedAdLoader()
 
+    DisposableEffect(Unit) {
+        onDispose { loadedAd?.setAdEventListener(null) }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -108,6 +113,7 @@ fun ComposeRewardedScreen(
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
+                    loadedAd?.setAdEventListener(null)
                     loadedAd = null
                     appendLog("Loading…")
                     scope.launch {
@@ -137,6 +143,7 @@ fun ComposeRewardedScreen(
                             }
                             override fun onAdDismissed() {
                                 appendLog("onAdDismissed")
+                                ad.setAdEventListener(null)
                                 loadedAd = null
                             }
                             override fun onAdClicked() { appendLog("onAdClicked") }

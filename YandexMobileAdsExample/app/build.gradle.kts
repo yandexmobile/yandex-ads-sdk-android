@@ -7,11 +7,13 @@
  * You may obtain a copy of the License at https://legal.yandex.com/partner_ch/
  */
 
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    kotlin("plugin.serialization") version "2.1.0"
-    id("org.jetbrains.kotlin.plugin.compose") version "2.1.0"
+    kotlin("plugin.serialization") version "2.3.10"
+    id("org.jetbrains.kotlin.plugin.compose") version "2.3.10"
 }
 
 android {
@@ -51,9 +53,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
     testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
         unitTests {
@@ -65,12 +64,17 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
+    }
+}
+
 dependencies {
     // Yandex Mobile Ads SDK with mediation adapters
-    implementation("com.yandex.android:mobileads-mediation:8.4.0.0")
-    implementation("com.yandex.ads.mediation:mobileads-appnext:2.7.6.473.24")
-    implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.3.1.13")
-    implementation("com.yandex.android:mobileads-compose:8.4.0")
+    implementation("com.yandex.android:mobileads-mediation:8.5.0.0")
+    implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.8.0.0")
+    implementation("com.yandex.android:mobileads-compose:8.5.0")
     implementation("com.yandex.android:mobileads-consent-management:1.0.0") {
         exclude(group = "mobile-ads-sdk")
     }
