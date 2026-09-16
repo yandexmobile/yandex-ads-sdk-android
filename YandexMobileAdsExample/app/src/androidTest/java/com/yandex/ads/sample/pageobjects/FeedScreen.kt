@@ -15,6 +15,17 @@ import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KButton
 import org.hamcrest.Matcher
 
+/*
+ * ViewAction.perform() вызывается Espresso на главном потоке. Всё, чего ждут
+ * хелперы ниже (наполнение адаптера FeedAdAdapter, загрузка рекламы, layout
+ * после smoothScrollToPosition), тоже происходит на главном потоке. Поэтому
+ * ожидание через Thread.sleep внутри perform() бессмысленно: оно блокирует
+ * ровно тот looper, который должен доставить ожидаемое изменение, и состояние
+ * не может измениться до конца сна. Ждём только через
+ * uiController.loopMainThreadForAtLeast(), которое прокручивает очередь
+ * сообщений главного потока.
+ */
+
 internal fun FeedScreen.clickShowFeed() = showFeedButton {
     isVisible()
     isClickable()
@@ -44,14 +55,15 @@ internal fun FeedScreen.checkFeedHasItems(): Int {
             require(adapter != null) { "Адаптер не должен быть null" }
 
             val maxAttempts = 20
+            val waitStepMs = 500L
             var attempts = 0
             while (adapter.itemCount == 0 && attempts < maxAttempts) {
-                Thread.sleep(500)
+                uiController.loopMainThreadForAtLeast(waitStepMs)
                 attempts++
             }
 
             itemCount = adapter.itemCount
-            require(itemCount > 0) { "В ленте должна быть хотя бы одна запись после ожидания ${maxAttempts * 500}мс" }
+            require(itemCount > 0) { "В ленте должна быть хотя бы одна запись после ожидания ${maxAttempts * waitStepMs}мс" }
         }
     })
     return itemCount
@@ -99,7 +111,7 @@ internal fun FeedScreen.waitForAdToLoad(timeoutMs: Long = 60_000): Boolean {
                     Log.d("KASPRESSO", "waitForAdToLoad: реклама еще не загрузилась, прошло ${elapsed}мс")
                 }
 
-                Thread.sleep(checkInterval)
+                uiController.loopMainThreadForAtLeast(checkInterval)
             }
 
             Log.e("KASPRESSO", "waitForAdToLoad: таймаут ожидания загрузки рекламы (${timeoutMs}мс)")
@@ -173,7 +185,7 @@ internal fun FeedScreen.scrollFeed(positions: Int = 10) {
                 for (i in 0 until positions) {
                     val targetPosition = minOf(i + 3, adapter.itemCount - 1)
                     recyclerView.smoothScrollToPosition(targetPosition)
-                    Thread.sleep(300)
+                    uiController.loopMainThreadForAtLeast(300L)
                 }
             }
         }
@@ -204,13 +216,13 @@ internal fun FeedScreen.scrollToAd() {
                     Log.d("KASPRESSO", "scrollToAd: попытка $attempts, скроллим к позиции $scrollPosition")
 
                     recyclerView.smoothScrollToPosition(scrollPosition)
-                    Thread.sleep(waitBetweenScrolls)
+                    uiController.loopMainThreadForAtLeast(waitBetweenScrolls)
 
                     for (i in 0 until recyclerView.childCount) {
                         val child = recyclerView.getChildAt(i)
                         if (child != null && isAdView(child)) {
                             Log.d("KASPRESSO", "scrollToAd: найдена реклама на позиции $i, ждем загрузки ${waitForAdLoad}мс")
-                            Thread.sleep(waitForAdLoad)
+                            uiController.loopMainThreadForAtLeast(waitForAdLoad)
                             found = true
                             break
                         }
@@ -351,7 +363,7 @@ internal fun FeedScreen.clickFirstAdItem() {
 
                 if (!clicked) {
                     Log.d("KASPRESSO", "clickFirstAdItem: кликабельный элемент не найден, ждем ${waitBetweenAttempts}мс")
-                    Thread.sleep(waitBetweenAttempts)
+                    uiController.loopMainThreadForAtLeast(waitBetweenAttempts)
                 }
             }
 
@@ -421,7 +433,7 @@ internal fun FeedScreen.clickVisibleAdItem() {
 
                 if (!clicked) {
                     Log.d("KASPRESSO", "clickVisibleAdItem: реклама не найдена, ждем ${waitBetweenAttempts}мс")
-                    Thread.sleep(waitBetweenAttempts)
+                    uiController.loopMainThreadForAtLeast(waitBetweenAttempts)
                 }
             }
 

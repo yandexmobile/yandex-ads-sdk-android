@@ -20,7 +20,7 @@ EULA is available at [EULA website] [LICENSE]
 ##### Add YandexMobileAds SDK:
 
 ```sh
-implementation 'com.yandex.android:mobileads:8.4.0'
+implementation 'com.yandex.android:mobileads:8.5.0'
 ```
 
 ##### Or you can use our library with all available mediations:
@@ -31,7 +31,7 @@ implementation 'com.yandex.android:mobileads:8.4.0'
 
 dependencies {
   ...
-  implementation 'com.yandex.android:mobileads-mediation:8.4.0.0'
+  implementation 'com.yandex.android:mobileads-mediation:8.5.0.0'
 }
 ```
 
@@ -52,6 +52,9 @@ allprojects {
         // Tapjoy
         maven { url 'https://sdk.tapjoy.com/' }
 
+        // BidMachine
+        maven { url 'https://artifactory.bidmachine.io/bidmachine' }
+
         // Mintegral
         maven { url 'https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea'}
 
@@ -65,7 +68,7 @@ allprojects {
 ```
 
 
-##### Note, for correct work of SDK you need Android Gradle Plugin version 8.9.1
+##### Note, for correct work of SDK you need Android Gradle Plugin version 9.0.1
 
 [DOCUMENTATION]: https://tech.yandex.com/mobile-ads/
 [LICENSE]: https://legal.yandex.com/partner_ch/
