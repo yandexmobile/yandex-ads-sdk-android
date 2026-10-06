@@ -29,6 +29,8 @@ internal interface LogsScrollViewAssertions : BaseAssertions {
     fun hasMessage(message: String)
 
     fun containsMessage(message: String)
+
+    fun containsAnyMessage(vararg messages: String)
 }
 
 class LogsScrollView private constructor(private val scrollView: KScrollView) :
@@ -114,6 +116,18 @@ class LogsScrollView private constructor(private val scrollView: KScrollView) :
             ViewAssertions.matches(
                 ViewMatchers.hasDescendant(
                     ViewMatchers.withText(Matchers.containsString(message))
+                )
+            )
+        )
+    }
+
+    override fun containsAnyMessage(vararg messages: String) {
+        view.check(
+            ViewAssertions.matches(
+                ViewMatchers.hasDescendant(
+                    ViewMatchers.withText(
+                        Matchers.anyOf(messages.map { Matchers.containsString(it) })
+                    )
                 )
             )
         )

@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to Digital Turbine Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 8.4.7.1
+
+#### Updated
+* Yandex Mobile Ads SDK version 8.6.0
+
 ## Version 8.4.7.0
 
 #### Updated

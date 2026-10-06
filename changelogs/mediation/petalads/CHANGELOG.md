@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to PetalAds Adapter for Yandex Mobile Ads Mediation will be documented in this file.
 
+## Version 3.4.90.302.0
+
+#### Updated
+* Yandex Mobile Ads SDK version 8.6.0
+* PetalAds SDK version 3.4.90.302
+
 ## Version 3.4.90.300.0
 
 #### Updated

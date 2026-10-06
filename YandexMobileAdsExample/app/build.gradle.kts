@@ -72,9 +72,9 @@ kotlin {
 
 dependencies {
     // Yandex Mobile Ads SDK with mediation adapters
-    implementation("com.yandex.android:mobileads-mediation:8.5.0.0")
-    implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.8.0.0")
-    implementation("com.yandex.android:mobileads-compose:8.5.0")
+    implementation("com.yandex.android:mobileads-mediation:8.6.0.0")
+    implementation("com.yandex.ads.mediation:mobileads-tapjoy:14.8.0.1")
+    implementation("com.yandex.android:mobileads-compose:8.6.0")
     implementation("com.yandex.android:mobileads-consent-management:1.0.0") {
         exclude(group = "mobile-ads-sdk")
     }
