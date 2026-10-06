@@ -38,6 +38,17 @@ internal class StickyBannerLoadTest(
             }
         }
 
+        step("Подождать результат загрузки рекламы") {
+            onScreen<StickyBannerScreen> {
+                flakySafely(60_000) {
+                    scrollView.containsAnyMessage(
+                        AD_LOADED_MESSAGE,
+                        AD_FAILED_TO_LOAD_MESSAGE,
+                    )
+                }
+            }
+        }
+
         step("Баннер загрузился. В случае подбора рекламы отобразился") {
             onScreen<StickyBannerScreen> {
                 compose(timeoutMs = 60_000) {
@@ -55,6 +66,10 @@ internal class StickyBannerLoadTest(
     }
 
     companion object {
+
+        private const val AD_LOADED_MESSAGE = "Banner ad loaded"
+
+        private const val AD_FAILED_TO_LOAD_MESSAGE = "Banner ad failed to load"
 
         @JvmStatic
         @Parameterized.Parameters

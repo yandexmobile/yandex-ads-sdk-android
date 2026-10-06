@@ -2,6 +2,16 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 8.6.0
+
+### Updated
+
+* AppMetrica SDK to version 8.5.1
+
+### Fixed
+
+* `BannerAdView`: a redundant ad request is no longer sent when `loadAd` is called again with a different ad unit id. The ad unit id of a `BannerAdView` is fixed by its first load
+
 ## Version 8.5.0
 
 ### Fixed
