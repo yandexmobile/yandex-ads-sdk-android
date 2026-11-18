@@ -2,6 +2,24 @@
 
 All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
+## Version 8.7.0
+
+### Breaking Changes
+
+* SDK updates are distributed through the [Yandex Maven repository](https://ads.maven.yandex.net/). New SDK versions are no longer published to Maven Central. Add the repository with the required content filters to your Gradle configuration before upgrading; see the [setup instructions](https://ads.yandex.com/helpcenter/en/dev/android/quick-start).
+
+### Added
+
+* Added In-Stream L-shape playback on Android TV and support for seeking in custom In-Stream ad players.
+
+### Fixed
+
+* In-Stream ads played by the built-in SDK player release the video decoder on `InstreamAdBinder.unbind()` and continue from the same position with the same volume after `bind()`.
+* Repeated BannerAdView.loadAd with a different ad unit ID now loads ads for that ad unit; an empty ad unit ID now triggers onAdFailedToLoad.
+* The SDK reports App Open, interstitial and rewarded mediation ad show failures to the app and releases the ad.
+* WebView of a native media asset is destroyed together with the ad and stops running JavaScript.
+* Banner ad info, ad unit ID, additional text and creatives now describe the displayed ad while a refresh is loading or after it fails.
+
 ## Version 8.6.0
 
 ### Updated
@@ -122,6 +140,11 @@ All notable changes to Yandex Mobile Ads SDK will be documented in this file.
 
 #### Updated
 * AppMetrica SDK version 8.0.0
+
+## Version 7.18.8
+
+### Fixed
+* Improvements and optimizations
 
 ## Version 7.18.7
 
