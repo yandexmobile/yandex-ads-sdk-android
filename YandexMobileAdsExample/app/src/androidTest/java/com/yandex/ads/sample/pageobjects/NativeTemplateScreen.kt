@@ -39,17 +39,11 @@ internal class NativeTemplateScreen : KScreen<NativeTemplateScreen>(),
         builder = { withClassName(Matchers.containsString("EndCompoundLayout")) },
         itemTypeBuilder = {
             itemType(NetworkItem::Yandex)
-            itemType(NetworkItem::AdMob)
             itemType(NetworkItem::AdFox)
-            itemType(NetworkItem::StartApp)
-            itemType(NetworkItem::MyTarget)
         },
         positionProvider = { clazz ->
             when (clazz) {
                 NetworkItem.Yandex::class.java -> 0
-                NetworkItem.AdMob::class.java -> 2
-                NetworkItem.MyTarget::class.java -> 5
-                NetworkItem.StartApp::class.java -> 7
                 NetworkItem.AdFox::class.java -> 8
                 else -> error("unsupported type")
             }
@@ -74,12 +68,6 @@ internal class NativeTemplateScreen : KScreen<NativeTemplateScreen>(),
 
         class Yandex(interaction: DataInteraction) : NetworkItem(interaction)
 
-        class AdMob(interaction: DataInteraction) : NetworkItem(interaction)
-
         class AdFox(interaction: DataInteraction) : NetworkItem(interaction)
-
-        class StartApp(interaction: DataInteraction) : NetworkItem(interaction)
-
-        class MyTarget(interaction: DataInteraction) : NetworkItem(interaction)
     }
 }

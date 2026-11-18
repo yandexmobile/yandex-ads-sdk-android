@@ -13,14 +13,64 @@ EULA is available at [EULA website] [LICENSE]
 
 #### 2. Build and run.
 
+> **Action required: update your Maven repository configuration**
+>
+> New versions of the Yandex Mobile Ads SDK for Android are no longer published to Maven Central. To receive SDK updates, add the Yandex Maven repository to your project's dependency repositories with the content filters shown below.
+>
+> The repository change does not change SDK artifact coordinates. Keep `google()`, `mavenCentral()`, and any repositories required by your mediation networks.
+
 ## Integration
 
 ### Configuring gradle
 
+##### Add repositories:
+
+Add the Yandex Maven repository to the existing `repositories` block inside `dependencyResolutionManagement` in your project's `settings.gradle.kts`:
+
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+
+        maven {
+            url = uri("https://ads.maven.yandex.net/")
+            content {
+                includeGroup("com.yandex.android")
+                includeGroupAndSubgroups("com.yandex.ads")
+            }
+        }
+    }
+}
+```
+
+If your project declares dependency repositories in the root `build.gradle.kts` or `build.gradle`, add the repository and filters to the existing `allprojects { repositories { ... } }` block there. For Groovy (`build.gradle`):
+
+```groovy
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        maven {
+            url 'https://ads.maven.yandex.net/'
+            content {
+                includeGroup 'com.yandex.android'
+                includeGroupAndSubgroups 'com.yandex.ads'
+            }
+        }
+    }
+}
+```
+
+The repository must be available to application dependencies; configuring it only in `pluginManagement` or `buildscript` is not sufficient. Keep any repositories required by your mediation networks (listed below) in the same dependency repositories block.
+
+See the [integration guide](https://ads.yandex.com/helpcenter/en/dev/android/quick-start) for the full setup instructions.
+
 ##### Add YandexMobileAds SDK:
 
 ```sh
-implementation 'com.yandex.android:mobileads:8.6.0'
+implementation 'com.yandex.android:mobileads:8.7.0'
 ```
 
 ##### Or you can use our library with all available mediations:
@@ -31,7 +81,7 @@ implementation 'com.yandex.android:mobileads:8.6.0'
 
 dependencies {
   ...
-  implementation 'com.yandex.android:mobileads-mediation:8.6.0.0'
+  implementation 'com.yandex.android:mobileads-mediation:8.7.0.0'
 }
 ```
 

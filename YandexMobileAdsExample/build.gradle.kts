@@ -27,6 +27,14 @@ allprojects {
         google()
         mavenCentral()
 
+        maven {
+            url = uri("https://ads.maven.yandex.net/")
+            content {
+                includeGroup("com.yandex.android")
+                includeGroupAndSubgroups("com.yandex.ads")
+            }
+        }
+
         // IronSource
         maven { url = uri("https://android-sdk.is.com/") }
 
@@ -53,8 +61,5 @@ allprojects {
 
         // AppNext
         maven { url = uri("https://dl.appnext.com/") }
-
-        // PetalAds
-        maven { url = uri("https://developer.huawei.com/repo/") }
     }
 }

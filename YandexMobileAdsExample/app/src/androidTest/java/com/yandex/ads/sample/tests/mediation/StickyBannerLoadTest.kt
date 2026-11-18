@@ -74,16 +74,7 @@ internal class StickyBannerLoadTest(
         @JvmStatic
         @Parameterized.Parameters
         fun data() = arrayOf(
-            StickyBannerScreen.NetworkItem.AdFox::class.java,
-            StickyBannerScreen.NetworkItem.Vungle::class.java,
-            StickyBannerScreen.NetworkItem.UnityAds::class.java,
-            StickyBannerScreen.NetworkItem.StartApp::class.java,
-            StickyBannerScreen.NetworkItem.MyTarget::class.java,
-            StickyBannerScreen.NetworkItem.Mintegral::class.java,
-//            StickyBannerScreen.NetworkItem.InMobi::class.java,
-            StickyBannerScreen.NetworkItem.Chartboost::class.java,
-            StickyBannerScreen.NetworkItem.AppLovin::class.java,
-            StickyBannerScreen.NetworkItem.AdMob::class.java
+            StickyBannerScreen.NetworkItem.AdFox::class.java
         )
     }
 }

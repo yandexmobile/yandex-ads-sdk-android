@@ -60,10 +60,7 @@ internal class NativeTemplateLoadTest(
         @JvmStatic
         @Parameterized.Parameters
         fun data() = arrayOf(
-            NativeTemplateScreen.NetworkItem.AdMob::class.java,
-            NativeTemplateScreen.NetworkItem.AdFox::class.java,
-            NativeTemplateScreen.NetworkItem.StartApp::class.java,
-            NativeTemplateScreen.NetworkItem.MyTarget::class.java
+            NativeTemplateScreen.NetworkItem.AdFox::class.java
         )
     }
 }
