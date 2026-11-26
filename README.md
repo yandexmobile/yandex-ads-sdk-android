@@ -70,7 +70,7 @@ See the [integration guide](https://ads.yandex.com/helpcenter/en/dev/android/qui
 ##### Add YandexMobileAds SDK:
 
 ```sh
-implementation 'com.yandex.android:mobileads:8.7.0'
+implementation 'com.yandex.android:mobileads:8.7.1'
 ```
 
 ##### Or you can use our library with all available mediations:
@@ -81,7 +81,7 @@ implementation 'com.yandex.android:mobileads:8.7.0'
 
 dependencies {
   ...
-  implementation 'com.yandex.android:mobileads-mediation:8.7.0.0'
+  implementation 'com.yandex.android:mobileads-mediation:8.7.1.0'
 }
 ```
 
